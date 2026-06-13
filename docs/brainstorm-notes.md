@@ -4,6 +4,30 @@
 
 ---
 
+## 🌍 MARKET REALITY — Kenya-first (confirmed from v34)
+**Zenti is a Kenya-market app.** This overrides the USD/card assumptions in earlier inspos.
+- **Currency: KES** (Kenyan Shillings) everywhere — not USD.
+- **Cash In / Out rails: M-Pesa & KCB Bank** (Safaricom M-Pesa is the primary). Real later via Daraja/STK-push; **mock for now**.
+- v34 already models this: linked accounts = "M-Pesa, KCB"; cash-in = "From M-Pesa · Instantly deposited"; withdraw → M-Pesa/KCB.
+
+**Reconciliations to earlier inspos (adjust to Kenya):**
+- **Inspo 13 (states):** "From Visa Debit ••9855" → **M-Pesa / KCB**; cash in/out = M-Pesa/KCB, not cards.
+- **Inspo 9 (perks):** US merchants (7-Eleven/Dunkin) → **Kenyan merchants** (e.g. Naivas, Java House, Quickmart) — mock now.
+- **Inspo 8 (credit score):** US bureaus (Equifax) → **Kenya CRBs** (Metropol, TransUnion Kenya) — mock now, post-MVP.
+- All `$` in notes = **KES** unless a global expansion is decided later.
+
+---
+
+## 🔧 v34 FRICTION FIXES — pay/request flow (to address in build)
+*From a code-level walkthrough of v34's pay flow. Apply these per the friction law.*
+- **🔴 FIX 1 — Collapse the double mode/method selection.** The pay sheet (`openPay`) AND the numpad both let you choose **Pay/Request + contact/QR/NFC** — same decision twice. Pick **one** home for it. *(Lean: amount-first; mode chosen once; QR/NFC as a secondary affordance, not co-equal.)*
+- **🟡 FIX 2 — Simplify the numpad for the 90% case.** Mode toggle + 3-way method + `+−×÷` ops + recipient + note + swipe is dense. Keep the ops (nice differentiator) but **de-emphasize** so a simple "send Sarah 500" is dead obvious.
+- **🟡 FIX 3 — Don't silently turn a no-recipient swipe into "Tap to Connect."** Swiping with no recipient currently routes to proximity-pay; instead **nudge "pick someone first"** (or make Tap-to-Connect an explicit choice).
+- **🟢 FIX 4 — Add a glance-confirm for large amounts.** Swipe-to-pay is a great anti-accident gate; add a small **"balance after / no fees"** glance before send on larger amounts to build trust. (Small amounts stay one-swipe.)
+- **Keep (already good):** swipe-to-pay gate · inline "What's it for?" note · live Dynamic Island states · Repeat-from-tx · arithmetic ops.
+
+---
+
 ## 📋 BACKLOG — areas still to brainstorm (living tracker)
 *Covered so far (Inspos 1–13): wallet deck · scan/add-card · adding-sim · money-link receive · notifications · credit score · card-detail+perks · savings page · unified create flow (goals/pools/split) · ± stepper/tips · transaction states.*
 
