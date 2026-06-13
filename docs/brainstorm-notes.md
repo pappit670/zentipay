@@ -134,6 +134,8 @@
 ---
 
 ## Inspo 6 — Split the bill / Split groups (Point app "Split $38")  ✅ CONFIRMED
+> **UPDATE:** Split now **runs on the unified create flow (Inspo 11)** as its *split mode* — not a separate flow. The logic below (even/custom, include-myself, suggested accounts, status tracking) applies *inside* Inspo 11's add-people step.
+
 **Maps to:** the **Split** pillar + Pools (`v-create-pool`, `v-pool-detail`, `updatePoolPreview`, `addPoolMember`/`inviteToPool`). Opens with an illustrated intro (brief flags this for Savings/Pools/Split).
 
 **Core mechanic (inspo + user's ask):** keep Point's simplicity — "Split $X with [people]", a FRIENDS list you tick — but add:
@@ -287,8 +289,37 @@
 - **Sensible defaults + one Save** (friction law) — don't make saving feel like configuring.
 - **Goal celebration** — hitting 100% on a goal-ring = a success moment (confetti/haptic), consistent with other success states.
 
-**Open decision:**
-- Confirm the "landing flat / ring-per-goal" split matches v34's existing savings structure (if v34 already rings the landing, Law #2 = v34 wins — but user's directive here is landing-flat). *Assuming landing-flat per user.*
+**Decision (RESOLVED):**
+- ✅ **Savings is greenfield** (v34 left it rough) — we design it fresh. **Landing flat / ring-per-goal confirmed.** No reconciliation against v34 needed here.
+- Creation of goals uses the **unified flow (Inspo 11)**.
+
+---
+
+## Inspo 11 — UNIFIED create+manage flow for Goals · Pools · Split (Cash App pools)  ✅ CONFIRMED
+**Greenfield** (v34 left these rough — see Law #2 exception). **One flow machine, three uses.** Reuses the v34 **numpad** (`v-numpad`) for amount entry and the **ring** primitive for progress.
+
+**The flow, start → finish (from the 5 Cash App shots):**
+1. **Entry** — tap *Start a pool* / *Create goal* / *Split a bill*.
+2. **Numpad** — input the **amount** (target / total). Reuse v34 `v-numpad` (with ops).
+3. **Slide-up sheet** — **name it** ("For ___") + **pick emoji** (`cyclePoolEmoji`/`cycleGoalEmoji`) + **Start/Create**. Live preview (`updatePoolPreview`).
+4. **Detail screen (RING)** — new object shows progress **ring** ("$0 of $500 goal"), creator avatar, **Add people** + **Contribute**, empty state ("be the first to contribute").
+5. **Add people / Share** — search by **name / $ztag / email / phone** + **Share a link** (Copy link / Share — collect from *anyone*, incl. non-app via web claim page) + **suggested accounts** list with **Add**. *(This single screen unifies Inspo 6's two share paths.)*
+6. **Funding / activity** — contributions fill the ring ("$450 of $500"), **Activity** list of who added what (+$100, +$40…).
+7. **Close / complete** — success: "You closed the pool and transferred $500 — money's in your balance, ready to send or spend; view it anytime." **Done.**
+
+**The three uses fork ONLY at the contribution model:**
+- **Savings goal** = solo (just you fund toward target). Add-people optional → promotes it to a shared pool.
+- **Pool** = you + others **contribute openly** toward the target (group gift, trip fund).
+- **Split** = total **auto-divided into per-person owed shares**; adding people **assigns shares + sends each a request** (→ Inspo 5 request branch, Decline · Send). Ring fills as each pays; **even-by-default + custom-on-tap + include-myself-ON** (Inspo 6) apply at the add-people step. Close = settle-up.
+
+**⭐ Split integration answer (user's open question):** Split is **NOT a separate flow** — it's a **mode** of this unified flow. Same numpad → sheet → ring → add-people. The only differences: (a) the amount is the *bill total*, (b) at add-people the total **auto-splits into shares and fires requests** instead of waiting for open contributions, (c) the ring tracks "collected of total owed", (d) close = settle-up. So Inspo 6's split logic lives *inside* this flow; nothing's thrown away.
+
+**Design / UX add-ons (Claude):**
+- **One numpad, one ring, one add-people/share screen** across all three → consistency + less to build (friction law).
+- **Emoji + name personalization** makes each goal/pool/split feel owned.
+- **Share-a-link** path means non-app people can still contribute/pay (ties to `money_links` + web claim page).
+- **Close/transfer success** consistent with other success states + Dynamic Island ("Pool closed · $500 → balance").
+- **Type can be set at entry** (Goal/Pool/Split buttons) so the flow knows its mode up front — no mid-flow config.
 
 ---
 
@@ -298,6 +329,8 @@
 - New inspos/specs are **fitted INTO** existing v34 screens (e.g. add a menu option, give an existing slot a second duty) or are **net-new components/screens** (Dynamic Island states, money-link receive, credit-score screen, perks loop).
 - When an inspo and v34 disagree on layout, **v34 wins**; the inspo only contributes the *concept/feel*.
 - **Home page: untouched.**
+
+> **EXCEPTION — greenfield zones:** **Savings, Pools, and Split** (the "features" screens) were **NOT** built properly in v34. These we **design fresh** from our inspos (the inspos *are* the design here, not just feel). v34-respect still applies to home, card pages, the nav skeleton, and the core pay loop.
 
 ## ⭐ Global design law #1 — LOWEST-FRICTION PATH WINS
 *User's rule, applies to every flow in the app:*
