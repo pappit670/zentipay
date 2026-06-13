@@ -484,7 +484,10 @@
 1. **Contact rail (P2P, internal)** — input amount → pick a Zenti user (`$ztag` / search / quick contacts) → swipe → **pay or request**. Instant, in-app.
    - **➕ Tap-to-Connect icon in the recipient row** — alongside the contact suggestions, a **"Tap to Connect"** option (Apple-Pay-style proximity). Pick it → input amount → swipe → `tap-wait` → two nearby phones **connect & complete a P2P payment** without searching for a contact. Makes close-proximity P2P effortless. *(This is now an EXPLICIT choice, not a silent fallback — resolves FIX 3.)*
 2. **QR rail (amount-responsive) — MERCHANT RECEIVE is the hero use:** input amount → **show MY QR encoding {my profile + the amount}** → the other person **scans → sees my profile + the amount they owe → pays me**. Built for **merchants/vendors receiving on a phone**. Reverse also works: **scan** someone's QR to pay them.
-3. **NFC rail (contactless card pay)** — input amount → **tap phone to a reader** → pay directly with my **Zenti card via NFC** (the pay screen carries the card). Like tapping a contactless card.
+3. **NFC rail — TWO directions:**
+   - **NFC pay-out (customer):** input amount → tap my phone to a reader → pay with my Zenti card via NFC.
+   - **NFC receive / merchant terminal (user's ask):** merchant **inputs amount → activates NFC → the amount shows on screen** → customer **taps their phone or card on top → payment goes through.** Phone-as-terminal.
+   - **⚠️ Reality check:** phone-to-phone (both Zenti apps) NFC is feasible via **HCE on Android** (custom app-to-app protocol). But a phone **reading a physical contactless bank card** = **softPOS / "Tap to Pay"** — that's **EMV-certified, acquirer-backed, entitlement-gated, country-limited** (Apple's Tap-to-Pay-on-iPhone; Kenya availability uncertain). So NFC merchant-receive is an **ambitious post-MVP, Android-first** feature. **QR remains the universal merchant rail for MVP** (no certification, works everywhere). Mock NFC-receive now.
 
 **Mode mapping:** Pay/Request lives mainly on the **contact rail**; **QR = receive/request by nature** (show amount, get paid); **NFC = pay** (tap to pay out).
 
