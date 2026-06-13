@@ -168,6 +168,40 @@
 
 ---
 
+## Inspo 7 — Actionable notifications (Overview bell + badge)  ✅ CONFIRMED
+**Maps to:** notification bell + badge on `v-home` header → a **notifications inbox/center**. Complements the Dynamic Island (see split of surfaces below).
+
+**User's framing:** the badge signals **actionable** notifications. Examples called out: bill/split requests, in-app money requests, **pending** transactions, **successful** ones, etc.
+
+**Two notification surfaces (keep distinct, keep consistent):**
+- **Dynamic Island** = *live / in-the-moment / transient* — a payment landing, a pending tx resolving, "Signing in…". Fades.
+- **Bell → notification center** = *persistent inbox* — the backlog of actionable items + recent activity you can return to.
+
+**Notification types:**
+- **Actionable (needs you):** split/bill request, money request, money-link received (Accept/Decline), pool/split invite, card verification needed.
+- **Status (FYI):** pending tx, tx successful, tx failed, deposit received, savings milestone, round-up applied.
+
+**Build model (for later):**
+- Realtime via Supabase → new items hit the inbox **and** fire the Dynamic Island.
+- Actionable rows resolve to the right surface: a money request → **Inspo 5 request branch** (Decline · Send); a received link → Inspo 5 send branch; a tx → `v-txd`.
+
+**Design / UX add-ons (Claude):**
+- **Two-tier badge** — **red** = *needs your action*; a quieter neutral dot = *FYI*. A successful-payment notice shouldn't scream as loud as a money request.
+- **Inline actions in the row** (friction law ⭐) — **Accept / Decline / Pay right in the inbox**, no need to open. Tap-through only when confirmation/amount detail is genuinely needed (→ Inspo 5).
+- **Pending → live in place** — a pending row shows a progress state and **auto-updates to success/fail** via realtime, mirrored in the island. No manual refresh, ever.
+- **Grouping** — "**Needs your action**" pinned on top, "**Recent activity**" below; acted items auto-move to history.
+- **Swipe actions** — swipe to dismiss/mark read; swipe the other way to act.
+- **Calm empty state** — "You're all caught up ✓".
+- **Per-type mute/settings** — control what pushes.
+
+**Side note — borrowable `v-home` header details from this inspo (flag for later):** big balance with **eye hide-toggle**, currency selector, a **green sparkline**, and bold pill actions. (Zenti's actions = Pay center / send · request, not Swap/Deposit — adapt, don't copy.) *Ask user: also log these as the home-screen styling direction?*
+
+**Open decisions:**
+- Two-tier badge (action vs FYI) — yes? *(Claude rec: yes)*
+- Inline row actions as the default — yes? *(Claude rec: yes, per friction law)*
+
+---
+
 ## ⭐ Global design law — LOWEST-FRICTION PATH WINS
 *User's rule, applies to every flow in the app:*
 - Always build the **easiest possible path** for the user. No friction.
