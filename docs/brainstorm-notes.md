@@ -4,6 +4,41 @@
 
 ---
 
+## 📋 BACKLOG — areas still to brainstorm (living tracker)
+*Covered so far (Inspos 1–13): wallet deck · scan/add-card · adding-sim · money-link receive · notifications · credit score · card-detail+perks · savings page · unified create flow (goals/pools/split) · ± stepper/tips · transaction states.*
+
+**🟡 NEXT UP — Onboarding** *(priority — expanded below)*
+- [ ] **Splash → value-prop carousel** (illustrated, 3–4 slides; first-run only)
+- [ ] **Sign up / Sign in** (Inspo 3 covered the *entry* visual; the full journey isn't designed)
+- [ ] **@ztag creation** — pick handle + display name + avatar
+- [ ] **Permissions priming** — soft-ask (notifications, contacts, camera) *before* the OS prompt
+- [ ] **Fund-your-account nudge** — add first card / add cash (optional, skippable)
+- [ ] **Security setup** — biometric (Face ID) + PIN
+- [ ] **Returning-user fast path** — "Welcome back, @tag" + biometric (Inspo 3 add-on)
+- [ ] **First-run illustrated intros** for Savings / Pools / Split (brief beat)
+
+**🔲 Still uncovered — core loop & pay**
+- [ ] `v-numpad` core pay screen — method (contact/QR/NFC) + mode (pay/request) + recipient
+- [ ] `v-search` — recipient picker by @ztag / name / contacts
+- [ ] `v-qr` — my code + scanner
+- [ ] `v-proximity` + `v-tap-wait` — tap-to-connect nearby pay (NFC)
+- [ ] **Money-link CREATE side** — create → preview card → share (receive side done in Inspo 5)
+
+**🔲 Still uncovered — surfaces**
+- [ ] `v-activity` — full transaction list (filters, grouping)
+- [ ] `v-txd` — transaction detail (touched via states/share; full screen not designed)
+- [ ] `v-profile` — profile + theme toggle + settings (limits, security, account, sign out)
+- [ ] **Empty states** across the app (brief: loading→success→failed→**empty**)
+
+**🔲 Still uncovered — wallet/cards & extras**
+- [ ] `v-card-zenti` — the Zenti card's own art/identity
+- [ ] `v-add-wallet` — add to Apple/Google Wallet
+- [ ] `v-paylater` — Pay Later / BNPL
+- [ ] **Companion website** — landing + money-link web claim page (brief §5)
+- [ ] **Fraud / limits** surfaces (brief mentions helpers)
+
+---
+
 ## Inspo 1 — Apple-Wallet card stack (ULYS / "Cartes")  ✅ CONFIRMED
 **Maps to:** `v-wallet` (+ `toggleWalletStack`), `v-card-detail`, `v-card-settings`.
 
