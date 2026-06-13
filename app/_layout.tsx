@@ -4,8 +4,11 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { DynamicIsland } from '../components/DynamicIsland';
 import { AuthProvider } from '../lib/auth-context';
+import { IslandProvider } from '../lib/island-context';
 import { OnboardingProvider, useOnboarding } from '../lib/onboarding-context';
+import { StoreProvider } from '../lib/store';
 import { ThemeProvider, useTheme } from '../lib/theme-context';
 
 function Nav() {
@@ -29,7 +32,9 @@ function Nav() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="onboarding" />
         <Stack.Screen name="pay" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+        <Stack.Screen name="success" options={{ presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: false }} />
       </Stack>
+      <DynamicIsland />
     </>
   );
 }
@@ -40,9 +45,13 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <ThemeProvider>
           <OnboardingProvider>
-            <AuthProvider>
-              <Nav />
-            </AuthProvider>
+            <StoreProvider>
+              <IslandProvider>
+                <AuthProvider>
+                  <Nav />
+                </AuthProvider>
+              </IslandProvider>
+            </StoreProvider>
           </OnboardingProvider>
         </ThemeProvider>
       </SafeAreaProvider>
