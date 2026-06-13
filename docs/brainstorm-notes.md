@@ -4,8 +4,10 @@
 
 ---
 
-## Inspo 1 — Apple-Wallet card stack (ULYS / "Cartes")
+## Inspo 1 — Apple-Wallet card stack (ULYS / "Cartes")  ✅ CONFIRMED
 **Maps to:** `v-wallet` (+ `toggleWalletStack`), `v-card-detail`, `v-card-settings`.
+
+**Confirmed flow:** home top-nav **wallet-card icon** → wallet page → **slide up/down** through deck → **tap a card → individual card page** (`v-card-detail`). Claude's build recs approved — go with them.
 
 **Core mechanic (user's ask):** stacked cards, only a thin colored header band peeking per card; one card pulled full-size; whole deck slides up/down with spring snapping; center card = the default card.
 
@@ -32,8 +34,13 @@
 
 ---
 
-## Inspo 2 — Tabby scan frame ("Scan your ___")
+## Inspo 2 — Tabby scan frame ("Scan your ___")  ✅ CONFIRMED
 **Maps to:** `v-scan-card` / `v-manual-card`, `v-transit-id`; hands off to `v-adding-card` → `v-card-activated`.
+
+**Confirmed decisions:**
+- **OCR is required** → request **camera permission** (with a clear pre-permission rationale screen so the OS prompt isn't a surprise → higher grant rate).
+- **Scan BOTH sides** — front (number, name, expiry) then flip prompt for back (we read what's needed; CVV is never stored).
+- **"Add manually" button pinned at the bottom**, always ready as the fallback (covers permission-denied, scan-fail, damaged card).
 
 **Important reframe:** Tabby's is an *Emirates ID / KYC* scan. Zenti is **no-KYC**. We borrow only the *visual language* (bracketed viewport + calm "Scan your ___" + reassurance copy + one fat button) and point it at **payment cards** and **transit cards** — never identity.
 
@@ -80,6 +87,49 @@
 - Dark mesh w/ green blobs (Claude rec) vs. the light inspo look?
 - Google + Apple only, or add phone/email OTP for reach?
 - Does the value-prop carousel still sit *before* this, or is auth the first thing after splash?
+
+---
+
+## Inspo 4 — "Adding to Wallet…" simulation (Apple Wallet add moment)  ✅ CONFIRMED
+**Maps to:** `v-adding-card` → `v-card-activated`. Fires right after a successful scan (both sides) or manual entry.
+
+**Core mechanic:** the card art floats above the phone, dissolves into a shimmering particle/noise texture while it's "processed", with "**Adding Card** ✦ / Adding to Wallet…" + spinner. Then it resolves and the card drops into the deck.
+
+**Build model (for later):**
+- Sequence: scanned card → flip/merge → floats up → **particle shimmer (tokenizing)** → settles → **"Card activated" ✓** → shared-element drop into the wallet deck (Inspo 1).
+- The shimmer is tied to the *real* tokenization round-trip (Supabase `card_tokens`), not a fake timer.
+
+**Design / UX add-ons (Claude):**
+- **Honest-but-felt timing** — bind the spinner to the actual network call; if it returns too fast, hold a ~1.2s minimum so the moment *registers* rather than flickering by.
+- **Microcopy that explains the shimmer** — "Encrypting & adding…" so the particle effect reads as *securing*, not just decoration. Builds trust.
+- **Failure branch** — on tokenization fail, particles **scatter** + graceful "Couldn't add card — Retry / Enter manually". Never a dead spinner.
+- **Haptics** — success haptic on activate + a soft "thunk" as the card lands in the deck.
+- **Continuity** — same card art object travels scan → adding → deck (one element, never a cut).
+
+---
+
+## Inspo 5 — Money-link RECEIVE screen ($20 / Accept · Decline)  ✅ CONFIRMED
+**Maps to:** money-link claim (receive side of `v-reqlink`). Entry = user **taps a money link** sent by someone (in-app deep link OR web claim page → into app).
+
+**Core mechanic:** black starfield, giant chrome amount, note in quotes ("Thank you x 20!"), sender row (avatar + "From Elisha"), two buttons, and an "Accept as [profile]" selector at the bottom.
+
+**Two branches (by link type):**
+- **Someone SENT you money** (`type=send`) → **Decline · Accept**.
+- **Someone REQUESTS money** (`type=request`) → **Decline · Send** (i.e. pay them).
+
+**Build model (for later):**
+- Deep link resolves the `money_links` row → render this screen in the right branch by `type` + `status`.
+- Accept (send link) → funds land in wallet → success + balance bump on home.
+- Send (request link) → into pay-confirm (which card/balance) → success.
+
+**Design / UX add-ons (Claude):**
+- **Visually differentiate the two branches** — *send* = celebratory chrome digits + particle fountains (as in the inspo); *request* = calmer, foregrounds "what it's for" + a clear Pay.
+- **Animated amount reveal** — chrome digits assemble/shimmer on entry with particle bursts behind.
+- **Sender trust row (fraud guardrail — important for no-KYC P2P)** — @tag + a signal like "you've paid them 3× before" vs **"⚠ New contact"** so users can smell a scam *before* accepting/paying.
+- **Status & expiry** — links expire (`pending|claimed|expired|cancelled`). Show "expires in 6d"; if already claimed/expired/cancelled, render that state instead of live buttons (prevents double-claim & confusion).
+- **"Accept as / into" selector** — default to Wallet, but optionally route an accepted amount straight **into a Savings goal or Pool** — ties the receive moment into Zenti's save/split/pool pillars.
+- **Gentle decline** — confirm step; for *send* links, declined funds return to sender (and sender gets notified). Make the money-state explicit, never ambiguous.
+- **Post-action** — success screen + Dynamic Island state ("Received $20 from Elisha").
 
 ---
 
