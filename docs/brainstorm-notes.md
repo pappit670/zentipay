@@ -224,9 +224,9 @@ Borrow the "Overview" inspo's styling for the home screen:
 - **Encouraging coach tone** — frame score moves as wins; nudge the next action ("pay on time to gain ~X").
 - **Recent events** double as education — each event explains *why* the score moved.
 
-**Open decisions:**
-- This feature **requires KYC + a bureau provider**. Options: (a) ship as a **later, opt-in, KYC-gated** module separate from the no-KYC core; (b) **mock it** for now to nail the UX; (c) drop until post-MVP. *Need user's call — leaning (b) now → (a) later.*
-- Which bureau/provider when we go real?
+**Decisions (RESOLVED):**
+- ✅ **Mock now, KYC-gated later** — build the score screen with sample data to perfect the UX; keep the core no-KYC. Real bureau + identity gate ships later as an **opt-in module**.
+- Bureau/provider: TBD when we go real.
 
 ---
 
@@ -256,11 +256,13 @@ Borrow the "Overview" inspo's styling for the home screen:
 - **Impact metric** — "Perks saved you $X this month, $Y auto-saved" on the savings screen → satisfying loop feedback.
 - **User stays in control** — choose which perks auto-apply; payment is never silently altered without the saving being shown.
 
-**Open decisions:**
-- **Offers data source** — a perks provider / card-network offers (e.g. Visa Offers) vs curated list? (real merchant offers need a provider — flag).
-- **Autosave % default** — 100%? (lean yes)
-- Confirm perks-autosave **extends the existing round-ups engine** (lean: yes, one engine).
-- Perks slot vs notifications in the same slot — **tabs** or **stacked** (notifications pinned, perks below)?
+**Decisions (RESOLVED):**
+- ✅ **Offers = mock/curated now, real provider later** (Visa Offers / similar plugged in down the line).
+- ✅ **Autosave % = ask on first use** — no silent default; the first time a perk-saving happens, prompt the user to pick their sweep %. Editable later in settings.
+- ✅ **One auto-save engine** — perks-autosave extends the existing round-ups engine (round-ups = spare change, perks = realized discounts).
+
+**Open decision:**
+- Perks vs notifications in the shared slot — **tabs** or **stacked** (notifications pinned, perks below)? *(still open)*
 
 ---
 
