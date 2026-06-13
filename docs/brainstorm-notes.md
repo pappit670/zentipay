@@ -20,9 +20,9 @@
 
 ## 🔧 v34 FRICTION FIXES — pay/request flow (to address in build)
 *From a code-level walkthrough of v34's pay flow. Apply these per the friction law.*
-- **🔴 FIX 1 — Collapse the double mode/method selection.** The pay sheet (`openPay`) AND the numpad both let you choose **Pay/Request + contact/QR/NFC** — same decision twice. Pick **one** home for it. *(Lean: amount-first; mode chosen once; QR/NFC as a secondary affordance, not co-equal.)*
-- **🟡 FIX 2 — Simplify the numpad for the 90% case.** Mode toggle + 3-way method + `+−×÷` ops + recipient + note + swipe is dense. Keep the ops (nice differentiator) but **de-emphasize** so a simple "send Sarah 500" is dead obvious.
-- **🟡 FIX 3 — Don't silently turn a no-recipient swipe into "Tap to Connect."** Swiping with no recipient currently routes to proximity-pay; instead **nudge "pick someone first"** (or make Tap-to-Connect an explicit choice).
+- **🟢 FIX 1 (REVISED per user intent) — pay sheet is a quick-launcher, not redundant.** The pay screen is meant to open via a **system-level shortcut** (skip home → pay fast), and the method picker selects a real **rail** (see Core Pay Engine below). So it's *not* a duplicate decision. Just ensure the sheet acts as a **launcher/preset** that hands a pre-configured state to the numpad (the single workspace) — don't ask the *same* thing twice on both.
+- **🟡 FIX 2 — Simplify the numpad for the 90% case.** *(Confirmed by user — numpad is too dense.)* Keep the ops + 3 rails, but **de-emphasize** so a simple "send Sarah 500" is dead obvious; rails/ops recede until needed.
+- **🟢 FIX 3 (lowered) — no-recipient swipe.** Less critical now that method is an explicit rail choice, but on the **contact rail with no recipient**, still **nudge "pick someone"** rather than silently routing to proximity.
 - **🟢 FIX 4 — Add a glance-confirm for large amounts.** Swipe-to-pay is a great anti-accident gate; add a small **"balance after / no fees"** glance before send on larger amounts to build trust. (Small amounts stay one-swipe.)
 - **Keep (already good):** swipe-to-pay gate · inline "What's it for?" note · live Dynamic Island states · Repeat-from-tx · arithmetic ops.
 
@@ -42,11 +42,11 @@
 - [x] **First-run illustrated intros** for Savings / Pools / Split (contextual)
 - [x] *DOB (no gate), profile pic at signup, progress indicator (top bars/dots) — all resolved*
 
-**🔲 Still uncovered — core loop & pay**
-- [ ] `v-numpad` core pay screen — method (contact/QR/NFC) + mode (pay/request) + recipient
-- [ ] `v-search` — recipient picker by @ztag / name / contacts
-- [ ] `v-qr` — my code + scanner
-- [ ] `v-proximity` + `v-tap-wait` — tap-to-connect nearby pay (NFC)
+**🟢 Core loop & pay** *(covered in Inspo 15 — core pay engine)*
+- [x] `v-numpad` core pay screen — universal amount + 3 rails (contact/QR/NFC)
+- [x] `v-qr` — my code (amount-responsive) + scanner
+- [x] `v-proximity` + `v-tap-wait` — NFC / contact rails
+- [~] `v-search` — recipient picker (exists in v34; contact rail uses it)
 - [ ] **Money-link CREATE side** — create → preview card → share (receive side done in Inspo 5)
 
 **🔲 Still uncovered — surfaces**
@@ -473,6 +473,35 @@
 - ✅ **Progress indicator** — show one: **top segmented bars (story-style)** or dots across the steps. *(Lean: top segmented bars.)*
 
 **Future note:** **Family feature** (later) — accounts/controls for underage users; that's where age-aware logic lives, not in core onboarding.
+
+---
+
+## Inspo 15 — CORE PAY ENGINE: numpad + 3 rails + quick-launch  ⭐ MOST IMPORTANT FLOW
+**Maps to:** `v-numpad`, `v-qr`, `v-proximity`/`v-tap-wait`, pay sheet (`openPay`). This is the heart of the app — *users transacting (pay/request) the amount they punch into the numpad.*
+
+**The model (user's intent):** the **numpad is the universal amount entry** (with `+−×÷` ops). **Swipe right = execute.** One amount, **three rails** to move it:
+
+1. **Contact rail (P2P, internal)** — input amount → pick a Zenti user (`$ztag` / search / quick contacts) → swipe → **pay or request**. Instant, in-app.
+2. **QR rail (amount-responsive) — MERCHANT RECEIVE is the hero use:** input amount → **show MY QR encoding {my profile + the amount}** → the other person **scans → sees my profile + the amount they owe → pays me**. Built for **merchants/vendors receiving on a phone**. Reverse also works: **scan** someone's QR to pay them.
+3. **NFC rail (contactless card pay)** — input amount → **tap phone to a reader** → pay directly with my **Zenti card via NFC** (the pay screen carries the card). Like tapping a contactless card.
+
+**Mode mapping:** Pay/Request lives mainly on the **contact rail**; **QR = receive/request by nature** (show amount, get paid); **NFC = pay** (tap to pay out).
+
+**Quick-launch (accessibility/speed):** the pay screen opens via a **system-level shortcut** so users skip home and pay fast — Android: **triple-back gesture / power double-press**; this is the intended "instant pay" affordance.
+
+**⚠️ Platform honesty flags (design with eyes open):**
+- **iOS double-click side button = reserved for Apple Pay** — can't be remapped to open Zenti. iOS quick-launch must use **Action Button / Back-Tap / Control Center / Home-Screen quick action** instead.
+- **iOS NFC = Apple Pay only** — phone-as-contactless-payer is **restricted** on iOS (Tap-to-Pay-on-iPhone exists but is a merchant-accept program needing entitlement). So the **NFC rail is Android-first**; on iOS, lean on **QR + contact** rails.
+- **Android: HCE NFC + power-button shortcut + amount-QR all feasible.**
+- **Takeaway:** **QR is the universal cross-platform rail** (works everywhere, perfect for merchants); NFC is an Android-first bonus.
+
+**Design / UX add-ons (Claude):**
+- **Swipe-right = the single execute gesture** across all rails (anti-accident gate, already in v34 — keep).
+- **QR payload = a Zenti deep link** ({ztag, amount, note}) so a scan opens the payer's confirm pre-filled → straight to the receive/pay screen (Inspo 5/13 reuse).
+- **Merchant mode (later):** a vendor could keep the amount-QR up between sales / regenerate per sale — a lightweight "accept payments on your phone" surface.
+- **Rail is remembered per context** — default to contact; merchants default to QR.
+
+**Backlog covered:** `v-numpad` core ✅ · `v-qr` ✅ · `v-proximity`/`v-tap-wait` ✅ (NFC/contact rails).
 
 ---
 
