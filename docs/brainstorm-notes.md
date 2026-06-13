@@ -200,13 +200,8 @@
 - ✅ Two-tier badge (red = action, neutral dot = FYI).
 - ✅ Inline row actions as the default (act in the inbox; tap through only when needed).
 
-### 🏠 Home-screen style directive (CONFIRMED — adopt for `v-home`)
-Borrow the "Overview" inspo's styling for the home screen:
-- Big **balance** with an **eye hide-toggle** + **currency selector** (USD ▾).
-- A **green sparkline** trend next to/under the balance.
-- Bold **pill action buttons** — but Zenti's actions (Pay center · send · request), *not* Swap/Deposit.
-- Top-right: **search** + **bell w/ two-tier badge** (Inspo 7).
-- Subtle green ambient glow at the screen edge is on-brand; use sparingly.
+### 🏠 Home screen — LEAVE AS-IS (v34 is exceptional, do NOT restyle)
+**RETRACTED earlier "home style directive."** Per user: the v34 home page stays exactly as it is — no balance/sparkline/pill restyling from the Overview inspo. The Overview inspo only informs the **notification bell behavior** (two-tier badge + actionable inbox), which slots into the home that *already exists* in v34. Touch nothing else on home.
 
 ---
 
@@ -216,8 +211,8 @@ Borrow the "Overview" inspo's styling for the home screen:
 **Core mechanic (Kikoff):** big **score gauge/ring** (on-brand green), **↑ pts delta**, a **monthly trend sparkline**, an encouraging message ("Bravo, you've gained 50 pts…"), and a **Recent events** list of credit events with their point impact.
 
 **Build model (for later):**
+- New screen, but it's an **addition reached from the existing v34 card-page menu** — fit it in, don't remodel the card page.
 - Screen design is straightforward (ring + trend + events list, all green-on-dark).
-- ⚠️ **Data-source + compliance dependency:** real scores need a **credit-bureau integration** (Equifax/TransUnion via a provider like Array/Plaid) **and identity verification** — which **conflicts with Zenti's no-KYC stance**.
 
 **Design / UX add-ons (Claude):**
 - **Progress-ring + delta** reuse the same ring primitive as savings goals (one component, many uses).
@@ -225,19 +220,18 @@ Borrow the "Overview" inspo's styling for the home screen:
 - **Recent events** double as education — each event explains *why* the score moved.
 
 **Decisions (RESOLVED):**
-- ✅ **Mock now, KYC-gated later** — build the score screen with sample data to perfect the UX; keep the core no-KYC. Real bureau + identity gate ships later as an **opt-in module**.
-- Bureau/provider: TBD when we go real.
+- ✅ **Mock now** — build the screen with sample data to perfect the UX. **Don't worry about KYC/bureau** for now; once there's an MVP we set up KYC + a real bureau provider then.
 
 ---
 
 ## Inspo 9 — Card detail page: Unlock/copy + Perks slot + Perks→Autosave loop (Cash App style)  ✅ CONFIRMED
 **Maps to:** `v-card-detail` (reached by tapping a card in the Inspo 1 deck) + `v-card-settings`, and ties into Savings / round-ups (`v-roundups`, `v-roundups-settings`, `savings_goals`/vault).
 
-**Card detail anatomy (confirmed):**
-- Floating **card art** at top; **X** to close, **⚙ menu** top-right (→ Credit Score + other v34 options).
-- **Unlock / lock toggle** (freeze the card) + **copy •• last-4** chip.
-- **Perks/notifications slot below the card options** — *this one slot does double duty:* shows actionable **notifications** AND acts as the card's **perks/offers visibility point** (merchant offers e.g. "5% off", "Show more").
-- **Spending** section below.
+**⚠️ Card page is ALREADY defined in v34 — do NOT remodel. We only ADJUST the new specs into the existing v34 card structure.** The Cash App shot informs the *perks concept*, not the layout.
+
+**New specs to fit into the existing v34 card page:**
+- **⚙ menu** (top nav, already in v34) gains a **Credit Score** option alongside the existing v34 card options (freeze/lock, settings).
+- The card page's **existing notification slot** also becomes the card's **perks/offers visibility point** (merchant offers e.g. "5% off", "Show more") — same slot, added duty. No new layout.
 
 **⭐ The Perks → Autosave loop (user's headline idea):**
 1. Each card carries **perks/offers** (merchant discounts/promos), visible in the perks slot.
@@ -252,7 +246,7 @@ Borrow the "Overview" inspo's styling for the home screen:
 **Design / UX add-ons (Claude):**
 - **Perks slot = horizontal offer chips** (merchant logo + "5% off") + "Show more"; notifications pinned above or as a small toggle so the slot never feels cluttered.
 - **Auto-apply confirmation** via Dynamic Island/toast: "Saved $1.20 — $0.84 → Savings" so the magic is *visible* without being a step.
-- **Autosave % control** lives in round-ups/savings settings — a single slider ("Sweep X% of every saving"). Default suggestion: **100%** (you didn't spend it, so save it) — confirm.
+- **Autosave loop is owned by the SAVINGS page** — it's *activated there*, and the **% control lives in the Savings page settings** (a slider), NOT on the card page. The card page only *surfaces* perks; the sweep + percentage logic lives in Savings.
 - **Impact metric** — "Perks saved you $X this month, $Y auto-saved" on the savings screen → satisfying loop feedback.
 - **User stays in control** — choose which perks auto-apply; payment is never silently altered without the saving being shown.
 
@@ -266,7 +260,14 @@ Borrow the "Overview" inspo's styling for the home screen:
 
 ---
 
-## ⭐ Global design law — LOWEST-FRICTION PATH WINS
+## ⭐ Global design law #2 — v34 IS THE SOURCE OF TRUTH (adjust, don't remodel)
+*User's rule:*
+- The v34 prototype's screens (esp. the **home page** and **card pages**) are **exceptional as-is** — we do **NOT** redesign them.
+- New inspos/specs are **fitted INTO** existing v34 screens (e.g. add a menu option, give an existing slot a second duty) or are **net-new components/screens** (Dynamic Island states, money-link receive, credit-score screen, perks loop).
+- When an inspo and v34 disagree on layout, **v34 wins**; the inspo only contributes the *concept/feel*.
+- **Home page: untouched.**
+
+## ⭐ Global design law #1 — LOWEST-FRICTION PATH WINS
 *User's rule, applies to every flow in the app:*
 - Always build the **easiest possible path** for the user. No friction.
 - If a way of **creating** or **tracking/recording** something is hard or clunky, **cut that path entirely** — don't ship a hard option next to an easy one.
