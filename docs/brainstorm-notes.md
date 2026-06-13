@@ -341,7 +341,38 @@
 - **Reuse** — the same ± stepper can serve "quick contribute" to a pool (Inspo 11) without opening the full numpad.
 
 **Open decision:**
-- Lock the primary home for the ± stepper: **tips on the pay/send confirm** (lean) vs a standalone quick-send entry? And which tip presets (%, round-up, flat ±)?
+- ✅ **RESOLVED:** primary home for the ± stepper = **tips on the pay/send confirm**. (Tip presets — %, round-up, flat ± — to finalize during build.)
+
+---
+
+## Inspo 13 — Transaction STATES system (P2P · bank transfers · savings · loading · push)  ✅ CONFIRMED
+**Maps to:** success/status surfaces across `v-success`, `v-txd`, the Dynamic Island, and push. Brief mandate: *"States everywhere: loading → success → failed → empty, surfaced via Dynamic Island + sheets."*
+
+**⭐ The core distinction the user is drawing — internal vs external rails:**
+- **P2P (internal, instant):** money moves inside Zenti → **no pending**, success is immediate & minimal.
+- **Bank transfers (external rails):** Cash In / Cash Out touch banks → **Pending → Completed** states, show **source + timestamp + ETA**.
+- **Savings (internal):** instant, with **habit-coaching** tone + contextual upsell.
+
+**State templates by type (one shared success layout, type-driven content):**
+- **A) P2P send/receive** — "You sent $150 to **Rich The Boss**" / "$25 from **@AD**" ✓ · Done. Minimal, instant, **Share** option (per `v-txd`). Failed → "Couldn't send — Retry".
+- **B) Cash In (Add Cash)** — icon + **amount** + **"From Visa Debit ••9855"** + **timestamp** + **status pill (✓ Completed / Pending)**. External rail → may show Pending then auto-flip to Completed (realtime + island).
+- **C) Cash Out (Withdraw)** — same anatomy, reverse direction; **must show ETA** ("Arrives by Thu") and the **instant-fee vs standard** choice. Handle reversal on failure.
+- **D) Savings transfer** — "**$10 transferred to savings** · Nicely done, you're building healthy saving habits" + a **contextual upsell card** (e.g. "Get paid faster with direct deposit") + Done. Encouraging tone.
+- **E) Loading screens** — branded **green-ring spinner** + context label ("Verifying your credentials…", "Adding cash…", "Cashing out…"). For auth, card-add, rail round-trips. Distinct from inline/island micro-loading.
+- **F) Push notifications** — lock-screen mirror of the Inspo 7 system: "**@name sent you $25**", money requests (**actionable → deep-link** into the receive screen), statements/info. Actionable pushes jump straight to the right in-app surface.
+
+**Design / UX add-ons (Claude):**
+- **One success-screen template, content by type** (icon · headline · sub-detail · optional upsell · Done) — same layout everywhere, varies by `type`. Consistency + less to build (friction law).
+- **Status pill + realtime** — anything on external rails shows Completed/Pending/Failed; **Pending auto-updates** to Completed via Supabase realtime, mirrored in the island. No manual refresh.
+- **Always show ETA** on cash-out — never leave "where's my money?" ambiguity.
+- **Three renderings of one event** — full success sheet (in-app) · Dynamic Island (live/transient) · push (out-of-app). Same event, surfaced wherever the user is.
+- **Failed state for every type** — clear reason + retry; reversals explicit (brief mandate, no dead ends).
+- **Tone by type** — P2P neutral-celebratory · savings habit-coaching · bank transfers informational/trust.
+- **Contextual upsell only on success, never blocking Done** (direct-deposit after savings; share-link after P2P).
+
+**Notes / open:**
+- **Cash In / Cash Out are new banking-bridge features** (link a debit card/bank). Per established pattern: **mock the rails now**, wire a real processor post-MVP.
+- Cash-out speed tiers (instant-fee vs standard) — confirm we offer both, or standard-only for MVP.
 
 ---
 
