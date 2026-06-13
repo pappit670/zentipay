@@ -133,6 +133,41 @@
 
 ---
 
+## Inspo 6 — Split the bill / Split groups (Point app "Split $38")  ✅ CONFIRMED
+**Maps to:** the **Split** pillar + Pools (`v-create-pool`, `v-pool-detail`, `updatePoolPreview`, `addPoolMember`/`inviteToPool`). Opens with an illustrated intro (brief flags this for Savings/Pools/Split).
+
+**Core mechanic (inspo + user's ask):** keep Point's simplicity — "Split $X with [people]", a FRIENDS list you tick — but add:
+- **Input amount + number of people** → auto per-head share.
+- **Split groups** = reusable, pool-style groups for recurring splits (roommates, trips), not just one-offs.
+- **Two share paths:** (a) **social media** share, (b) **in-app request** from **suggested accounts**.
+- Requests land on recipients as a **Dynamic Island notification** → taps into the receive screen.
+
+**Two flows:**
+1. **One-off split (quick)** — amount + pick people / headcount → fire requests.
+2. **Split group (persistent, pool-like)** — named group + members, runs multiple splits over time, tracks who's paid.
+
+**Build model (for later):**
+- A split = a lightweight **pool**: target = total, each member's expected = their share; track paid/unpaid with a progress ring (reuse `pools` + `pool_members`).
+- **In-app request** to a Zenti user → shows up as **Inspo 5's request branch** (Decline · Send). Clean reuse.
+- **Headcount / non-app people** → generate a **money-link per share** (social path; ties to `money_links` + web claim page).
+
+**Design / UX add-ons (Claude):**
+- **Even by default, custom on tap** — split evenly (total ÷ N) but tap a person to adjust their share; a live **"remaining"** indicator keeps the math reconciling to the total (no rounding leaks).
+- **"Include myself" toggle** — explicit: am I one of the N (I owe a share) or did I front it (others owe me)? Kills the most common split confusion.
+- **Suggested accounts** — surface recent counterparties / frequent split partners first (from `profiles` by ztag + recent tx) so it's tap-not-type.
+- **Live per-head preview** — "$X each" updates instantly as amount/N change (`updatePoolPreview`).
+- **Status tracking** — per-member rows: paid · pending · declined; gentle **remind** on unpaid after a while.
+- **Dynamic Island for the organizer** — live "2 of 4 paid" collapsing into the island; recipients get the request as an island alert.
+- **Settle-up moment** — all-paid = celebratory success; on a decline, rebalance or let the organizer cover.
+- **Social-share card** — a clean preview ("Alex owes you $9.50"), consistent with the money-link preview card.
+
+**Open decisions:**
+- Model a split as a **flavor of `pools`** (reuse everything) vs its own table? (leaning: pool variant)
+- Default for "include myself" — on or off?
+- Headcount-only splits: one money-link per head, or one shared link N people can each claim a slot on?
+
+---
+
 ## Cross-cutting threads (worth keeping consistent)
 - **Motion continuity** — same "Adding…/processing" language across scan→wallet and auth, all surfaced via the **Dynamic Island**.
 - **Shared-element transitions** — card flies from scan frame into the wallet deck; wordmark flies from splash into auth. Continuous, never cut.
