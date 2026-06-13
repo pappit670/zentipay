@@ -161,12 +161,19 @@
 - **Settle-up moment** — all-paid = celebratory success; on a decline, rebalance or let the organizer cover.
 - **Social-share card** — a clean preview ("Alex owes you $9.50"), consistent with the money-link preview card.
 
-**Open decisions:**
-- Model a split as a **flavor of `pools`** (reuse everything) vs its own table? (leaning: pool variant)
-- Default for "include myself" — on or off?
-- Headcount-only splits: one money-link per head, or one shared link N people can each claim a slot on?
+**Decisions (RESOLVED):**
+- ✅ **Split = a flavor of `pools`** — reuse everything, including **creation + record-keeping** (splits are created and tracked through the pool model; one source of truth).
+- ✅ **"Include myself" = ON by default** — the organizer is part of the split and owes a share too.
+- ✅ **Headcount-only splits = one shared link** N people each claim a slot on (resolved by the friction law below — one link to drop in a group chat beats generating N links).
 
 ---
+
+## ⭐ Global design law — LOWEST-FRICTION PATH WINS
+*User's rule, applies to every flow in the app:*
+- Always build the **easiest possible path** for the user. No friction.
+- If a way of **creating** or **tracking/recording** something is hard or clunky, **cut that path entirely** — don't ship a hard option next to an easy one.
+- Defaults do the right thing so the user rarely has to configure (even split, include-myself ON, suggested accounts pre-surfaced).
+- One link / one tap / one source of truth over many.
 
 ## Cross-cutting threads (worth keeping consistent)
 - **Motion continuity** — same "Adding…/processing" language across scan→wallet and auth, all surfaced via the **Dynamic Island**.
