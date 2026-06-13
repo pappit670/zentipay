@@ -52,7 +52,7 @@
 **🔲 Still uncovered — surfaces**
 - [ ] `v-activity` — full transaction list (filters, grouping)
 - [ ] `v-txd` — transaction detail (touched via states/share; full screen not designed)
-- [ ] `v-profile` — profile + theme toggle + settings (limits, security, account, sign out)
+- [x] `v-profile` — profile + theme toggle + settings (Inspo 16 — options inventory)
 - [ ] **Empty states** across the app (brief: loading→success→failed→**empty**)
 
 **🔲 Still uncovered — wallet/cards & extras**
@@ -506,6 +506,57 @@
 - **Rail is remembered per context** — default to contact; merchants default to QR.
 
 **Backlog covered:** `v-numpad` core ✅ · `v-qr` ✅ · `v-proximity`/`v-tap-wait` ✅ (NFC/contact rails).
+
+---
+
+## Inspo 16 — PROFILE & SETTINGS (options inventory)  ✅ CONFIRMED
+**Maps to:** `v-profile` (+ theme toggle). Builds on v34's existing settings scaffold (Notifications · Security & PIN · Linked accounts: M-Pesa, KCB · Spending limits). Kenya context → **Swahili language** option, **M-Pesa** front-and-center. *(Legal/compliance is the user's domain; we build UX only.)*
+
+**Profile header**
+- Avatar (profile pic) · display name · **`$ztag`** · **My QR** shortcut (amount-less personal code) · **Edit profile**.
+
+**👤 Account & identity** — `[MVP]`
+- Edit profile (name, pic, `$ztag`)
+- My QR / share `$ztag`
+- Personal info (phone, email, DOB)
+- `[later]` Verification / KYC status
+
+**💸 Money & banking** — `[MVP]`
+- **Linked accounts** (M-Pesa, KCB, banks)
+- **Spending limits** (daily / monthly)
+- **Auto-save settings** (round-ups + perks %) → links to Savings page (owner)
+- `[later]` Statements / export
+
+**🔒 Security** — `[MVP core]`
+- Security & **PIN** (change)
+- **Biometrics** (Face/Touch ID)
+- `[later]` 2FA · Devices/sessions · Block & report users
+
+**⚙️ Preferences** — `[MVP]`
+- **Notifications** (per-type push/email — ties to Inspo 7)
+- **Appearance / theme** (dark default ⇄ light — v34 has)
+- **Language** (English / **Swahili**)
+
+**🎁 Extras**
+- `[MVP]` **Invite friends / referrals**
+- `[link]` Credit score (entry also on card page, Inspo 8)
+- `[later]` Pay Later (`v-paylater`) · Family feature
+
+**❓ Support & legal** — `[MVP]`
+- Help & Support (FAQ / chat)
+- Report a problem
+- Terms & Privacy · About / version
+
+**🚪 Account actions** — `[MVP]`
+- Log out
+- `[MVP — app-store required]` Delete / close account
+
+**Design / UX add-ons (Claude):**
+- **Lean default view** (friction law) — show the high-use items; tuck `[later]` ones behind an "Advanced" / sub-screens so profile isn't a wall of rows.
+- **Profile header doubles as identity** — tap avatar/`$ztag` → My QR (the receive-me code), tying profile to the pay engine.
+- **Theme + language are top preferences** for the Kenya audience (Swahili matters).
+
+**Backlog covered:** `v-profile` ✅.
 
 ---
 
