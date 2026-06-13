@@ -194,11 +194,73 @@
 - **Calm empty state** — "You're all caught up ✓".
 - **Per-type mute/settings** — control what pushes.
 
-**Side note — borrowable `v-home` header details from this inspo (flag for later):** big balance with **eye hide-toggle**, currency selector, a **green sparkline**, and bold pill actions. (Zenti's actions = Pay center / send · request, not Swap/Deposit — adapt, don't copy.) *Ask user: also log these as the home-screen styling direction?*
+**Side note — `v-home` header is the bell's home.**
+
+**Open decisions (RESOLVED):**
+- ✅ Two-tier badge (red = action, neutral dot = FYI).
+- ✅ Inline row actions as the default (act in the inbox; tap through only when needed).
+
+### 🏠 Home-screen style directive (CONFIRMED — adopt for `v-home`)
+Borrow the "Overview" inspo's styling for the home screen:
+- Big **balance** with an **eye hide-toggle** + **currency selector** (USD ▾).
+- A **green sparkline** trend next to/under the balance.
+- Bold **pill action buttons** — but Zenti's actions (Pay center · send · request), *not* Swap/Deposit.
+- Top-right: **search** + **bell w/ two-tier badge** (Inspo 7).
+- Subtle green ambient glow at the screen edge is on-brand; use sparingly.
+
+---
+
+## Inspo 8 — Credit score checker (Kikoff "Credit Report")  ✅ CONFIRMED
+**Maps to:** a **Credit Score** screen reachable from the **individual card page** via the **top-nav menu button** (the menu also holds the other v34 card options: freeze/lock, card settings, etc. → `v-card-settings`). Theme: *making banking easier — bridge the wallet to the user's credit at the bank.*
+
+**Core mechanic (Kikoff):** big **score gauge/ring** (on-brand green), **↑ pts delta**, a **monthly trend sparkline**, an encouraging message ("Bravo, you've gained 50 pts…"), and a **Recent events** list of credit events with their point impact.
+
+**Build model (for later):**
+- Screen design is straightforward (ring + trend + events list, all green-on-dark).
+- ⚠️ **Data-source + compliance dependency:** real scores need a **credit-bureau integration** (Equifax/TransUnion via a provider like Array/Plaid) **and identity verification** — which **conflicts with Zenti's no-KYC stance**.
+
+**Design / UX add-ons (Claude):**
+- **Progress-ring + delta** reuse the same ring primitive as savings goals (one component, many uses).
+- **Encouraging coach tone** — frame score moves as wins; nudge the next action ("pay on time to gain ~X").
+- **Recent events** double as education — each event explains *why* the score moved.
 
 **Open decisions:**
-- Two-tier badge (action vs FYI) — yes? *(Claude rec: yes)*
-- Inline row actions as the default — yes? *(Claude rec: yes, per friction law)*
+- This feature **requires KYC + a bureau provider**. Options: (a) ship as a **later, opt-in, KYC-gated** module separate from the no-KYC core; (b) **mock it** for now to nail the UX; (c) drop until post-MVP. *Need user's call — leaning (b) now → (a) later.*
+- Which bureau/provider when we go real?
+
+---
+
+## Inspo 9 — Card detail page: Unlock/copy + Perks slot + Perks→Autosave loop (Cash App style)  ✅ CONFIRMED
+**Maps to:** `v-card-detail` (reached by tapping a card in the Inspo 1 deck) + `v-card-settings`, and ties into Savings / round-ups (`v-roundups`, `v-roundups-settings`, `savings_goals`/vault).
+
+**Card detail anatomy (confirmed):**
+- Floating **card art** at top; **X** to close, **⚙ menu** top-right (→ Credit Score + other v34 options).
+- **Unlock / lock toggle** (freeze the card) + **copy •• last-4** chip.
+- **Perks/notifications slot below the card options** — *this one slot does double duty:* shows actionable **notifications** AND acts as the card's **perks/offers visibility point** (merchant offers e.g. "5% off", "Show more").
+- **Spending** section below.
+
+**⭐ The Perks → Autosave loop (user's headline idea):**
+1. Each card carries **perks/offers** (merchant discounts/promos), visible in the perks slot.
+2. **Before paying** at a merchant, the app **auto-applies** a suggested eligible discount/promo for that card — zero effort (friction law).
+3. The **money saved** by that discount is **auto-redirected into Savings**.
+4. The **% of the saving** that's swept to Savings is **set by the user** (an autosave percentage).
+
+**Build model (for later):**
+- Treat this as a second trigger on the **same auto-save engine** as round-ups: round-ups sweep spare change; perks sweep realized discounts. One engine, two sources → `savings_goals`/vault.
+- At pay time (NFC/QR/online), match merchant → eligible offer → apply → compute saving → sweep `saving × autosave%` to the default goal/vault.
+
+**Design / UX add-ons (Claude):**
+- **Perks slot = horizontal offer chips** (merchant logo + "5% off") + "Show more"; notifications pinned above or as a small toggle so the slot never feels cluttered.
+- **Auto-apply confirmation** via Dynamic Island/toast: "Saved $1.20 — $0.84 → Savings" so the magic is *visible* without being a step.
+- **Autosave % control** lives in round-ups/savings settings — a single slider ("Sweep X% of every saving"). Default suggestion: **100%** (you didn't spend it, so save it) — confirm.
+- **Impact metric** — "Perks saved you $X this month, $Y auto-saved" on the savings screen → satisfying loop feedback.
+- **User stays in control** — choose which perks auto-apply; payment is never silently altered without the saving being shown.
+
+**Open decisions:**
+- **Offers data source** — a perks provider / card-network offers (e.g. Visa Offers) vs curated list? (real merchant offers need a provider — flag).
+- **Autosave % default** — 100%? (lean yes)
+- Confirm perks-autosave **extends the existing round-ups engine** (lean: yes, one engine).
+- Perks slot vs notifications in the same slot — **tabs** or **stacked** (notifications pinned, perks below)?
 
 ---
 
