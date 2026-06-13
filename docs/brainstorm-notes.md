@@ -22,7 +22,7 @@
 *From a code-level walkthrough of v34's pay flow. Apply these per the friction law.*
 - **🟢 FIX 1 (REVISED per user intent) — pay sheet is a quick-launcher, not redundant.** The pay screen is meant to open via a **system-level shortcut** (skip home → pay fast), and the method picker selects a real **rail** (see Core Pay Engine below). So it's *not* a duplicate decision. Just ensure the sheet acts as a **launcher/preset** that hands a pre-configured state to the numpad (the single workspace) — don't ask the *same* thing twice on both.
 - **🟡 FIX 2 — Simplify the numpad for the 90% case.** *(Confirmed by user — numpad is too dense.)* Keep the ops + 3 rails, but **de-emphasize** so a simple "send Sarah 500" is dead obvious; rails/ops recede until needed.
-- **🟢 FIX 3 (lowered) — no-recipient swipe.** Less critical now that method is an explicit rail choice, but on the **contact rail with no recipient**, still **nudge "pick someone"** rather than silently routing to proximity.
+- **✅ FIX 3 (RESOLVED) — Tap-to-Connect is now an explicit option** in the recipient row (alongside contacts), Apple-Pay-style. No more silent routing: a no-recipient swipe nudges "pick someone or Tap to Connect"; proximity is a deliberate pick (see Inspo 15 contact rail).
 - **🟢 FIX 4 — Add a glance-confirm for large amounts.** Swipe-to-pay is a great anti-accident gate; add a small **"balance after / no fees"** glance before send on larger amounts to build trust. (Small amounts stay one-swipe.)
 - **Keep (already good):** swipe-to-pay gate · inline "What's it for?" note · live Dynamic Island states · Repeat-from-tx · arithmetic ops.
 
@@ -482,6 +482,7 @@
 **The model (user's intent):** the **numpad is the universal amount entry** (with `+−×÷` ops). **Swipe right = execute.** One amount, **three rails** to move it:
 
 1. **Contact rail (P2P, internal)** — input amount → pick a Zenti user (`$ztag` / search / quick contacts) → swipe → **pay or request**. Instant, in-app.
+   - **➕ Tap-to-Connect icon in the recipient row** — alongside the contact suggestions, a **"Tap to Connect"** option (Apple-Pay-style proximity). Pick it → input amount → swipe → `tap-wait` → two nearby phones **connect & complete a P2P payment** without searching for a contact. Makes close-proximity P2P effortless. *(This is now an EXPLICIT choice, not a silent fallback — resolves FIX 3.)*
 2. **QR rail (amount-responsive) — MERCHANT RECEIVE is the hero use:** input amount → **show MY QR encoding {my profile + the amount}** → the other person **scans → sees my profile + the amount they owe → pays me**. Built for **merchants/vendors receiving on a phone**. Reverse also works: **scan** someone's QR to pay them.
 3. **NFC rail (contactless card pay)** — input amount → **tap phone to a reader** → pay directly with my **Zenti card via NFC** (the pay screen carries the card). Like tapping a contactless card.
 
