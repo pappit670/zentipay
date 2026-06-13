@@ -260,6 +260,38 @@
 
 ---
 
+## Inspo 10 — Savings page: intro · landing · goal-rings · Round-Ups settings  ✅ CONFIRMED
+**Maps to (all already in v34 — fit in, don't remodel, per Law #2):** `v-savings`, `v-create-goal`, `v-goal-detail` (ring), `v-vault`, `v-roundups`, `v-roundups-settings`. This is also where the **autosave loop is activated** (Inspo 9) and where its **% control lives**.
+
+### A) Illustrative intro (Cash App "A new way to save")
+- First-time entry opens with an **illustrated intro** ("A new way to save… stash some cash, just in case") → **Start saving**. (Brief flags illustrated intros for Savings/Pools/Split.) Show once, then straight to the landing.
+
+### B) Savings LANDING — flat, no ring (Cash App dark $1,200 screen)
+- The default savings landing is **ring-less**: big **balance** + **interest rate** ("3.25% interest ›"), **Add money / Withdraw**, a **Set a goal** CTA, a **"Grow your savings"** list, then **Activity**.
+- **"Grow your savings" = the auto-save engine's sources:** **Round-Ups** (spare change), **Perks** (our Inspo 9 realized-discount sweep), **Paychecks** (save part of each). One engine, listed as toggleable sources here.
+
+### C) Goal detail — the RING activates per specific goal (Cash App light $75/$25-to-goal)
+- **Rings are goal-specific.** A specific savings goal shows the **progress ring** (e.g. $75 saved, $25 to goal) + emoji/icon, **Transfer in / Transfer out**, **Update goal**, **Round-Ups** toggle.
+- Landing = no ring; each goal = its own ring. Multiple goals each carry their own ring (mini-ring in a list → tap → full ring on `v-goal-detail`).
+
+### D) Round-Ups settings (Acorns) — adjustable, decision-easing
+- **Round-up amount slider** ($0 · $0.25 · $0.50 · $0.75 · $1) with a **live example** that recomputes ("buy lunch for $10 → we auto-save **$0.50**").
+- **Multiplier** chips (Off · 2x · 3x · 10x) with its own live example.
+- **Autosave % control** (the perks sweep, Inspo 9) lives here too — *ask on first use*, editable after.
+- One **Save** button. All controls show a live example so the choice is obvious (user's ask: "ease decision making").
+
+**Design / UX add-ons (Claude):**
+- **Reuse one ring primitive** across goals + credit score (Inspo 8) — consistent motion.
+- **Honest interest** — display rate (mocked for now); never fake numbers that imply a real APY we don't have.
+- **Live examples everywhere** in settings so users never guess what a setting does.
+- **Sensible defaults + one Save** (friction law) — don't make saving feel like configuring.
+- **Goal celebration** — hitting 100% on a goal-ring = a success moment (confetti/haptic), consistent with other success states.
+
+**Open decision:**
+- Confirm the "landing flat / ring-per-goal" split matches v34's existing savings structure (if v34 already rings the landing, Law #2 = v34 wins — but user's directive here is landing-flat). *Assuming landing-flat per user.*
+
+---
+
 ## ⭐ Global design law #2 — v34 IS THE SOURCE OF TRUTH (adjust, don't remodel)
 *User's rule:*
 - The v34 prototype's screens (esp. the **home page** and **card pages**) are **exceptional as-is** — we do **NOT** redesign them.
