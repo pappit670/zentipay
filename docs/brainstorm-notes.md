@@ -7,15 +7,16 @@
 ## 📋 BACKLOG — areas still to brainstorm (living tracker)
 *Covered so far (Inspos 1–13): wallet deck · scan/add-card · adding-sim · money-link receive · notifications · credit score · card-detail+perks · savings page · unified create flow (goals/pools/split) · ± stepper/tips · transaction states.*
 
-**🟡 NEXT UP — Onboarding** *(priority — expanded below)*
-- [ ] **Splash → value-prop carousel** (illustrated, 3–4 slides; first-run only)
-- [ ] **Sign up / Sign in** (Inspo 3 covered the *entry* visual; the full journey isn't designed)
-- [ ] **@ztag creation** — pick handle + display name + avatar
-- [ ] **Permissions priming** — soft-ask (notifications, contacts, camera) *before* the OS prompt
-- [ ] **Fund-your-account nudge** — add first card / add cash (optional, skippable)
-- [ ] **Security setup** — biometric (Face ID) + PIN
-- [ ] **Returning-user fast path** — "Welcome back, @tag" + biometric (Inspo 3 add-on)
-- [ ] **First-run illustrated intros** for Savings / Pools / Split (brief beat)
+**🟢 Onboarding** *(covered in Inspo 14 — NO splash)*
+- [x] **Entry (no splash)** — mesh-gradient + wordmark assembling (Inspo 3/14)
+- [x] **Sign up / Sign in** — phone/email toggle + OTP + Google/Apple
+- [x] **DOB** — scroll-wheel picker
+- [x] **@ztag creation** — handle + display name + avatar (hero beat, live availability + card preview)
+- [x] **Permissions priming** — soft-ask before OS prompt
+- [x] **Security setup** — biometric (Face ID) + PIN
+- [x] **Returning-user fast path** — "Welcome back, @tag" + biometric (Inspo 3 add-on)
+- [x] **First-run illustrated intros** for Savings / Pools / Split (contextual)
+- [ ] *remaining: lock DOB age gate (18+/13+), avatar default, progress indicator*
 
 **🔲 Still uncovered — core loop & pay**
 - [ ] `v-numpad` core pay screen — method (contact/QR/NFC) + mode (pay/request) + recipient
@@ -408,6 +409,35 @@
 **Notes / RESOLVED:**
 - ✅ **Cash In / Cash Out = mock rails now**, real processor wired post-MVP.
 - ✅ **Cash-out offers both speed tiers** — **Instant (fee)** and **Standard (free, 1–3 days)**, with **Standard pre-selected** as default. (Mocked; easy to drop to standard-only later.)
+
+---
+
+## Inspo 14 — ONBOARDING flow (no splash · scroll-wheel · illustratives · creative)  ✅ CONFIRMED
+**Greenfield entry journey.** User directives: **NO splash**, use the **iOS scroll-wheel** (DOB-picker style) as a signature input, add **illustratives**, and go **creative**. Consumer-only, light PII (DOB for age-gate ≠ full KYC — KYC is post-MVP).
+
+**The flow (one question per screen, friction law):**
+1. **Entry (no splash)** — app opens straight into the **living mesh-gradient + Zenti wordmark assembling** (Inspo 3 — the "loadup" beat *is* this screen now). Buttons: **Continue with Google / Apple**, and **Use phone or email**.
+2. **Phone / Email** (Cash App) — "Enter your phone or email" with a **Use Phone ⇄ Use Email** toggle, `+1` region auto-detect, "Need help logging in?", Next.
+3. **OTP** — "Please enter the code sent to ___" → **auto-submit** when filled (no Next tap needed).
+4. **Date of birth** — the **scroll-wheel** ("Select your date of birth") + Confirm + privacy-notice microcopy.
+5. **@ztag + identity** — claim your `$handle` + display name (+ avatar).
+6. **Permissions priming** — soft-ask (notifications, contacts) with value framing *before* the OS prompt.
+7. **Security** — Face ID / PIN setup → "You're in."
+8. **→ Home** (welcome moment). First-run illustrated intros for Savings/Pools/Split appear *contextually* the first time each is opened.
+
+**⭐ Creative concepts (Claude cooked):**
+- **Scroll-wheel as a brand motif** — make it *physical*: momentum + rubber-band, a **haptic tick per row**, the center row **magnifies + locks green `#32d74b`** when settled. Reuse the wheel beyond DOB wherever a bounded choice fits → a signature Zenti feel.
+- **Birthday-cake payoff** — on the DOB wheel, a 🎂 illustrative **lights its candles** as you land on your year. Tiny delight, zero friction.
+- **Reactive illustratives per step** — each step has a small animated illustration that *responds*: phone/email → envelope flies; OTP → a **lock unlocks** on the correct code; @ztag → a **name badge stamps** in.
+- **@ztag = the hero beat** — claiming your handle is identity. **Live availability check** (green ✓ / suggestions), and a **live card preview** showing `$yourtag` on a Zenti card (ties straight into the wallet/card art). The emotional "this is mine" moment.
+- **Continuity transitions** — the step illustration hands off into the next (same shared-element thread as scan→wallet, splash→auth). Onboarding feels like one continuous motion, never cut screens.
+- **Smart prefills** — region code from device locale; email/name prefilled if they came via Google/Apple; skip steps OAuth already answered.
+- **Welcome confetti** — first home entry: subtle "Welcome to Zenti, @tag" + green burst.
+
+**Open decisions:**
+- DOB: gate at **18+** or **13+**? (affects copy + legal)
+- Avatar at signup — required, optional, or auto-generated (e.g. emoji/initials) with edit-later? *(lean: auto-generated + edit later, friction law)*
+- Thin progress indicator across onboarding steps — dots/bar, or keep it invisible?
 
 ---
 
