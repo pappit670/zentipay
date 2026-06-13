@@ -370,9 +370,9 @@
 - **Tone by type** — P2P neutral-celebratory · savings habit-coaching · bank transfers informational/trust.
 - **Contextual upsell only on success, never blocking Done** (direct-deposit after savings; share-link after P2P).
 
-**Notes / open:**
-- **Cash In / Cash Out are new banking-bridge features** (link a debit card/bank). Per established pattern: **mock the rails now**, wire a real processor post-MVP.
-- Cash-out speed tiers (instant-fee vs standard) — confirm we offer both, or standard-only for MVP.
+**Notes / RESOLVED:**
+- ✅ **Cash In / Cash Out = mock rails now**, real processor wired post-MVP.
+- ✅ **Cash-out offers both speed tiers** — **Instant (fee)** and **Standard (free, 1–3 days)**, with **Standard pre-selected** as default. (Mocked; easy to drop to standard-only later.)
 
 ---
 
