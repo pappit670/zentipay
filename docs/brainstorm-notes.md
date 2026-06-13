@@ -16,7 +16,7 @@
 - [x] **Security setup** — biometric (Face ID) + PIN
 - [x] **Returning-user fast path** — "Welcome back, @tag" + biometric (Inspo 3 add-on)
 - [x] **First-run illustrated intros** for Savings / Pools / Split (contextual)
-- [ ] *remaining: lock DOB age gate (18+/13+), avatar default, progress indicator*
+- [x] *DOB (no gate), profile pic at signup, progress indicator (top bars/dots) — all resolved*
 
 **🔲 Still uncovered — core loop & pay**
 - [ ] `v-numpad` core pay screen — method (contact/QR/NFC) + mode (pay/request) + recipient
@@ -37,6 +37,7 @@
 - [ ] `v-paylater` — Pay Later / BNPL
 - [ ] **Companion website** — landing + money-link web claim page (brief §5)
 - [ ] **Fraud / limits** surfaces (brief mentions helpers)
+- [ ] **Family feature** (FUTURE) — accounts/controls for underage users; age-aware logic lives here
 
 ---
 
@@ -419,8 +420,8 @@
 1. **Entry (no splash)** — app opens straight into the **living mesh-gradient + Zenti wordmark assembling** (Inspo 3 — the "loadup" beat *is* this screen now). Buttons: **Continue with Google / Apple**, and **Use phone or email**.
 2. **Phone / Email** (Cash App) — "Enter your phone or email" with a **Use Phone ⇄ Use Email** toggle, `+1` region auto-detect, "Need help logging in?", Next.
 3. **OTP** — "Please enter the code sent to ___" → **auto-submit** when filled (no Next tap needed).
-4. **Date of birth** — the **scroll-wheel** ("Select your date of birth") + Confirm + privacy-notice microcopy.
-5. **@ztag + identity** — claim your `$handle` + display name (+ avatar).
+4. **Date of birth** — the **scroll-wheel** ("Select your date of birth") + Confirm + privacy-notice microcopy. *(Stored; NO age gate.)*
+5. **@ztag + identity** — claim your `$handle` + display name + **add a profile picture** (asked; skippable → initials/emoji default).
 6. **Permissions priming** — soft-ask (notifications, contacts) with value framing *before* the OS prompt.
 7. **Security** — Face ID / PIN setup → "You're in."
 8. **→ Home** (welcome moment). First-run illustrated intros for Savings/Pools/Split appear *contextually* the first time each is opened.
@@ -434,10 +435,12 @@
 - **Smart prefills** — region code from device locale; email/name prefilled if they came via Google/Apple; skip steps OAuth already answered.
 - **Welcome confetti** — first home entry: subtle "Welcome to Zenti, @tag" + green burst.
 
-**Open decisions:**
-- DOB: gate at **18+** or **13+**? (affects copy + legal)
-- Avatar at signup — required, optional, or auto-generated (e.g. emoji/initials) with edit-later? *(lean: auto-generated + edit later, friction law)*
-- Thin progress indicator across onboarding steps — dots/bar, or keep it invisible?
+**Decisions (RESOLVED):**
+- ✅ **No age gate for now.** Keep the **DOB scroll-wheel** as a step (signature input + we store DOB), but **no age enforcement/restriction**. Underage handling comes later via a planned **Family feature** (own flow for the underage group).
+- ✅ **Profile pic at signup** — actively **ask the user to add a profile picture** (alongside @ztag + display name). Skippable → falls back to an initials/emoji default they can change later.
+- ✅ **Progress indicator** — show one: **top segmented bars (story-style)** or dots across the steps. *(Lean: top segmented bars.)*
+
+**Future note:** **Family feature** (later) — accounts/controls for underage users; that's where age-aware logic lives, not in core onboarding.
 
 ---
 
