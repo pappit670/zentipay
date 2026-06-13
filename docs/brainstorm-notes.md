@@ -321,6 +321,28 @@
 - **Close/transfer success** consistent with other success states + Dynamic Island ("Pool closed · $500 → balance").
 - **Type can be set at entry** (Goal/Pool/Split buttons) so the flow knows its mode up front — no mid-flow config.
 
+**Decisions (RESOLVED):**
+- ✅ **Option A — type picked at entry.** Mode is chosen before the numpad; carried as a `mode` flag through one shared flow.
+- ✅ **Same numpad across all three**, only the **option buttons below differ** (e.g. Goal→"Start saving", Pool→"Start pool", Split→"Send requests"). One numpad component, mode-driven buttons/labels.
+- ✅ **Entry points live on the HOME screen** — a **features list just above the transactions list** (Goal · Pool · Split, etc.). This is the home's savings/pools "peek" area (brief already calls for it), so it's a sanctioned home addition, not a redesign. *(See home note under Law #2.)*
+
+---
+
+## Inspo 12 — Quick ± stepper / Quick Tips (Apple Cash iMessage)  ✅ CONFIRMED
+**The component:** a compact amount with **− / +** on either side ("$15"), a **"Show Keypad"** link to expand to the full v34 numpad, and action buttons below (Apple Cash uses Request/Send). A fast way to nudge an amount without typing.
+
+**Where it fits (user's idea):** primarily **Quick Tips** — add a tip with one-tap ± on top of a payment. Possibly also a compact quick-entry for small sends / quick pool contributions.
+
+**Design / UX add-ons (Claude):**
+- **Compact ↔ full numpad** — the ± stepper is the *quick* mode; **"Show Keypad"** expands to the v34 numpad for precise/larger amounts. Same amount-entry primitive, two densities.
+- **Quick Tips use:** on a send/pay confirm, an **"Add a tip"** affordance → ± stepper with smart presets (e.g. round-up, +$1/+$2, or 15/18/20%) and ± for fine control. One tap to a sensible tip, friction-free.
+- **Tip targets** — tip a person by `$ztag` (barber, busker, creator), or add a tip on top of a split/bill payment.
+- **Smart step size** — ± increments sensibly ($1 default; could scale with amount). Long-press to accelerate.
+- **Reuse** — the same ± stepper can serve "quick contribute" to a pool (Inspo 11) without opening the full numpad.
+
+**Open decision:**
+- Lock the primary home for the ± stepper: **tips on the pay/send confirm** (lean) vs a standalone quick-send entry? And which tip presets (%, round-up, flat ±)?
+
 ---
 
 ## ⭐ Global design law #2 — v34 IS THE SOURCE OF TRUTH (adjust, don't remodel)
@@ -328,7 +350,7 @@
 - The v34 prototype's screens (esp. the **home page** and **card pages**) are **exceptional as-is** — we do **NOT** redesign them.
 - New inspos/specs are **fitted INTO** existing v34 screens (e.g. add a menu option, give an existing slot a second duty) or are **net-new components/screens** (Dynamic Island states, money-link receive, credit-score screen, perks loop).
 - When an inspo and v34 disagree on layout, **v34 wins**; the inspo only contributes the *concept/feel*.
-- **Home page: untouched.**
+- **Home page: untouched** — *one sanctioned addition:* a **features list (Goal · Pool · Split entry points) just above the transactions list**, living in the home's existing savings/pools **peek** area (brief already calls for this). Additive, not a redesign.
 
 > **EXCEPTION — greenfield zones:** **Savings, Pools, and Split** (the "features" screens) were **NOT** built properly in v34. These we **design fresh** from our inspos (the inspos *are* the design here, not just feel). v34-respect still applies to home, card pages, the nav skeleton, and the core pay loop.
 
