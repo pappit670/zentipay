@@ -424,7 +424,15 @@
 5. **@ztag + identity** — claim your `$handle` + display name + **add a profile picture** (asked; skippable → initials/emoji default).
 6. **Permissions priming** — soft-ask (notifications, contacts) with value framing *before* the OS prompt.
 7. **Security** — Face ID / PIN setup → "You're in."
-8. **→ Home** (welcome moment). First-run illustrated intros for Savings/Pools/Split appear *contextually* the first time each is opened.
+8. **Welcome to Zenti** (final stage, Apple Fitness style) — dark screen, big "**Welcome to Zenti**" + a short list of **3 feature highlights** with **green `#32d74b` icons** + one-line descriptions, then **Continue / Get started**. A confident "here's what's waiting" recap.
+9. **→ Home** (welcome confetti: "Welcome, @tag"). First-run illustrated intros for Savings/Pools/Split appear *contextually* the first time each is opened.
+
+**Per-step layout (from the "Set and achieve your goal" shot):** **segmented top progress bars** + a centered **illustrative** + bold title + subtitle + single bottom button. Same skeleton every step → calm, predictable, friction-free.
+
+**"Welcome to Zenti" highlights (draft — 3, Apple-Fitness style):**
+- 🟢 **Send & Request** — "Pay anyone in seconds by `$ztag`, QR, or tap."
+- 🟢 **Save without thinking** — "Round-ups and perks auto-save into your goals."
+- 🟢 **Split & Pool together** — "Share bills, gifts, and goals with friends."
 
 **⭐ Creative concepts (Claude cooked):**
 - **Scroll-wheel as a brand motif** — make it *physical*: momentum + rubber-band, a **haptic tick per row**, the center row **magnifies + locks green `#32d74b`** when settled. Reuse the wheel beyond DOB wherever a bounded choice fits → a signature Zenti feel.
