@@ -52,6 +52,24 @@ export interface Pool {
   members: number;
 }
 
+export type CardDesign = 'midnight' | 'emerald' | 'savanna' | 'terrazzo' | 'aurora';
+
+export interface Card {
+  id: string;
+  label: string;
+  design: CardDesign;
+  last4: string;
+  brand: 'VISA' | 'Mastercard';
+  frozen: boolean;
+  isDefault: boolean;
+}
+
+const seedCards: Card[] = [
+  { id: 'c1', label: 'Zenti Card', design: 'midnight', last4: '4291', brand: 'VISA', frozen: false, isDefault: true },
+  { id: 'c2', label: 'Spending', design: 'emerald', last4: '8807', brand: 'VISA', frozen: false, isDefault: false },
+  { id: 'c3', label: 'Travel', design: 'aurora', last4: '1532', brand: 'Mastercard', frozen: true, isDefault: false },
+];
+
 const CONTACTS: Contact[] = [
   { name: 'Sarah Ochieng', ztag: 'sarah', initials: 'SO', bg: '#A8ED78', color: '#000' },
   { name: 'Brian Otieno', ztag: 'brian', initials: 'BO', bg: '#0a84ff', color: '#fff' },
@@ -83,6 +101,7 @@ interface StoreState {
   contacts: Contact[];
   goals: Goal[];
   pools: Pool[];
+  cards: Card[];
 }
 
 interface StoreCtx extends StoreState {
@@ -91,6 +110,8 @@ interface StoreCtx extends StoreState {
   request: (a: { amount: number; contact: Contact; note?: string }) => void;
   addCash: (amount: number, source?: string) => void;
   withdraw: (amount: number, dest?: string) => void;
+  toggleFreeze: (id: string) => void;
+  setDefaultCard: (id: string) => void;
 }
 
 const Ctx = createContext<StoreCtx | null>(null);
@@ -104,6 +125,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     contacts: CONTACTS,
     goals: seedGoals,
     pools: seedPools,
+    cards: seedCards,
   });
   const [ready, setReady] = useState(false);
 
@@ -121,7 +143,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (ready) {
-      AsyncStorage.setItem(KEY, JSON.stringify({ balance: state.balance, txs: state.txs, goals: state.goals, pools: state.pools }));
+      AsyncStorage.setItem(KEY, JSON.stringify({ balance: state.balance, txs: state.txs, goals: state.goals, pools: state.pools, cards: state.cards }));
     }
   }, [state, ready]);
 
@@ -158,6 +180,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
           balance: s.balance - amount,
           txs: [{ id: rid(), dir: 'out', type: 'cashout', name: dest, initials: 'M', bg: '#00A651', color: '#fff', amount, note: 'Withdrawal', date: 'Just now', status: 'completed' }, ...s.txs],
         })),
+      toggleFreeze: (id) =>
+        setState((s) => ({ ...s, cards: s.cards.map((c) => (c.id === id ? { ...c, frozen: !c.frozen } : c)) })),
+      setDefaultCard: (id) =>
+        setState((s) => ({ ...s, cards: s.cards.map((c) => ({ ...c, isDefault: c.id === id })) })),
     }),
     [state, ready],
   );
