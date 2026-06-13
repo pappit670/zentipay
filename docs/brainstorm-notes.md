@@ -53,13 +53,15 @@
 - [ ] `v-activity` — full transaction list (filters, grouping)
 - [ ] `v-txd` — transaction detail (touched via states/share; full screen not designed)
 - [x] `v-profile` — profile + theme toggle + settings (Inspo 16 — options inventory)
+- [x] `v-activity` — tx list + spending insights (Inspo 18)
 - [ ] **Empty states** across the app (brief: loading→success→failed→**empty**)
+- [ ] `v-txd` — transaction detail polish (exists in v34)
 
 **🔲 Still uncovered — wallet/cards & extras**
-- [ ] `v-card-zenti` — the Zenti card's own art/identity
+- [x] `v-card-zenti` — Zenti card art (Inspo 17 — min. 5 designs)
 - [ ] `v-add-wallet` — add to Apple/Google Wallet
 - [ ] `v-paylater` — Pay Later / BNPL
-- [ ] **Companion website** — landing + money-link web claim page (brief §5)
+- [ ] **Companion website** — landing + card gallery + money-link web claim page (brief §5)
 - [ ] **Fraud / limits** surfaces (brief mentions helpers)
 - [ ] **Family feature** (FUTURE) — accounts/controls for underage users; age-aware logic lives here
 
@@ -557,6 +559,45 @@
 - **Theme + language are top preferences** for the Kenya audience (Swahili matters).
 
 **Backlog covered:** `v-profile` ✅.
+
+---
+
+## Inspo 17 — ZENTI CARD DESIGNS (artistry — min. 5 choices)  ✅ CONFIRMED
+**Maps to:** `v-card-zenti` + card selection in add-card / card-settings. **Min. 5 card art styles** users pick from; **one of each showcased on the Zenti website** so people see the range. This is a **high-artistry** task — final visuals need real design work (generate/commission), concepts below are direction.
+
+**Card anatomy (all designs share):** chip · Zenti logo · the user's **`$ztag`** (ties the onboarding identity beat to the card) · network mark (Visa/MC) · contactless glyph.
+
+**5+ design concepts (Claude — on-brand: dark, green `#32d74b`, Kenya, Apple-physics):**
+1. **Midnight** *(default)* — deep charcoal/black with a subtle green sheen. Minimal, premium.
+2. **Emerald** — the signature `#32d74b` glossy gradient. The "hero green" card.
+3. **Savanna** — tasteful Kenya tribute: warm earth tones + abstract acacia/Maasai-inspired pattern. Local pride.
+4. **Terrazzo** — green-flecked tortoiseshell/marble (à la the ULYS inspo, in Zenti green).
+5. **Aurora** — iridescent holographic gradient that **shifts with device tilt** (gyroscope). Most premium.
+6. *(bonus)* **Frost** — frosted translucent light card for light-theme fans.
+
+**Design / UX add-ons (Claude):**
+- **Selection = horizontal carousel** with **live preview** (your name + `$ztag` rendered on each), **tilt parallax** on the art. Reuse the deck/ring motion language.
+- **Tilt-reactive art** (gyroscope) on premium designs — ties to the auth mesh parallax idea; one consistent "alive" feel.
+- **Website showcase** — companion site has a **card gallery** (one of each) → prospective users see what's waiting (links to the Companion Website backlog item).
+- Keep the **default = Midnight**; switching is free and instant (re-skins the same card).
+
+---
+
+## Inspo 18 — ACTIVITY + SPENDING INSIGHTS  ✅ CONFIRMED
+**Maps to:** `v-activity` (full tx list) + a **spending-habits summary**, with **per-card spending on the individual card section** (the card-detail "Spending" area, Inspo 9).
+
+**Two homes for insights:**
+- **Activity tab (`v-activity`)** — the full transaction list **+ a glanceable insights card on top**: this-month spend, **category breakdown** (food, transport, bills, shopping…), **trend sparkline**, maybe top merchants / vs-last-month.
+- **Per-card (card detail "Spending")** — each card shows **its own** spending summary (that card's totals + categories), so users see where each card is used.
+
+**Design / UX add-ons (Claude):**
+- **Glanceable first, detail on tap** (friction law) — a summary card up top, not a heavy analytics dashboard; tap to drill into a category/period.
+- **Reuse primitives** — the green sparkline (home/overview feel) + ring (categories as a donut) → consistent visual language, less to build.
+- **Auto-categorized** transactions (mock now; smarter later). Categories use the Zenti palette.
+- **KES-native** — all figures in KES; "spent this month / saved this month" pairs nicely with the auto-save loop ("perks saved you X").
+- **Filters** on activity (in/out, type, date, per-counterparty) — keep minimal.
+
+**Backlog covered:** `v-card-zenti` ✅ · `v-activity` ✅.
 
 ---
 
