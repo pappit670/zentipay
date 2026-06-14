@@ -223,6 +223,35 @@ tr:last-child td{border-bottom:none}
 .founding b{color:var(--ink-1);font-style:normal}
 .lp-footer .row{display:flex;justify-content:space-between;align-items:center;margin-top:40px;color:var(--ink-3);font-size:14px}
 @media(max-width:560px){.container{padding:0 22px}:root{--pad-y:80px}.main{padding:22px 18px}}
+
+/* compliance (deep) */
+.comp-head{display:flex;gap:34px;flex-wrap:wrap;align-items:center;margin-bottom:4px}
+.comp-stat{display:flex;align-items:center;gap:13px}
+.comp-ring{width:62px;height:62px;border-radius:50%;flex:none;position:relative;background:conic-gradient(var(--green) calc(var(--p,0)*1%),var(--line) 0);transition:background 1.2s var(--ease)}
+.comp-ring::after{content:"";position:absolute;inset:7px;border-radius:50%;background:#fff}
+.comp-ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:14px;font-weight:800}
+.comp-stat .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+.comp-stat .v{font-size:22px;font-weight:900;letter-spacing:-.02em}
+.comp-tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);margin:20px 0 18px}
+.comp-tab{padding:0 0 12px;font-size:14px;font-weight:600;color:var(--ink-3);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer}
+.comp-tab.on{color:var(--ink-1);border-color:var(--black)}
+.fw-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.fw-badge{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:100px;padding:5px 14px 5px 6px;font-size:13px;font-weight:600}
+.fw-badge .ic{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:800;flex:none}
+.ctrl-row{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid var(--line)}
+.ctrl-row:last-child{border-bottom:none}
+.ctrl-ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;flex:none}
+.ctrl-ic.pass{background:#66e31a22;color:#1a8a2f}
+.ctrl-ic.fail{background:#e3431a22;color:#b02e0f}
+.ctrl-ic.warn{background:#e3a51a22;color:#9a6f00}
+.ctrl-row .nm{font-weight:600;font-size:14.5px}
+.ctrl-row .mt{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.ctrl-prog{margin-left:auto;width:130px;flex:none}
+.ctrl-prog .track{height:6px;background:var(--line);border-radius:100px;overflow:hidden}
+.ctrl-prog .fill{height:100%;width:0;background:var(--green);border-radius:100px;transition:width 1s var(--ease)}
+.ctrl-prog .fill.bad{background:var(--red)}.ctrl-prog .fill.mid{background:var(--amber)}
+.ctrl-prog .lab{font-size:11px;color:var(--ink-3);margin-top:5px;text-align:right}
+@media(max-width:760px){.ctrl-prog{width:84px}}
 </style>
 </head>
 <body>
@@ -598,18 +627,44 @@ tr:last-child td{border-bottom:none}
       </div>
     </section>
 
-    <!-- COMPLIANCE -->
+    <!-- COMPLIANCE (deep) -->
     <section class="screen" data-name="compliance">
-      <div class="deadline"><div><div class="section-title" style="margin:0">Next filing deadline</div><div style="color:var(--ink-2);font-size:14px">Turnover Tax — monthly</div></div><div class="d" style="color:var(--red)">Jun 20</div></div>
-      <div class="row2">
-        <div class="card"><div class="section-title">Turnover tax estimate</div><div class="metric" style="border:none;padding:0"><div class="v">KES 9,183</div><div class="d" style="color:var(--ink-3)">3% of KES 918,300 monthly turnover</div></div></div>
-        <div class="card"><div class="section-title">VAT tracking</div><div class="metric" style="border:none;padding:0"><div class="v">Not applicable</div><div class="d" style="color:var(--ink-3)">Turnover below KES 5M threshold</div></div></div>
+      <div class="card">
+        <div class="comp-head">
+          <div class="comp-stat"><div class="comp-ring" data-ring style="--p:78"><b>78%</b></div><div><div class="k">Passing controls</div><div class="v">18 / 23</div></div></div>
+          <div class="comp-stat"><div><div class="k">Unassigned</div><div class="v">3 controls</div></div></div>
+          <div class="comp-stat"><div><div class="k">Requirements met</div><div class="v">14 / 19</div></div></div>
+          <a class="btn sm magnetic" style="margin-left:auto">Generate KRA report</a>
+        </div>
+
+        <div class="comp-tabs"><span class="comp-tab">Overview</span><span class="comp-tab on">Controls</span><span class="comp-tab">Requirements</span></div>
+
+        <div class="fw-row">
+          <div class="fw-badge"><span class="ic" style="background:#1a7f3f">KRA</span> iTax / TOT</div>
+          <div class="fw-badge"><span class="ic" style="background:#3a86ff">VAT</span> Value Added Tax</div>
+          <div class="fw-badge"><span class="ic" style="background:#8a5cf6">PAYE</span> Payroll</div>
+          <div class="fw-badge"><span class="ic" style="background:#e26d5c">NSSF</span> Pension</div>
+          <div class="fw-badge"><span class="ic" style="background:#0a9396">SHIF</span> Health</div>
+        </div>
+
+        <div class="filterbar">
+          <span class="chip on">All controls</span><span class="chip">✕ Failing 2</span><span class="chip">⚑ Need attention 2</span><span class="chip">Passing 4</span>
+          <span style="margin-left:auto"></span><input class="searchbar" placeholder="Search controls…" style="height:38px;width:200px" />
+        </div>
+
+        <div class="ctrl-list" data-ctrls>
+          <div class="ctrl-row"><span class="ctrl-ic pass">✓</span><div><div class="nm">Monthly turnover tax (TOT) filed</div><div class="mt">Filed 3 Jun · KES 9,183 · all checks passing</div></div><div class="ctrl-prog"><div class="track"><div class="fill" data-w="100"></div></div><div class="lab">3 / 3 checks</div></div></div>
+          <div class="ctrl-row"><span class="ctrl-ic fail">✕</span><div><div class="nm">VAT return not yet filed</div><div class="mt">Period May · due in 5 days · 0 of 1 checks</div></div><div class="ctrl-prog"><div class="track"><div class="fill bad" data-w="6"></div></div><div class="lab">0 / 1 checks</div></div></div>
+          <div class="ctrl-row"><span class="ctrl-ic warn">⚑</span><div><div class="nm">PAYE remittance reconciliation</div><div class="mt">1 of 2 employees reconciled this cycle</div></div><div class="ctrl-prog"><div class="track"><div class="fill mid" data-w="50"></div></div><div class="lab">1 / 2 checks</div></div></div>
+          <div class="ctrl-row"><span class="ctrl-ic pass">✓</span><div><div class="nm">NSSF contributions up to date</div><div class="mt">Remitted for June · 2 employees</div></div><div class="ctrl-prog"><div class="track"><div class="fill" data-w="100"></div></div><div class="lab">2 / 2 checks</div></div></div>
+          <div class="ctrl-row"><span class="ctrl-ic warn">⚑</span><div><div class="nm">SHIF deductions matched</div><div class="mt">1 employee record unmatched to payslip</div></div><div class="ctrl-prog"><div class="track"><div class="fill mid" data-w="80"></div></div><div class="lab">4 / 5 checks</div></div></div>
+          <div class="ctrl-row"><span class="ctrl-ic fail">✕</span><div><div class="nm">Source-receipt records retained</div><div class="mt">2 months missing source receipts</div></div><div class="ctrl-prog"><div class="track"><div class="fill bad" data-w="71"></div></div><div class="lab">5 / 7 checks</div></div></div>
+          <div class="ctrl-row"><span class="ctrl-ic pass">✓</span><div><div class="nm">County business permit valid</div><div class="mt">Valid through Dec 2026</div></div><div class="ctrl-prog"><div class="track"><div class="fill" data-w="100"></div></div><div class="lab">1 / 1 checks</div></div></div>
+        </div>
       </div>
-      <div class="row2" style="margin-top:16px">
-        <div class="card"><div class="section-title">PAYE summary</div><div class="metric" style="border:none;padding:0"><div class="v">KES 4,200</div><div class="d" style="color:var(--ink-3)">2 team members on payroll</div></div></div>
-        <div class="card" style="display:flex;flex-direction:column;justify-content:center"><a class="btn magnetic">Generate KRA report (PDF)</a></div>
-      </div>
-      <div class="disclaimer">Generated for record-keeping. Verify with a certified accountant before filing.</div>
+
+      <div class="deadline" style="margin-top:16px"><div><div class="section-title" style="margin:0">Next filing deadline</div><div style="color:var(--ink-2);font-size:14px">VAT return — period May</div></div><div class="d" style="color:var(--red)">Jun 20</div></div>
+      <div class="disclaimer">Zenti tracks records and surfaces estimates for clarity. Generated for record-keeping — verify with a certified accountant before filing. Zenti is not a tax advisor.</div>
     </section>
 
     <!-- REPORTS -->
@@ -747,6 +802,7 @@ function reanimate(scr){
   if(!scr)return;
   scr.querySelectorAll('[data-dash]').forEach(function(el){el.querySelectorAll('[data-count]').forEach(countUp);});
   scr.querySelectorAll('[data-bars]').forEach(function(el){ el.querySelectorAll('.bar').forEach(function(b){b.style.height='0';}); setTimeout(function(){growBars(el);},60); });
+  scr.querySelectorAll('[data-ctrls]').forEach(function(el){ var fs=el.querySelectorAll('.fill'); fs.forEach(function(f){f.style.width='0';}); setTimeout(function(){ fs.forEach(function(f){f.style.width=f.getAttribute('data-w')+'%';}); },80); });
 }
 </script>
 </body>
