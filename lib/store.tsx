@@ -120,6 +120,7 @@ interface StoreCtx extends StoreState {
   request: (a: { amount: number; contact: Contact; note?: string }) => void;
   addCash: (amount: number, source?: string) => void;
   withdraw: (amount: number, dest?: string) => void;
+  receive: (amount: number, from: string) => void;
   toggleFreeze: (id: string) => void;
   setDefaultCard: (id: string) => void;
   addGoal: (a: { name: string; emoji: string; target: number }) => void;
@@ -195,6 +196,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
           ...s,
           balance: s.balance - amount,
           txs: [{ id: rid(), dir: 'out', type: 'cashout', name: dest, initials: 'M', bg: '#00A651', color: '#fff', amount, note: 'Withdrawal', date: 'Just now', status: 'completed' }, ...s.txs],
+        })),
+      receive: (amount, from) =>
+        setState((s) => ({
+          ...s,
+          balance: s.balance + amount,
+          txs: [{ id: rid(), dir: 'in', type: 'p2p', name: from, initials: (from[0] ?? 'Z').toUpperCase(), bg: '#A8ED78', color: '#000', amount, note: 'Money link', date: 'Just now', status: 'completed' }, ...s.txs],
         })),
       toggleFreeze: (id) =>
         setState((s) => ({ ...s, cards: s.cards.map((c) => (c.id === id ? { ...c, frozen: !c.frozen } : c)) })),

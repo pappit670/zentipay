@@ -176,6 +176,10 @@ export default function PayModal() {
           disabled={!canConfirm}
           onConfirm={confirm}
         />
+
+        <Pressable onPress={() => router.push('/link')} style={styles.linkBtn}>
+          <Text style={[styles.linkTxt, { color: colors.green }]}>or share a money link</Text>
+        </Pressable>
       </ScrollView>
     </SafeAreaView>
   );
@@ -203,4 +207,6 @@ const styles = StyleSheet.create({
   note: { height: 48, borderRadius: 12, paddingHorizontal: 14, fontSize: 15, textAlign: 'center' },
   soon: { borderRadius: 12, padding: 18, alignItems: 'center' },
   soonTxt: { fontSize: 14, textAlign: 'center' },
+  linkBtn: { alignItems: 'center', paddingVertical: 6 },
+  linkTxt: { fontSize: 14, fontWeight: '600' },
 });
