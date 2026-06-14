@@ -71,9 +71,9 @@ export default function Home() {
 
         {/* features (Inspo 11 entry points) */}
         <View style={styles.features}>
-          <Feature icon={<Target color={colors.green} size={20} />} label="Goal" onPress={() => router.push('/savings')} />
-          <Feature icon={<Users color={colors.blue} size={20} />} label="Pool" onPress={() => router.push('/savings')} />
-          <Feature icon={<Scissors color={colors.purple} size={20} />} label="Split" onPress={() => router.push('/pay')} />
+          <Feature icon={<Target color={colors.green} size={20} />} label="Goal" onPress={() => router.push({ pathname: '/create', params: { mode: 'goal' } })} />
+          <Feature icon={<Users color={colors.blue} size={20} />} label="Pool" onPress={() => router.push({ pathname: '/create', params: { mode: 'pool' } })} />
+          <Feature icon={<Scissors color={colors.purple} size={20} />} label="Split" onPress={() => router.push({ pathname: '/create', params: { mode: 'split' } })} />
         </View>
 
         {/* recent activity */}

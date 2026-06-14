@@ -95,6 +95,15 @@ const seedPools: Pool[] = [
   { id: 'p1', name: 'Trip to Diani', emoji: '🏖️', total: 12000, target: 50000, members: 4 },
 ];
 
+export interface RoundupSettings {
+  enabled: boolean;
+  base: number; // round up to nearest (KES)
+  multiplier: number; // 1 | 2 | 3 | 10
+  autosavePct: number | null; // perks sweep % (null = ask on first use)
+}
+
+const defaultRoundups: RoundupSettings = { enabled: true, base: 50, multiplier: 1, autosavePct: null };
+
 interface StoreState {
   balance: number;
   txs: Tx[];
@@ -102,6 +111,7 @@ interface StoreState {
   goals: Goal[];
   pools: Pool[];
   cards: Card[];
+  roundups: RoundupSettings;
 }
 
 interface StoreCtx extends StoreState {
@@ -112,6 +122,11 @@ interface StoreCtx extends StoreState {
   withdraw: (amount: number, dest?: string) => void;
   toggleFreeze: (id: string) => void;
   setDefaultCard: (id: string) => void;
+  addGoal: (a: { name: string; emoji: string; target: number }) => void;
+  addPool: (a: { name: string; emoji: string; target: number; members?: number }) => void;
+  addToGoal: (id: string, amount: number) => void;
+  splitRequest: (a: { amount: number; contacts: Contact[]; includeMe: boolean; note?: string }) => void;
+  setRoundups: (p: Partial<RoundupSettings>) => void;
 }
 
 const Ctx = createContext<StoreCtx | null>(null);
@@ -126,6 +141,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     goals: seedGoals,
     pools: seedPools,
     cards: seedCards,
+    roundups: defaultRoundups,
   });
   const [ready, setReady] = useState(false);
 
@@ -143,7 +159,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (ready) {
-      AsyncStorage.setItem(KEY, JSON.stringify({ balance: state.balance, txs: state.txs, goals: state.goals, pools: state.pools, cards: state.cards }));
+      AsyncStorage.setItem(KEY, JSON.stringify({ balance: state.balance, txs: state.txs, goals: state.goals, pools: state.pools, cards: state.cards, roundups: state.roundups }));
     }
   }, [state, ready]);
 
@@ -184,6 +200,42 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         setState((s) => ({ ...s, cards: s.cards.map((c) => (c.id === id ? { ...c, frozen: !c.frozen } : c)) })),
       setDefaultCard: (id) =>
         setState((s) => ({ ...s, cards: s.cards.map((c) => ({ ...c, isDefault: c.id === id })) })),
+      addGoal: ({ name, emoji, target }) =>
+        setState((s) => ({ ...s, goals: [{ id: rid(), name, emoji, saved: 0, target }, ...s.goals] })),
+      addPool: ({ name, emoji, target, members = 1 }) =>
+        setState((s) => ({ ...s, pools: [{ id: rid(), name, emoji, total: 0, target, members }, ...s.pools] })),
+      addToGoal: (id, amount) =>
+        setState((s) => ({
+          ...s,
+          balance: s.balance - amount,
+          goals: s.goals.map((g) => (g.id === id ? { ...g, saved: g.saved + amount } : g)),
+          txs: [{ id: rid(), dir: 'out', type: 'savings', name: 'Savings', initials: '🐷', bg: '#32d74b', color: '#000', amount, note: 'To goal', date: 'Just now', status: 'completed' }, ...s.txs],
+        })),
+      splitRequest: ({ amount, contacts, includeMe, note }) => {
+        const heads = contacts.length + (includeMe ? 1 : 0);
+        const share = heads ? Math.round(amount / heads) : amount;
+        setState((s) => ({
+          ...s,
+          txs: [
+            ...contacts.map((c) => ({
+              id: rid(),
+              dir: 'in' as const,
+              type: 'request' as const,
+              name: c.name,
+              ztag: c.ztag,
+              initials: c.initials,
+              bg: c.bg,
+              color: c.color,
+              amount: share,
+              note: note || 'Split',
+              date: 'Just now',
+              status: 'pending' as const,
+            })),
+            ...s.txs,
+          ],
+        }));
+      },
+      setRoundups: (p) => setState((s) => ({ ...s, roundups: { ...s.roundups, ...p } })),
     }),
     [state, ready],
   );

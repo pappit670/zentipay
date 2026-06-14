@@ -32,6 +32,7 @@ function Nav() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="onboarding" />
         <Stack.Screen name="pay" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+        <Stack.Screen name="create" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
         <Stack.Screen name="success" options={{ presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: false }} />
       </Stack>
       <DynamicIsland />
