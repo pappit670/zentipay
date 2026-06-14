@@ -146,7 +146,15 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 
 /* personas */
 .personas{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
-.persona{border:1px solid var(--line);border-radius:20px;padding:28px;background:var(--bg-soft)}
+.persona{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--bg-soft);text-align:left}
+.persona-ill{height:110px;border-radius:14px;background:#fff;border:1px solid var(--line);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden}
+.persona-ill .big{width:56px;height:56px;border-radius:16px;background:rgba(52,255,24,.13);color:#1a8a2f;display:grid;place-items:center}
+.persona-ill .big svg{width:28px;height:28px}
+.persona-ill .pchip{background:#fff;border:1px solid var(--line);border-radius:9px;padding:6px 9px;font-size:11px;font-weight:700;color:var(--ink-1);box-shadow:0 8px 18px -12px rgba(10,10,10,.3)}
+.persona-ill .pdots{display:flex;gap:5px}
+.persona-ill .pdots i{width:13px;height:13px;border-radius:50%;border:2px solid #fff;display:block}
+.persona-ill .gline{display:flex;align-items:flex-end;gap:4px;height:40px}
+.persona-ill .gline i{width:8px;border-radius:3px 3px 0 0;background:var(--green);display:block}
 .persona .tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);background:#06210a08;display:inline-block}
 .persona h3{font-size:20px;margin:6px 0}
 .persona .who{font-size:14px;color:var(--ink-2)}
@@ -459,9 +467,27 @@ tr:last-child td{border-bottom:none}
       <div class="label" data-reveal>Who it's for</div>
       <h2 data-reveal style="margin-top:12px">Built for every size of business.</h2>
       <div class="personas">
-        <div class="persona" data-reveal><span class="tag">Informal / Small</span><h3>Mama mboga, kiosk, boda</h3><div class="who">The everyday hustle.</div><div class="need">“Just need to see what I made.”</div></div>
-        <div class="persona" data-reveal style="transition-delay:.1s"><span class="tag">Growing SME</span><h3>Salon, restaurant, retail</h3><div class="who">Scaling up, hiring, invoicing.</div><div class="need">“Ready to invoice and track expenses.”</div></div>
-        <div class="persona" data-reveal style="transition-delay:.2s"><span class="tag">Established</span><h3>Law firm, pharmacy, logistics</h3><div class="who">Teams, compliance, multi-location.</div><div class="need">“Full compliance and team management.”</div></div>
+        <div class="persona" data-reveal>
+          <div class="persona-ill">
+            <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <span class="pchip">+ KES 1,200</span>
+          </div>
+          <span class="tag">Informal / Small</span><h3>Mama mboga, kiosk, boda</h3><div class="who">The everyday hustle.</div><div class="need">“Just need to see what I made.”</div>
+        </div>
+        <div class="persona" data-reveal style="transition-delay:.1s">
+          <div class="persona-ill">
+            <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></div>
+            <div class="gline"><i style="height:40%"></i><i style="height:65%"></i><i style="height:100%"></i></div>
+          </div>
+          <span class="tag">Growing SME</span><h3>Salon, restaurant, retail</h3><div class="who">Scaling up, hiring, invoicing.</div><div class="need">“Ready to invoice and track expenses.”</div>
+        </div>
+        <div class="persona" data-reveal style="transition-delay:.2s">
+          <div class="persona-ill">
+            <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg></div>
+            <div class="pdots"><i style="background:#28282b"></i><i style="background:#34ff18"></i><i style="background:#8a8a90"></i></div>
+          </div>
+          <span class="tag">Established</span><h3>Law firm, pharmacy, logistics</h3><div class="who">Teams, compliance, multi-location.</div><div class="need">“Full compliance and team management.”</div>
+        </div>
       </div>
     </div>
   </section>
@@ -604,6 +630,7 @@ tr:last-child td{border-bottom:none}
 <!-- ================= DASHBOARD APP ================= -->
 <div class="upsell" id="upsell"><span id="upsellMsg"></span><a class="btn magnetic" onclick="hideUpsell()">Upgrade</a></div>
 <div class="toast" id="toast"></div>
+<div class="overlay" id="actOverlay"><div class="reg" style="max-width:460px"><span class="close" onclick="closeAct()">×</span><div id="actBody"></div></div></div>
 <div class="app" id="app">
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#" onclick="closeApp();return false"><span class="z">Z</span>Zenti <small>Business</small></a>
@@ -728,7 +755,7 @@ tr:last-child td{border-bottom:none}
         <span class="chip on">All</span><span class="chip">Incoming</span><span class="chip">Outgoing</span><span class="chip">Pending</span><span class="chip">Failed</span>
         <span style="margin-left:auto"></span>
         <span class="chip">Last 7 days</span><span class="chip">Export</span>
-        <a class="btn sm magnetic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg> New transfer</a>
+        <a class="btn sm magnetic" onclick="actTransfer()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg> New transfer</a>
       </div>
       <div class="card" style="padding:0;overflow:hidden">
         <table>
@@ -767,7 +794,7 @@ tr:last-child td{border-bottom:none}
       <div class="card" style="margin-bottom:16px;display:flex;align-items:center;gap:13px">
         <span style="width:32px;height:32px;border-radius:9px;background:var(--green);flex:none"></span>
         <div><div style="font-weight:700">eTIMS invoicing is on</div><div style="font-size:13px;color:var(--ink-3)">142 of 144 invoices auto-submitted to KRA this month · 2 queued</div></div>
-        <a class="btn sm magnetic" style="margin-left:auto">+ New eTIMS invoice</a>
+        <a class="btn sm magnetic" style="margin-left:auto" onclick="actInvoice()">+ New eTIMS invoice</a>
       </div>
       <div class="filterbar">
         <span class="chip on">All</span><span class="chip">Paid</span><span class="chip">Pending</span><span class="chip">Overdue</span><span class="chip">Cancelled</span>
@@ -867,7 +894,7 @@ tr:last-child td{border-bottom:none}
 
     <!-- TEAM -->
     <section class="screen" data-name="team">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div class="section-title" style="margin:0">Team members</div><a class="btn sm magnetic">+ Invite member</a></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div class="section-title" style="margin:0">Team members</div><a class="btn sm magnetic" onclick="actInvite()">+ Invite member</a></div>
       <div class="card">
         <div class="role-row"><span class="av" style="background:#0A0A0A">WK</span><div><div class="nm" style="font-weight:600">Wanjiku Kamau (You)</div><div class="mt" style="font-size:13px;color:var(--ink-3)">Full access</div></div><span class="pill green" style="margin-left:auto">Owner</span></div>
         <div class="role-row"><span class="av" style="background:#3a86ff">SM</span><div><div class="nm" style="font-weight:600">Samuel Maina</div><div class="mt" style="font-size:13px;color:var(--ink-3)">View reports, manage transactions</div></div><span class="pill grey" style="margin-left:auto">Manager</span></div>
@@ -991,6 +1018,29 @@ function hideUpsell(){ document.getElementById('upsell').classList.remove('show'
 /* ---------- toast + make every dashboard control functional ---------- */
 var _toastT;
 function toast(msg){var t=document.getElementById('toast');t.innerHTML='<span class="tk">✓</span>'+msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(function(){t.classList.remove('show');},2600);}
+/* action mini-modals */
+function openAct(html){document.getElementById('actBody').innerHTML=html;document.getElementById('actOverlay').classList.add('on');}
+function closeAct(){document.getElementById('actOverlay').classList.remove('on');}
+function actDone(msg){closeAct();toast(msg);}
+function actInvoice(){openAct(
+  '<div class="reg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/><path d="M8 13h8M8 17h5"/></svg></div>'+
+  '<h2>New eTIMS invoice</h2><p class="sub">We’ll generate a KRA-valid e-invoice and send it to your customer.</p>'+
+  '<div class="field"><label>Customer</label><input placeholder="Name or @ztag"></div>'+
+  '<div class="field"><label>Amount (KES)</label><input type="number" inputmode="numeric" placeholder="0"></div>'+
+  '<div class="field"><label>For</label><input placeholder="e.g. Services rendered"></div>'+
+  '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Cancel</button><button class="btn magnetic" onclick="actDone(\'Invoice created · synced to KRA ✓\')">Create &amp; send</button></div>');}
+function actTransfer(){openAct(
+  '<div class="reg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></div>'+
+  '<h2>New transfer</h2><p class="sub">Send money to a phone number, till, or Paybill.</p>'+
+  '<div class="field"><label>To</label><input placeholder="Phone, till or Paybill"></div>'+
+  '<div class="field"><label>Amount (KES)</label><input type="number" inputmode="numeric" placeholder="0"></div>'+
+  '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Cancel</button><button class="btn magnetic" onclick="actDone(\'Transfer sent ✓\')">Send</button></div>');}
+function actInvite(){openAct(
+  '<div class="reg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>'+
+  '<h2>Invite a team member</h2><p class="sub">They’ll get access based on the role you choose.</p>'+
+  '<div class="field"><label>Phone or email</label><input placeholder="+254 7… or name@email.com"></div>'+
+  '<div class="field"><label>Role</label><input placeholder="Cashier · Manager · Accountant"></div>'+
+  '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Cancel</button><button class="btn magnetic" onclick="actDone(\'Invite sent ✓\')">Send invite</button></div>');}
 document.addEventListener('click',function(e){
   var appOn=document.getElementById('app').classList.contains('on');
   // segmented toggles (Day/Week/Month, Static/Dynamic, date ranges)
