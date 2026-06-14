@@ -40,15 +40,15 @@ export default function Home() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }}>
         {/* header */}
         <View style={styles.header}>
-          <View style={[styles.avatar, { backgroundColor: colors.green }]}>
+          <Pressable onPress={() => router.push('/profile')} style={[styles.avatar, { backgroundColor: colors.green }]}>
             <Text style={styles.avatarTxt}>{initials}</Text>
-          </View>
+          </Pressable>
           <Text style={[styles.hi, { color: colors.t1 }]}>Hey, {name}</Text>
           <View style={{ flex: 1 }} />
           <Pressable style={[styles.iconBtn, { backgroundColor: colors.s2 }]}>
             <Search color={colors.t1} size={20} />
           </Pressable>
-          <Pressable style={[styles.iconBtn, { backgroundColor: colors.s2 }]}>
+          <Pressable onPress={() => router.push('/notifications')} style={[styles.iconBtn, { backgroundColor: colors.s2 }]}>
             <Bell color={colors.t1} size={20} />
             <View style={[styles.badge, { backgroundColor: colors.red, borderColor: colors.bg }]} />
           </Pressable>
@@ -116,7 +116,10 @@ function Feature({ icon, label, onPress }: { icon: React.ReactNode; label: strin
 function TxRow({ t, last }: { t: Tx; last: boolean }) {
   const { colors } = useTheme();
   return (
-    <View style={[styles.txRow, !last && { borderBottomColor: colors.sep, borderBottomWidth: 1 }]}>
+    <Pressable
+      onPress={() => router.push({ pathname: '/tx/[id]', params: { id: t.id } })}
+      style={[styles.txRow, !last && { borderBottomColor: colors.sep, borderBottomWidth: 1 }]}
+    >
       <View style={[styles.txAv, { backgroundColor: t.bg }]}>
         <Text style={[styles.txAvTxt, { color: t.color }]}>{t.initials}</Text>
       </View>
@@ -131,7 +134,7 @@ function TxRow({ t, last }: { t: Tx; last: boolean }) {
         {t.dir === 'in' ? '+' : '−'}
         {kes(t.amount, false)}
       </Text>
-    </View>
+    </Pressable>
   );
 }
 

@@ -1,4 +1,5 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { radius, space, type } from '../../constants/theme';
 import { kes } from '../../lib/format';
@@ -43,7 +44,10 @@ export default function Activity() {
 function Row({ t, last }: { t: Tx; last: boolean }) {
   const { colors } = useTheme();
   return (
-    <View style={[styles.row, !last && { borderBottomColor: colors.sep, borderBottomWidth: 1 }]}>
+    <Pressable
+      onPress={() => router.push({ pathname: '/tx/[id]', params: { id: t.id } })}
+      style={[styles.row, !last && { borderBottomColor: colors.sep, borderBottomWidth: 1 }]}
+    >
       <View style={[styles.av, { backgroundColor: t.bg }]}>
         <Text style={[styles.avTxt, { color: t.color }]}>{t.initials}</Text>
       </View>
@@ -59,7 +63,7 @@ function Row({ t, last }: { t: Tx; last: boolean }) {
         {t.dir === 'in' ? '+' : '−'}
         {kes(t.amount, false)}
       </Text>
-    </View>
+    </Pressable>
   );
 }
 
