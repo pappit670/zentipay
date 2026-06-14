@@ -225,6 +225,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible{outl
 @media(prefers-reduced-motion:reduce){[data-reveal],.mask-line>span,.stagger>*,.tcard{transition-duration:.001ms!important}html{scroll-behavior:auto}}
 
 /* testimonials / social proof */
+/* getting started (illustrated) */
+.gstart{text-align:center}
+.gsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;text-align:left}
+.gstep{border:1px solid var(--line);border-radius:20px;padding:24px}
+.gill{height:150px;border-radius:14px;background:var(--bg-soft);margin-bottom:20px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.gwrap{position:relative;display:flex;align-items:center;justify-content:center}
+.gphone{width:62px;height:96px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 16px 32px -18px rgba(10,10,10,.32)}
+.gphone.dark{background:var(--bg-dark);border-color:#000}
+.gbadge{position:absolute;right:-12px;bottom:-10px;width:36px;height:36px;border-radius:12px;background:var(--green);color:#06210a;display:grid;place-items:center;box-shadow:0 0 22px rgba(52,255,24,.55)}
+.gbadge svg{width:19px;height:19px}
+.gbars{display:flex;align-items:flex-end;gap:7px;height:80px}
+.gbars i{width:15px;background:var(--green);border-radius:5px 5px 0 0;display:block;box-shadow:0 0 18px rgba(52,255,24,.45)}
+.gbars i.mut{background:var(--line-strong);box-shadow:none}
+.gstep .gn{width:30px;height:30px;border-radius:9px;background:var(--bg-dark);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px;margin-bottom:12px}
+.gstep h3{font-size:21px;margin-bottom:6px}
+.gstep p{color:var(--ink-2);font-size:15px}
+@media(max-width:880px){.gsteps{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
 .loved{background:var(--bg-soft);border-radius:40px;margin:0 16px;text-align:center}
 .rating-line{margin-top:18px;font-weight:600;color:var(--ink-2);font-size:16px;display:inline-flex;align-items:center;gap:10px}
 .rating-line .st{color:var(--green);letter-spacing:2px;font-size:17px}
@@ -568,6 +585,28 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
           <div class="metric"><div class="k">Invoices</div><div class="v" data-count="6" data-suffix=" due">0</div></div>
         </div>
         <div class="ai"><span class="spark"></span><span data-type="Your busiest day is Friday.">Your busiest day is Friday.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GETTING STARTED (illustrated) -->
+<section id="getstarted" class="gstart">
+  <div class="container">
+    <div class="label" data-reveal>Getting started</div>
+    <h2 data-reveal style="margin-top:14px">Up and running<br>in minutes.</h2>
+    <div class="gsteps">
+      <div class="gstep" data-reveal>
+        <div class="gill"><div class="gwrap"><div class="gphone"></div><span class="gbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span></div></div>
+        <div class="gn">1</div><h3>Download Zenti</h3><p>Free on iOS and Android. No paperwork, no branch queue.</p>
+      </div>
+      <div class="gstep" data-reveal style="transition-delay:.08s">
+        <div class="gill"><div class="gwrap"><div class="gphone dark"></div><span class="gbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div></div>
+        <div class="gn">2</div><h3>Verify in seconds</h3><p>Confirm your number and you’re in. Safe, secure, instant.</p>
+      </div>
+      <div class="gstep" data-reveal style="transition-delay:.16s">
+        <div class="gill"><div class="gbars"><i class="mut" style="height:34%"></i><i style="height:62%"></i><i style="height:100%"></i></div></div>
+        <div class="gn">3</div><h3>Pay, save, grow</h3><p>Send money, set goals, and watch it grow — all from one app.</p>
       </div>
     </div>
   </div>
