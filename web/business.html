@@ -453,6 +453,7 @@ tr:last-child td{border-bottom:none}
           <button class="btn ghost magnetic" onclick="openReg()">Talk to us</button>
         </div>
       </div>
+      <p class="micro" data-reveal style="margin:22px auto 0;color:var(--ink-3);font-size:13px">All plans include a one-time <b style="color:var(--ink-1)">KES 100</b> business-QR activation — we validate your details, then your QR goes live.</p>
     </div>
   </section>
 
@@ -512,10 +513,10 @@ tr:last-child td{border-bottom:none}
 
     <!-- Step 4 -->
     <div class="stepc" data-step="4">
-      <h2>Your QR is ready</h2>
-      <p class="sub">Print it, share it, start getting paid. You’re on <b>Starter — free forever</b>; upgrade to Pro or Max anytime from your dashboard.</p>
+      <h2>One last step — activate your QR</h2>
+      <p class="sub">Your business QR needs a one-time <b>KES 100</b> activation. We validate your details, then it goes live. Do it now or later from your dashboard. You’re on <b>Starter — free forever</b>; upgrade anytime.</p>
       <div class="qrbox" id="regqr"></div>
-      <div class="reg-actions"><button class="btn ghost" onclick="shareQR()">Share QR</button><button class="btn magnetic" onclick="openApp()">Go to Dashboard →</button></div>
+      <div class="reg-actions"><button class="btn ghost" onclick="openApp()">Do it later</button><button class="btn magnetic" onclick="openApp()">Pay KES 100 &amp; activate</button></div>
     </div>
   </div>
 </div>
@@ -690,8 +691,9 @@ tr:last-child td{border-bottom:none}
         <div class="card center">
           <div class="section-title" style="text-align:left">Your business QR</div>
           <div class="qr-big" id="bizqr" style="margin:0 auto"></div>
-          <div class="toggle" style="margin:18px 0"><span class="on">Static</span><span>Dynamic</span></div>
-          <div style="display:flex;gap:10px;justify-content:center"><a class="btn sm ghost">Download PNG</a><a class="btn sm ghost">Download PDF</a></div>
+          <div style="margin-top:12px;font-size:13px;color:var(--ink-3);max-width:280px;margin-left:auto;margin-right:auto">One-time activation <b style="color:var(--ink-1)">KES 100</b> — we validate your business details, then your QR goes live (usually under 24h). Applies on every plan.</div>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:14px"><a class="btn sm magnetic">Pay KES 100 &amp; activate</a><a class="btn sm ghost">Download PNG</a></div>
+          <div class="toggle" style="margin:16px auto 0;width:max-content"><span class="on">Static</span><span>Dynamic</span></div>
         </div>
         <div class="gap">
           <div class="card"><div class="section-title">QR revenue</div>
