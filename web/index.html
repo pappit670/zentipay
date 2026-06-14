@@ -257,6 +257,73 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 .fbottom{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:28px;border-top:1px solid var(--line);color:var(--ink-3);font-size:14px}
 @media(max-width:880px){.fgrid{grid-template-columns:1fr 1fr;gap:32px}.fbrand{grid-column:1/-1}.fbottom{flex-direction:column;gap:12px}}
 @media(max-width:560px){.container{padding:0 22px}:root{--pad-y:80px}.card-sec{margin:0 8px}.tour-sticky{padding:0 22px}}
+
+/* ============================== EXPERIENCE (real-time payment demos) ============================== */
+.exp{background:var(--black);color:#fff;border-radius:40px;margin:0 16px;overflow:hidden}
+.exp .label{color:#7a7a80}
+.exp h2{color:#fff;margin:14px 0 0}
+.exp .lead{color:#9a9aa0;margin:18px 0 0;max-width:46ch}
+.exp-grid{display:grid;grid-template-columns:1.25fr 1fr;grid-auto-rows:1fr;gap:22px;margin-top:60px}
+.exp-card{background:linear-gradient(160deg,#161618,#0c0c0e);border:1px solid rgba(255,255,255,.08);border-radius:26px;padding:28px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.exp-card.exp-tall{grid-row:span 2}
+.exp-stage{flex:1;display:flex;align-items:center;justify-content:center;position:relative;min-height:200px}
+.exp-card.exp-tall .exp-stage{min-height:300px}
+.exp-card .ecap{margin-top:22px}
+.exp-card .et{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--green)}
+.exp-card h3{font-size:24px;margin:8px 0 6px;color:#fff}
+.exp-card p{color:#9a9aa0;font-size:14.5px;max-width:36ch}
+.exp .tk{border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-weight:800;flex:none}
+@media(max-width:880px){.exp-grid{grid-template-columns:1fr}.exp-card.exp-tall{grid-row:auto}}
+
+/* NFC tap */
+.nfc-stage{width:100%;height:260px;position:relative}
+.nfc-dev{position:absolute;top:50%;left:50%;border-radius:16px;box-shadow:0 22px 44px -18px rgba(0,0,0,.85)}
+.nfc-cd{width:172px;height:108px;margin:-54px 0 0 -86px;background:linear-gradient(150deg,#222,#0d0d0d);border:1px solid rgba(255,255,255,.12);animation:nfcCd 5s var(--ease) infinite}
+.nfc-cd .zl{position:absolute;top:12px;left:14px;font-weight:900;font-size:13px;color:#fff}
+.nfc-cd .ch{position:absolute;top:12px;right:14px;width:26px;height:19px;border-radius:4px;background:linear-gradient(135deg,#caa64a,#8a6f24)}
+.nfc-ph{width:118px;height:200px;margin:-100px 0 0 -59px;background:linear-gradient(150deg,#2a2a2c,#161618);border:1px solid rgba(255,255,255,.12);animation:nfcPh 5s var(--ease) infinite}
+.nfc-ph::after{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:42px;height:9px;border-radius:6px;background:#000}
+@keyframes nfcCd{0%{transform:translateX(120px) rotate(8deg);opacity:0}18%,55%{transform:translateX(40px) rotate(8deg);opacity:1}80%{transform:translateX(40px) rotate(8deg);opacity:1}100%{transform:translateX(40px) rotate(8deg);opacity:0}}
+@keyframes nfcPh{0%{transform:translateX(-130px) rotate(-7deg);opacity:0}18%,55%{transform:translateX(-34px) rotate(-7deg);opacity:1}80%{transform:translateX(-34px) rotate(-7deg);opacity:1}100%{transform:translateX(-34px) rotate(-7deg);opacity:0}}
+.nfc-pulse{position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px;border-radius:50%;border:2px solid var(--green);opacity:0;animation:nfcPulse 5s var(--ease) infinite}
+@keyframes nfcPulse{0%,24%{opacity:0;transform:scale(.4)}32%{opacity:.85;transform:scale(1)}52%{opacity:0;transform:scale(3.1)}100%{opacity:0;transform:scale(3.1)}}
+.nfc-ok{position:absolute;top:18px;left:50%;display:flex;align-items:center;gap:8px;background:rgba(8,33,10,.7);backdrop-filter:blur(5px);border:1px solid rgba(102,227,26,.35);border-radius:100px;padding:7px 14px 7px 8px;font-size:13px;font-weight:700;white-space:nowrap;opacity:0;animation:nfcOk 5s var(--ease) infinite}
+.nfc-ok .tk{width:22px;height:22px;font-size:12px}
+@keyframes nfcOk{0%,55%{opacity:0;transform:translate(-50%,6px) scale(.85)}63%{opacity:1;transform:translate(-50%,0) scale(1.05)}70%,88%{opacity:1;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,0) scale(1)}}
+
+/* QR scan */
+.qr-stage{width:140px;height:140px;position:relative}
+.qrsvg{width:100%;height:100%;display:block;border-radius:12px}
+.qr-scan{position:absolute;left:6%;right:6%;height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);box-shadow:0 0 14px var(--green);top:6%;opacity:0;animation:qrScan 4.5s var(--ease) infinite}
+@keyframes qrScan{0%{top:6%;opacity:0}8%{opacity:1}48%{top:90%;opacity:1}54%{opacity:0}100%{opacity:0}}
+.qr-br{position:absolute;width:18px;height:18px;border:3px solid var(--green);opacity:.9}
+.qr-br.tl{top:-5px;left:-5px;border-right:0;border-bottom:0;border-radius:7px 0 0 0}
+.qr-br.tr{top:-5px;right:-5px;border-left:0;border-bottom:0;border-radius:0 7px 0 0}
+.qr-br.bl{bottom:-5px;left:-5px;border-right:0;border-top:0;border-radius:0 0 0 7px}
+.qr-br.br{bottom:-5px;right:-5px;border-left:0;border-top:0;border-radius:0 0 7px 0}
+.qr-ok{position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,10,10,.55);backdrop-filter:blur(3px);border-radius:12px;opacity:0;animation:qrOk 4.5s var(--ease) infinite}
+.qr-ok .tk{width:50px;height:50px;font-size:24px;animation:qrTk 4.5s var(--ease-spring) infinite}
+@keyframes qrOk{0%,55%{opacity:0}63%{opacity:1}90%{opacity:1}100%{opacity:0}}
+@keyframes qrTk{0%,55%{transform:scale(.5)}67%{transform:scale(1.12)}76%,90%{transform:scale(1)}100%{transform:scale(.5)}}
+
+/* Money link */
+.link-stage{width:184px;height:240px;position:relative;overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.08)}
+.link-chat{position:absolute;inset:0;background:#0c130f;padding:16px;display:flex;align-items:flex-start;justify-content:flex-end}
+.link-bub{background:#0a5a40;color:#dffbe9;border-radius:14px 14px 3px 14px;padding:10px 12px;font-size:12px;max-width:140px;line-height:1.4}
+.link-bub .lk{margin-top:7px;background:rgba(255,255,255,.12);border-radius:8px;padding:6px 9px;font-size:11px;color:#9bf0c0}
+.link-tap{position:absolute;top:64px;right:30px;width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.8);opacity:0;animation:linkTap 5.5s var(--ease) infinite}
+@keyframes linkTap{0%,16%{opacity:0;transform:scale(.5)}22%{opacity:1;transform:scale(1)}30%{opacity:0;transform:scale(1.8)}100%{opacity:0}}
+.link-claim{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#0a0a0a;border-radius:20px 20px 18px 18px;padding:16px;text-align:center;transform:translateY(105%);animation:lcUp 5.5s var(--ease) infinite}
+@keyframes lcUp{0%,24%{transform:translateY(105%)}36%,82%{transform:translateY(0)}92%,100%{transform:translateY(105%)}}
+.lc-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2a2a2e,#42424a);color:#fff;display:grid;place-items:center;font-weight:700;margin:0 auto 8px}
+.lc-req{font-size:11px;color:#8a8a90}
+.lc-amt{font-size:24px;font-weight:900;letter-spacing:-.03em}
+.lc-btn{margin-top:12px;height:40px;border-radius:12px;background:var(--green);color:#06210a;display:grid;place-items:center;font-weight:700;font-size:13px;animation:lcBtn 5.5s steps(1,end) infinite}
+@keyframes lcBtn{0%,60%{filter:brightness(1)}64%,76%{filter:brightness(.82)}100%{filter:brightness(1)}}
+.link-ok{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(8,33,10,.78);backdrop-filter:blur(3px);color:#fff;font-weight:700;font-size:14px;opacity:0;animation:lkOk 5.5s var(--ease) infinite}
+.link-ok .tk{width:50px;height:50px;font-size:24px}
+@keyframes lkOk{0%,78%{opacity:0}84%{opacity:1}95%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.nfc-cd,.nfc-ph,.nfc-pulse,.nfc-ok,.qr-scan,.qr-ok,.qr-ok .tk,.link-tap,.link-claim,.lc-btn,.link-ok{animation:none}.nfc-ok,.qr-ok,.link-ok{opacity:1}.nfc-cd{transform:translateX(40px) rotate(8deg);opacity:1}.nfc-ph{transform:translateX(-34px) rotate(-7deg);opacity:1}.link-claim{transform:none}}
 </style>
 </head>
 <body>
@@ -312,18 +379,72 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
   </div>
 </section>
 
-<!-- RECEIVE -->
-<section id="receive">
-  <div class="container split flip">
-    <div class="copy">
-      <div class="label" data-reveal>Requests</div>
-      <h2><span class="mask-line" data-reveal-line><span>Get paid without</span></span><span class="mask-line" data-reveal-line><span>the awkward part.</span></span></h2>
-      <p class="lead" data-reveal>Send a link via WhatsApp or Instagram. They tap, pay in seconds, you get notified. Works even if they don’t have the app.</p>
-    </div>
-    <div class="visual">
-      <div class="linkcard" data-reveal style="transition-delay:.1s">
-        <div class="top"><div class="av">SO</div><div class="req">Sarah Ochieng is requesting</div><div class="amt">KES 850</div></div>
-        <div class="body"><div class="pay-mpesa">Pay with M-Pesa</div><div class="dl">Download Zenti</div></div>
+<!-- EXPERIENCE: real-time payments -->
+<section id="experience" class="exp">
+  <div class="container">
+    <div class="label" data-reveal>The feeling</div>
+    <h2 data-reveal>This is what paying<br>should feel like.</h2>
+    <p class="lead" data-reveal>Tap, scan, or send a link — then watch the moment money moves. Fast, certain, and just a little bit magic.</p>
+
+    <div class="exp-grid">
+      <!-- NFC tap (hero demo) -->
+      <div class="exp-card exp-tall" data-reveal>
+        <div class="exp-stage">
+          <div class="nfc-stage">
+            <div class="nfc-dev nfc-cd"><span class="zl">Zenti</span><span class="ch"></span></div>
+            <div class="nfc-dev nfc-ph"></div>
+            <span class="nfc-pulse"></span>
+            <div class="nfc-ok"><span class="tk">✓</span> Paid · KES 1,200</div>
+          </div>
+        </div>
+        <div class="ecap">
+          <div class="et">NFC tap</div>
+          <h3>Bring two together.</h3>
+          <p>Hold your phone to any Zenti reader — or another phone. They connect, it’s paid, you both feel the tick. No app-switching, no typing, no waiting.</p>
+        </div>
+      </div>
+
+      <!-- QR scan -->
+      <div class="exp-card" data-reveal style="transition-delay:.08s">
+        <div class="exp-stage">
+          <div class="qr-stage">
+            <svg viewBox="0 0 100 100" class="qrsvg" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" rx="10" fill="#fff"/>
+              <g fill="#0a0a0a">
+                <rect x="8" y="8" width="22" height="22"/><rect x="13" y="13" width="12" height="12" fill="#fff"/><rect x="16" y="16" width="6" height="6"/>
+                <rect x="70" y="8" width="22" height="22"/><rect x="75" y="13" width="12" height="12" fill="#fff"/><rect x="78" y="16" width="6" height="6"/>
+                <rect x="8" y="70" width="22" height="22"/><rect x="13" y="75" width="12" height="12" fill="#fff"/><rect x="16" y="78" width="6" height="6"/>
+                <rect x="40" y="10" width="6" height="6"/><rect x="50" y="10" width="6" height="6"/><rect x="74" y="40" width="6" height="6"/>
+                <rect x="40" y="40" width="6" height="6"/><rect x="48" y="46" width="6" height="6"/><rect x="56" y="40" width="6" height="6"/>
+                <rect x="64" y="48" width="6" height="6"/><rect x="40" y="56" width="6" height="6"/><rect x="72" y="58" width="6" height="6"/>
+                <rect x="46" y="64" width="6" height="6"/><rect x="58" y="64" width="6" height="6"/><rect x="66" y="70" width="6" height="6"/>
+                <rect x="40" y="74" width="6" height="6"/><rect x="50" y="80" width="6" height="6"/>
+              </g>
+            </svg>
+            <span class="qr-scan"></span>
+            <span class="qr-br tl"></span><span class="qr-br tr"></span><span class="qr-br bl"></span><span class="qr-br br"></span>
+            <div class="qr-ok"><span class="tk">✓</span></div>
+          </div>
+        </div>
+        <div class="ecap"><div class="et">Scan &amp; go</div><h3>Point, confirm, paid.</h3><p>Scan any Zenti QR, confirm the amount — done before the cashier looks up.</p></div>
+      </div>
+
+      <!-- Money link -->
+      <div class="exp-card" data-reveal style="transition-delay:.16s">
+        <div class="exp-stage">
+          <div class="link-stage">
+            <div class="link-chat"><div class="link-bub">Here you go 👇<div class="lk">zenti.me/sarah</div></div></div>
+            <span class="link-tap"></span>
+            <div class="link-claim">
+              <div class="lc-av">SO</div>
+              <div class="lc-req">Sarah is requesting</div>
+              <div class="lc-amt">KES 850</div>
+              <div class="lc-btn">Pay with M-Pesa</div>
+            </div>
+            <div class="link-ok"><span class="tk">✓</span> Sent to Sarah</div>
+          </div>
+        </div>
+        <div class="ecap"><div class="et">Money links</div><h3>Send a link. Get paid.</h3><p>Drop a link in WhatsApp. They tap, pay with M-Pesa, you’re notified — even if they’ve never used Zenti.</p></div>
       </div>
     </div>
   </div>

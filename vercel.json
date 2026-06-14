@@ -1,11 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "npx expo export -p web && cp -r web dist/site",
-  "outputDirectory": "dist",
+  "installCommand": "echo 'no deps to install'",
+  "buildCommand": "echo 'static site, no build'",
+  "outputDirectory": "web",
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "trailingSlash": false
 }
