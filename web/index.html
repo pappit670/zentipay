@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zenti — Money, finally simple.</title>
+<meta name="description" content="The smarter way to pay, save, and grow in Kenya. Pay anyone instantly, save toward goals, and grow together." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+/* ============================== TOKENS ============================== */
+:root{
+  --black:#0A0A0A;--white:#FFFFFF;--green:#66E31A;
+  --ink-1:#0A0A0A;--ink-2:#5b5b60;--ink-3:#8a8a90;
+  --line:rgba(10,10,10,.08);--line-strong:rgba(10,10,10,.16);
+  --bg:#FFFFFF;--bg-soft:#f6f6f4;--max:1200px;
+  --ease:cubic-bezier(.32,.72,0,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --pad-y:140px;--radius:28px;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:var(--font);background:var(--bg);color:var(--ink-1);font-size:18px;line-height:1.7;overflow-x:hidden}
+::selection{background:var(--green);color:var(--black)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:var(--max);margin:0 auto;padding:0 32px}
+section{padding:var(--pad-y) 0;position:relative}
+.label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3)}
+h1,h2,h3{font-weight:900;letter-spacing:-.03em;line-height:1.02}
+h1{font-size:clamp(46px,9vw,116px)}
+h2{font-size:clamp(36px,5.6vw,76px)}
+h3{font-size:clamp(26px,3vw,40px)}
+.lead{font-size:clamp(18px,2vw,22px);color:var(--ink-2);max-width:34ch;line-height:1.55}
+
+/* ============================== MOTION PRIMITIVES ============================== */
+[data-reveal]{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+.mask-line{overflow:hidden;display:block}
+.mask-line > span{display:block;transform:translateY(110%);transition:transform .9s var(--ease)}
+.mask-line.in > span{transform:none}
+.stagger > *{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in > *{opacity:1;transform:none}
+.stagger.in > *:nth-child(1){transition-delay:.0s}.stagger.in > *:nth-child(2){transition-delay:.08s}
+.stagger.in > *:nth-child(3){transition-delay:.16s}.stagger.in > *:nth-child(4){transition-delay:.24s}
+
+/* ============================== BUTTONS ============================== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 30px;border-radius:100px;font-size:16px;font-weight:600;letter-spacing:-.01em;cursor:pointer;border:none;background:var(--black);color:#fff;font-family:var(--font);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s;will-change:transform}
+.btn:hover{box-shadow:0 20px 44px -16px rgba(10,10,10,.5)}
+.btn.ghost{background:transparent;color:var(--black);border:1.5px solid var(--line-strong)}
+.btn.ghost:hover{border-color:var(--black);box-shadow:none}
+.btn.invert{background:#fff;color:var(--black)}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.magnetic{will-change:transform}
+
+/* ============================== NAV ============================== */
+.nav{position:fixed;top:0;left:0;right:0;height:64px;z-index:100;display:flex;align-items:center;background:rgba(255,255,255,0);transition:background .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom-color:var(--line)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.04em;display:flex;align-items:center;gap:9px}
+.brand .z{width:26px;height:26px;border-radius:8px;background:var(--black);color:#fff;display:grid;place-items:center;font-weight:900;font-size:15px}
+.nav-links{display:flex;gap:34px}
+.nav-links a{font-size:15px;font-weight:500;position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;background:var(--black);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{height:42px;padding:0 22px;font-size:15px}
+@media(max-width:880px){.nav-links{display:none}}
+
+/* ============================== PHONE ============================== */
+.phone{width:320px;aspect-ratio:320/660;background:#050505;border-radius:50px;padding:11px;position:relative;flex:none;box-shadow:0 60px 110px -45px rgba(10,10,10,.6),0 0 0 1.5px rgba(10,10,10,.07),inset 0 0 0 2px #1c1c1e}
+.phone .screen{width:100%;height:100%;background:#0a0a0a;border-radius:40px;overflow:hidden;position:relative;color:#fff}
+.vscreen{position:absolute;inset:0;opacity:0;transform:scale(1.015);transition:opacity .55s var(--ease),transform .55s var(--ease);pointer-events:none}
+.vscreen.on{opacity:1;transform:none;pointer-events:auto}
+.app{padding:50px 18px 16px;height:100%;display:flex;flex-direction:column;gap:13px;background:radial-gradient(120% 80% at 80% -10%,rgba(102,227,26,.12),transparent 55%),#0a0a0a}
+.app .row{display:flex;align-items:center;justify-content:space-between}
+.app .greet{font-size:12px;color:#9a9aa0}
+.bal-card{background:linear-gradient(140deg,#1a1a1c,#0e0e10);border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:18px}
+.bal-card .k{font-size:11px;color:#9a9aa0;letter-spacing:.06em;text-transform:uppercase}
+.bal-card .v{font-size:30px;font-weight:800;letter-spacing:-.03em;margin-top:6px}
+.qa{display:flex;gap:7px;margin-top:16px}
+.qa span{flex:1;text-align:center;font-size:11px;font-weight:600;background:rgba(255,255,255,.07);border-radius:11px;padding:9px 0}
+.qa span.hot{background:var(--green);color:#06210a}
+.chip{background:#161618;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:11px 12px;display:flex;align-items:center;gap:10px;font-size:12.5px}
+.chip .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2a2a2e,#3a3a40);flex:none;display:grid;place-items:center;font-size:11px;font-weight:700;color:#cfcfd4}
+.chip .amt{margin-left:auto;font-weight:700;color:var(--green)}
+.tabbar{margin-top:auto;display:flex;justify-content:space-around;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}
+.tabbar .t{width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.10)}
+.tabbar .t.on{background:var(--green)}
+.muted{color:#9a9aa0}
+/* pay screen */
+.amount-big{font-size:38px;font-weight:900;text-align:center;letter-spacing:-.03em;padding:10px 0 2px}
+.amount-big .cur{color:#9a9aa0;font-size:18px;font-weight:700}
+.amount-big .cursor{display:inline-block;width:2px;height:30px;background:var(--green);vertical-align:-4px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.seg{display:flex;background:#0e0e10;border-radius:11px;padding:3px;width:max-content;margin:0 auto}
+.seg span{font-size:11px;padding:6px 14px;border-radius:8px;color:#9a9aa0}
+.seg span.on{background:var(--green);color:#06210a;font-weight:700}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}
+.numpad .key{height:34px;border-radius:11px;background:#161618;display:grid;place-items:center;font-weight:700;font-size:15px;transition:background .15s}
+.numpad .key.press{background:var(--green);color:#06210a}
+.swipe{margin-top:10px;height:50px;border-radius:25px;background:var(--green);color:#06210a;display:flex;align-items:center;padding:5px;font-weight:700;position:relative}
+.swipe .knob{width:40px;height:40px;border-radius:50%;background:#06210a;flex:none;transition:transform .85s var(--ease);z-index:2}
+.swipe .lbl{position:absolute;left:0;right:0;text-align:center;font-size:14px}
+.swipe.go .knob{transform:translateX(232px)}
+/* success */
+.success{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:13px;text-align:center}
+.success .ck{width:78px;height:78px;border-radius:50%;background:var(--green);display:grid;place-items:center;color:#06210a;font-size:38px;transform:scale(0)}
+.vscreen.on .success .ck{transition:transform .7s var(--ease-spring) .15s;transform:scale(1)}
+.island{position:absolute;top:13px;left:50%;transform:translateX(-50%);height:30px;background:#000;border-radius:20px;display:flex;align-items:center;gap:8px;padding:0 13px;font-size:11px;font-weight:600;white-space:nowrap;z-index:9;color:#fff;border:1px solid rgba(255,255,255,.08)}
+.island .d{width:8px;height:8px;border-radius:50%;background:var(--green)}
+/* rings (savings) */
+.goal{background:#161618;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:13px;display:flex;align-items:center;gap:12px}
+.cring{width:50px;height:50px;border-radius:50%;flex:none;position:relative;background:conic-gradient(var(--gc,var(--green)) calc(var(--p)*1%),rgba(255,255,255,.10) 0)}
+.cring::after{content:"";position:absolute;inset:6px;border-radius:50%;background:#161618}
+.goal .meta .nm{font-size:13px;font-weight:700}
+.goal .meta .sm{font-size:11px;color:#9a9aa0}
+.goal .pct{margin-left:auto;font-weight:800;font-size:16px}
+/* card screen */
+.zcardbig{aspect-ratio:1.586;border-radius:16px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.10);box-shadow:0 24px 40px -20px rgba(0,0,0,.7)}
+.zcardbig.midnight{background:linear-gradient(150deg,#1f1f1f,#0d0d0d)}
+.zcardbig .zl{font-weight:900;font-size:16px}
+.zcardbig .num{font-size:12px;letter-spacing:.16em;font-family:ui-monospace,monospace;opacity:.85}
+.zcardbig .nm{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin-top:6px}
+.perks{display:flex;gap:7px;margin-top:12px}
+.perks span{flex:1;text-align:center;font-size:10.5px;background:rgba(255,255,255,.06);border-radius:10px;padding:8px 0;color:#cfcfd4}
+/* touch dot */
+.touch{position:absolute;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);border:2px solid rgba(255,255,255,.85);transform:translate(-50%,-50%);left:50%;top:50%;opacity:0;z-index:30;pointer-events:none;transition:left .65s var(--ease),top .65s var(--ease),opacity .3s}
+.touch.show{opacity:1}
+.touch.tap{animation:tap .45s var(--ease)}
+@keyframes tap{0%{box-shadow:0 0 0 0 rgba(102,227,26,.5)}100%{box-shadow:0 0 0 26px rgba(102,227,26,0)}}
+
+/* ============================== HERO ============================== */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:120px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 75% 30%,rgba(102,227,26,.10),transparent 70%),radial-gradient(50% 40% at 15% 80%,rgba(10,10,10,.04),transparent 70%);pointer-events:none}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%}
+.hero .eyebrow{font-weight:800;font-size:18px;letter-spacing:-.04em;opacity:0;transform:translateY(14px);transition:.5s var(--ease)}
+.hero .eyebrow.in{opacity:1;transform:none}
+.hero h1{margin:16px 0 0;max-width:11ch}
+.hero .sub{margin:26px 0 0;color:var(--ink-2);font-size:clamp(18px,2.2vw,23px);max-width:28ch}
+.hero .btn-row{margin-top:36px}
+.hero .micro{margin-top:16px;color:var(--ink-3);font-size:14px}
+.hero-stage{position:relative;display:flex;justify-content:center}
+.float-card{position:absolute;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 50px -24px rgba(10,10,10,.28);padding:12px 14px;font-size:13px;display:flex;align-items:center;gap:10px;z-index:5;animation:floaty 5s ease-in-out infinite}
+.float-card .ic{width:30px;height:30px;border-radius:9px;background:var(--green);color:#06210a;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.float-card b{font-weight:700}
+.float-card .s{color:var(--ink-3);font-size:11px}
+.fc-1{top:8%;left:-6%;animation-delay:0s}
+.fc-2{bottom:14%;right:-8%;animation-delay:1.4s}
+.fc-3{top:46%;right:-12%;animation-delay:2.6s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:880px){.hero .grid{grid-template-columns:1fr;gap:56px;text-align:center}.hero h1,.hero .sub,.hero .lead{margin-left:auto;margin-right:auto}.hero .btn-row{justify-content:center}.float-card{display:none}}
+
+/* ============================== GUIDED TOUR (pinned) ============================== */
+.tour{padding:0;background:var(--bg-soft)}
+.tour-track{position:relative}
+.tour-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;max-width:var(--max);margin:0 auto;padding:0 32px}
+.tour-caps{position:relative}
+.tour-caps .label{margin-bottom:22px}
+.tour-cap{padding:14px 0 14px 24px;border-left:2px solid var(--line);opacity:.28;transition:opacity .45s var(--ease),border-color .45s var(--ease)}
+.tour-cap.on{opacity:1;border-color:var(--black)}
+.tour-cap h3{font-size:clamp(24px,2.6vw,34px)}
+.tour-cap p{color:var(--ink-2);font-size:16px;margin-top:6px;max-width:30ch}
+.tour-phone{display:flex;justify-content:center}
+.tour-progress{position:absolute;left:0;top:0;width:3px;background:var(--green);border-radius:2px;transition:height .2s linear}
+@media(max-width:880px){.tour-sticky{grid-template-columns:1fr;gap:30px;text-align:center}.tour-caps{display:none}.tour-phone{order:-1}}
+
+/* ============================== SPLIT SECTIONS ============================== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split.flip .copy{order:2}.split.flip .visual{order:1}
+.split .visual{display:flex;justify-content:center}
+@media(max-width:880px){.split{grid-template-columns:1fr;gap:48px}.split.flip .copy{order:1}.split.flip .visual{order:2}}
+.copy h2{margin:16px 0}
+
+/* receive link card */
+.linkcard{width:300px;background:#fff;border-radius:24px;border:1px solid var(--line);box-shadow:0 40px 80px -40px rgba(10,10,10,.35);overflow:hidden;color:var(--black)}
+.linkcard .top{background:var(--black);color:#fff;padding:26px 22px;text-align:center}
+.linkcard .top .av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#2a2a2e,#42424a);margin:0 auto 12px;display:grid;place-items:center;font-weight:700}
+.linkcard .top .req{font-size:13px;color:#9a9aa0}
+.linkcard .top .amt{font-size:34px;font-weight:900;letter-spacing:-.03em;margin-top:4px}
+.linkcard .body{padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.linkcard .pay-mpesa{background:var(--green);color:#06210a;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:700}
+.linkcard .dl{height:48px;border-radius:14px;border:1.5px solid var(--line-strong);display:grid;place-items:center;font-weight:600;font-size:15px}
+
+/* pools */
+.pool-visual{display:flex;flex-direction:column;align-items:center;gap:18px}
+.big-ring{width:220px;height:220px;position:relative}
+.big-ring svg{transform:rotate(-90deg)}
+.big-ring .track{stroke:var(--line)}
+.big-ring .fill{stroke:var(--black);stroke-linecap:round;transition:stroke-dashoffset 1.6s var(--ease)}
+.big-ring .center{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.big-ring .center .v{font-size:30px;font-weight:900;letter-spacing:-.03em}
+.big-ring .center .of{font-size:13px;color:var(--ink-3)}
+.avatars{display:flex}
+.avatars .av{width:42px;height:42px;border-radius:50%;border:2.5px solid var(--bg);margin-left:-12px;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;background:#222;opacity:0;transform:scale(.4);transition:.5s var(--ease-spring)}
+.avatars .av:first-child{margin-left:0}
+.avatars.in .av{opacity:1;transform:none}
+.avatars.in .av:nth-child(2){transition-delay:.07s}.avatars.in .av:nth-child(3){transition-delay:.14s}
+.avatars.in .av:nth-child(4){transition-delay:.21s}.avatars.in .av:nth-child(5){transition-delay:.28s}
+
+/* partners */
+.partners{text-align:center}
+.partner-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:44px}
+.partner{border:1px solid var(--line);border-radius:16px;padding:18px 26px;min-width:200px;transition:border-color .25s,transform .35s var(--ease)}
+.partner:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+.partner .nm{font-weight:800;font-size:18px;letter-spacing:-.02em}
+.partner .role{font-size:12px;color:var(--ink-3);margin-top:3px}
+
+/* card dark */
+.card-sec{background:var(--black);color:#fff;text-align:center;border-radius:40px;margin:0 16px;overflow:hidden}
+.card-sec .label{color:#7a7a80}.card-sec h2{color:#fff;margin:14px 0 0}.card-sec .lead{color:#9a9aa0;margin:18px auto 0}
+.card-deck{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:64px;perspective:1500px}
+.zcard{width:230px;aspect-ratio:1.586;border-radius:18px;padding:20px;position:relative;text-align:left;border:1px solid rgba(255,255,255,.10);box-shadow:0 40px 70px -34px rgba(0,0,0,.8);transform-style:preserve-3d;transition:transform .5s var(--ease);will-change:transform;display:flex;flex-direction:column;justify-content:space-between}
+.zcard .zl{font-weight:900;font-size:17px}
+.zcard .chipic{width:34px;height:24px;border-radius:6px;background:linear-gradient(135deg,#caa64a,#8a6f24);opacity:.85}
+.zcard .num{font-size:13px;letter-spacing:.18em;font-family:ui-monospace,monospace;opacity:.85}
+.zcard .nm{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.7}
+.zcard.midnight{background:linear-gradient(150deg,#1a1a1a,#0d0d0d)}
+.zcard.ocean{background:linear-gradient(150deg,#0a1628,#071022)}
+.zcard.forest{background:linear-gradient(150deg,#0a1f0a,#051205)}
+.zcard.unrevealed{background:repeating-linear-gradient(45deg,#141414,#141414 10px,#101010 10px,#101010 20px);display:grid;place-items:center}
+.zcard.unrevealed .q{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#6a6a70}
+.card-meta{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:30px;text-align:left}
+.card-meta .cm{width:230px;font-size:12.5px;color:#8a8a90;line-height:1.5}
+.card-meta .cm b{color:#fff;display:block;font-size:13px;margin-bottom:4px;font-weight:700;letter-spacing:.02em}
+.waitlist{max-width:440px;margin:60px auto 0;display:flex;gap:10px}
+.waitlist input{flex:1;height:56px;border-radius:100px;border:1px solid rgba(255,255,255,.16);background:#141416;color:#fff;padding:0 22px;font-size:15px;font-family:var(--font);outline:none}
+.waitlist input:focus{border-color:rgba(255,255,255,.4)}.waitlist input::placeholder{color:#6a6a70}
+.waitlist-done{margin:60px auto 0;color:var(--green);font-weight:700;font-size:20px;display:none}
+
+/* business bridge */
+.dash-mini{width:100%;max-width:520px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 40px 80px -44px rgba(10,10,10,.3);overflow:hidden}
+.dash-mini .bar{height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 16px;gap:7px}
+.dash-mini .bar .dot{width:10px;height:10px;border-radius:50%;background:var(--line-strong)}
+.dash-mini .grid4{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
+.dash-mini .metric{border:1px solid var(--line);border-radius:14px;padding:13px}
+.dash-mini .metric .k{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+.dash-mini .metric .v{font-size:24px;font-weight:900;letter-spacing:-.03em;margin-top:5px}
+.dash-mini .ai{margin:0 16px 16px;background:var(--bg-soft);border-radius:12px;padding:12px 14px;font-size:13.5px;display:flex;gap:9px;align-items:center}
+.dash-mini .ai .spark{width:18px;height:18px;border-radius:5px;background:var(--green);flex:none}
+
+/* download */
+.download{text-align:center;position:relative;overflow:hidden}
+#particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
+.download .container{position:relative;z-index:2}
+.download .counter{font-size:clamp(40px,6vw,72px);font-weight:900;letter-spacing:-.04em}
+.download h2{margin:8px 0 0}.download .note{margin-top:18px;color:var(--ink-3);font-size:14px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:80px 0 40px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.fgrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);font-weight:600;margin-bottom:16px}
+.fgrid a{display:block;color:var(--ink-2);font-size:15px;padding:5px 0;transition:color .2s}
+.fgrid a:hover{color:var(--black)}
+.fbrand .tag{color:var(--ink-2);font-size:15px;margin:12px 0 18px;max-width:26ch}
+.store-badges{display:flex;gap:10px}.store-badge{border:1.5px solid var(--line-strong);border-radius:12px;padding:8px 16px;font-size:13px;font-weight:600}
+.fbottom{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:28px;border-top:1px solid var(--line);color:var(--ink-3);font-size:14px}
+@media(max-width:880px){.fgrid{grid-template-columns:1fr 1fr;gap:32px}.fbrand{grid-column:1/-1}.fbottom{flex-direction:column;gap:12px}}
+@media(max-width:560px){.container{padding:0 22px}:root{--pad-y:80px}.card-sec{margin:0 8px}.tour-sticky{padding:0 22px}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a class="brand" href="#top"><span class="z">Z</span>Zenti</a>
+    <div class="nav-links">
+      <a href="#tour">Product</a><a href="#card">Card</a><a href="#business">Business</a><a href="#partners">Partners</a>
+    </div>
+    <a class="btn nav-cta magnetic" href="#download">Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="container grid">
+    <div>
+      <div class="eyebrow" data-hero="0">Zenti</div>
+      <h1><span class="mask-line" data-hero-line><span>Money,</span></span><span class="mask-line" data-hero-line><span>finally simple.</span></span></h1>
+      <p class="sub" data-hero="1">The smarter way to pay, save, and grow in Kenya.</p>
+      <div class="btn-row" data-hero="2">
+        <a class="btn magnetic" href="#download">Download for iOS</a>
+        <a class="btn ghost magnetic" href="#download">Download for Android</a>
+      </div>
+      <div class="micro" data-hero="3">Free to download. No hidden fees.</div>
+    </div>
+    <div class="hero-stage" data-hero="3">
+      <div class="float-card fc-1"><span class="ic">↓</span><div><b>+ KES 1,500</b><div class="s">from David</div></div></div>
+      <div class="float-card fc-2"><span class="ic">✓</span><div><b>Paid James</b><div class="s">KES 1,200 · instant</div></div></div>
+      <div class="float-card fc-3"><span class="ic">70%</span><div><b>Holiday Trip</b><div class="s">goal on track</div></div></div>
+      <div class="phone"><div class="screen" id="heroPhone"></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- GUIDED TOUR (pinned, scroll-scrubbed) -->
+<section class="tour" id="tour">
+  <div class="tour-track" id="tourTrack">
+    <div class="tour-sticky">
+      <div class="tour-caps">
+        <div class="label">A guided tour</div>
+        <div class="tour-progress" id="tourProgress"></div>
+        <div class="tour-cap" data-cap="0"><h3>Everything in one place.</h3><p>Balance, activity, and one tap to anything. Your money, at a glance.</p></div>
+        <div class="tour-cap" data-cap="1"><h3>Pay anyone, instantly.</h3><p>Type an amount, swipe to send. QR, link, or NFC tap — done in seconds.</p></div>
+        <div class="tour-cap" data-cap="2"><h3>Confirmed in real time.</h3><p>Instant confirmation, right on your lock screen. No waiting, no guessing.</p></div>
+        <div class="tour-cap" data-cap="3"><h3>Goals that grow.</h3><p>Set a target and watch it fill. Earn up to 12% p.a. while you sleep.</p></div>
+        <div class="tour-cap" data-cap="4"><h3>A card that's yours.</h3><p>Freeze, manage, and spend with perks built in. Coming soon.</p></div>
+      </div>
+      <div class="tour-phone"><div class="phone"><div class="screen" id="tourPhone"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECEIVE -->
+<section id="receive">
+  <div class="container split flip">
+    <div class="copy">
+      <div class="label" data-reveal>Requests</div>
+      <h2><span class="mask-line" data-reveal-line><span>Get paid without</span></span><span class="mask-line" data-reveal-line><span>the awkward part.</span></span></h2>
+      <p class="lead" data-reveal>Send a link via WhatsApp or Instagram. They tap, pay in seconds, you get notified. Works even if they don’t have the app.</p>
+    </div>
+    <div class="visual">
+      <div class="linkcard" data-reveal style="transition-delay:.1s">
+        <div class="top"><div class="av">SO</div><div class="req">Sarah Ochieng is requesting</div><div class="amt">KES 850</div></div>
+        <div class="body"><div class="pay-mpesa">Pay with M-Pesa</div><div class="dl">Download Zenti</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POOLS -->
+<section id="pools">
+  <div class="container split">
+    <div class="copy">
+      <div class="label" data-reveal>Pools</div>
+      <h2><span class="mask-line" data-reveal-line><span>Save together,</span></span><span class="mask-line" data-reveal-line><span>reach goals faster.</span></span></h2>
+      <p class="lead" data-reveal>Start a group savings pool. Everyone contributes, everyone sees the progress. Holidays, gifts, rent — sorted together.</p>
+    </div>
+    <div class="visual">
+      <div class="pool-visual">
+        <div class="big-ring" data-ring-big>
+          <svg width="220" height="220" viewBox="0 0 220 220"><circle class="track" cx="110" cy="110" r="96" fill="none" stroke-width="14"/><circle class="fill" cx="110" cy="110" r="96" fill="none" stroke-width="14" data-p="70"/></svg>
+          <div class="center"><div class="v">KES 56K</div><div class="of">of KES 80,000</div></div>
+        </div>
+        <div class="avatars" data-avatars>
+          <div class="av" style="background:#e26d5c">SO</div><div class="av" style="background:#3a86ff">DK</div><div class="av" style="background:#2a9d4a">GW</div><div class="av" style="background:#8a5cf6">JM</div><div class="av" style="background:#222">+3</div>
+        </div>
+        <div style="color:var(--ink-3);font-size:14px">6 members contributing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners" class="partners">
+  <div class="container">
+    <div class="label" data-reveal>Trust</div>
+    <h2 data-reveal style="margin-top:14px">Built on trusted infrastructure.</h2>
+    <p class="lead" data-reveal style="margin:18px auto 0">Working with Kenya’s leading financial institutions.</p>
+    <div class="partner-row stagger" data-reveal>
+      <div class="partner"><div class="nm">NCBA Bank</div><div class="role">Fund safeguarding</div></div>
+      <div class="partner"><div class="nm">KCB Bank</div><div class="role">Card infrastructure</div></div>
+      <div class="partner"><div class="nm">Equity Bank</div><div class="role">SME payments</div></div>
+      <div class="partner"><div class="nm">M-Pesa</div><div class="role">Mobile payments</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CARD (DARK) -->
+<section id="card" class="card-sec">
+  <div class="container">
+    <div class="label" data-reveal>The Zenti Card</div>
+    <h2 data-scramble data-final="Your card. Coming soon.">Your card. Coming soon.</h2>
+    <p class="lead" data-reveal>Four designs. One built for you. Be the first to carry it.</p>
+    <div class="card-deck">
+      <div class="zcard midnight tilt"><div style="display:flex;justify-content:space-between"><span class="zl">Zenti</span><span class="chipic"></span></div><div><div class="num">•••• •••• •••• 4829</div><div class="nm" style="margin-top:8px">W. Kamau</div></div></div>
+      <div class="zcard ocean tilt"><div style="display:flex;justify-content:space-between"><span class="zl">Zenti</span><span class="chipic"></span></div><div><div class="num">•••• •••• •••• 1190</div><div class="nm" style="margin-top:8px">W. Kamau</div></div></div>
+      <div class="zcard forest tilt"><div style="display:flex;justify-content:space-between"><span class="zl">Zenti</span><span class="chipic"></span></div><div><div class="num">•••• •••• •••• 0077</div><div class="nm" style="margin-top:8px">W. Kamau</div></div></div>
+      <div class="zcard unrevealed tilt"><span class="q">Unrevealed</span></div>
+    </div>
+    <div class="card-meta" data-reveal>
+      <div class="cm"><b>01 — Midnight</b>Built for the night economy. Inspired by the Nairobi skyline after dark.</div>
+      <div class="cm"><b>02 — Ocean</b>Calm. Precise. Deep. Inspired by Lake Victoria.</div>
+      <div class="cm"><b>03 — Forest</b>Growth. Always forward. Zenti green in its purest form.</div>
+      <div class="cm"><b>04 — Unknown</b>A fourth design is coming. Join the waitlist to find out first.</div>
+    </div>
+    <form class="waitlist" id="waitlist" data-reveal><input type="email" placeholder="Enter your email" required aria-label="Email" /><button class="btn invert magnetic" type="submit">Join waitlist</button></form>
+    <div class="waitlist-done" id="waitlistDone">✓ You’re on the list.</div>
+  </div>
+</section>
+
+<!-- BUSINESS BRIDGE -->
+<section id="business">
+  <div class="container split">
+    <div class="copy">
+      <div class="label" data-reveal>Zenti Business</div>
+      <h2><span class="mask-line" data-reveal-line><span>Your business finances,</span></span><span class="mask-line" data-reveal-line><span>finally organised.</span></span></h2>
+      <p class="lead" data-reveal>Every payment tracked automatically. Tax estimates ready. KRA compliance sorted.</p>
+      <div class="btn-row" data-reveal style="margin-top:28px"><a class="btn magnetic" href="business.html">Go to Zenti Business →</a></div>
+    </div>
+    <div class="visual">
+      <div class="dash-mini" data-reveal style="transition-delay:.1s">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="grid4" data-dash>
+          <div class="metric"><div class="k">Revenue Today</div><div class="v" data-count="42500" data-prefix="KES ">KES 0</div></div>
+          <div class="metric"><div class="k">This Month</div><div class="v" data-count="918300" data-prefix="KES ">KES 0</div></div>
+          <div class="metric"><div class="k">Tax Reserve</div><div class="v" data-count="27500" data-prefix="KES ">KES 0</div></div>
+          <div class="metric"><div class="k">Invoices</div><div class="v" data-count="6" data-suffix=" due">0</div></div>
+        </div>
+        <div class="ai"><span class="spark"></span><span data-type="Your busiest day is Friday.">Your busiest day is Friday.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download" class="download">
+  <canvas id="particles"></canvas>
+  <div class="container">
+    <div class="counter"><span class="num" data-count="12847">0</span> Kenyans on the waitlist</div>
+    <h2 data-reveal style="margin-top:8px">Ready to move smarter?</h2>
+    <p class="lead" data-reveal style="margin:18px auto 0">Join Kenyans already using Zenti to pay, save, and grow.</p>
+    <div class="btn-row" data-reveal style="justify-content:center;margin-top:32px"><a class="btn magnetic" href="#top">Download for iOS</a><a class="btn ghost magnetic" href="#top">Download for Android</a></div>
+    <div class="note">Free to download. No hidden fees.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div class="fbrand"><a class="brand" href="#top"><span class="z">Z</span>Zenti</a><div class="tag">Money, finally simple.</div><div class="store-badges"><span class="store-badge">App Store</span><span class="store-badge">Google Play</span></div></div>
+      <div><h4>Product</h4><a href="#tour">Pay</a><a href="#tour">Savings</a><a href="#pools">Pools</a><a href="#card">Card</a></div>
+      <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Privacy</a></div>
+      <div><h4>Connect</h4><a href="#">Twitter / X</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="mailto:hello@zentipay.app">hello@zentipay.app</a></div>
+    </div>
+    <div class="fbottom"><span>© 2026 Zenti. All rights reserved.</span><span>zentipay.app</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== APP SCREEN LIBRARY (shared by hero demo + guided tour) =====
+     NOTE: these are faithful recreations of the real Zenti app screens.
+     To use real captures instead, drop PNGs in web/assets/ and replace a
+     screen's innerHTML with: <img src="assets/your-screen.png" style="width:100%;height:100%;object-fit:cover">
+  */
+  var SCREENS = {
+    home:
+      '<div class="app">'+
+        '<div class="row"><div><div class="greet">Good morning</div><div style="font-weight:700;font-size:15px">Wanjiku</div></div><div style="width:30px;height:30px;border-radius:50%;background:#26262a"></div></div>'+
+        '<div class="bal-card"><div class="k">Total balance</div><div class="v">KES 48,250</div><div class="qa"><span class="q-pay hot">Pay</span><span>Request</span><span>Save</span><span>Split</span></div></div>'+
+        '<div class="chip"><span class="av">DK</span><div><div>David sent you money</div><div class="muted" style="font-size:11px">Just now</div></div><span class="amt">+1,500</span></div>'+
+        '<div class="chip"><span class="av">SO</span><div><div>Sarah is requesting</div><div class="muted" style="font-size:11px">2 min ago</div></div><span class="amt" style="color:#fff">850</span></div>'+
+        '<div class="tabbar"><div class="t on"></div><div class="t"></div><div class="t"></div><div class="t"></div></div>'+
+      '</div>',
+    pay:
+      '<div class="app">'+
+        '<div class="row"><div style="font-weight:700">Pay James</div><div class="muted" style="font-size:12px">M-Pesa</div></div>'+
+        '<div class="amount-big"><span class="cur">KES</span> <span class="amt-val">1,200</span><span class="cursor"></span></div>'+
+        '<div class="seg"><span class="on">Pay</span><span>Request</span></div>'+
+        '<div class="numpad">'+['1','2','3','4','5','6','7','8','9','.','0','⌫'].map(function(k){return '<div class="key">'+k+'</div>';}).join('')+'</div>'+
+        '<div class="swipe"><div class="knob"></div><div class="lbl">Swipe to pay</div></div>'+
+      '</div>',
+    paid:
+      '<div class="island"><span class="d"></span> Zenti · Sent</div>'+
+      '<div class="app"><div class="success"><div class="ck">✓</div><div style="font-weight:800;font-size:20px">KES 1,200 sent</div><div class="muted" style="font-size:13px">to James Mwangi</div></div></div>',
+    savings:
+      '<div class="app">'+
+        '<div class="row"><div style="font-weight:700">Savings goals</div><div class="muted" style="font-size:12px">3 active</div></div>'+
+        '<div class="goal"><div class="cring" style="--p:70"></div><div class="meta"><div class="nm">Holiday Trip</div><div class="sm">KES 35,000 of 50,000</div></div><div class="pct">70%</div></div>'+
+        '<div class="goal"><div class="cring" style="--p:30;--gc:#3a86ff"></div><div class="meta"><div class="nm">New iPhone</div><div class="sm">KES 45,000 of 150,000</div></div><div class="pct">30%</div></div>'+
+        '<div class="goal"><div class="cring" style="--p:15;--gc:#8a8a90"></div><div class="meta"><div class="nm">Emergency Fund</div><div class="sm">KES 15,000 of 100,000</div></div><div class="pct">15%</div></div>'+
+        '<div class="tabbar"><div class="t"></div><div class="t"></div><div class="t on"></div><div class="t"></div></div>'+
+      '</div>',
+    card:
+      '<div class="app">'+
+        '<div class="row"><div style="font-weight:700">Wallet</div><div class="muted" style="font-size:12px">Midnight</div></div>'+
+        '<div class="zcardbig midnight"><div style="display:flex;justify-content:space-between;align-items:flex-start"><span class="zl">Zenti</span><span class="chipic" style="width:30px;height:22px;border-radius:5px;background:linear-gradient(135deg,#caa64a,#8a6f24)"></span></div><div><div class="num">•••• •••• •••• 4829</div><div class="nm">W. Kamau</div></div></div>'+
+        '<div class="perks"><span>Freeze</span><span>Perks</span><span>Spending</span></div>'+
+        '<div class="chip" style="margin-top:4px"><span class="av">★</span><div><div>2% back at Naivas</div><div class="muted" style="font-size:11px">Daily Cash</div></div></div>'+
+        '<div class="tabbar"><div class="t"></div><div class="t"></div><div class="t"></div><div class="t on"></div></div>'+
+      '</div>'
+  };
+  var ORDER = ['home','pay','paid','savings','card'];
+
+  function buildPhone(el){
+    if(!el) return;
+    el.innerHTML = ORDER.map(function(k){return '<div class="vscreen" data-s="'+k+'">'+SCREENS[k]+'</div>';}).join('') + '<div class="touch" data-touch></div>';
+  }
+  function setStage(el,key){ el.querySelectorAll('.vscreen').forEach(function(s){ s.classList.toggle('on', s.getAttribute('data-s')===key); }); }
+  function moveTouch(el,xPct,yPct,tap){
+    var d=el.querySelector('[data-touch]'); if(!d) return;
+    d.classList.add('show'); d.style.left=xPct+'%'; d.style.top=yPct+'%';
+    if(tap){ d.classList.remove('tap'); void d.offsetWidth; d.classList.add('tap'); }
+  }
+  function hideTouch(el){ var d=el.querySelector('[data-touch]'); if(d) d.classList.remove('show'); }
+
+  /* touch coordinates per stage (approx, % of phone screen) */
+  var DOTS = { home:[26,40], pay:[50,66], paid:[50,50], savings:[50,42], card:[50,55] };
+
+  var heroPhone = document.getElementById('heroPhone');
+  var tourPhone = document.getElementById('tourPhone');
+  buildPhone(heroPhone); buildPhone(tourPhone);
+  setStage(heroPhone,'home'); setStage(tourPhone,'home');
+
+  /* ===== HERO: self-running looped demo ===== */
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+  async function heroLoop(){
+    if(reduce){ setStage(heroPhone,'home'); return; }
+    while(document.body.contains(heroPhone)){
+      // home
+      setStage(heroPhone,'home'); moveTouch(heroPhone,26,40,false); await sleep(700);
+      moveTouch(heroPhone,26,40,true); await sleep(600);
+      // pay — type a couple keys
+      setStage(heroPhone,'pay'); await sleep(500);
+      var keys=heroPhone.querySelectorAll('.vscreen[data-s="pay"] .key');
+      var seq=[0,1,2,10]; // 1,2,3,0
+      for(var i=0;i<seq.length;i++){ moveTouch(heroPhone, 28+(seq[i]%3)*22, 60+Math.floor(seq[i]/3)*9, true);
+        if(keys[seq[i]]){ keys[seq[i]].classList.add('press'); }
+        await sleep(280); if(keys[seq[i]]) keys[seq[i]].classList.remove('press'); }
+      // swipe
+      moveTouch(heroPhone,18,88,true); await sleep(300);
+      var sw=heroPhone.querySelector('.vscreen[data-s="pay"] .swipe'); if(sw) sw.classList.add('go');
+      moveTouch(heroPhone,86,88,false); await sleep(900);
+      // paid
+      setStage(heroPhone,'paid'); hideTouch(heroPhone); await sleep(1700);
+      if(sw) sw.classList.remove('go');
+      // savings
+      setStage(heroPhone,'savings'); await sleep(1900);
+      // card
+      setStage(heroPhone,'card'); await sleep(1900);
+    }
+  }
+  window.addEventListener('load', function(){ setTimeout(heroLoop, 1200); });
+
+  /* ===== GUIDED TOUR: scroll-scrubbed ===== */
+  var track = document.getElementById('tourTrack');
+  if(track){
+    track.style.height = (ORDER.length * 95 + 60) + 'vh'; /* enough scroll for each stage */
+    var caps = document.querySelectorAll('.tour-cap');
+    var progress = document.getElementById('tourProgress');
+    var curStage = -1, swiped=false, ticking=false;
+    function onTour(){
+      var r = track.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var total = r.height - vh;
+      var p = Math.min(Math.max((-r.top)/total, 0), 1);
+      var idx = Math.min(ORDER.length-1, Math.floor(p * ORDER.length));
+      if(progress){ progress.style.height = (p*100)+'%'; }
+      if(idx!==curStage){
+        curStage = idx;
+        setStage(tourPhone, ORDER[idx]);
+        caps.forEach(function(c,i){ c.classList.toggle('on', i===idx); });
+        var d=DOTS[ORDER[idx]]||[50,50]; moveTouch(tourPhone,d[0],d[1], idx>0);
+        // trigger swipe animation when reaching pay stage
+        var sw=tourPhone.querySelector('.vscreen[data-s="pay"] .swipe');
+        if(ORDER[idx]==='pay'){ swiped=false; if(sw) sw.classList.remove('go'); setTimeout(function(){ if(curStage===1 && sw){ sw.classList.add('go'); moveTouch(tourPhone,86,88,false);} }, 700); }
+        else if(sw){ sw.classList.remove('go'); }
+      }
+    }
+    window.addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(function(){ onTour(); ticking=false; }); ticking=true; } }, {passive:true});
+    caps[0] && caps[0].classList.add('on'); onTour();
+  }
+
+  /* ===== NAV ===== */
+  var nav=document.getElementById('nav');
+  var onScroll=function(){ nav.classList.toggle('scrolled', window.scrollY>12); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ===== count up ===== */
+  function countUp(el){
+    var t=parseFloat(el.getAttribute('data-count')),pre=el.getAttribute('data-prefix')||'',suf=el.getAttribute('data-suffix')||'',d=1500,s=performance.now();
+    (function f(n){var p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=pre+Math.round(t*e).toLocaleString('en-US')+suf;if(p<1)requestAnimationFrame(f);})(s);
+  }
+  function drawBigRing(box){var fill=box.querySelector('.fill'),p=+fill.getAttribute('data-p'),r=96,c=2*Math.PI*r;fill.style.strokeDasharray=c;fill.style.strokeDashoffset=c;requestAnimationFrame(function(){fill.style.strokeDashoffset=c*(1-p/100);});}
+  function scramble(el){var fin=el.getAttribute('data-final')||el.textContent,ch='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',f=0;(function t(){var o='';for(var i=0;i<fin.length;i++){if(fin[i]===' '){o+=' ';continue;}o+= i<f*0.6?fin[i]:ch[Math.floor(Math.random()*ch.length)];}el.textContent=o;f++;if(f*0.6<=fin.length)setTimeout(t,26);else el.textContent=fin;})();}
+  function typeIn(el){var fin=el.getAttribute('data-type');el.textContent='';var i=0;(function t(){el.textContent=fin.slice(0,i++);if(i<=fin.length)setTimeout(t,28);})();}
+
+  /* ===== magnetic + card tilt ===== */
+  if(!reduce){
+    document.querySelectorAll('.magnetic').forEach(function(b){
+      b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)/r.width*16)+'px,'+((e.clientY-r.top-r.height/2)/r.height*16)+'px)';});
+      b.addEventListener('mouseleave',function(){b.style.transform='';});
+    });
+    document.querySelectorAll('.zcard.tilt').forEach(function(c){
+      c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(700px) rotateY('+(x*14)+'deg) rotateX('+(-y*14)+'deg) translateZ(14px)';});
+      c.addEventListener('mouseleave',function(){c.style.transform='';});
+    });
+  }
+
+  /* ===== hero load sequence ===== */
+  window.addEventListener('load', function(){
+    document.querySelectorAll('[data-hero]').forEach(function(el){var d=+el.getAttribute('data-hero');setTimeout(function(){el.classList.add('in');},120+d*140);});
+    document.querySelectorAll('[data-hero-line]').forEach(function(el,i){el.classList.add('mask-line');setTimeout(function(){el.classList.add('in');},260+i*120);});
+  });
+
+  /* ===== reveals ===== */
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var el=en.target;el.classList.add('in');
+    if(el.hasAttribute('data-count'))countUp(el);
+    if(el.hasAttribute('data-ring-big'))drawBigRing(el);
+    if(el.hasAttribute('data-scramble')&&!reduce)scramble(el);
+    if(el.hasAttribute('data-type'))typeIn(el);
+    if(el.hasAttribute('data-dash'))el.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(el);});},{threshold:.25,rootMargin:'0px 0px -10% 0px'});
+  ['[data-reveal]','[data-reveal-line]','[data-ring-big]','[data-scramble]','[data-type]','[data-dash]'].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el){ if(sel==='[data-reveal-line]')el.classList.add('mask-line'); io.observe(el); }); });
+  document.querySelectorAll('[data-avatars]').forEach(function(el){var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target);}})},{threshold:.4});o.observe(el);});
+  document.querySelectorAll('.download .counter .num').forEach(function(el){io.observe(el);});
+
+  /* ===== waitlist ===== */
+  var wl=document.getElementById('waitlist');
+  if(wl)wl.addEventListener('submit',function(e){e.preventDefault();wl.style.transition='opacity .5s';wl.style.opacity='0';setTimeout(function(){wl.style.display='none';document.getElementById('waitlistDone').style.display='block';},500);});
+
+  /* ===== particles ===== */
+  var cv=document.getElementById('particles');
+  if(cv&&!reduce){var ctx=cv.getContext('2d'),W,H,parts=[];
+    function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;parts=Array.from({length:26},function(){return{x:Math.random()*W,y:Math.random()*H,sp:.2+Math.random()*.5,o:.05+Math.random()*.1};});}
+    size();window.addEventListener('resize',size);
+    (function loop(){ctx.clearRect(0,0,W,H);ctx.fillStyle='#0A0A0A';ctx.font='700 14px Inter, sans-serif';parts.forEach(function(p){ctx.globalAlpha=p.o;ctx.fillText('Z',p.x,p.y);p.y+=p.sp;if(p.y>H+10){p.y=-10;p.x=Math.random()*W;}});ctx.globalAlpha=1;requestAnimationFrame(loop);})();
+  }
+})();
+</script>
+</body>
+</html>
