@@ -16,7 +16,7 @@ export default function Wallet() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 32 }}>
         <View style={styles.head}>
           <Text style={[type.h1, { color: colors.t1 }]}>Wallet</Text>
-          <Pressable style={[styles.add, { backgroundColor: colors.s2 }]}>
+          <Pressable onPress={() => router.push('/add-card')} style={[styles.add, { backgroundColor: colors.s2 }]}>
             <Plus color={colors.t1} size={22} />
           </Pressable>
         </View>

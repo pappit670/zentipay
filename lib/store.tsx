@@ -123,6 +123,7 @@ interface StoreCtx extends StoreState {
   receive: (amount: number, from: string) => void;
   toggleFreeze: (id: string) => void;
   setDefaultCard: (id: string) => void;
+  addCard: (design: CardDesign, label?: string) => void;
   addGoal: (a: { name: string; emoji: string; target: number }) => void;
   addPool: (a: { name: string; emoji: string; target: number; members?: number }) => void;
   addToGoal: (id: string, amount: number) => void;
@@ -207,6 +208,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         setState((s) => ({ ...s, cards: s.cards.map((c) => (c.id === id ? { ...c, frozen: !c.frozen } : c)) })),
       setDefaultCard: (id) =>
         setState((s) => ({ ...s, cards: s.cards.map((c) => ({ ...c, isDefault: c.id === id })) })),
+      addCard: (design, label = 'New Card') =>
+        setState((s) => ({
+          ...s,
+          cards: [...s.cards, { id: rid(), label, design, last4: String(Math.floor(1000 + Math.random() * 9000)), brand: 'VISA', frozen: false, isDefault: false }],
+        })),
       addGoal: ({ name, emoji, target }) =>
         setState((s) => ({ ...s, goals: [{ id: rid(), name, emoji, saved: 0, target }, ...s.goals] })),
       addPool: ({ name, emoji, target, members = 1 }) =>

@@ -34,6 +34,8 @@ function Nav() {
         <Stack.Screen name="pay" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
         <Stack.Screen name="create" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
         <Stack.Screen name="link" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+        <Stack.Screen name="qr" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+        <Stack.Screen name="add-card" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
         <Stack.Screen name="claim" options={{ presentation: 'fullScreenModal', animation: 'slide_from_bottom' }} />
         <Stack.Screen name="success" options={{ presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: false }} />
       </Stack>

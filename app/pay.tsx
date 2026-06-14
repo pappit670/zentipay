@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Numpad, type NumKey } from '../components/pay/Numpad';
+import { Button } from '../components/ui/Button';
+import { Stepper } from '../components/ui/Stepper';
 import { SwipeToConfirm } from '../components/ui/SwipeToConfirm';
 import { radius, space } from '../constants/theme';
 import { kes } from '../lib/format';
@@ -38,8 +40,10 @@ export default function PayModal() {
   const [method, setMethod] = useState<Method>('contact');
   const [rec, setRec] = useState<Contact | null>(null);
   const [note, setNote] = useState('');
+  const [tip, setTip] = useState(0);
 
   const amount = evalExpr(expr, op);
+  const total = mode === 'pay' ? amount + tip : amount;
   const showExpr = op && expr.includes(op) && expr.split(op)[1];
 
   const onKey = (k: NumKey) => {
@@ -70,15 +74,15 @@ export default function PayModal() {
 
   const confirm = () => {
     if (!rec) return;
-    if (mode === 'pay') store.send({ amount, contact: rec, note });
-    else store.request({ amount, contact: rec, note });
+    if (mode === 'pay') store.send({ amount: total, contact: rec, note });
+    else store.request({ amount: total, contact: rec, note });
     island.process(
-      mode === 'pay' ? `Sending ${kes(amount)}…` : `Requesting ${kes(amount)}…`,
+      mode === 'pay' ? `Sending ${kes(total)}…` : `Requesting ${kes(total)}…`,
       mode === 'pay' ? 'Sent' : 'Request sent',
     );
     router.replace({
       pathname: '/success',
-      params: { type: mode === 'pay' ? 'sent' : 'requested', amount: String(amount), name: rec.name },
+      params: { type: mode === 'pay' ? 'sent' : 'requested', amount: String(total), name: rec.name },
     });
   };
 
@@ -111,6 +115,9 @@ export default function PayModal() {
             </>
           ) : (
             <Text style={[styles.amount, { color: amount ? colors.t1 : colors.t3 }]}>{kes(amount)}</Text>
+          )}
+          {mode === 'pay' && tip > 0 && (
+            <Text style={[styles.tipHint, { color: colors.t2 }]}>incl. {kes(tip)} tip · total {kes(total)}</Text>
           )}
         </View>
 
@@ -160,12 +167,27 @@ export default function PayModal() {
               maxLength={30}
               style={[styles.note, { backgroundColor: colors.s2, color: colors.t1 }]}
             />
+
+            {/* quick tip (Inspo 12) */}
+            {mode === 'pay' && rec && (
+              <View style={[styles.tipRow, { backgroundColor: colors.s2 }]}>
+                <Text style={[styles.tipLabel, { color: colors.t2 }]}>Add a tip</Text>
+                <Stepper value={tip} onChange={setTip} step={50} format={(v) => kes(v)} />
+              </View>
+            )}
           </>
+        ) : method === 'qr' ? (
+          <View style={{ gap: 10 }}>
+            <Button
+              label="Show my QR to get paid"
+              variant="green"
+              onPress={() => router.push({ pathname: '/qr', params: { mode: 'mycode', amount: String(amount) } })}
+            />
+            <Button label="Scan a code to pay" variant="ghost" onPress={() => router.push({ pathname: '/qr', params: { mode: 'scan' } })} />
+          </View>
         ) : (
           <View style={[styles.soon, { backgroundColor: colors.s2 }]}>
-            <Text style={[styles.soonTxt, { color: colors.t2 }]}>
-              {method === 'qr' ? 'QR rail (merchant-receive)' : 'NFC tap-to-pay'} — coming in a later phase.
-            </Text>
+            <Text style={[styles.soonTxt, { color: colors.t2 }]}>NFC tap-to-pay — Android-first, coming soon.</Text>
           </View>
         )}
 
@@ -209,4 +231,7 @@ const styles = StyleSheet.create({
   soonTxt: { fontSize: 14, textAlign: 'center' },
   linkBtn: { alignItems: 'center', paddingVertical: 6 },
   linkTxt: { fontSize: 14, fontWeight: '600' },
+  tipHint: { fontSize: 13, marginTop: 6 },
+  tipRow: { borderRadius: 14, padding: 14, gap: 12 },
+  tipLabel: { fontSize: 13, textAlign: 'center' },
 });

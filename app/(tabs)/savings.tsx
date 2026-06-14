@@ -52,6 +52,9 @@ export default function Savings() {
             <Plus color={colors.green} size={20} />
           </Pressable>
         </View>
+        {store.goals.length === 0 && (
+          <Text style={[styles.empty, { color: colors.t3 }]}>No goals yet — tap + to start saving.</Text>
+        )}
         {store.goals.map((g) => (
           <GoalRow key={g.id} g={g} onPress={() => router.push({ pathname: '/goal/[id]', params: { id: g.id } })} />
         ))}
@@ -144,4 +147,5 @@ const styles = StyleSheet.create({
   pct: { fontSize: 15, fontWeight: '700' },
   bar: { height: 6, borderRadius: 3, marginTop: 12, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 3 },
+  empty: { fontSize: 14, textAlign: 'center', paddingHorizontal: space.px, paddingVertical: 24 },
 });
