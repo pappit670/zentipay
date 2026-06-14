@@ -12,7 +12,7 @@
 /* ============================== TOKENS ============================== */
 @font-face{font-family:'General Sans';src:url('fonts/GeneralSans-Variable.woff2') format('woff2'),url('fonts/GeneralSans-Variable.woff') format('woff');font-weight:200 700;font-style:normal;font-display:swap}
 :root{
-  --black:#28282b;--white:#FFFFFF;--green:#34ff18;
+  --black:#28282b;--bg-dark:#0e0e11;--white:#FFFFFF;--green:#34ff18;--green-soft:rgba(52,255,24,.5);
   --ink-1:#0A0A0A;--ink-2:#5b5b60;--ink-3:#8a8a90;
   --line:rgba(10,10,10,.08);--line-strong:rgba(10,10,10,.16);
   --bg:#FFFFFF;--bg-soft:#f6f6f4;--max:1200px;
@@ -133,7 +133,7 @@ h3{font-size:clamp(26px,3vw,40px)}
 
 /* ============================== HERO ============================== */
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:120px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 75% 30%,rgba(52,255,24,.10),transparent 70%),radial-gradient(50% 40% at 15% 80%,rgba(10,10,10,.04),transparent 70%);pointer-events:none}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 45% at 78% 28%,rgba(52,255,24,.20),transparent 68%),radial-gradient(40% 35% at 12% 82%,rgba(52,255,24,.07),transparent 72%);pointer-events:none}
 .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%}
 .hero .eyebrow{font-weight:800;font-size:18px;letter-spacing:-.04em;opacity:0;transform:translateY(14px);transition:.5s var(--ease)}
 .hero .eyebrow.in{opacity:1;transform:none}
@@ -214,6 +214,13 @@ h3{font-size:clamp(26px,3vw,40px)}
 
 /* accessibility focus (skill priority #1) */
 a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible{outline:2.5px solid var(--green);outline-offset:3px;border-radius:8px}
+/* interaction polish */
+[onclick],button,.btn,.seg span{cursor:pointer}
+.btn:active{transform:scale(.97)}
+.tcard{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.tcard:hover{transform:translateY(-5px);box-shadow:0 44px 80px -44px rgba(10,10,10,.32)}
+.metric .v,.counter,.bal-card .v,.amount-big,.dash-mini .metric .v,.amt-val{font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){[data-reveal],.mask-line>span,.stagger>*,.tcard{transition-duration:.001ms!important}html{scroll-behavior:auto}}
 
 /* testimonials / social proof */
 .loved{background:var(--bg-soft);border-radius:40px;margin:0 16px;text-align:center}
@@ -231,7 +238,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible{outl
 @media(max-width:880px){.tcards{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
 
 /* card dark */
-.card-sec{background:var(--black);color:#fff;text-align:center;border-radius:40px;margin:0 16px;overflow:hidden}
+.card-sec{background:var(--bg-dark);color:#fff;text-align:center;border-radius:40px;margin:0 16px;overflow:hidden}
 .card-sec .label{color:#7a7a80}.card-sec h2{color:#fff;margin:14px 0 0}.card-sec .lead{color:#9a9aa0;margin:18px auto 0}
 .card-deck{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:64px;perspective:1500px}
 .zcard{width:230px;aspect-ratio:1.586;border-radius:18px;padding:20px;position:relative;text-align:left;border:1px solid rgba(255,255,255,.10);box-shadow:0 40px 70px -34px rgba(0,0,0,.8);transform-style:preserve-3d;transition:transform .5s var(--ease);will-change:transform;display:flex;flex-direction:column;justify-content:space-between}
@@ -283,7 +290,12 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 @media(max-width:560px){.container{padding:0 22px}:root{--pad-y:80px}.card-sec{margin:0 8px}.tour-sticky{padding:0 22px}}
 
 /* ============================== EXPERIENCE (real-time payment demos) ============================== */
-.exp{background:var(--black);color:#fff;border-radius:40px;margin:0 16px;overflow:hidden}
+.exp{background:var(--bg-dark);color:#fff;border-radius:40px;margin:0 16px;overflow:hidden}
+/* green pop — luminous accents on deep dark */
+.exp .tk,.success .ck{box-shadow:0 0 26px rgba(52,255,24,.55)}
+.nfc-ok{box-shadow:0 0 24px rgba(52,255,24,.4)}
+.swipe,.linkcard .pay-mpesa,.lc-btn,.qa .hot{box-shadow:0 8px 26px -8px rgba(52,255,24,.65)}
+.zcard.forest{box-shadow:0 40px 70px -34px rgba(0,0,0,.8),0 0 40px -8px rgba(52,255,24,.25)}
 .exp .label{color:#7a7a80}
 .exp h2{color:#fff;margin:14px 0 0}
 .exp .lead{color:#9a9aa0;margin:18px 0 0;max-width:46ch}
