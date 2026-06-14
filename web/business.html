@@ -199,7 +199,21 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .screen.on{display:block;animation:fade .4s var(--ease)}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
 .m-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
-.m-grid .metric{background:#fff}
+.m-grid .metric{background:#fff;position:relative}
+.chip-ic{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff}
+.chip-ic svg{width:18px;height:18px}
+.chip-ic.green{background:#1fae12}.chip-ic.dark{background:#28282b}.chip-ic.amber{background:#e3a51a}.chip-ic.grey{background:#8a8a90}
+/* spending overview */
+.spend-head{display:flex;justify-content:space-between;align-items:center}
+.muted-pill{font-size:12px;font-weight:600;color:var(--ink-3);background:var(--bg-soft);padding:5px 11px;border-radius:100px}
+.spend-total{font-size:26px;font-weight:900;letter-spacing:-.03em;margin-top:10px}
+.spend-total span{font-size:14px;font-weight:500;color:var(--ink-3)}
+.seg-bar{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:14px 0 18px;gap:2px}
+.seg-bar span{display:block;height:100%}
+.seg-legend{display:flex;flex-direction:column;gap:11px}
+.seg-legend > div{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--ink-2)}
+.seg-legend .dot{width:10px;height:10px;border-radius:3px;flex:none}
+.seg-legend b{margin-left:auto;color:var(--ink-1);font-weight:700}
 .cols{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
 @media(max-width:980px){.app.on{grid-template-columns:1fr}.sidebar{position:fixed;left:-260px;transition:left .3s;z-index:50}.sidebar.open{left:0}.cols{grid-template-columns:1fr}.m-grid{grid-template-columns:1fr 1fr}}
 .section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:14px}
@@ -553,10 +567,10 @@ tr:last-child td{border-bottom:none}
     <!-- OVERVIEW -->
     <section class="screen on" data-name="overview">
       <div class="m-grid" data-dash>
-        <div class="metric"><div class="k">Revenue Today</div><div class="v" data-count="42500" data-prefix="KES ">KES 0</div><div class="d">▲ 12% vs yesterday</div></div>
-        <div class="metric"><div class="k">Revenue This Month</div><div class="v" data-count="918300" data-prefix="KES ">KES 0</div><div class="d">▲ 8% vs last month</div></div>
-        <div class="metric"><div class="k">Tax Reserve</div><div class="v" data-count="27500" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">Auto-calculated</div></div>
-        <div class="metric"><div class="k">Unpaid Invoices</div><div class="v" data-count="6" data-suffix="">0</div><div class="d" style="color:var(--amber)">3 overdue</div></div>
+        <div class="metric"><span class="chip-ic green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span><div class="k">Revenue Today</div><div class="v" data-count="42500" data-prefix="KES ">KES 0</div><div class="d">▲ 12% vs yesterday</div></div>
+        <div class="metric"><span class="chip-ic dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></span><div class="k">Revenue This Month</div><div class="v" data-count="918300" data-prefix="KES ">KES 0</div><div class="d">▲ 8% vs last month</div></div>
+        <div class="metric"><span class="chip-ic grey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><div class="k">Tax Reserve</div><div class="v" data-count="27500" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">Auto-calculated</div></div>
+        <div class="metric"><span class="chip-ic amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="k">Unpaid Invoices</div><div class="v" data-count="6" data-suffix="">0</div><div class="d" style="color:var(--amber)">3 overdue</div></div>
       </div>
       <div class="cols">
         <div class="card">
@@ -572,12 +586,28 @@ tr:last-child td{border-bottom:none}
           </div>
         </div>
         <div class="card">
-          <div class="section-title">Zenti AI</div>
-          <div class="ailist">
-            <div class="aiitem"><span class="spark"></span><span>Friday is your best day — you usually make 34% more.</span></div>
-            <div class="aiitem"><span class="spark"></span><span>3 customers haven’t paid their invoices yet.</span></div>
-            <div class="aiitem"><span class="spark"></span><span>You made KES 28,400 more this week than last week.</span></div>
+          <div class="section-title spend-head">Spending overview <span class="muted-pill">This month</span></div>
+          <div class="spend-total">KES 312,400 <span>spent</span></div>
+          <div class="seg-bar">
+            <span style="width:46%;background:#34ff18"></span>
+            <span style="width:28%;background:#28282b"></span>
+            <span style="width:16%;background:#8a8a90"></span>
+            <span style="width:10%;background:#d8d8da"></span>
           </div>
+          <div class="seg-legend">
+            <div><span class="dot" style="background:#34ff18"></span>Stock &amp; supplies <b>KES 143,700</b></div>
+            <div><span class="dot" style="background:#28282b"></span>Rent &amp; space <b>KES 87,500</b></div>
+            <div><span class="dot" style="background:#8a8a90"></span>Payroll <b>KES 49,900</b></div>
+            <div><span class="dot" style="background:#d8d8da"></span>Other <b>KES 31,300</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="section-title">Zenti AI</div>
+        <div class="ailist" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+          <div class="aiitem"><span class="spark"></span><span>Friday is your best day — you usually make 34% more.</span></div>
+          <div class="aiitem"><span class="spark"></span><span>3 customers haven’t paid their invoices yet.</span></div>
+          <div class="aiitem"><span class="spark"></span><span>You made KES 28,400 more this week than last week.</span></div>
         </div>
       </div>
       <div class="card" style="margin-top:16px">
