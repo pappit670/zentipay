@@ -60,6 +60,9 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .lp-hero h1{margin:18px 0}
 .lp-hero .btn-row{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
 .lp-hero .micro{margin-top:14px;color:var(--ink-3);font-size:14px}
+.urgent{display:inline-flex;align-items:center;gap:8px;margin:18px 0 4px;background:#66e31a18;color:#1a7f2f;border:1px solid #66e31a45;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600}
+.urgent .dot{width:7px;height:7px;border-radius:50%;background:#1a8a2f;animation:pulseDot 1.8s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.3}}
 @media(max-width:920px){.lp-hero .grid{grid-template-columns:1fr;gap:40px}}
 
 /* dashboard mockup (hero) */
@@ -103,7 +106,8 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 @media(max-width:880px){.personas{grid-template-columns:1fr}}
 
 /* pricing */
-.pricing{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:56px auto 0}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:56px auto 0;align-items:start}
+.tier .for{font-size:12px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-top:6px}
 .tier{border:1px solid var(--line);border-radius:24px;padding:32px}
 .tier.pro{border:2px solid var(--black);position:relative}
 .tier.pro .badge{position:absolute;top:-12px;right:24px;background:var(--green);color:#06210a;font-size:12px;font-weight:700;padding:5px 12px;border-radius:100px}
@@ -116,7 +120,7 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .tier li .no{color:var(--line-strong)}
 .tier li.off{color:var(--line-strong)}
 .tier .btn{width:100%}
-@media(max-width:760px){.pricing{grid-template-columns:1fr}}
+@media(max-width:900px){.pricing{grid-template-columns:1fr;max-width:460px}}
 
 /* ---------------- REGISTRATION OVERLAY ---------------- */
 .overlay{position:fixed;inset:0;background:rgba(10,10,10,.45);backdrop-filter:blur(6px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
@@ -157,6 +161,11 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .navitem:hover{background:rgba(255,255,255,.06);color:#fff}
 .navitem.active{background:#fff;color:var(--black);font-weight:600}
 .navitem .ic{width:8px;height:8px;border-radius:3px;background:currentColor;opacity:.6}
+.navitem .lbl{flex:1}
+.navitem .tag{font-size:9px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:6px;background:rgba(255,255,255,.13);color:#cfcfd4}
+.navitem.active .tag{background:rgba(10,10,10,.08);color:#5b5b60}
+.plan-pill{margin:0 6px 12px;background:rgba(102,227,26,.14);border:1px solid rgba(102,227,26,.32);color:#bff39a;border-radius:10px;padding:8px 11px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:7px}
+.plan-pill .d{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
 .sidebar .spacer{margin-top:auto}
 .main{padding:28px 36px;background:var(--bg-soft);min-height:100vh}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
@@ -278,13 +287,14 @@ tr:last-child td{border-bottom:none}
     <div class="container grid">
       <div>
         <div class="label" data-reveal>Zenti Business</div>
-        <h1 data-reveal>Your business finances, finally organised.</h1>
-        <p class="lead" data-reveal>Every payment tracked automatically. Tax estimates ready. KRA compliance sorted.</p>
+        <div class="urgent" data-reveal><span class="dot"></span> eTIMS is mandatory from 2026 — get ready in one tap</div>
+        <h1 data-reveal>Get paid. Stay<br>KRA-ready. Automatically.</h1>
+        <p class="lead" data-reveal>Every sale becomes a compliant eTIMS invoice — and a clear picture of your whole business. Tax estimates ready, records sorted, no accountant required.</p>
         <div class="btn-row" data-reveal>
           <a class="btn magnetic" href="#" onclick="openReg();return false">Start free — no card needed</a>
           <a class="btn ghost magnetic" href="#" onclick="openApp();return false">View demo dashboard</a>
         </div>
-        <div class="micro" data-reveal>Free forever for small businesses. Upgrade anytime.</div>
+        <div class="micro" data-reveal>Free for mama mboga &amp; small shops. Pro &amp; Max for growing teams.</div>
       </div>
       <div data-reveal>
         <div class="dashcard">
@@ -310,9 +320,9 @@ tr:last-child td{border-bottom:none}
       <div class="label" data-reveal>How it works</div>
       <h2 data-reveal style="margin-top:12px">Set up in under two minutes.</h2>
       <div class="steps">
-        <div class="step" data-reveal><div class="n">1</div><h3>Connect your till</h3><p>Daraja pulls your M-Pesa transaction history automatically. No manual entry.</p></div>
-        <div class="step" data-reveal style="transition-delay:.1s"><div class="n">2</div><h3>See your revenue</h3><p>Every payment organised, dated, and categorised the moment it lands.</p></div>
-        <div class="step" data-reveal style="transition-delay:.2s"><div class="n">3</div><h3>Generate reports</h3><p>KRA-ready tax estimates and compliance reports, one tap away.</p></div>
+        <div class="step" data-reveal><div class="n">1</div><h3>Connect your M-Pesa till</h3><p>Daraja pulls every payment automatically. No manual entry, no spreadsheets.</p></div>
+        <div class="step" data-reveal style="transition-delay:.1s"><div class="n">2</div><h3>Every sale becomes an eTIMS invoice</h3><p>KRA-valid, sent to the buyer, logged for you — the moment money lands.</p></div>
+        <div class="step" data-reveal style="transition-delay:.2s"><div class="n">3</div><h3>File with confidence</h3><p>Tax estimates and records ready when KRA asks. No scramble, no penalties.</p></div>
       </div>
     </div>
   </section>
@@ -323,9 +333,9 @@ tr:last-child td{border-bottom:none}
       <div class="label" data-reveal>Features</div>
       <h2 data-reveal style="margin-top:12px">Everything a Kenyan business needs.</h2>
       <div class="feat">
-        <div class="fcard" data-reveal><div class="ic">📊</div><h3>Automatic records</h3><p>Every Zenti and M-Pesa payment, automatically recorded and categorised.</p></div>
-        <div class="fcard" data-reveal style="transition-delay:.1s"><div class="ic">🧾</div><h3>Tax estimates</h3><p>Know what you owe before KRA tells you. Turnover tax, VAT, and PAYE tracked.</p></div>
-        <div class="fcard" data-reveal style="transition-delay:.2s"><div class="ic">✦</div><h3>AI insights</h3><p>Plain language business intelligence. No jargon, just what matters today.</p></div>
+        <div class="fcard" data-reveal><div class="ic">🧾</div><h3>eTIMS invoicing</h3><p>Every payment turns into a KRA-valid e-invoice. Mandatory from 2026 — handled for you.</p></div>
+        <div class="fcard" data-reveal style="transition-delay:.1s"><div class="ic">🔄</div><h3>One clear picture</h3><p>M-Pesa, bank, and cash reconciled and categorised in one place — not three.</p></div>
+        <div class="fcard" data-reveal style="transition-delay:.2s"><div class="ic">📊</div><h3>Tax estimates</h3><p>Know your TOT, VAT, and PAYE before KRA tells you. Records ready to file.</p></div>
       </div>
     </div>
   </section>
@@ -348,41 +358,58 @@ tr:last-child td{border-bottom:none}
     <div class="container">
       <div class="label" data-reveal>Pricing</div>
       <h2 data-reveal style="margin-top:12px">Simple, honest pricing.</h2>
+      <p class="lead" data-reveal style="margin:14px auto 0;max-width:48ch">Pay only for what your business actually needs. Start free, grow into it.</p>
       <div class="pricing">
         <div class="tier" data-reveal>
           <div class="name">Starter</div>
           <div class="price">Free</div>
-          <div class="lead" style="font-size:15px">For getting your records in order.</div>
+          <div class="for">Mama mboga · kiosk · boda</div>
+          <div class="lead" style="font-size:14.5px;margin-top:10px">See what you made, get paid, and stay on the right side of KRA.</div>
           <ul>
-            <li><span class="ck">✓</span> Business wallet</li>
-            <li><span class="ck">✓</span> QR payments</li>
-            <li><span class="ck">✓</span> Revenue tracking</li>
-            <li><span class="ck">✓</span> Transaction history</li>
-            <li><span class="ck">✓</span> Tax estimate</li>
-            <li><span class="ck">✓</span> Basic reports</li>
-            <li class="off"><span class="no">—</span> Invoices</li>
-            <li class="off"><span class="no">—</span> Team accounts</li>
-            <li class="off"><span class="no">—</span> Zenti AI insights</li>
+            <li><span class="ck">✓</span> Get paid: QR &amp; money links</li>
+            <li><span class="ck">✓</span> Daily &amp; weekly revenue</li>
+            <li><span class="ck">✓</span> Auto transaction list (M-Pesa)</li>
+            <li><span class="ck">✓</span> eTIMS invoices — up to 15/mo</li>
+            <li><span class="ck">✓</span> Basic tax estimate (TOT)</li>
+            <li class="off"><span class="no">—</span> Reconciliation &amp; categories</li>
+            <li class="off"><span class="no">—</span> Team &amp; multi-location</li>
+            <li class="off"><span class="no">—</span> Deep compliance controls</li>
           </ul>
           <button class="btn ghost magnetic" onclick="openReg()">Get started free</button>
         </div>
-        <div class="tier pro" data-reveal style="transition-delay:.1s">
+        <div class="tier pro" data-reveal style="transition-delay:.08s">
           <div class="badge">Most popular</div>
           <div class="name">Pro</div>
           <div class="price">KES 1,200<span>/mo</span></div>
-          <div class="lead" style="font-size:15px">For businesses ready to grow.</div>
+          <div class="for">Salon · restaurant · retail</div>
+          <div class="lead" style="font-size:14.5px;margin-top:10px">Stay KRA-compliant without hiring an accountant.</div>
           <ul>
             <li><span class="ck">✓</span> Everything in Starter</li>
-            <li><span class="ck">✓</span> Invoices &amp; recurring billing</li>
-            <li><span class="ck">✓</span> Team accounts &amp; roles</li>
-            <li><span class="ck">✓</span> Advanced reports</li>
-            <li><span class="ck">✓</span> Compliance tools</li>
-            <li><span class="ck">✓</span> Accountant access</li>
-            <li><span class="ck">✓</span> Zenti AI insights</li>
-            <li><span class="ck">✓</span> Multi-location</li>
-            <li><span class="ck">✓</span> Priority support</li>
+            <li><span class="ck">✓</span> Unlimited eTIMS + recurring invoices</li>
+            <li><span class="ck">✓</span> M-Pesa + bank + cash reconciliation</li>
+            <li><span class="ck">✓</span> TOT / VAT / PAYE estimates</li>
+            <li><span class="ck">✓</span> Compliance summary &amp; deadlines</li>
+            <li><span class="ck">✓</span> Expenses &amp; basic reports</li>
+            <li><span class="ck">✓</span> Up to 3 team members</li>
+            <li class="off"><span class="no">—</span> Deep compliance controls</li>
           </ul>
           <button class="btn magnetic" onclick="openReg()">Start 30-day trial</button>
+        </div>
+        <div class="tier" data-reveal style="transition-delay:.16s">
+          <div class="name">Max</div>
+          <div class="price">KES 4,500<span>/mo</span></div>
+          <div class="for">Law firm · pharmacy · logistics</div>
+          <div class="lead" style="font-size:14.5px;margin-top:10px">Run a compliant, multi-location operation.</div>
+          <ul>
+            <li><span class="ck">✓</span> Everything in Pro</li>
+            <li><span class="ck">✓</span> Deep compliance controls + frameworks</li>
+            <li><span class="ck">✓</span> Multi-location</li>
+            <li><span class="ck">✓</span> Full team roles + accountant access</li>
+            <li><span class="ck">✓</span> Advanced &amp; audit-ready reports</li>
+            <li><span class="ck">✓</span> Zenti AI insights</li>
+            <li><span class="ck">✓</span> Priority support</li>
+          </ul>
+          <button class="btn ghost magnetic" onclick="openReg()">Talk to us</button>
         </div>
       </div>
     </div>
@@ -456,16 +483,17 @@ tr:last-child td{border-bottom:none}
 <div class="app" id="app">
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#" onclick="closeApp();return false"><span class="z">Z</span>Zenti <small>Business</small></a>
-    <div class="navitem active" data-screen="overview" onclick="go(this)"><span class="ic"></span>Overview</div>
-    <div class="navitem" data-screen="sales" onclick="go(this)"><span class="ic"></span>Sales</div>
-    <div class="navitem" data-screen="transactions" onclick="go(this)"><span class="ic"></span>Transactions</div>
-    <div class="navitem" data-screen="customers" onclick="go(this)"><span class="ic"></span>Customers</div>
-    <div class="navitem" data-screen="invoices" onclick="go(this)"><span class="ic"></span>Invoices</div>
-    <div class="navitem" data-screen="qr" onclick="go(this)"><span class="ic"></span>QR Payments</div>
-    <div class="navitem" data-screen="compliance" onclick="go(this)"><span class="ic"></span>Compliance</div>
-    <div class="navitem" data-screen="reports" onclick="go(this)"><span class="ic"></span>Reports</div>
-    <div class="navitem" data-screen="team" onclick="go(this)"><span class="ic"></span>Team</div>
-    <div class="navitem" data-screen="settings" onclick="go(this)"><span class="ic"></span>Settings</div>
+    <div class="plan-pill"><span class="d"></span> Max plan · demo</div>
+    <div class="navitem active" data-screen="overview" onclick="go(this)"><span class="ic"></span><span class="lbl">Overview</span></div>
+    <div class="navitem" data-screen="sales" onclick="go(this)"><span class="ic"></span><span class="lbl">Sales</span><span class="tag">PRO</span></div>
+    <div class="navitem" data-screen="transactions" onclick="go(this)"><span class="ic"></span><span class="lbl">Transactions</span></div>
+    <div class="navitem" data-screen="customers" onclick="go(this)"><span class="ic"></span><span class="lbl">Customers</span><span class="tag">PRO</span></div>
+    <div class="navitem" data-screen="invoices" onclick="go(this)"><span class="ic"></span><span class="lbl">eTIMS Invoices</span><span class="tag">PRO</span></div>
+    <div class="navitem" data-screen="qr" onclick="go(this)"><span class="ic"></span><span class="lbl">QR Payments</span></div>
+    <div class="navitem" data-screen="compliance" onclick="go(this)"><span class="ic"></span><span class="lbl">Compliance</span><span class="tag">MAX</span></div>
+    <div class="navitem" data-screen="reports" onclick="go(this)"><span class="ic"></span><span class="lbl">Reports</span><span class="tag">PRO</span></div>
+    <div class="navitem" data-screen="team" onclick="go(this)"><span class="ic"></span><span class="lbl">Team</span><span class="tag">PRO</span></div>
+    <div class="navitem" data-screen="settings" onclick="go(this)"><span class="ic"></span><span class="lbl">Settings</span></div>
     <div class="spacer"></div>
     <div class="navitem" onclick="closeApp()"><span class="ic"></span>← Back to site</div>
   </aside>
@@ -591,19 +619,23 @@ tr:last-child td{border-bottom:none}
 
     <!-- INVOICES -->
     <section class="screen" data-name="invoices">
+      <div class="card" style="margin-bottom:16px;display:flex;align-items:center;gap:13px">
+        <span style="width:32px;height:32px;border-radius:9px;background:var(--green);flex:none"></span>
+        <div><div style="font-weight:700">eTIMS invoicing is on</div><div style="font-size:13px;color:var(--ink-3)">142 of 144 invoices auto-submitted to KRA this month · 2 queued</div></div>
+        <a class="btn sm magnetic" style="margin-left:auto">+ New eTIMS invoice</a>
+      </div>
       <div class="filterbar">
         <span class="chip on">All</span><span class="chip">Paid</span><span class="chip">Pending</span><span class="chip">Overdue</span><span class="chip">Cancelled</span>
-        <span style="margin-left:auto"></span><a class="btn sm magnetic">+ Create invoice</a>
       </div>
       <div class="card" style="padding:0;overflow:hidden">
         <table>
-          <thead><tr><th>Invoice</th><th>Recipient</th><th>Due date</th><th>Amount</th><th>Status</th></tr></thead>
+          <thead><tr><th>Invoice</th><th>Recipient</th><th>Due date</th><th>Amount</th><th>eTIMS</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>#1043</td><td>Peter Otieno</td><td>Jun 20</td><td>KES 4,500</td><td><span class="pill amber">Pending</span></td></tr>
-            <tr><td>#1042</td><td>Sunrise Cafe</td><td>Jun 18</td><td>KES 12,000</td><td><span class="pill green">Paid</span></td></tr>
-            <tr><td>#1041</td><td>Grace Kamau</td><td>Jun 5</td><td>KES 3,200</td><td><span class="pill red">Overdue</span></td></tr>
-            <tr><td>#1040</td><td>Acme Ltd</td><td>Jun 1</td><td>KES 28,000</td><td><span class="pill red">Overdue</span></td></tr>
-            <tr><td>#1039</td><td>James Mwangi</td><td>May 28</td><td>KES 1,800</td><td><span class="pill grey">Cancelled</span></td></tr>
+            <tr><td>#1043</td><td>Peter Otieno</td><td>Jun 20</td><td>KES 4,500</td><td><span class="pill green">✓ Synced</span></td><td><span class="pill amber">Pending</span></td></tr>
+            <tr><td>#1042</td><td>Sunrise Cafe</td><td>Jun 18</td><td>KES 12,000</td><td><span class="pill green">✓ Synced</span></td><td><span class="pill green">Paid</span></td></tr>
+            <tr><td>#1041</td><td>Grace Kamau</td><td>Jun 5</td><td>KES 3,200</td><td><span class="pill green">✓ Synced</span></td><td><span class="pill red">Overdue</span></td></tr>
+            <tr><td>#1040</td><td>Acme Ltd</td><td>Jun 1</td><td>KES 28,000</td><td><span class="pill amber">Queued</span></td><td><span class="pill red">Overdue</span></td></tr>
+            <tr><td>#1039</td><td>James Mwangi</td><td>May 28</td><td>KES 1,800</td><td><span class="pill grey">—</span></td><td><span class="pill grey">Cancelled</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -795,7 +827,7 @@ function go(item){
   item.classList.add('active');
   var name=item.getAttribute('data-screen');
   document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s.getAttribute('data-name')===name);});
-  document.getElementById('screenName').textContent=item.textContent.trim();
+  var lbl=item.querySelector('.lbl');document.getElementById('screenName').textContent=(lbl?lbl.textContent:item.textContent).trim();
   reanimate(document.querySelector('.screen.on'));
 }
 function reanimate(scr){
