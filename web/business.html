@@ -9,13 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
+@font-face{font-family:'General Sans';src:url('fonts/GeneralSans-Variable.woff2') format('woff2'),url('fonts/GeneralSans-Variable.woff') format('woff');font-weight:200 700;font-style:normal;font-display:swap}
 :root{
-  --black:#0A0A0A;--white:#FFFFFF;--green:#66E31A;
+  --black:#28282b;--white:#FFFFFF;--green:#34ff18;
   --ink-1:#0A0A0A;--ink-2:#5b5b60;--ink-3:#8a8a90;
   --line:rgba(10,10,10,.08);--line-strong:rgba(10,10,10,.16);
   --bg:#FFFFFF;--bg-soft:#f6f6f4;--max:1200px;
   --ease:cubic-bezier(.32,.72,0,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);
-  --pad-y:120px;--font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --pad-y:120px;--font:'General Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   --amber:#e3a51a;--red:#e3431a;--grey:#9a9aa0;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -60,7 +61,7 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .lp-hero h1{margin:18px 0}
 .lp-hero .btn-row{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
 .lp-hero .micro{margin-top:14px;color:var(--ink-3);font-size:14px}
-.urgent{display:inline-flex;align-items:center;gap:8px;margin:18px 0 4px;background:#66e31a18;color:#1a7f2f;border:1px solid #66e31a45;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600}
+.urgent{display:inline-flex;align-items:center;gap:8px;margin:18px 0 4px;background:#34ff1818;color:#1a7f2f;border:1px solid #34ff1845;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600}
 .urgent .dot{width:7px;height:7px;border-radius:50%;background:#1a8a2f;animation:pulseDot 1.8s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.3}}
 @media(max-width:920px){.lp-hero .grid{grid-template-columns:1fr;gap:40px}}
@@ -186,7 +187,7 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .navitem .lbl{flex:1}
 .navitem .tag{font-size:9px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:6px;background:rgba(255,255,255,.13);color:#cfcfd4}
 .navitem.active .tag{background:rgba(10,10,10,.08);color:#5b5b60}
-.plan-pill{margin:0 6px 12px;background:rgba(102,227,26,.14);border:1px solid rgba(102,227,26,.32);color:#bff39a;border-radius:10px;padding:8px 11px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:7px}
+.plan-pill{margin:0 6px 12px;background:rgba(52,255,24,.14);border:1px solid rgba(52,255,24,.32);color:#bff39a;border-radius:10px;padding:8px 11px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:7px}
 .plan-pill .d{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
 .sidebar .spacer{margin-top:auto}
 .main{padding:28px 36px;background:var(--bg-soft);min-height:100vh}
@@ -222,7 +223,7 @@ th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;
 td{padding:13px 12px;border-bottom:1px solid var(--line);font-size:14.5px}
 tr:last-child td{border-bottom:none}
 .pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 11px;border-radius:100px}
-.pill.green{background:#66e31a22;color:#1a8a2f}
+.pill.green{background:#34ff1822;color:#1a8a2f}
 .pill.amber{background:#e3a51a22;color:#9a6f00}
 .pill.red{background:#e3431a22;color:#b02e0f}
 .pill.grey{background:#8a8a9022;color:#6a6a70}
@@ -272,7 +273,7 @@ tr:last-child td{border-bottom:none}
 .ctrl-row{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid var(--line)}
 .ctrl-row:last-child{border-bottom:none}
 .ctrl-ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;flex:none}
-.ctrl-ic.pass{background:#66e31a22;color:#1a8a2f}
+.ctrl-ic.pass{background:#34ff1822;color:#1a8a2f}
 .ctrl-ic.fail{background:#e3431a22;color:#b02e0f}
 .ctrl-ic.warn{background:#e3a51a22;color:#9a6f00}
 .ctrl-row .nm{font-weight:600;font-size:14.5px}
@@ -599,8 +600,8 @@ tr:last-child td{border-bottom:none}
       <div class="card">
         <div class="section-title">Revenue trend</div>
         <svg class="spark-line" viewBox="0 0 600 120" preserveAspectRatio="none">
-          <polyline fill="none" stroke="#66E31A" stroke-width="3" points="0,90 75,70 150,80 225,50 300,60 375,30 450,45 525,20 600,28"/>
-          <polyline fill="rgba(102,227,26,.08)" stroke="none" points="0,120 0,90 75,70 150,80 225,50 300,60 375,30 450,45 525,20 600,28 600,120"/>
+          <polyline fill="none" stroke="#34ff18" stroke-width="3" points="0,90 75,70 150,80 225,50 300,60 375,30 450,45 525,20 600,28"/>
+          <polyline fill="rgba(52,255,24,.08)" stroke="none" points="0,120 0,90 75,70 150,80 225,50 300,60 375,30 450,45 525,20 600,28 600,120"/>
         </svg>
       </div>
       <div class="row2" style="margin-top:16px">

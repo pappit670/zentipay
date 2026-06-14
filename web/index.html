@@ -10,14 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
 /* ============================== TOKENS ============================== */
+@font-face{font-family:'General Sans';src:url('fonts/GeneralSans-Variable.woff2') format('woff2'),url('fonts/GeneralSans-Variable.woff') format('woff');font-weight:200 700;font-style:normal;font-display:swap}
 :root{
-  --black:#0A0A0A;--white:#FFFFFF;--green:#66E31A;
+  --black:#28282b;--white:#FFFFFF;--green:#34ff18;
   --ink-1:#0A0A0A;--ink-2:#5b5b60;--ink-3:#8a8a90;
   --line:rgba(10,10,10,.08);--line-strong:rgba(10,10,10,.16);
   --bg:#FFFFFF;--bg-soft:#f6f6f4;--max:1200px;
   --ease:cubic-bezier(.32,.72,0,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);
   --pad-y:140px;--radius:28px;
-  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font:'General Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -72,7 +73,7 @@ h3{font-size:clamp(26px,3vw,40px)}
 .phone .screen{width:100%;height:100%;background:#0a0a0a;border-radius:40px;overflow:hidden;position:relative;color:#fff}
 .vscreen{position:absolute;inset:0;opacity:0;transform:scale(1.015);transition:opacity .55s var(--ease),transform .55s var(--ease);pointer-events:none}
 .vscreen.on{opacity:1;transform:none;pointer-events:auto}
-.app{padding:50px 18px 16px;height:100%;display:flex;flex-direction:column;gap:13px;background:radial-gradient(120% 80% at 80% -10%,rgba(102,227,26,.12),transparent 55%),#0a0a0a}
+.app{padding:50px 18px 16px;height:100%;display:flex;flex-direction:column;gap:13px;background:radial-gradient(120% 80% at 80% -10%,rgba(52,255,24,.12),transparent 55%),#0a0a0a}
 .app .row{display:flex;align-items:center;justify-content:space-between}
 .app .greet{font-size:12px;color:#9a9aa0}
 .bal-card{background:linear-gradient(140deg,#1a1a1c,#0e0e10);border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:18px}
@@ -128,11 +129,11 @@ h3{font-size:clamp(26px,3vw,40px)}
 .touch{position:absolute;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);border:2px solid rgba(255,255,255,.85);transform:translate(-50%,-50%);left:50%;top:50%;opacity:0;z-index:30;pointer-events:none;transition:left .65s var(--ease),top .65s var(--ease),opacity .3s}
 .touch.show{opacity:1}
 .touch.tap{animation:tap .45s var(--ease)}
-@keyframes tap{0%{box-shadow:0 0 0 0 rgba(102,227,26,.5)}100%{box-shadow:0 0 0 26px rgba(102,227,26,0)}}
+@keyframes tap{0%{box-shadow:0 0 0 0 rgba(52,255,24,.5)}100%{box-shadow:0 0 0 26px rgba(52,255,24,0)}}
 
 /* ============================== HERO ============================== */
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:120px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 75% 30%,rgba(102,227,26,.10),transparent 70%),radial-gradient(50% 40% at 15% 80%,rgba(10,10,10,.04),transparent 70%);pointer-events:none}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 75% 30%,rgba(52,255,24,.10),transparent 70%),radial-gradient(50% 40% at 15% 80%,rgba(10,10,10,.04),transparent 70%);pointer-events:none}
 .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%}
 .hero .eyebrow{font-weight:800;font-size:18px;letter-spacing:-.04em;opacity:0;transform:translateY(14px);transition:.5s var(--ease)}
 .hero .eyebrow.in{opacity:1;transform:none}
@@ -310,7 +311,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 @keyframes nfcPh{0%{transform:translateX(-130px) rotate(-7deg);opacity:0}18%,55%{transform:translateX(-34px) rotate(-7deg);opacity:1}80%{transform:translateX(-34px) rotate(-7deg);opacity:1}100%{transform:translateX(-34px) rotate(-7deg);opacity:0}}
 .nfc-pulse{position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px;border-radius:50%;border:2px solid var(--green);opacity:0;animation:nfcPulse 5s var(--ease) infinite}
 @keyframes nfcPulse{0%,24%{opacity:0;transform:scale(.4)}32%{opacity:.85;transform:scale(1)}52%{opacity:0;transform:scale(3.1)}100%{opacity:0;transform:scale(3.1)}}
-.nfc-ok{position:absolute;top:18px;left:50%;display:flex;align-items:center;gap:8px;background:rgba(8,33,10,.7);backdrop-filter:blur(5px);border:1px solid rgba(102,227,26,.35);border-radius:100px;padding:7px 14px 7px 8px;font-size:13px;font-weight:700;white-space:nowrap;opacity:0;animation:nfcOk 5s var(--ease) infinite}
+.nfc-ok{position:absolute;top:18px;left:50%;display:flex;align-items:center;gap:8px;background:rgba(8,33,10,.7);backdrop-filter:blur(5px);border:1px solid rgba(52,255,24,.35);border-radius:100px;padding:7px 14px 7px 8px;font-size:13px;font-weight:700;white-space:nowrap;opacity:0;animation:nfcOk 5s var(--ease) infinite}
 .nfc-ok .tk{width:22px;height:22px;font-size:12px}
 @keyframes nfcOk{0%,55%{opacity:0;transform:translate(-50%,6px) scale(.85)}63%{opacity:1;transform:translate(-50%,0) scale(1.05)}70%,88%{opacity:1;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,0) scale(1)}}
 
