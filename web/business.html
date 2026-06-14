@@ -126,6 +126,9 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .incentives{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
 .inc{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--ink-2);background:var(--bg-soft);border-radius:100px;padding:9px 16px}
 .inc b{color:var(--ink-1)}
+.genre-tab{font-size:13px;padding:8px 16px;border-radius:100px;border:1px solid var(--line);cursor:pointer;font-weight:600;transition:background .2s,color .2s,border-color .2s}
+.genre-tab.on{background:var(--bg-dark);color:#fff;border-color:var(--bg-dark)}
+#cl-rows .send{font-size:12px;font-weight:600;color:#1a8a2f;cursor:pointer}
 /* plan switcher + gating */
 .plan-switch{margin:0 6px 6px;background:rgba(255,255,255,.06);border-radius:11px;padding:4px;display:flex;gap:2px}
 .plan-switch span{flex:1;text-align:center;font-size:11px;font-weight:600;padding:7px 0;border-radius:8px;color:#b5b5ba;cursor:pointer;transition:background .2s,color .2s}
@@ -411,7 +414,7 @@ tr:last-child td{border-bottom:none}
         <div class="label" data-reveal>Zenti Business</div>
         <div class="urgent" data-reveal><span class="dot"></span> eTIMS is mandatory in 2026 — Zenti keeps you ready</div>
         <h1 data-reveal>Run your business.<br>Not your paperwork.</h1>
-        <p class="lead" data-reveal>Accept payments, track revenue, send eTIMS invoices, and stay organised — your whole business in one place.</p>
+        <p class="lead" data-reveal>Accept payments, track revenue, send eTIMS invoices, and stay organised. Your whole business in one place.</p>
         <div class="btn-row" data-reveal>
           <a class="btn magnetic" href="#" onclick="openReg();return false">Start free</a>
           <a class="btn ghost magnetic" href="#" onclick="openApp();return false">Watch demo</a>
@@ -516,7 +519,7 @@ tr:last-child td{border-bottom:none}
         <div>
           <div class="label" data-reveal>Why now</div>
           <h2 data-reveal>eTIMS isn’t coming.<br>It’s already here.</h2>
-          <p data-reveal>KRA now validates every declared income and expense against eTIMS. No valid e-invoice means it’s <b>not tax-deductible</b> — plus penalties up to <b>KES 1 million</b>. Most Kenyan businesses still aren’t ready.</p>
+          <p data-reveal>KRA now validates every declared income and expense against eTIMS. No valid e-invoice means it’s <b>not tax-deductible</b>, plus penalties up to <b>KES 1 million</b>. Most Kenyan businesses still aren’t ready.</p>
           <p data-reveal><b>Zenti helps you turn every sale into an eTIMS-ready invoice.</b> Nothing to file by hand, nothing to forget.</p>
           <div class="btn-row" data-reveal style="margin-top:8px"><a class="btn magnetic" href="#" onclick="openReg();return false">Get compliant — free</a></div>
         </div>
@@ -759,6 +762,7 @@ tr:last-child td{border-bottom:none}
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#" onclick="closeApp();return false"><span class="z">Z</span>Zenti <small>Business</small></a>
     <div class="navitem active" data-screen="overview" onclick="go(this)"><span class="ic"></span><span class="lbl">Overview</span></div>
+    <div class="navitem" data-screen="collect" onclick="go(this)"><span class="ic"></span><span class="lbl">Collections</span></div>
     <div class="navitem" data-screen="sales" onclick="go(this)"><span class="ic"></span><span class="lbl">Sales</span></div>
     <div class="navitem" data-screen="transactions" onclick="go(this)"><span class="ic"></span><span class="lbl">Transactions</span></div>
     <div class="navitem" data-screen="customers" onclick="go(this)"><span class="ic"></span><span class="lbl">Customers</span></div>
@@ -833,6 +837,39 @@ tr:last-child td{border-bottom:none}
           <div class="tx"><span class="av">GK</span><div><div class="nm">Grace Kamau</div><div class="mt">Zenti QR · 8:31 AM</div></div><span class="amt in">+ KES 600</span></div>
           <div class="tx"><span class="av">DN</span><div><div class="nm">David Njoroge</div><div class="mt">M-Pesa · 8:02 AM</div></div><span class="amt in">+ KES 2,100</span></div>
         </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS (adaptable rail) -->
+    <section class="screen" data-name="collect">
+      <div class="filterbar" style="margin-bottom:18px">
+        <span class="muted" style="font-size:13px;color:var(--ink-3);align-self:center;margin-right:4px">Business type:</span>
+        <span class="genre-tab on" data-g="landlord" onclick="setGenre('landlord',this)">Landlord</span>
+        <span class="genre-tab" data-g="chama" onclick="setGenre('chama',this)">Chama</span>
+        <span class="genre-tab" data-g="school" onclick="setGenre('school',this)">School</span>
+        <span class="genre-tab" data-g="retail" onclick="setGenre('retail',this)">Retail</span>
+      </div>
+      <div class="cols">
+        <div class="card">
+          <div class="section-title" id="cl-title">Rent due this month</div>
+          <div class="spend-total"><span id="cl-amount">KES 96,000</span> <span id="cl-sub">from 6 tenants</span></div>
+          <a class="btn magnetic" style="margin-top:16px" onclick="collectAll()" id="cl-btn">Collect rent</a>
+          <div style="font-size:12.5px;color:var(--ink-3);margin-top:10px">One tap sends a payment request to each <span id="cl-payerword">tenant</span> via WhatsApp + the Zenti app.</div>
+        </div>
+        <div class="card">
+          <div class="section-title">This cycle</div>
+          <div class="ailist">
+            <div class="aiitem"><span class="spark"></span><span id="cl-i1">4 paid, 2 pending</span></div>
+            <div class="aiitem"><span class="spark"></span><span id="cl-i2">KES 64,000 collected so far</span></div>
+            <div class="aiitem"><span class="spark"></span><span>Auto-reminders go out in 2 days.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;padding:0;overflow:hidden">
+        <table>
+          <thead><tr><th id="cl-h1">Tenant</th><th id="cl-h2">Unit · for</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+          <tbody id="cl-rows"></tbody>
+        </table>
       </div>
     </section>
 
@@ -1207,7 +1244,31 @@ function reanimate(scr){
   scr.querySelectorAll('[data-dash]').forEach(function(el){el.querySelectorAll('[data-count]').forEach(countUp);});
   scr.querySelectorAll('[data-bars]').forEach(function(el){ el.querySelectorAll('.bar').forEach(function(b){b.style.height='0';}); setTimeout(function(){growBars(el);},60); });
   scr.querySelectorAll('[data-ctrls]').forEach(function(el){ var fs=el.querySelectorAll('.fill'); fs.forEach(function(f){f.style.width='0';}); setTimeout(function(){ fs.forEach(function(f){f.style.width=f.getAttribute('data-w')+'%';}); },80); });
+  if(scr.getAttribute('data-name')==='collect') setGenre(_genre);
 }
+
+/* ---------- adaptable rail: genre presets ---------- */
+var GENRES={
+  landlord:{title:'Rent due this month',amount:'KES 96,000',sub:'from 6 tenants',btn:'Collect rent',payerword:'tenant',h1:'Tenant',h2:'Unit · for',i1:'4 paid, 2 pending',i2:'KES 64,000 collected so far',
+    rows:[['James Mwangi','A1 · Rent','16,000','green','Paid'],['Aisha Wambui','A2 · Rent + Water','17,500','amber','Pending'],['Peter Otieno','B1 · Rent','16,000','green','Paid'],['Grace Kamau','B2 · Rent','16,000','green','Paid'],['David Njoroge','C1 · Rent + Maintenance','18,500','red','Overdue'],['Mary Achieng','C2 · Rent','12,000','amber','Pending']]},
+  chama:{title:'Contributions due this month',amount:'KES 60,000',sub:'from 12 members',btn:'Collect contributions',payerword:'member',h1:'Member',h2:'For',i1:'9 paid, 3 pending',i2:'KES 45,000 collected so far',
+    rows:[['Wanjiru Muthoni','Monthly contribution','5,000','green','Paid'],['Brian Otieno','Monthly contribution','5,000','green','Paid'],['Faith Akinyi','Monthly + welfare','6,500','amber','Pending'],['Samuel Maina','Monthly contribution','5,000','green','Paid'],['Lucy Wambui','Monthly contribution','5,000','red','Overdue'],['Peter Kariuki','Monthly contribution','5,000','amber','Pending']]},
+  school:{title:'Fees due this term',amount:'KES 1,840,000',sub:'from 40 students',btn:'Collect fees',payerword:'parent',h1:'Student',h2:'Class · for',i1:'31 paid, 9 pending',i2:'KES 1,420,000 collected so far',
+    rows:[['Aisha Mwangi','Grade 6 · Term 2 fees','46,000','green','Paid'],['Brian Otieno','Grade 4 · Fees + Transport','52,000','amber','Pending'],['Cynthia Wairimu','Grade 8 · Term 2 fees','46,000','green','Paid'],['Daniel Kiprono','Grade 7 · Fees + Lunch','49,000','red','Overdue'],['Esther Njeri','Grade 5 · Term 2 fees','46,000','green','Paid'],['Felix Omondi','Grade 3 · Term 2 fees','44,000','amber','Pending']]},
+  retail:{title:'Outstanding invoices',amount:'KES 78,500',sub:'from 8 customers',btn:'Send payment requests',payerword:'customer',h1:'Customer',h2:'Invoice · for',i1:'5 paid, 3 pending',i2:'KES 42,000 collected so far',
+    rows:[['Sunrise Cafe','#1042 · Supplies','12,000','green','Paid'],['Peter Otieno','#1043 · Services','4,500','amber','Pending'],['Acme Ltd','#1040 · Wholesale','28,000','red','Overdue'],['Grace Kamau','#1041 · Order','3,200','red','Overdue'],['James Mwangi','#1039 · Order','1,800','green','Paid'],['Mary Achieng','#1044 · Order','9,000','amber','Pending']]}
+};
+var _genre='landlord';
+function setGenre(g){
+  if(!GENRES[g])return; _genre=g; var d=GENRES[g], S=function(id){return document.getElementById(id);};
+  S('cl-title').textContent=d.title;S('cl-amount').textContent=d.amount;S('cl-sub').textContent=d.sub;
+  S('cl-btn').textContent=d.btn;S('cl-payerword').textContent=d.payerword;S('cl-h1').textContent=d.h1;S('cl-h2').textContent=d.h2;
+  S('cl-i1').textContent=d.i1;S('cl-i2').textContent=d.i2;
+  S('cl-rows').innerHTML=d.rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>KES '+r[2]+'</td><td><span class="pill '+r[3]+'">'+r[4]+'</span></td><td style="text-align:right"><span class="send" onclick="collectOne(\''+r[0].replace(/'/g,'')+'\')">Remind ›</span></td></tr>';}).join('');
+  document.querySelectorAll('.genre-tab').forEach(function(t){t.classList.toggle('on',t.getAttribute('data-g')===g);});
+}
+function collectAll(){toast('Requests sent '+(GENRES[_genre].sub)+' · via WhatsApp + app ✓');}
+function collectOne(name){toast('Reminder sent to '+name+' ✓');}
 </script>
 </body>
 </html>
