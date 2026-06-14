@@ -95,6 +95,9 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .upsell{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#0a0a0a;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:14px;z-index:80;opacity:0;pointer-events:none;transition:.4s var(--ease);box-shadow:0 20px 50px -20px rgba(0,0,0,.6);font-size:14px}
 .upsell.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 .upsell .btn{height:38px;padding:0 16px;font-size:14px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#0e0e11;color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:13px 18px;font-size:14px;font-weight:500;z-index:90;opacity:0;pointer-events:none;transition:.35s var(--ease);box-shadow:0 20px 50px -20px rgba(0,0,0,.6);display:flex;align-items:center;gap:9px;max-width:88vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .tk{width:20px;height:20px;border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
 
 /* dashboard mockup (hero) */
 .dashcard{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 50px 100px -50px rgba(10,10,10,.35);overflow:hidden}
@@ -205,7 +208,11 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 /* ---------------- DASHBOARD ---------------- */
 .app{display:none;min-height:100vh}
 .app.on{display:grid;grid-template-columns:240px 1fr}
-.sidebar{background:var(--bg-dark);color:#fff;padding:22px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.sidebar{background:var(--bg-dark);color:#fff;padding:22px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+.sidebar::-webkit-scrollbar{width:8px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:8px;border:2px solid transparent;background-clip:content-box}
+.sidebar::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.28);background-clip:content-box}
+.sidebar::-webkit-scrollbar-track{background:transparent}
 .navitem.active{box-shadow:0 0 0 1px rgba(52,255,24,.0)}
 .plan-switch span.on{box-shadow:0 0 16px rgba(52,255,24,.25)}
 .sidebar .brand{color:#fff;margin-bottom:24px;padding:0 8px}
@@ -596,21 +603,20 @@ tr:last-child td{border-bottom:none}
 
 <!-- ================= DASHBOARD APP ================= -->
 <div class="upsell" id="upsell"><span id="upsellMsg"></span><a class="btn magnetic" onclick="hideUpsell()">Upgrade</a></div>
+<div class="toast" id="toast"></div>
 <div class="app" id="app">
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#" onclick="closeApp();return false"><span class="z">Z</span>Zenti <small>Business</small></a>
-    <div class="plan-switch" id="planSwitch"><span data-plan="free" onclick="setPlan('free')">Starter</span><span data-plan="pro" onclick="setPlan('pro')">Pro</span><span data-plan="max" class="on" onclick="setPlan('max')">Max</span></div>
-    <div class="plan-cap" id="planCap">Testing mode — viewing all features (Max)</div>
-    <div class="navitem active" data-screen="overview" data-tier="free" onclick="go(this)"><span class="ic"></span><span class="lbl">Overview</span></div>
-    <div class="navitem" data-screen="sales" data-tier="pro" onclick="go(this)"><span class="ic"></span><span class="lbl">Sales</span><span class="tag">PRO</span></div>
-    <div class="navitem" data-screen="transactions" data-tier="free" onclick="go(this)"><span class="ic"></span><span class="lbl">Transactions</span></div>
-    <div class="navitem" data-screen="customers" data-tier="pro" onclick="go(this)"><span class="ic"></span><span class="lbl">Customers</span><span class="tag">PRO</span></div>
-    <div class="navitem" data-screen="invoices" data-tier="free" onclick="go(this)"><span class="ic"></span><span class="lbl">eTIMS Invoices</span></div>
-    <div class="navitem" data-screen="qr" data-tier="free" onclick="go(this)"><span class="ic"></span><span class="lbl">QR Payments</span></div>
-    <div class="navitem" data-screen="compliance" data-tier="max" onclick="go(this)"><span class="ic"></span><span class="lbl">Compliance</span><span class="tag">MAX</span></div>
-    <div class="navitem" data-screen="reports" data-tier="pro" onclick="go(this)"><span class="ic"></span><span class="lbl">Reports</span><span class="tag">PRO</span></div>
-    <div class="navitem" data-screen="team" data-tier="pro" onclick="go(this)"><span class="ic"></span><span class="lbl">Team</span><span class="tag">PRO</span></div>
-    <div class="navitem" data-screen="settings" data-tier="free" onclick="go(this)"><span class="ic"></span><span class="lbl">Settings</span></div>
+    <div class="navitem active" data-screen="overview" onclick="go(this)"><span class="ic"></span><span class="lbl">Overview</span></div>
+    <div class="navitem" data-screen="sales" onclick="go(this)"><span class="ic"></span><span class="lbl">Sales</span></div>
+    <div class="navitem" data-screen="transactions" onclick="go(this)"><span class="ic"></span><span class="lbl">Transactions</span></div>
+    <div class="navitem" data-screen="customers" onclick="go(this)"><span class="ic"></span><span class="lbl">Customers</span></div>
+    <div class="navitem" data-screen="invoices" onclick="go(this)"><span class="ic"></span><span class="lbl">eTIMS Invoices</span></div>
+    <div class="navitem" data-screen="qr" onclick="go(this)"><span class="ic"></span><span class="lbl">QR Payments</span></div>
+    <div class="navitem" data-screen="compliance" onclick="go(this)"><span class="ic"></span><span class="lbl">Compliance</span></div>
+    <div class="navitem" data-screen="reports" onclick="go(this)"><span class="ic"></span><span class="lbl">Reports</span></div>
+    <div class="navitem" data-screen="team" onclick="go(this)"><span class="ic"></span><span class="lbl">Team</span></div>
+    <div class="navitem" data-screen="settings" onclick="go(this)"><span class="ic"></span><span class="lbl">Settings</span></div>
     <div class="spacer"></div>
     <div class="navitem" onclick="closeApp()"><span class="ic"></span>← Back to site</div>
   </aside>
@@ -981,6 +987,33 @@ function showUpsell(item){
   clearTimeout(window._upT); window._upT=setTimeout(hideUpsell,4000);
 }
 function hideUpsell(){ document.getElementById('upsell').classList.remove('show'); }
+
+/* ---------- toast + make every dashboard control functional ---------- */
+var _toastT;
+function toast(msg){var t=document.getElementById('toast');t.innerHTML='<span class="tk">✓</span>'+msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(function(){t.classList.remove('show');},2600);}
+document.addEventListener('click',function(e){
+  var appOn=document.getElementById('app').classList.contains('on');
+  // segmented toggles (Day/Week/Month, Static/Dynamic, date ranges)
+  var tg=e.target.closest('.toggle span');
+  if(tg){tg.parentElement.querySelectorAll('span').forEach(function(s){s.classList.remove('on');});tg.classList.add('on');return;}
+  // compliance tabs
+  var ct=e.target.closest('.comp-tab');
+  if(ct){ct.parentElement.querySelectorAll('.comp-tab').forEach(function(s){s.classList.remove('on');});ct.classList.add('on');return;}
+  // filter chips
+  var chip=e.target.closest('.filterbar .chip');
+  if(chip){
+    var ctxt=chip.textContent.trim();
+    if(/export|csv|pdf|excel|download|last 7 days|this month|this year|filters/i.test(ctxt)){toast(ctxt+' — demo');return;}
+    chip.parentElement.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});chip.classList.add('on');return;
+  }
+  // any remaining action button without its own handler (dashboard only)
+  var btn=e.target.closest('.btn');
+  if(btn && !btn.hasAttribute('onclick') && appOn){
+    e.preventDefault();
+    var label=btn.textContent.replace(/\s+/g,' ').trim();
+    toast(label+' — demo');
+  }
+});
 function closeApp(){
   document.getElementById('app').classList.remove('on');
   document.getElementById('landing').style.display='';
