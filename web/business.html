@@ -86,6 +86,46 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .eb-stat .v{font-size:30px;font-weight:900;letter-spacing:-.03em;color:var(--green)}
 .eb-stat .k{font-size:13px;color:#9a9aa0;margin-top:3px}
 @media(max-width:880px){.eb-grid{grid-template-columns:1fr;gap:28px}}
+/* ===== outcome-led landing sections ===== */
+.pain{background:var(--bg-soft)}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px 40px;max-width:760px;margin:40px auto 0;text-align:left}
+.pain-item{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--ink-2)}
+.pain-item .x{width:22px;height:22px;border-radius:50%;background:#e3431a18;color:#b02e0f;display:grid;place-items:center;font-weight:800;font-size:12px;flex:none;margin-top:2px}
+.pain-cta{margin-top:34px;font-size:clamp(20px,2.4vw,28px);font-weight:500;font-style:italic}
+.pain-cta b{color:#1a8a2f;font-style:normal;font-weight:700}
+.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:48px}
+.ba-col{border:1px solid var(--line);border-radius:20px;padding:24px;background:#fff;text-align:left}
+.ba-col.after{border-color:rgba(52,255,24,.4);box-shadow:0 0 44px -14px rgba(52,255,24,.35)}
+.ba-col .tg{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.ba-col.before .tg{color:var(--ink-3)}.ba-col.after .tg{color:#1a8a2f}
+.ba-step{display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 0;color:var(--ink-2)}
+.ba-step .n{width:7px;height:7px;border-radius:50%;background:var(--line-strong);flex:none}
+.ba-col.after .ba-step .n{background:var(--green)}
+.ba-arrow{font-size:24px;color:var(--ink-3)}
+@media(max-width:760px){.ba-grid{grid-template-columns:1fr}.ba-arrow{transform:rotate(90deg);margin:0 auto}}
+.oneplace{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center;max-width:880px;margin:48px auto 0}
+.op-chips{display:flex;flex-direction:column;gap:10px}
+.op-chip{border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:600;font-size:15px;background:#fff;text-align:left}
+.op-arrow{font-size:30px;color:var(--green)}
+.op-hub{background:var(--bg-dark);color:#fff;border-radius:20px;padding:28px;text-align:center;box-shadow:0 0 54px -16px rgba(52,255,24,.45)}
+.op-hub .z{width:46px;height:46px;border-radius:13px;background:var(--green);color:#06210a;display:grid;place-items:center;font-weight:900;font-size:22px;margin:0 auto 12px;font-style:normal}
+.op-hub b{font-size:18px;font-style:italic;font-weight:500}
+@media(max-width:760px){.oneplace{grid-template-columns:1fr;text-align:center}.op-arrow{transform:rotate(90deg);margin:0 auto}}
+.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:48px;text-align:left}
+.benefit{border:1px solid var(--line);border-radius:20px;padding:28px;background:#fff;transition:transform .4s var(--ease)}
+.benefit:hover{transform:translateY(-4px)}
+.benefit .bi{width:46px;height:46px;border-radius:13px;background:rgba(52,255,24,.13);color:#1a8a2f;display:grid;place-items:center;margin-bottom:16px}
+.benefit .bi svg{width:24px;height:24px}
+.benefit h3{font-size:22px;font-weight:600;font-style:normal;letter-spacing:-.01em}
+.benefit p{color:var(--ink-2);margin-top:6px;font-size:15px}
+@media(max-width:760px){.benefits{grid-template-columns:1fr}}
+.genres{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:40px}
+.genre{border:1px solid var(--line);border-radius:100px;padding:10px 18px;font-weight:600;font-size:14px;display:flex;align-items:center;gap:9px;background:#fff;transition:border-color .2s,transform .3s var(--ease)}
+.genre:hover{border-color:var(--green);transform:translateY(-2px)}
+.genre svg{width:17px;height:17px;color:#1a8a2f}
+.incentives{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.inc{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--ink-2);background:var(--bg-soft);border-radius:100px;padding:9px 16px}
+.inc b{color:var(--ink-1)}
 /* plan switcher + gating */
 .plan-switch{margin:0 6px 6px;background:rgba(255,255,255,.06);border-radius:11px;padding:4px;display:flex;gap:2px}
 .plan-switch span{flex:1;text-align:center;font-size:11px;font-weight:600;padding:7px 0;border-radius:8px;color:#b5b5ba;cursor:pointer;transition:background .2s,color .2s}
@@ -369,14 +409,14 @@ tr:last-child td{border-bottom:none}
     <div class="container grid">
       <div>
         <div class="label" data-reveal>Zenti Business</div>
-        <div class="urgent" data-reveal><span class="dot"></span> eTIMS is mandatory from 2026 — get ready in one tap</div>
-        <h1 data-reveal>Get paid. Stay<br>KRA-ready. Automatically.</h1>
-        <p class="lead" data-reveal>Every sale becomes a compliant eTIMS invoice — and a clear picture of your whole business. Tax estimates ready, records sorted, no accountant required.</p>
+        <div class="urgent" data-reveal><span class="dot"></span> eTIMS is mandatory in 2026 — Zenti keeps you ready</div>
+        <h1 data-reveal>Run your business.<br>Not your paperwork.</h1>
+        <p class="lead" data-reveal>Accept payments, track revenue, send eTIMS invoices, and stay organised — your whole business in one place.</p>
         <div class="btn-row" data-reveal>
-          <a class="btn magnetic" href="#" onclick="openReg();return false">Start free — no card needed</a>
-          <a class="btn ghost magnetic" href="#" onclick="openApp();return false">View demo dashboard</a>
+          <a class="btn magnetic" href="#" onclick="openReg();return false">Start free</a>
+          <a class="btn ghost magnetic" href="#" onclick="openApp();return false">Watch demo</a>
         </div>
-        <div class="micro" data-reveal>Free for mama mboga &amp; small shops. Pro &amp; Max for growing teams.</div>
+        <div class="micro" data-reveal>Free to start. No card needed. Built for every kind of Kenyan business.</div>
       </div>
       <div data-reveal>
         <div class="dashcard">
@@ -395,6 +435,79 @@ tr:last-child td{border-bottom:none}
       </div>
     </div>
   </header>
+
+  <!-- PAIN -->
+  <section class="section center pain">
+    <div class="container">
+      <div class="label" data-reveal>Sound familiar?</div>
+      <h2 data-reveal style="margin-top:12px">Still doing this manually?</h2>
+      <div class="pain-grid" data-reveal>
+        <div class="pain-item"><span class="x">✕</span> Tracking payments in WhatsApp</div>
+        <div class="pain-item"><span class="x">✕</span> Confirming M-Pesa payments one by one</div>
+        <div class="pain-item"><span class="x">✕</span> Writing records in a notebook</div>
+        <div class="pain-item"><span class="x">✕</span> Chasing unpaid invoices</div>
+        <div class="pain-item"><span class="x">✕</span> Calculating reports by hand</div>
+        <div class="pain-item"><span class="x">✕</span> Panicking when KRA asks for records</div>
+      </div>
+      <div class="pain-cta" data-reveal>Zenti does the busy work. <b>You run the business.</b></div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="section center">
+    <div class="container">
+      <div class="label" data-reveal>The difference</div>
+      <h2 data-reveal style="margin-top:12px">Six steps become two.</h2>
+      <div class="ba-grid">
+        <div class="ba-col before" data-reveal>
+          <div class="tg">Before Zenti</div>
+          <div class="ba-step"><span class="n"></span>Payment received</div>
+          <div class="ba-step"><span class="n"></span>Check WhatsApp</div>
+          <div class="ba-step"><span class="n"></span>Confirm the payment</div>
+          <div class="ba-step"><span class="n"></span>Write it down</div>
+          <div class="ba-step"><span class="n"></span>Update the spreadsheet</div>
+          <div class="ba-step"><span class="n"></span>Generate a report</div>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-col after" data-reveal style="transition-delay:.1s">
+          <div class="tg">With Zenti</div>
+          <div class="ba-step"><span class="n"></span>Payment received</div>
+          <div class="ba-step"><span class="n"></span>Recorded &amp; reported, automatically</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE PLACE -->
+  <section class="section center" style="background:var(--bg-soft)">
+    <div class="container">
+      <div class="label" data-reveal>One place</div>
+      <h2 data-reveal style="margin-top:12px">Everything your business<br>needs, together.</h2>
+      <div class="oneplace" data-reveal>
+        <div class="op-chips" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="op-chip">Payments</div><div class="op-chip">Invoices</div>
+          <div class="op-chip">Reports</div><div class="op-chip">Payroll</div>
+          <div class="op-chip">Customers</div><div class="op-chip">Suppliers</div>
+        </div>
+        <div class="op-arrow">→</div>
+        <div class="op-hub"><div class="z">Z</div><b>Zenti Business</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section center">
+    <div class="container">
+      <div class="label" data-reveal>What you actually get</div>
+      <h2 data-reveal style="margin-top:12px">Less paperwork. More business.</h2>
+      <div class="benefits">
+        <div class="benefit" data-reveal><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div><h3>Get paid faster</h3><p>Payment links, QR, and NFC — customers pay in seconds and the money lands instantly.</p></div>
+        <div class="benefit" data-reveal style="transition-delay:.06s"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V9M18 17v-8"/></svg></div><h3>Know your numbers</h3><p>Revenue, expenses, and reports — always up to date, never guessed at month-end.</p></div>
+        <div class="benefit" data-reveal style="transition-delay:.12s"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg></div><h3>Stop losing records</h3><p>Every transaction organised automatically — and KRA-ready the moment you need it.</p></div>
+        <div class="benefit" data-reveal style="transition-delay:.18s"><div class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Save hours every month</h3><p>The busy work runs itself, so your time goes to growing — not reconciling.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- eTIMS ANCHOR BAND -->
   <section class="section etims-band">
@@ -448,15 +561,21 @@ tr:last-child td{border-bottom:none}
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- ADAPTABLE RAIL -->
   <section class="section center" id="features" style="background:var(--bg-soft)">
     <div class="container">
-      <div class="label" data-reveal>Features</div>
-      <h2 data-reveal style="margin-top:12px">Everything a Kenyan business needs.</h2>
-      <div class="feat">
-        <div class="fcard" data-reveal><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/><path d="M8 13h8M8 17h5"/></svg></div><h3>eTIMS invoicing</h3><p>Every payment becomes an eTIMS-ready e-invoice. Mandatory from 2026 — handled for you.</p></div>
-        <div class="fcard" data-reveal style="transition-delay:.1s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9 9 0 0 0-6.7 3L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9 9 0 0 0 6.7-3L21 16"/><path d="M21 21v-5h-5"/></svg></div><h3>One clear picture</h3><p>M-Pesa, bank, and cash reconciled and categorised in one place — not three.</p></div>
-        <div class="fcard" data-reveal style="transition-delay:.2s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M8 17v-5"/><path d="M13 17V9"/><path d="M18 17v-8"/></svg></div><h3>Tax estimates</h3><p>Know your TOT, VAT, and PAYE before KRA tells you. Records ready to file.</p></div>
+      <div class="label" data-reveal>One rail, every business</div>
+      <h2 data-reveal style="margin-top:12px">Same engine.<br>Your language.</h2>
+      <p class="lead" data-reveal style="margin:16px auto 0;max-width:52ch">Zenti adapts to how your business actually works — collect rent, contributions, fees, or sales from one place. Same rail, your labels.</p>
+      <div class="genres" data-reveal>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> Landlords — rent &amp; units</div>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> Chamas — contributions</div>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> Shops &amp; retail — sales</div>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> Salons &amp; services — bookings</div>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> Schools — fees</div>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> Freelancers — invoices</div>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> Restaurants — orders</div>
+        <div class="genre"><span style="width:7px;height:7px;border-radius:2px;background:var(--green);flex:none"></span> SACCOs &amp; clubs — dues</div>
       </div>
     </div>
   </section>
@@ -551,7 +670,12 @@ tr:last-child td{border-bottom:none}
           <button class="btn ghost magnetic" onclick="openReg()">Talk to us</button>
         </div>
       </div>
-      <p class="micro" data-reveal style="margin:22px auto 0;color:var(--ink-3);font-size:13px">All plans include a one-time <b style="color:var(--ink-1)">KES 100</b> business-QR activation — we validate your details, then your QR goes live.</p>
+      <div class="incentives" data-reveal>
+        <span class="inc"><b>Early access:</b> free onboarding</span>
+        <span class="inc"><b>30-day Pro trial</b> on us</span>
+        <span class="inc">Invite a business → <b>3 months Pro free</b></span>
+      </div>
+      <p class="micro" data-reveal style="margin:18px auto 0;color:var(--ink-3);font-size:13px">All plans include a one-time <b style="color:var(--ink-1)">KES 100</b> business-QR activation — we validate your details, then your QR goes live.</p>
     </div>
   </section>
 
