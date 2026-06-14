@@ -11,6 +11,7 @@
 <style>
 /* ============================== TOKENS ============================== */
 @font-face{font-family:'General Sans';src:url('fonts/GeneralSans-Variable.woff2') format('woff2'),url('fonts/GeneralSans-Variable.woff') format('woff');font-weight:200 700;font-style:normal;font-display:swap}
+@font-face{font-family:'General Sans';src:url('fonts/GeneralSans-VariableItalic.woff2') format('woff2'),url('fonts/GeneralSans-VariableItalic.woff') format('woff');font-weight:200 700;font-style:italic;font-display:swap}
 :root{
   --black:#28282b;--bg-dark:#0e0e11;--white:#FFFFFF;--green:#34ff18;--green-soft:rgba(52,255,24,.5);
   --ink-1:#0A0A0A;--ink-2:#5b5b60;--ink-3:#8a8a90;
@@ -29,7 +30,8 @@ img{max-width:100%;display:block}
 .container{max-width:var(--max);margin:0 auto;padding:0 32px}
 section{padding:var(--pad-y) 0;position:relative}
 .label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3)}
-h1,h2,h3{font-weight:900;letter-spacing:-.03em;line-height:1.02}
+h1,h2{font-weight:500;font-style:italic;letter-spacing:-.02em;line-height:1.06}
+h3{font-weight:700;letter-spacing:-.02em;line-height:1.1}
 h1{font-size:clamp(46px,9vw,116px)}
 h2{font-size:clamp(36px,5.6vw,76px)}
 h3{font-size:clamp(26px,3vw,40px)}
