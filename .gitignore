@@ -40,3 +40,7 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# MCP config (contains API keys) — keep local
+.mcp.json
+.claude/settings.local.json
