@@ -48,3 +48,6 @@ yarn-error.*
 # Python caches
 __pycache__/
 *.pyc
+
+# installed agent skills (heavy, re-install via npx skills add)
+.agents/
