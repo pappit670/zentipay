@@ -367,6 +367,34 @@ tr:last-child td{border-bottom:none}
 @media(max-width:760px){.row2{grid-template-columns:1fr}}
 
 /* ---------------- FOOTER ---------------- */
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:28px;overflow:hidden;max-width:1040px;margin:48px auto 0;text-align:left}
+.contact-quote{padding:46px;position:relative;color:#fff;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(150deg,#103016,#0e0e11 72%)}
+.contact-quote::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 22% 18%,rgba(52,255,24,.28),transparent 70%);pointer-events:none}
+.contact-quote .qm{font-family:Georgia,serif;font-size:64px;line-height:.3;color:rgba(52,255,24,.6);position:relative}
+.contact-quote blockquote{font-size:clamp(20px,2.3vw,26px);font-weight:500;line-height:1.4;margin:22px 0 26px;position:relative}
+.contact-quote figcaption{display:flex;align-items:center;gap:12px;position:relative}
+.contact-quote .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#2a2a2e,#42424a);display:grid;place-items:center;font-weight:700;flex:none}
+.contact-quote figcaption b{display:block;font-size:15px}.contact-quote figcaption span{font-size:13px;color:#9a9aa2}
+.contact-right{background:#fff}
+.contact-form{padding:46px;display:flex;flex-direction:column;gap:15px}
+.contact-form .field{margin:0}
+.contact-form textarea{width:100%;min-height:118px;border:1.5px solid var(--line-strong);border-radius:14px;padding:12px 16px;font-size:16px;font-family:var(--font);outline:none;resize:vertical}
+.contact-form textarea:focus{border-color:var(--black)}
+.contact-form .btn{margin-top:6px}
+.contact-done{display:none;padding:46px;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;height:100%}
+.contact-done .tk{width:54px;height:54px;border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-size:26px;font-weight:800;margin-bottom:6px}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;text-align:left}
+.faq-grid h2{margin:0}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{display:flex;align-items:center;gap:14px;padding:18px 0;cursor:pointer;font-weight:600;font-size:17px}
+.faq-q .pl{color:var(--green);font-size:22px;font-weight:400;transition:transform .3s var(--ease);flex:none;width:18px;text-align:center}
+.faq-item.open .pl{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease),opacity .3s,padding .4s var(--ease);opacity:0;color:var(--ink-2);font-size:15px;line-height:1.6;padding-left:32px}
+.faq-item.open .faq-a{max-height:240px;opacity:1;padding-bottom:18px}
+@media(max-width:760px){.faq-grid{grid-template-columns:1fr;gap:22px}}
 .lp-footer{border-top:1px solid var(--line);padding:60px 0 36px}
 .founding{max-width:760px;color:var(--ink-2);font-size:15px;line-height:1.7;font-style:italic}
 .founding b{color:var(--ink-1);font-style:normal}
@@ -692,6 +720,49 @@ tr:last-child td{border-bottom:none}
         <span class="inc">Invite a business → <b>3 months Pro free</b></span>
       </div>
       <p class="micro" data-reveal style="margin:18px auto 0;color:var(--ink-3);font-size:13px">All plans include a one-time <b style="color:var(--ink-1)">KES 100</b> business-QR activation — we validate your details, then your QR goes live.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section center" id="contact">
+    <div class="container">
+      <div class="label" data-reveal>Get in touch</div>
+      <h2 data-reveal style="margin-top:12px">Talk to the team.</h2>
+      <div class="contact-grid" data-reveal>
+        <div class="contact-quote">
+          <div class="qm">”</div>
+          <blockquote>Zenti turned our month-end from a full day of reconciling into a few taps. The records are just… there.</blockquote>
+          <figcaption><span class="av">SW</span><div><b>Salon owner, Westlands</b><span>Illustrative</span></div></figcaption>
+        </div>
+        <div class="contact-right">
+          <form class="contact-form" id="contactForm">
+            <div class="field"><label>Full name</label><input type="text" placeholder="Wanjiku Kamau" required></div>
+            <div class="field"><label>Email</label><input type="email" placeholder="you@business.co.ke" required></div>
+            <div class="field"><label>Business</label><input type="text" placeholder="Your business name"></div>
+            <div class="field"><label>Message</label><textarea placeholder="How can we help?"></textarea></div>
+            <button class="btn magnetic" type="submit">Send message</button>
+          </form>
+          <div class="contact-done" id="contactDone"><span class="tk">✓</span><div style="font-weight:700;font-size:18px">Thanks — we’ll be in touch.</div><div style="color:var(--ink-3);font-size:14px">Usually within one business day.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="background:var(--bg-soft)">
+    <div class="container">
+      <div class="faq-grid">
+        <div><div class="label" data-reveal>FAQ</div><h2 data-reveal style="margin-top:12px">Frequently asked questions.</h2></div>
+        <div class="faq-list" data-reveal>
+          <div class="faq-item"><div class="faq-q"><span class="pl">+</span> Is Zenti free?</div><div class="faq-a">Starter is free forever — get paid, see your revenue, and keep records. Pro and Max add invoicing, reconciliation, team accounts, and deep compliance for growing businesses.</div></div>
+          <div class="faq-item"><div class="faq-q"><span class="pl">+</span> Do I need a KRA PIN to start?</div><div class="faq-a">No. Start with just your business name and phone. Add your KRA PIN later, when you’re ready for eTIMS and tax features.</div></div>
+          <div class="faq-item"><div class="faq-q"><span class="pl">+</span> How much is the business QR?</div><div class="faq-a">A one-time KES 100 activation. We validate your details, then your QR goes live. It’s the same on every plan.</div></div>
+          <div class="faq-item"><div class="faq-q"><span class="pl">+</span> Does Zenti work with M-Pesa?</div><div class="faq-a">Yes. Connect your till or Paybill and payments import automatically — sorted and reconciled for you.</div></div>
+          <div class="faq-item"><div class="faq-q"><span class="pl">+</span> What is eTIMS, and why does it matter?</div><div class="faq-a">Since 2026, KRA requires electronic tax invoices. Zenti makes every sale eTIMS-ready, so you stay compliant without the month-end scramble.</div></div>
+          <div class="faq-item"><div class="faq-q"><span class="pl">+</span> What kinds of businesses use Zenti?</div><div class="faq-a">One adaptable rail for landlords, chamas, shops, salons, schools, freelancers, restaurants, and more — your labels, same engine.</div></div>
+          <div class="faq-item"><div class="faq-q"><span class="pl">+</span> Is my data safe?</div><div class="faq-a">Your data is private and encrypted, and you stay in control of it. We never sell it.</div></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1282,6 +1353,20 @@ function setGenre(g){
 }
 function collectAll(){toast('Requests sent '+(GENRES[_genre].sub)+' · via WhatsApp + app ✓');}
 function collectOne(name){toast('Reminder sent to '+name+' ✓');}
+</script>
+<script>
+/* contact form + FAQ accordion */
+(function(){
+  var cf=document.getElementById('contactForm');
+  if(cf) cf.addEventListener('submit',function(e){e.preventDefault();cf.style.display='none';var d=document.getElementById('contactDone');if(d)d.style.display='flex';});
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var it=q.parentElement, open=it.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(f){f.classList.remove('open');});
+      if(!open) it.classList.add('open');
+    });
+  });
+})();
 </script>
 </body>
 </html>
