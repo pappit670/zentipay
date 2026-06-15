@@ -299,6 +299,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible{outl
 .gstep p{color:var(--ink-2);font-size:15px}
 @media(max-width:880px){.gsteps{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
 .loved{background:var(--bg-soft);border-radius:40px;margin:0 16px;text-align:center}
+/* everyday-life bento */
+.moments{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:50px;text-align:left}
+.moment-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:212px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.moment-card:hover{transform:translateY(-5px);box-shadow:0 40px 70px -44px rgba(10,10,10,.26)}
+.moment-card.wide{grid-column:span 2}
+.moment-card.dark{background:var(--bg-dark);color:#fff;border-color:transparent;box-shadow:0 40px 80px -50px rgba(52,255,24,.32)}
+.moment-card .mi{width:42px;height:42px;border-radius:12px;background:rgba(52,255,24,.13);color:#1a8a2f;display:grid;place-items:center;flex:none}
+.moment-card.dark .mi{background:rgba(52,255,24,.18);color:var(--green)}
+.moment-card .mi svg{width:22px;height:22px}
+.moment-card .tag{font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:8px}
+.moment-card.dark .tag{color:#9a9aa2}
+.moment-card h3{font-size:clamp(20px,1.9vw,26px);font-weight:500;font-style:italic;letter-spacing:-.01em;line-height:1.18}
+.moment-card.dark h3{color:#fff}
+@media(max-width:880px){.moments{grid-template-columns:1fr 1fr}.moment-card.wide{grid-column:span 2}}
+@media(max-width:560px){.moments{grid-template-columns:1fr}.moment-card.wide{grid-column:span 1}.moment-card{min-height:auto}}
 .rating-line{margin-top:18px;font-weight:600;color:var(--ink-2);font-size:16px;display:inline-flex;align-items:center;gap:10px}
 .rating-line .st{color:var(--green);letter-spacing:2px;font-size:17px}
 .rating-line .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-3)}
@@ -720,19 +735,31 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
     <div class="label" data-reveal>In everyday life</div>
     <h2 data-reveal style="margin-top:14px">Money that finally<br>feels like yours.</h2>
     <p class="lead" data-reveal style="margin:18px auto 0">A few everyday moments we’re building Zenti for. (Illustrative.)</p>
-    <div class="tcards stagger" data-reveal>
-      <figure class="tcard">
-        <blockquote>“Send your landlord rent with a link on WhatsApp — paid in ten seconds. No queueing at the shop on month-end.”</blockquote>
-        <figcaption><span class="av" style="background:#e26d5c">RL</span><div><b>Sending rent</b><span class="r">Money links</span></div></figcaption>
-      </figure>
-      <figure class="tcard">
-        <blockquote>“Between rides, tap and the money’s in. Round-ups quietly grow a fund for a second boda — without feeling it.”</blockquote>
-        <figcaption><span class="av" style="background:#3a86ff">SV</span><div><b>Saving to grow</b><span class="r">Round-ups</span></div></figcaption>
-      </figure>
-      <figure class="tcard">
-        <blockquote>“Start a trip pool and splitting gets easy — everyone sees it filling up, and you hit the goal together.”</blockquote>
-        <figcaption><span class="av" style="background:#2a9d4a">SP</span><div><b>Splitting a trip</b><span class="r">Pools</span></div></figcaption>
-      </figure>
+    <div class="moments stagger" data-reveal>
+      <div class="moment-card wide dark">
+        <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+        <div><span class="tag">Money links</span><h3>Rent, sent on WhatsApp. Paid in ten seconds.</h3></div>
+      </div>
+      <div class="moment-card">
+        <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="tag">Split</span><h3>Nyama choma, split six ways.</h3></div>
+      </div>
+      <div class="moment-card">
+        <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 20a5 5 0 0 1 9-3 5 5 0 0 1 9 3"/></svg></span>
+        <div><span class="tag">Pools</span><h3>The chama, finally on time.</h3></div>
+      </div>
+      <div class="moment-card">
+        <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg></span>
+        <div><span class="tag">Round-ups</span><h3>Saving for the boda, without trying.</h3></div>
+      </div>
+      <div class="moment-card wide">
+        <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span>
+        <div><span class="tag">Send money</span><h3>Sent home in seconds. No queue, no drama.</h3></div>
+      </div>
+      <div class="moment-card">
+        <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+        <div><span class="tag">Tap to pay</span><h3>Fare ready before the matatu moves.</h3></div>
+      </div>
     </div>
   </div>
 </section>
