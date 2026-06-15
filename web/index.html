@@ -241,6 +241,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible{outl
 .choose-card.biz li{color:#b5b5ba}
 .choose-card li .ck{color:var(--green);font-weight:800}
 @media(max-width:760px){.choose-grid{grid-template-columns:1fr}}
+/* manifesto — perspective text scroll (ported from Skiper UI skiper28) */
+.manifesto{height:240vh;position:relative;background:var(--bg)}
+.mf-hint{position:absolute;top:9vh;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);opacity:.55}
+.mf-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;perspective:300px;overflow:hidden}
+.mf-text{transform-style:preserve-3d;transform:rotateX(26deg) translateY(var(--ty,440px));max-width:900px;text-align:center;font-weight:500;font-style:italic;font-size:clamp(28px,4.6vw,62px);line-height:1.16;letter-spacing:-.02em;color:var(--ink-1);position:relative;padding:0 24px;will-change:transform}
+.mf-text .gn{color:var(--green)}
+.mf-fade{position:absolute;bottom:0;left:0;right:0;height:50vh;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none}
+@media(prefers-reduced-motion:reduce){.manifesto{height:auto}.mf-sticky{position:static;height:auto;padding:90px 0;perspective:none}.mf-text{transform:none}.mf-fade{display:none}}
+@media(max-width:760px){.manifesto{height:200vh}.mf-text{transform:rotateX(20deg) translateY(var(--ty,320px))}}
 .gsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;text-align:left}
 .gstep{border:1px solid var(--line);border-radius:20px;padding:24px}
 .gill{height:150px;border-radius:14px;background:var(--bg-soft);margin-bottom:20px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
@@ -516,6 +525,14 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
         <div class="ecap"><div class="et">Money links</div><h3>Send a link. Get paid.</h3><p>Drop a link in WhatsApp. They tap, pay with M-Pesa, and you’re notified, even if they’ve never used Zenti.</p></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- MANIFESTO (perspective text scroll, ported from Skiper UI) -->
+<section class="manifesto" id="manifesto">
+  <div class="mf-hint">Scroll</div>
+  <div class="mf-sticky">
+    <div class="mf-text" id="mfText">Money should move the moment you do. No queues at month-end. No notebook of who owes what. No guessing where it went. Just tap, and it’s done, for you, your friends, and your business. That’s the whole idea behind <span class="gn">Zenti</span>.<div class="mf-fade"></div></div>
   </div>
 </section>
 
@@ -869,6 +886,17 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
     size();window.addEventListener('resize',size);
     (function loop(){ctx.clearRect(0,0,W,H);ctx.fillStyle='#0A0A0A';ctx.font='700 14px Inter, sans-serif';parts.forEach(function(p){ctx.globalAlpha=p.o;ctx.fillText('Z',p.x,p.y);p.y+=p.sp;if(p.y>H+10){p.y=-10;p.x=Math.random()*W;}});ctx.globalAlpha=1;requestAnimationFrame(loop);})();
   }
+})();
+</script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.fromTo('#mfText',{'--ty':'460px'},{'--ty':'-80px',ease:'none',
+    scrollTrigger:{trigger:'#manifesto',start:'top top',end:'bottom bottom',scrub:0.5}});
 })();
 </script>
 </body>
