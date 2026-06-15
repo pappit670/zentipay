@@ -93,6 +93,21 @@ h3{font-size:clamp(20px,2.4vw,28px)}
 .pain-item .x{width:22px;height:22px;border-radius:50%;background:#e3431a18;color:#b02e0f;display:grid;place-items:center;font-weight:800;font-size:12px;flex:none;margin-top:2px}
 .pain-cta{margin-top:34px;font-size:clamp(20px,2.4vw,28px);font-weight:500;font-style:italic}
 .pain-cta b{color:#1a8a2f;font-style:normal;font-weight:700}
+/* "Is this you?" problem highlighter */
+.isthis{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden;min-height:78vh;display:flex;align-items:center;justify-content:center;text-align:center}
+.isthis .center{position:relative;z-index:3;max-width:680px;padding:0 24px}
+.isthis .ik{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--green)}
+.isthis h2{color:#fff;margin:14px 0;font-size:clamp(46px,8vw,92px)}
+.isthis .resolve{color:#9a9aa2;font-size:clamp(17px,2vw,21px);max-width:36ch;margin:0 auto}
+.isthis .resolve b{color:var(--green);font-style:normal}
+.float-pain{position:absolute;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:11px 15px;font-size:14px;color:#cfcfd4;max-width:230px;text-align:left;z-index:1;backdrop-filter:blur(3px);animation:pfloat 6s ease-in-out infinite}
+.float-pain .x{color:#ff6b4a;font-weight:800;margin-right:7px}
+@keyframes pfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.fp1{top:13%;left:5%;animation-delay:0s}.fp2{top:17%;right:6%;animation-delay:.8s}
+.fp3{top:50%;left:3%;animation-delay:1.6s}.fp4{bottom:15%;right:5%;animation-delay:.4s}
+.fp5{bottom:12%;left:13%;animation-delay:2.2s}.fp6{top:44%;right:10%;animation-delay:1.2s}
+@media(max-width:980px){.isthis{flex-direction:column;min-height:auto;padding:80px 0}.float-pain{position:static;max-width:none;width:fit-content;margin:0 auto 10px;animation:none}.isthis .center{order:2;margin-top:18px}}
+@media(prefers-reduced-motion:reduce){.float-pain{animation:none}}
 .ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:48px}
 .ba-col{border:1px solid var(--line);border-radius:20px;padding:24px;background:#fff;text-align:left}
 .ba-col.after{border-color:rgba(52,255,24,.4);box-shadow:0 0 44px -14px rgba(52,255,24,.35)}
@@ -439,20 +454,18 @@ tr:last-child td{border-bottom:none}
     </div>
   </header>
 
-  <!-- PAIN -->
-  <section class="section center pain">
-    <div class="container">
-      <div class="label" data-reveal>Sound familiar?</div>
-      <h2 data-reveal style="margin-top:12px">Still doing this manually?</h2>
-      <div class="pain-grid" data-reveal>
-        <div class="pain-item"><span class="x">✕</span> Tracking payments in WhatsApp</div>
-        <div class="pain-item"><span class="x">✕</span> Confirming M-Pesa payments one by one</div>
-        <div class="pain-item"><span class="x">✕</span> Writing records in a notebook</div>
-        <div class="pain-item"><span class="x">✕</span> Chasing unpaid invoices</div>
-        <div class="pain-item"><span class="x">✕</span> Calculating reports by hand</div>
-        <div class="pain-item"><span class="x">✕</span> Panicking when KRA asks for records</div>
-      </div>
-      <div class="pain-cta" data-reveal>Zenti does the busy work. <b>You run the business.</b></div>
+  <!-- IS THIS YOU? (problem highlighter) -->
+  <section class="section isthis">
+    <span class="float-pain fp1"><span class="x">✕</span> Tracking payments in WhatsApp</span>
+    <span class="float-pain fp2"><span class="x">✕</span> Confirming M-Pesa one by one</span>
+    <span class="float-pain fp3"><span class="x">✕</span> Records in a notebook</span>
+    <span class="float-pain fp4"><span class="x">✕</span> Chasing unpaid invoices</span>
+    <span class="float-pain fp5"><span class="x">✕</span> Reports by hand at month-end</span>
+    <span class="float-pain fp6"><span class="x">✕</span> Panic when KRA asks for records</span>
+    <div class="center">
+      <div class="ik" data-reveal>Sound familiar?</div>
+      <h2 data-reveal>Is this you?</h2>
+      <div class="resolve" data-reveal>If running the business means drowning in the busy work, Zenti was built for you. <b>You run the business. We handle the rest.</b></div>
     </div>
   </section>
 
