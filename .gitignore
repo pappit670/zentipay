@@ -51,3 +51,22 @@ __pycache__/
 
 # installed agent skills (heavy, re-install via npx skills add)
 .agents/
+
+# hyperframes/agent skills symlinked into .claude/skills from .agents (re-install via npx skills add)
+skills-lock.json
+.claude/skills/embedded-captions
+.claude/skills/faceless-explainer
+.claude/skills/general-video
+.claude/skills/graphic-overlays
+.claude/skills/hyperframes-animation
+.claude/skills/hyperframes-cli
+.claude/skills/hyperframes-core
+.claude/skills/hyperframes-creative
+.claude/skills/hyperframes-media
+.claude/skills/hyperframes-read-first
+.claude/skills/hyperframes-registry
+.claude/skills/motion-graphics
+.claude/skills/pr-to-video
+.claude/skills/product-launch-video
+.claude/skills/remotion-to-hyperframes
+.claude/skills/website-to-video
