@@ -854,6 +854,8 @@ tr:last-child td{border-bottom:none}
     <div class="navitem" data-screen="qr" onclick="go(this)"><span class="ic"></span><span class="lbl">QR Payments</span></div>
     <div class="navitem" data-screen="compliance" onclick="go(this)"><span class="ic"></span><span class="lbl">Compliance</span></div>
     <div class="navitem" data-screen="reports" onclick="go(this)"><span class="ic"></span><span class="lbl">Reports</span></div>
+    <div class="navitem" data-screen="payroll" onclick="go(this)"><span class="ic"></span><span class="lbl">Payroll</span></div>
+    <div class="navitem" data-screen="suppliers" onclick="go(this)"><span class="ic"></span><span class="lbl">Suppliers</span></div>
     <div class="navitem" data-screen="team" onclick="go(this)"><span class="ic"></span><span class="lbl">Team</span></div>
     <div class="navitem" data-screen="settings" onclick="go(this)"><span class="ic"></span><span class="lbl">Settings</span></div>
     <div class="spacer"></div>
@@ -1134,6 +1136,56 @@ tr:last-child td{border-bottom:none}
           <div class="col"><div class="bar" data-h="66"></div><div class="lab">W3</div></div>
           <div class="col"><div class="bar" data-h="100"></div><div class="lab">W4</div></div>
         </div>
+      </div>
+    </section>
+
+    <!-- PAYROLL -->
+    <section class="screen" data-name="payroll">
+      <div class="m-grid" style="grid-template-columns:repeat(3,1fr)" data-dash>
+        <div class="metric"><div class="k">Monthly payroll</div><div class="v" data-count="184000" data-prefix="KES ">KES 0</div></div>
+        <div class="metric"><div class="k">Employees</div><div class="v" data-count="4" data-suffix="">0</div></div>
+        <div class="metric"><div class="k">Next run</div><div class="v" style="font-size:20px">Jun 30</div><div class="d" style="color:var(--ink-3)">in 15 days</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:4px 0 16px">
+        <div class="section-title" style="margin:0">This month</div>
+        <a class="btn sm magnetic" onclick="toast('Salaries sent to 4 Zenti wallets ✓')">Run payroll · one tap</a>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table>
+          <thead><tr><th>Employee</th><th>Role</th><th>Salary</th><th>Pays to</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Samuel Maina</td><td>Manager</td><td>KES 65,000</td><td>@samm · Zenti</td><td><span class="pill green">Ready</span></td></tr>
+            <tr><td>Lucy Onyango</td><td>Cashier</td><td>KES 38,000</td><td>@lucyo · Zenti</td><td><span class="pill green">Ready</span></td></tr>
+            <tr><td>Faith Akinyi</td><td>Accountant</td><td>KES 52,000</td><td>@faith · Zenti</td><td><span class="pill green">Ready</span></td></tr>
+            <tr><td>John Kariuki</td><td>Stylist</td><td>KES 29,000</td><td>+254 7•• ••• 412</td><td><span class="pill amber">Add wallet</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="disclaimer">Salaries pay directly to each employee’s Zenti wallet. PAYE &amp; statutory estimates feed your Compliance view.</div>
+    </section>
+
+    <!-- SUPPLIERS -->
+    <section class="screen" data-name="suppliers">
+      <div class="m-grid" style="grid-template-columns:repeat(3,1fr)" data-dash>
+        <div class="metric"><div class="k">Spent this month</div><div class="v" data-count="142700" data-prefix="KES ">KES 0</div></div>
+        <div class="metric"><div class="k">Suppliers</div><div class="v" data-count="7" data-suffix="">0</div></div>
+        <div class="metric"><div class="k">Outstanding</div><div class="v" data-count="38500" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--amber)">2 due soon</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:4px 0 16px">
+        <div class="section-title" style="margin:0">Suppliers &amp; stock</div>
+        <a class="btn sm magnetic" onclick="toast('Supplier added ✓')">+ Add supplier</a>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table>
+          <thead><tr><th>Supplier</th><th>Last purchase</th><th>Bought (mo)</th><th>Outstanding</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Bidco</td><td>Jun 13 · Stock</td><td>KES 48,000</td><td>KES 0</td><td><span class="pill green">Paid</span></td></tr>
+            <tr><td>Brookside</td><td>Jun 12 · Stock</td><td>KES 31,500</td><td>KES 18,500</td><td><span class="pill amber">Due Jun 20</span></td></tr>
+            <tr><td>Kevian (Afia)</td><td>Jun 10 · Stock</td><td>KES 22,000</td><td>KES 0</td><td><span class="pill green">Paid</span></td></tr>
+            <tr><td>Beauty Supplies Ltd</td><td>Jun 8 · Salon</td><td>KES 26,200</td><td>KES 20,000</td><td><span class="pill red">Overdue</span></td></tr>
+            <tr><td>Packaging Co.</td><td>Jun 5 · Supplies</td><td>KES 15,000</td><td>KES 0</td><td><span class="pill green">Paid</span></td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
