@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@hyperframes/core/dist/hyperframe.runtime.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@hyperframes/shader-transitions/dist/index.global.js"></script>
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0e0e11;
+        --ink: #f5f5f7;
+        --accent: #34ff18;
+        --muted: #9a9aa2;
+        --accent-dim: #103016;
+        --font-display: "General Sans", sans-serif;
+        --font-data: "JetBrains Mono", monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); color: var(--ink); }
+      .scene { position: absolute; top: 0; left: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .scene-content { width: 100%; height: 100%; padding: 140px 90px; display: flex; flex-direction: column; justify-content: center; gap: 28px; box-sizing: border-box; position: relative; z-index: 1; }
+      .display { font-family: var(--font-display); font-weight: 500; font-style: italic; line-height: 1.04; letter-spacing: -0.03em; font-size: 116px; }
+      .kicker { font-family: var(--font-display); font-weight: 600; font-size: 30px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+      .body-text { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1.4; color: var(--muted); }
+      .data-text { font-family: var(--font-data); font-weight: 500; font-variant-numeric: tabular-nums; }
+      .glow { position: absolute; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(52,255,24,0.22), transparent 70%); filter: blur(40px); z-index: 0; top: -120px; right: -160px; }
+      .tick { width: 150px; height: 150px; border-radius: 50%; background: var(--accent); color: #06210a; display: grid; place-items: center; font-size: 76px; font-weight: 800; box-shadow: 0 0 60px rgba(52,255,24,0.5); }
+      .pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 18px 28px; font-family: var(--font-display); font-weight: 600; font-size: 30px; }
+      .pill .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); }
+      .zwordmark { font-family: var(--font-display); font-weight: 700; font-style: normal; font-size: 150px; letter-spacing: -0.04em; display: flex; align-items: center; gap: 26px; }
+      .zwordmark .z { width: 120px; height: 120px; border-radius: 30px; background: var(--accent); color: #06210a; display: grid; place-items: center; font-size: 84px; font-weight: 900; }
+      .cta-pill { align-self: flex-start; background: var(--accent); color: #06210a; font-family: var(--font-display); font-weight: 700; font-size: 38px; border-radius: 100px; padding: 26px 44px; }
+      .grain { position: absolute; inset: 0; pointer-events: none; z-index: 50; opacity: 0.16; background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1.2px), radial-gradient(rgba(0,0,0,0.18) 1px, transparent 1.2px); background-size: 3px 3px, 5px 5px; background-position: 0 0, 1px 2px; mix-blend-mode: overlay; }
+    </style>
+  </head>
+  <body>
+    <div id="main" data-composition-id="main" data-width="1080" data-height="1920" data-start="0" data-duration="15">
+      <!-- SCENE 1 — hook -->
+      <div class="scene clip" id="s1" data-start="0" data-duration="2.5" data-track-index="0">
+        <div class="glow"></div>
+        <div class="grain"></div>
+        <div class="scene-content">
+          <div class="kicker" id="s1-k">Zenti</div>
+          <h1 class="display" id="s1-t">Money,<br />finally<br />simple.</h1>
+        </div>
+      </div>
+
+      <!-- SCENE 2 — pay -->
+      <div class="scene clip" id="s2" data-start="2.5" data-duration="2.5" data-track-index="0" style="visibility:hidden;">
+        <div class="grain"></div>
+        <div class="scene-content">
+          <h1 class="display" id="s2-t">Pay anyone.<br />In seconds.</h1>
+          <div class="pill" id="s2-pill"><span class="dot"></span> ✓ Paid · KES 1,200</div>
+        </div>
+      </div>
+
+      <!-- SCENE 3 — save (SHADER ANCHOR) -->
+      <div class="scene clip" id="s3" data-start="5" data-duration="2.5" data-track-index="0" style="opacity:0;">
+        <div class="grain"></div>
+        <div class="scene-content">
+          <h1 class="display" id="s3-t">Save for<br />what matters.</h1>
+          <div class="data-text" id="s3-stat" style="font-size:96px;color:var(--accent);">KES 0</div>
+        </div>
+      </div>
+
+      <!-- SCENE 4 — hero reveal (SHADER ANCHOR) -->
+      <div class="scene clip" id="s4" data-start="7.5" data-duration="2.5" data-track-index="0" style="opacity:0;">
+        <div class="glow" style="top:auto;bottom:-160px;left:-180px;right:auto;"></div>
+        <div class="grain"></div>
+        <div class="scene-content" style="align-items:flex-start;">
+          <div class="tick" id="s4-tick">✓</div>
+          <h1 class="display" id="s4-t">One tap.<br />It’s done.</h1>
+        </div>
+      </div>
+
+      <!-- SCENE 5 — built for Kenya -->
+      <div class="scene clip" id="s5" data-start="10" data-duration="2.5" data-track-index="0" style="visibility:hidden;">
+        <div class="grain"></div>
+        <div class="scene-content">
+          <h1 class="display" id="s5-t">Built<br />for Kenya.</h1>
+          <p class="body-text" id="s5-sub">M-Pesa, bank, and cash — one simple app.</p>
+        </div>
+      </div>
+
+      <!-- SCENE 6 — CTA -->
+      <div class="scene clip" id="s6" data-start="12.5" data-duration="2.5" data-track-index="0" style="visibility:hidden;">
+        <div class="glow"></div>
+        <div class="grain"></div>
+        <div class="scene-content">
+          <div class="zwordmark" id="s6-mark"><span class="z">Z</span>Zenti</div>
+          <p class="body-text" id="s6-sub" style="color:var(--ink);">Money, finally simple.</p>
+          <div class="cta-pill" id="s6-cta">Download free</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // --- Non-anchor scene toggles (autoAlpha) ---
+      tl.set("#s1", { autoAlpha: 0 }, 2.5);
+      tl.set("#s2", { autoAlpha: 1 }, 2.5);
+      tl.set("#s2", { autoAlpha: 0 }, 5.0);
+      tl.set("#s3", { opacity: 1 }, 5.0); // first shader anchor must be shown
+      tl.set("#s5", { autoAlpha: 1 }, 10.0);
+      tl.set("#s5", { autoAlpha: 0 }, 12.5);
+      tl.set("#s6", { autoAlpha: 1 }, 12.5);
+
+      // === SCENE 1 (0-2.5) — hook ===
+      tl.from("#s1-k", { y: 20, autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 0.2);
+      tl.from("#s1-t", { y: 60, autoAlpha: 0, duration: 0.7, ease: "expo.out" }, 0.45);
+      tl.to(".glow", { scale: 1.15, opacity: 0.8, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0.4);
+
+      // === SCENE 2 (2.5-5) — pay ===
+      tl.from("#s2-t", { y: 50, autoAlpha: 0, duration: 0.6, ease: "power3.out" }, 2.7);
+      tl.from("#s2-pill", { y: 30, autoAlpha: 0, scale: 0.85, duration: 0.5, ease: "back.out(1.6)" }, 3.15);
+      tl.to("#s2-pill", { y: -8, duration: 1.1, ease: "sine.inOut", yoyo: true, repeat: 1 }, 3.8);
+
+      // === SCENE 3 (5-7.5) — save (anchor, no exit tweens) ===
+      tl.from("#s3-t", { y: 50, autoAlpha: 0, duration: 0.6, ease: "power3.out" }, 5.2);
+      var sObj = { v: 0 };
+      tl.to(sObj, { v: 35000, duration: 1.6, ease: "power2.out",
+        onUpdate: function () { document.getElementById("s3-stat").textContent = "KES " + Math.round(sObj.v).toLocaleString("en-US"); } }, 5.6);
+
+      // === SCENE 4 (7.5-10) — hero reveal (shader brings this in) ===
+      tl.from("#s4-tick", { scale: 0, autoAlpha: 0, duration: 0.6, ease: "back.out(1.7)" }, 7.7);
+      tl.from("#s4-t", { y: 50, autoAlpha: 0, duration: 0.6, ease: "expo.out" }, 8.0);
+      tl.to("#s4-tick", { y: -10, duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 1 }, 8.6);
+
+      // === SCENE 5 (10-12.5) — built for Kenya ===
+      tl.from("#s5-t", { y: 50, autoAlpha: 0, duration: 0.6, ease: "power3.out" }, 10.2);
+      tl.from("#s5-sub", { y: 24, autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 10.6);
+      tl.to("#s5-t", { y: -8, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.9);
+
+      // === SCENE 6 (12.5-15) — CTA (final, exit ok) ===
+      tl.from("#s6-mark", { scale: 0.85, autoAlpha: 0, duration: 0.6, ease: "back.out(1.5)" }, 12.7);
+      tl.from("#s6-sub", { y: 24, autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 13.1);
+      tl.from("#s6-cta", { y: 24, autoAlpha: 0, scale: 0.9, duration: 0.5, ease: "back.out(1.6)" }, 13.4);
+      tl.to("#s6-cta", { scale: 1.04, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: 1 }, 14.0);
+
+      // --- Shader: one transition at the hero reveal (s3 -> s4) ---
+      window.HyperShader.init({
+        bgColor: getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#0e0e11",
+        scenes: ["s3", "s4"],
+        timeline: tl,
+        transitions: [{ time: 7.25, shader: "cinematic-zoom", duration: 0.5 }],
+      });
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
