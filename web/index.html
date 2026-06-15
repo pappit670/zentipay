@@ -160,7 +160,7 @@ h3{font-size:clamp(26px,3vw,40px)}
 @media(max-width:880px){.hero .grid{grid-template-columns:1fr;gap:56px;text-align:center}.hero h1,.hero .sub,.hero .lead{margin-left:auto;margin-right:auto}.hero .btn-row{justify-content:center}.float-card{display:none}}
 
 /* ============================== GUIDED TOUR (pinned) ============================== */
-.tour{padding:0;background:var(--bg-soft)}
+.tour{padding:0 0 9vh;background:var(--bg-soft)}
 .tour-track{position:relative}
 .tour-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;max-width:var(--max);margin:0 auto;padding:0 32px}
 .tour-caps{position:relative}
@@ -241,6 +241,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible{outl
 .choose-card.biz li{color:#b5b5ba}
 .choose-card li .ck{color:var(--green);font-weight:800}
 @media(max-width:760px){.choose-grid{grid-template-columns:1fr}}
+/* small Pay-vs-Business comparison box (homepage is app-first) */
+.cmp-box{display:grid;grid-template-columns:1fr auto 1fr;gap:26px;align-items:center;max-width:840px;margin:48px auto 0;border:1px solid var(--line);border-radius:22px;padding:30px 34px;background:var(--bg-soft);text-align:left}
+.cmp-side .cmp-t{font-weight:700;font-size:18px;letter-spacing:-.01em}
+.cmp-side .cmp-d{color:var(--ink-2);font-size:14.5px;margin-top:6px;line-height:1.5}
+.cmp-side.biz .cmp-t{color:var(--ink-3)}
+.cmp-link{display:inline-block;margin-top:10px;font-weight:600;font-size:14px;color:var(--ink-1);border-bottom:2px solid var(--green);padding-bottom:1px}
+.cmp-vs{font-size:12px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em}
+@media(max-width:640px){.cmp-box{grid-template-columns:1fr;gap:18px}.cmp-vs{display:none}}
 /* manifesto — perspective text scroll (ported from Skiper UI skiper28) */
 .manifesto{height:240vh;position:relative;background:var(--bg)}
 .mf-hint{position:absolute;top:9vh;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);opacity:.55}
@@ -332,7 +340,8 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 @media(max-width:560px){.container{padding:0 22px}:root{--pad-y:80px}.card-sec{margin:0 8px}.tour-sticky{padding:0 22px}}
 
 /* ============================== EXPERIENCE (real-time payment demos) ============================== */
-.exp{background:var(--bg-dark);color:#fff;border-radius:40px;margin:0 16px;overflow:hidden}
+.exp{background:var(--bg-dark);color:#fff;border-radius:40px;margin:28px 16px;overflow:hidden}
+.exp .lead{margin-bottom:8px}
 /* green pop — luminous accents on deep dark */
 .exp .tk,.success .ck{box-shadow:0 0 26px rgba(52,255,24,.55)}
 .nfc-ok{box-shadow:0 0 24px rgba(52,255,24,.4)}
@@ -597,31 +606,21 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
   </div>
 </section>
 
-<!-- SPLIT THE AUDIENCE -->
-<section id="business" class="choose">
+<!-- SMALL PAY vs BUSINESS COMPARISON (homepage is app-first) -->
+<section id="business" class="gstart">
   <div class="container">
-    <div class="label" data-reveal>One Zenti, two ways</div>
-    <h2 data-reveal style="margin-top:14px">Which Zenti are you?</h2>
-    <div class="choose-grid">
-      <div class="choose-card" data-reveal>
-        <div class="ct">For individuals</div>
-        <h3>Zenti Pay</h3>
-        <ul>
-          <li><span class="ck">✓</span> Send &amp; receive money</li>
-          <li><span class="ck">✓</span> Split bills with friends</li>
-          <li><span class="ck">✓</span> Pay businesses, save toward goals</li>
-        </ul>
-        <a class="btn magnetic" href="#download">Get Zenti Pay</a>
+    <div class="label" data-reveal>Heads up</div>
+    <h2 data-reveal style="margin-top:14px">Two Zentis, one family.</h2>
+    <div class="cmp-box" data-reveal>
+      <div class="cmp-side">
+        <div class="cmp-t">Zenti Pay</div>
+        <div class="cmp-d">Everyday money — send, split, save, and pay. This is the app you’re here for.</div>
       </div>
-      <div class="choose-card biz" data-reveal style="transition-delay:.08s">
-        <div class="ct">For businesses</div>
-        <h3>Zenti Business</h3>
-        <ul>
-          <li><span class="ck">✓</span> Receive payments, collect from many</li>
-          <li><span class="ck">✓</span> Reports, invoices &amp; eTIMS</li>
-          <li><span class="ck">✓</span> Run operations from one place</li>
-        </ul>
-        <a class="btn invert magnetic" href="business.html">Get Zenti Business →</a>
+      <div class="cmp-vs">vs</div>
+      <div class="cmp-side biz">
+        <div class="cmp-t">Zenti Business</div>
+        <div class="cmp-d">Getting paid and running a business? That lives on its own home.</div>
+        <a class="cmp-link" href="business.html">See Zenti Business →</a>
       </div>
     </div>
   </div>
@@ -684,8 +683,11 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
     </div>
     <div class="counter">Be among the first<br>on Zenti.</div>
     <h2 data-reveal style="margin-top:8px">Ready to move smarter?</h2>
-    <p class="lead" data-reveal style="margin:18px auto 0">Join Kenyans already using Zenti to pay, save, and grow.</p>
+    <p class="lead" data-reveal style="margin:18px auto 0">Be one of the first Kenyans to pay, save, and grow with Zenti.</p>
     <div class="btn-row" data-reveal style="justify-content:center;margin-top:32px"><a class="btn magnetic" href="#top">Download for iOS</a><a class="btn ghost magnetic" href="#top">Download for Android</a></div>
+    <div class="trust-strip" data-reveal style="margin-top:26px;margin-bottom:0">
+      <span>Free forever</span><span>Refer a friend, you both win</span><span>Founding-member early access</span><span>Works with M-Pesa</span>
+    </div>
     <div class="note">Free to download. No hidden fees.</div>
   </div>
 </section>
