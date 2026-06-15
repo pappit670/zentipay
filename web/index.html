@@ -249,6 +249,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,.btn:focus-visible{outl
 .cmp-link{display:inline-block;margin-top:10px;font-weight:600;font-size:14px;color:var(--ink-1);border-bottom:2px solid var(--green);padding-bottom:1px}
 .cmp-vs{font-size:12px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em}
 @media(max-width:640px){.cmp-box{grid-template-columns:1fr;gap:18px}.cmp-vs{display:none}}
+/* reliability — activity / records */
+.activity-card{width:320px;background:var(--bg-dark);border-radius:24px;padding:20px;color:#fff;box-shadow:0 50px 90px -45px rgba(10,10,10,.5),0 0 0 1px rgba(255,255,255,.04)}
+.activity-card .ah{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:14px}
+.activity-card .ah small{color:var(--green);font-size:11px;font-weight:600}
+.activity-search{display:flex;align-items:center;gap:9px;background:#161618;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:11px 13px;font-size:13px;color:#9a9aa0;margin-bottom:8px}
+.activity-search svg{width:15px;height:15px;color:#9a9aa0;flex:none}
+.activity-row{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.activity-row:last-child{border-bottom:none}
+.activity-row .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2a2a2e,#3a3a40);display:grid;place-items:center;font-size:10px;font-weight:700;color:#cfcfd4;flex:none}
+.activity-row .nm{font-weight:600}.activity-row .dt{color:#9a9aa0;font-size:11px}
+.activity-row .amt{margin-left:auto;font-weight:700}.activity-row .amt.in{color:var(--green)}
+.activity-note{margin-top:12px;font-size:12px;color:var(--green);display:flex;gap:7px;align-items:center;font-weight:600}
+/* cost comparison widget */
+.cost{text-align:center}
+.cost-widget{max-width:580px;margin:46px auto 0;border:1px solid var(--line);border-radius:24px;padding:32px;background:var(--bg-soft);text-align:left}
+.cost-amt{font-size:14px;color:var(--ink-2)}.cost-amt b{display:block;font-size:30px;color:var(--ink-1);font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cost-slider{width:100%;margin:16px 0 26px;accent-color:var(--green);height:6px;cursor:pointer}
+.cost-bars{display:flex;flex-direction:column;gap:16px}
+.cost-bar .l{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:7px}
+.cost-bar .l b{font-variant-numeric:tabular-nums}
+.cost-bar .track{height:14px;border-radius:8px;background:var(--line);overflow:hidden}
+.cost-bar .fill{height:100%;border-radius:8px;transition:width .35s var(--ease)}
+.cost-bar.them .fill{background:#cfcfd4}.cost-bar.us .fill{background:var(--green)}
+.cost-save{margin-top:22px;font-weight:700;font-size:clamp(18px,2.4vw,24px);text-align:center}.cost-save b{color:#1a8a2f}
+.cost-note{margin-top:14px;font-size:12px;color:var(--ink-3);text-align:center}
 /* manifesto — perspective text scroll (ported from Skiper UI skiper28) */
 .manifesto{height:240vh;position:relative;background:var(--bg)}
 .mf-hint{position:absolute;top:9vh;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);opacity:.55}
@@ -564,6 +589,47 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
         </div>
         <div style="color:var(--ink-3);font-size:14px">6 members contributing</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELIABILITY -->
+<section id="records">
+  <div class="container split">
+    <div class="copy">
+      <div class="label" data-reveal>Your money, remembered</div>
+      <h2><span class="mask-line" data-reveal-line><span>Paid is paid.</span></span><span class="mask-line" data-reveal-line><span>And remembered.</span></span></h2>
+      <p class="lead" data-reveal>Every payment confirms instantly — no “money gone, order not updated.” And every shilling stays searchable: filter by date, person, or amount, and export anytime. Always there. Never an error.</p>
+    </div>
+    <div class="visual">
+      <div class="activity-card" data-reveal style="transition-delay:.1s">
+        <div class="ah">Activity <small>● all synced</small></div>
+        <div class="activity-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> Search transactions</div>
+        <div class="activity-row"><span class="av">DK</span><div><div class="nm">David Kamau</div><div class="dt">Today · 9:42</div></div><span class="amt in">+ 1,500</span></div>
+        <div class="activity-row"><span class="av">SO</span><div><div class="nm">Sarah Ochieng</div><div class="dt">Today · 8:15</div></div><span class="amt">− 850</span></div>
+        <div class="activity-row"><span class="av">JM</span><div><div class="nm">Rent · J. Mwangi</div><div class="dt">Jun 1 · 7:30</div></div><span class="amt">− 16,000</span></div>
+        <div class="activity-row"><span class="av">GW</span><div><div class="nm">Trip pool</div><div class="dt">May 28 · 18:04</div></div><span class="amt in">+ 3,000</span></div>
+        <div class="activity-note"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Found in an instant — going back years.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COST COMPARISON -->
+<section id="cost" class="cost">
+  <div class="container">
+    <div class="label" data-reveal>The real cost</div>
+    <h2 data-reveal style="margin-top:14px">See what you’re<br>really paying.</h2>
+    <p class="lead" data-reveal style="margin:18px auto 0">Sending fees add up faster than most people realise. Move the slider and see the difference.</p>
+    <div class="cost-widget" data-reveal>
+      <div class="cost-amt">You send <b id="costVal">KES 2,500</b></div>
+      <input type="range" class="cost-slider" id="costSlider" min="100" max="70000" step="100" value="2500" aria-label="Amount to send" />
+      <div class="cost-bars">
+        <div class="cost-bar them"><div class="l">Typical mobile-money fee <b id="costThem">KES 33</b></div><div class="track"><div class="fill" id="costThemBar" style="width:30%"></div></div></div>
+        <div class="cost-bar us"><div class="l">With Zenti <b id="costUs">KES 0</b></div><div class="track"><div class="fill" id="costUsBar" style="width:0%"></div></div></div>
+      </div>
+      <div class="cost-save">You’d keep <b id="costSave">KES 33</b> — every single time.</div>
+      <div class="cost-note">Illustrative, based on standard mobile-money send charges (2026). Zenti has no send fee.</div>
     </div>
   </div>
 </section>
@@ -899,6 +965,25 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
   gsap.registerPlugin(ScrollTrigger);
   gsap.fromTo('#mfText',{'--ty':'460px'},{'--ty':'-80px',ease:'none',
     scrollTrigger:{trigger:'#manifesto',start:'top top',end:'bottom bottom',scrub:0.5}});
+})();
+</script>
+<script>
+/* cost comparison slider (illustrative) */
+(function(){
+  var s=document.getElementById('costSlider'); if(!s) return;
+  function fee(a){
+    var t=[[100,0],[500,7],[1000,13],[1500,23],[2500,33],[3500,53],[5000,57],[7500,78],[10000,90],[15000,100],[20000,105],[35000,108],[50000,108],[70000,108]];
+    for(var i=0;i<t.length;i++){ if(a<=t[i][0]) return t[i][1]; } return 108;
+  }
+  function up(){
+    var a=+s.value, them=fee(a);
+    document.getElementById('costVal').textContent='KES '+a.toLocaleString('en-US');
+    document.getElementById('costThem').textContent='KES '+them;
+    document.getElementById('costSave').textContent='KES '+them;
+    document.getElementById('costThemBar').style.width=Math.max(4,them/120*100)+'%';
+    document.getElementById('costUsBar').style.width='2%';
+  }
+  s.addEventListener('input',up); up();
 })();
 </script>
 </body>
