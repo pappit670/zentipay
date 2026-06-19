@@ -53,6 +53,60 @@
     document.querySelectorAll('[data-r]').forEach(function(el){ el.classList.add('in'); });
   }
 
+  /* ---------- waitlist / email capture ----------
+     Works today with no backend via a mailto handoff. To capture silently,
+     set WAITLIST_ENDPOINT to a form endpoint (Formspree, Supabase function,
+     your own API) that accepts a POST { email, source } — the form will then
+     submit in the background and skip the mailto step. */
+  var WAITLIST_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxx' or your API URL
+  var WAITLIST_EMAIL = 'hello@zentipay.app';
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function alreadyJoined(email){
+    try{ var a = JSON.parse(localStorage.getItem('zenti_waitlist')||'[]'); return a.indexOf(email)>-1; }catch(e){ return false; }
+  }
+  function remember(email){
+    try{ var a = JSON.parse(localStorage.getItem('zenti_waitlist')||'[]'); if(a.indexOf(email)<0){ a.push(email); localStorage.setItem('zenti_waitlist', JSON.stringify(a)); } }catch(e){}
+  }
+  function setMsg(form, text, isErr){
+    var box = form.parentNode.querySelector('[data-wl-msg]') || form.nextElementSibling;
+    if(box){ box.textContent = text; box.classList.toggle('err', !!isErr); }
+  }
+  function lockSuccess(form, text){
+    setMsg(form, text, false);
+    var btn = form.querySelector('button'); var inp = form.querySelector('input');
+    if(btn){ btn.disabled = true; btn.textContent = '✓ On the list'; }
+    if(inp){ inp.disabled = true; }
+  }
+
+  document.querySelectorAll('form[data-waitlist]').forEach(function(form){
+    var input = form.querySelector('input[type="email"], input[name="email"]');
+    var source = form.getAttribute('data-source') || (document.title || 'site');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var email = (input && input.value || '').trim();
+      if(!EMAIL_RE.test(email)){
+        if(input){ input.setAttribute('aria-invalid','true'); input.focus(); }
+        setMsg(form, 'Enter a valid email so we can reach you.', true);
+        return;
+      }
+      if(input) input.removeAttribute('aria-invalid');
+      if(alreadyJoined(email)){ lockSuccess(form, 'You’re already on the list — see you at launch.'); return; }
+      remember(email);
+      if(WAITLIST_ENDPOINT){
+        var fd = new FormData(); fd.append('email', email); fd.append('source', source);
+        fetch(WAITLIST_ENDPOINT, {method:'POST', body:fd, headers:{'Accept':'application/json'}})
+          .then(function(r){ lockSuccess(form, r.ok ? 'You’re on the list. We’ll email you at launch.' : 'Got it — we’ll be in touch at launch.'); })
+          .catch(function(){ lockSuccess(form, 'Saved. We’ll email you at launch.'); });
+      } else {
+        var subject = encodeURIComponent('Join the Zenti waitlist');
+        var body = encodeURIComponent('Add me to the Zenti waitlist.\n\nEmail: ' + email + '\nFrom: ' + source);
+        window.location.href = 'mailto:' + WAITLIST_EMAIL + '?subject=' + subject + '&body=' + body;
+        lockSuccess(form, 'Almost there — send the email we just opened (or write to ' + WAITLIST_EMAIL + ').');
+      }
+    });
+  });
+
   /* ---------- scroll-step spinning logo ---------- */
   var spin = document.querySelector('.spinsteps');
   if(spin && !reduce){

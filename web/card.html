@@ -380,9 +380,15 @@
   <div class="finale-card">
     <div class="cwrap">
       <h2 data-r>One card.<br>Everything you carry.</h2>
-      <p data-r>The Zen Card is in development. Get the app now and you’ll be first in line when it ships.</p>
-      <div class="cbtns" data-r>
-        <a class="btn green" href="index.html#download">Get the app</a>
+      <p data-r>The Zen Card is in development. Leave your email and you’ll be first in line when it ships.</p>
+      <div class="on-dark" data-r>
+        <form class="wl-form dark" data-waitlist data-source="Card page" novalidate>
+          <input type="email" name="email" placeholder="Your email" aria-label="Email address" autocomplete="email" required />
+          <button class="btn green" type="submit">Notify me</button>
+        </form>
+        <p class="wl-msg" data-wl-msg aria-live="polite"></p>
+      </div>
+      <div class="cbtns" data-r style="margin-top:8px">
         <a class="btn ghost" href="features.html#tap" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)">How tap to pay works</a>
       </div>
     </div>

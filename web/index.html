@@ -11,9 +11,6 @@
 <meta property="og:image" content="og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="description" content="The smarter way to pay, save, and grow in Kenya. Pay anyone instantly, save toward goals, and grow together." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/site.css" />
 <style>
 /* ============================== TOKENS ============================== */
@@ -548,6 +545,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
 <div id="preload"><div class="pl-stack"><div class="pl-type"><span id="plText"></span><i class="pl-caret"></i></div><div class="pl-logo"><div class="pl-mark"></div><div class="pl-word">ZENTI</div></div></div></div>
 
 <!-- FLOATING NAV -->
@@ -590,10 +588,10 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
       <h1><span class="mask-line" data-hero-line><span>Money,</span></span><span class="mask-line" data-hero-line><span>finally simple.</span></span></h1>
       <p class="sub" data-hero="1">Pay anyone, save for what matters, and watch it grow. Beautifully simple, made for Kenya.</p>
       <div class="btn-row" data-hero="2">
-        <a class="btn magnetic" href="#download">Download for iOS</a>
-        <a class="btn ghost magnetic" href="#download">Download for Android</a>
+        <a class="btn magnetic" href="#download">Get early access</a>
+        <a class="btn ghost magnetic" href="features.html">Explore features</a>
       </div>
-      <div class="micro" data-hero="3">Free to download. No hidden fees.</div>
+      <div class="micro" data-hero="3">Free to join. iOS &amp; Android at launch.</div>
     </div>
     <div class="hero-stage" data-hero="3">
       <div class="float-card fc-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></span><div><b>+ KES 1,500</b><div class="s">from David</div></div></div>
@@ -926,11 +924,15 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
     <div class="counter">Be among the first<br>on Zenti.</div>
     <h2 data-reveal style="margin-top:8px">Ready to move smarter?</h2>
     <p class="lead" data-reveal style="margin:18px auto 0">Be one of the first Kenyans to pay, save, and grow with Zenti.</p>
-    <div class="btn-row" data-reveal style="justify-content:center;margin-top:32px"><a class="btn magnetic" href="#top">Download for iOS</a><a class="btn ghost magnetic" href="#top">Download for Android</a></div>
+    <form class="wl-form" data-waitlist data-source="Homepage" novalidate data-reveal>
+      <input type="email" name="email" placeholder="Your email" aria-label="Email address" autocomplete="email" required />
+      <button class="btn magnetic" type="submit">Join the waitlist</button>
+    </form>
+    <p class="wl-msg" data-wl-msg aria-live="polite"></p>
     <div class="trust-strip" data-reveal style="margin-top:26px;margin-bottom:0">
-      <span>Free forever</span><span>Refer a friend, you both win</span><span>Founding-member early access</span><span>Works with M-Pesa</span>
+      <span>Free to join</span><span>Founding-member early access</span><span>iOS &amp; Android at launch</span><span>Works with M-Pesa</span>
     </div>
-    <div class="note">Free to download. No hidden fees.</div>
+    <div class="note">No spam. One email when Zenti is ready, and you’re in.</div>
   </div>
 </section>
 
@@ -1154,7 +1156,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
   /* ===== particles ===== */
   var cv=document.getElementById('particles');
   if(cv&&!reduce){var ctx=cv.getContext('2d'),W,H,parts=[];
-    function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;parts=Array.from({length:26},function(){return{x:Math.random()*W,y:Math.random()*H,sp:.2+Math.random()*.5,o:.05+Math.random()*.1};});}
+    function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;var n=W<700?10:18;parts=Array.from({length:n},function(){return{x:Math.random()*W,y:Math.random()*H,sp:.2+Math.random()*.5,o:.05+Math.random()*.1};});}
     size();window.addEventListener('resize',size);
     (function loop(){ctx.clearRect(0,0,W,H);ctx.fillStyle='#0A0A0A';ctx.font='700 14px Inter, sans-serif';parts.forEach(function(p){ctx.globalAlpha=p.o;ctx.fillText('Z',p.x,p.y);p.y+=p.sp;if(p.y>H+10){p.y=-10;p.x=Math.random()*W;}});ctx.globalAlpha=1;requestAnimationFrame(loop);})();
   }
