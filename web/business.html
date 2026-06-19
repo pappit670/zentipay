@@ -501,6 +501,45 @@ tr:last-child td{border-bottom:none}
 .invoice .stamp{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#06210a;font-weight:800;font-size:12px;padding:7px 12px;border-radius:100px;opacity:0;transform:scale(.8) rotate(-6deg);transition:opacity .5s var(--ease) .6s,transform .6s var(--ease-spring) .6s}
 .bz-prev.in .invoice .stamp{opacity:1;transform:rotate(-6deg)}
 @media(max-width:880px){.bz-solve .bz-row{grid-template-columns:1fr;gap:30px}.bz-solve .bz-row.flip{direction:ltr}.bz-desc{max-width:none}}
+
+/* ===== standardized collections workflow ===== */
+.pill.blue{background:#274fae22;color:#274690}
+.pill.grey{background:#8a8a9022;color:#5b5b60}
+.coll-intro{font-size:13.5px;color:var(--ink-2);margin:-4px 0 14px}
+.rent-top{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+@media(max-width:980px){.rent-top{grid-template-columns:1fr}}
+.flowline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 2px}
+.fl-node{font-weight:700;font-size:13px;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;padding:7px 14px}
+.fl-node.hot{background:var(--bg-dark);color:#fff;border-color:var(--bg-dark)}
+.fl-arrow{color:var(--green-ink);font-weight:800}
+.fl-note{font-size:12px;color:var(--ink-3);flex-basis:100%}
+.pipeline{display:flex;gap:8px;margin:16px 0}
+.pl-stage{flex:1;background:var(--bg-soft);border-radius:12px;padding:11px 10px;text-align:center}
+.pl-stage .n{font-size:22px;font-weight:900;letter-spacing:-.02em;line-height:1}
+.pl-stage .l{font-size:10.5px;color:var(--ink-3);font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:.04em}
+.pl-stage.sent .n{color:#274690}.pl-stage.paid .n{color:#9a6f00}.pl-stage.cleared .n{color:#1a8a2f}
+.rent-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rent-actions .when{height:46px;border:1px solid var(--line-strong);border-radius:100px;padding:0 16px;font-family:var(--font);font-size:14px;font-weight:600;background:#fff;cursor:pointer;color:var(--ink-1)}
+.prog{height:9px;background:var(--line);border-radius:100px;overflow:hidden;margin:12px 0 14px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,#1fbf12,var(--green));width:0;transition:width 1s var(--ease)}
+.selbar{display:none;align-items:center;gap:18px;background:var(--bg-dark);color:#fff;border-radius:14px;padding:13px 18px;margin-top:14px;font-size:14px;flex-wrap:wrap}
+.selbar.on{display:flex}
+.selbar .sc{font-weight:700;margin-right:auto}
+.selbar a{color:var(--green);font-weight:700;cursor:pointer}
+.renttable td .wa{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 9px;border-radius:100px;background:#25d36622;color:#128a3e;white-space:nowrap}
+.renttable td .wa.no{background:#8a8a9018;color:#8a8a90;cursor:pointer}
+.renttable td .send.dim{color:var(--ink-3);cursor:default}
+.renttable .rsel{width:16px;height:16px;cursor:pointer}
+.renttable tr.flash{animation:rowFlash 1.1s var(--ease)}
+@keyframes rowFlash{0%{background:#34ff1826}100%{background:transparent}}
+.tflow{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.tflow .tf{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:13px;font-size:13.5px;font-weight:500;opacity:.42;transition:opacity .35s var(--ease),border-color .35s var(--ease)}
+.tflow .tf.on{opacity:1;border-color:var(--green)}
+.tflow .tf .tfi{width:28px;height:28px;border-radius:8px;background:var(--bg-soft);display:grid;place-items:center;flex:none;font-size:13px;font-weight:800}
+.tflow .tf.on .tfi{background:var(--green);color:#06210a}
+.linkmsg{background:#e9f9e6;border-radius:14px;padding:14px 16px;font-size:13px;line-height:1.55;color:var(--ink-1)}
+.linkmsg .b{font-weight:700;display:block;margin-bottom:4px}
+.linkmsg .lk{font-weight:700;color:var(--green-ink)}
 </style>
 </head>
 <body>
@@ -1097,32 +1136,54 @@ tr:last-child td{border-bottom:none}
 
     <!-- COLLECTIONS (adaptable rail) -->
     <section class="screen" data-name="collect">
-      <div class="filterbar" style="margin-bottom:18px">
-        <span class="muted" style="font-size:13px;color:var(--ink-3);align-self:center;margin-right:4px">Business type:</span>
-        <span class="genre-tab on" data-g="landlord" onclick="setGenre('landlord',this)">Landlord</span>
-        <span class="genre-tab" data-g="chama" onclick="setGenre('chama',this)">Chama</span>
+      <p class="coll-intro">One standard flow for any business that collects from people — <b>payer → your operations</b>, direct. Pick the preset that fits; the workflow is the same.</p>
+      <div class="filterbar" style="margin-bottom:16px">
+        <span class="muted" style="font-size:13px;color:var(--ink-3);align-self:center;margin-right:4px">Preset:</span>
+        <span class="genre-tab on" data-g="landlord" onclick="setGenre('landlord',this)">Estate / Rent</span>
+        <span class="genre-tab" data-g="chama" onclick="setGenre('chama',this)">Chama / SACCO</span>
         <span class="genre-tab" data-g="school" onclick="setGenre('school',this)">School</span>
-        <span class="genre-tab" data-g="retail" onclick="setGenre('retail',this)">Retail</span>
+        <span class="genre-tab" data-g="retail" onclick="setGenre('retail',this)">Retail / Services</span>
       </div>
-      <div class="cols">
+      <div class="rent-top">
         <div class="card">
-          <div class="section-title" id="cl-title">Rent due this month</div>
-          <div class="spend-total"><span id="cl-amount">KES 96,000</span> <span id="cl-sub">from 6 tenants</span></div>
-          <a class="btn magnetic" style="margin-top:16px" onclick="collectAll()" id="cl-btn">Collect rent</a>
-          <div style="font-size:12.5px;color:var(--ink-3);margin-top:10px">One tap sends a payment request to each <span id="cl-payerword">tenant</span> via WhatsApp + the Zenti app.</div>
+          <div class="section-title" id="cl-title">Rent · this cycle</div>
+          <div class="flowline">
+            <span class="fl-node" id="cl-payernode">Tenant</span>
+            <span class="fl-arrow">→</span>
+            <span class="fl-node hot">Your operations</span>
+            <span class="fl-note">Direct. No bank layer to chase, no manual confirmation.</span>
+          </div>
+          <div class="pipeline" id="cl-pipe"></div>
+          <div class="rent-actions">
+            <a class="btn magnetic" onclick="rentSendAll()">Send payment links · WhatsApp</a>
+            <select class="when" id="cl-when" onchange="rentWhen()" aria-label="When to remind">
+              <option value="2 weeks">2 weeks before</option>
+              <option value="1 week">1 week before</option>
+              <option value="1 day" selected>1 day before</option>
+              <option value="on the day">on the day</option>
+            </select>
+            <a class="btn ghost magnetic" onclick="rentPlay()">▶ See the full flow</a>
+          </div>
         </div>
         <div class="card">
-          <div class="section-title">This cycle</div>
+          <div class="section-title">Collected this cycle</div>
+          <div class="spend-total"><span id="cl-collected">KES 0</span> <span class="muted" style="font-size:14px;color:var(--ink-3)">of <span id="cl-expected">KES 0</span></span></div>
+          <div class="prog"><i id="cl-progfill"></i></div>
           <div class="ailist">
-            <div class="aiitem"><span class="spark"></span><span id="cl-i1">4 paid, 2 pending</span></div>
-            <div class="aiitem"><span class="spark"></span><span id="cl-i2">KES 64,000 collected so far</span></div>
-            <div class="aiitem"><span class="spark"></span><span>Auto-reminders go out in 2 days.</span></div>
+            <div class="aiitem"><span class="spark"></span><span>Every cleared payment files an eTIMS receipt automatically.</span></div>
+            <div class="aiitem"><span class="spark"></span><span id="cl-when-note">Reminders go out 1 day before due date.</span></div>
           </div>
         </div>
       </div>
-      <div class="card" style="margin-top:16px;padding:0;overflow:hidden">
-        <table>
-          <thead><tr><th id="cl-h1">Tenant</th><th id="cl-h2">Unit · for</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+      <div class="selbar" id="cl-selbar">
+        <span class="sc" id="cl-selcount">0 selected</span>
+        <a onclick="rentBulk('statement')">Merge into statement</a>
+        <a onclick="rentBulk('export')">Export</a>
+        <a onclick="rentBulk('links')">Send links</a>
+      </div>
+      <div class="card" style="margin-top:14px;padding:0;overflow:hidden">
+        <table class="renttable">
+          <thead><tr><th style="width:36px"><input type="checkbox" class="rsel" id="cl-all" onclick="rentSelAll(this)" aria-label="Select all"></th><th id="cl-h1">Tenant</th><th id="cl-h2">Unit</th><th>WhatsApp</th><th>Amount</th><th>Status</th><th></th></tr></thead>
           <tbody id="cl-rows"></tbody>
         </table>
       </div>
@@ -1552,28 +1613,117 @@ function reanimate(scr){
   if(scr.getAttribute('data-name')==='collect') setGenre(_genre);
 }
 
-/* ---------- adaptable rail: genre presets ---------- */
+/* ---------- standardized collections workflow (adapts to any preset) ---------- */
+var STATUS={awaiting:['grey','Awaiting'],sent:['blue','Link sent'],paid:['amber','Paid · clearing'],cleared:['green','Cleared'],overdue:['red','Overdue']};
 var GENRES={
-  landlord:{title:'Rent due this month',amount:'KES 96,000',sub:'from 6 tenants',btn:'Collect rent',payerword:'tenant',h1:'Tenant',h2:'Unit · for',i1:'4 paid, 2 pending',i2:'KES 64,000 collected so far',
-    rows:[['James Mwangi','A1 · Rent','16,000','green','Paid'],['Aisha Wambui','A2 · Rent + Water','17,500','amber','Pending'],['Peter Otieno','B1 · Rent','16,000','green','Paid'],['Grace Kamau','B2 · Rent','16,000','green','Paid'],['David Njoroge','C1 · Rent + Maintenance','18,500','red','Overdue'],['Mary Achieng','C2 · Rent','12,000','amber','Pending']]},
-  chama:{title:'Contributions due this month',amount:'KES 60,000',sub:'from 12 members',btn:'Collect contributions',payerword:'member',h1:'Member',h2:'For',i1:'9 paid, 3 pending',i2:'KES 45,000 collected so far',
-    rows:[['Wanjiru Muthoni','Monthly contribution','5,000','green','Paid'],['Brian Otieno','Monthly contribution','5,000','green','Paid'],['Faith Akinyi','Monthly + welfare','6,500','amber','Pending'],['Samuel Maina','Monthly contribution','5,000','green','Paid'],['Lucy Wambui','Monthly contribution','5,000','red','Overdue'],['Peter Kariuki','Monthly contribution','5,000','amber','Pending']]},
-  school:{title:'Fees due this term',amount:'KES 1,840,000',sub:'from 40 students',btn:'Collect fees',payerword:'parent',h1:'Student',h2:'Class · for',i1:'31 paid, 9 pending',i2:'KES 1,420,000 collected so far',
-    rows:[['Aisha Mwangi','Grade 6 · Term 2 fees','46,000','green','Paid'],['Brian Otieno','Grade 4 · Fees + Transport','52,000','amber','Pending'],['Cynthia Wairimu','Grade 8 · Term 2 fees','46,000','green','Paid'],['Daniel Kiprono','Grade 7 · Fees + Lunch','49,000','red','Overdue'],['Esther Njeri','Grade 5 · Term 2 fees','46,000','green','Paid'],['Felix Omondi','Grade 3 · Term 2 fees','44,000','amber','Pending']]},
-  retail:{title:'Outstanding invoices',amount:'KES 78,500',sub:'from 8 customers',btn:'Send payment requests',payerword:'customer',h1:'Customer',h2:'Invoice · for',i1:'5 paid, 3 pending',i2:'KES 42,000 collected so far',
-    rows:[['Sunrise Cafe','#1042 · Supplies','12,000','green','Paid'],['Peter Otieno','#1043 · Services','4,500','amber','Pending'],['Acme Ltd','#1040 · Wholesale','28,000','red','Overdue'],['Grace Kamau','#1041 · Order','3,200','red','Overdue'],['James Mwangi','#1039 · Order','1,800','green','Paid'],['Mary Achieng','#1044 · Order','9,000','amber','Pending']]}
+  landlord:{title:'Rent · June 2026',payer:'Tenant',payerword:'tenant',h1:'Tenant',h2:'Unit',cycle:'1 July',
+    rows:[{n:'James Mwangi',u:'A-01',wa:1,amt:16000,s:'cleared'},{n:'Aisha Wambui',u:'A-02',wa:1,amt:17500,s:'cleared'},{n:'Peter Otieno',u:'A-03',wa:1,amt:16000,s:'paid'},{n:'Grace Kamau',u:'B-01',wa:1,amt:16000,s:'sent'},{n:'David Njoroge',u:'B-02',wa:0,amt:18500,s:'overdue'},{n:'Mary Achieng',u:'B-03',wa:1,amt:12000,s:'awaiting'},{n:'Susan Wairimu',u:'C-01',wa:1,amt:16000,s:'cleared'},{n:'Kevin Omondi',u:'C-02',wa:1,amt:16000,s:'sent'}]},
+  chama:{title:'Contributions · June 2026',payer:'Member',payerword:'member',h1:'Member',h2:'Member no.',cycle:'30 June',
+    rows:[{n:'Wanjiru Muthoni',u:'M-01',wa:1,amt:5000,s:'cleared'},{n:'Brian Otieno',u:'M-02',wa:1,amt:5000,s:'cleared'},{n:'Faith Akinyi',u:'M-03',wa:1,amt:6500,s:'paid'},{n:'Samuel Maina',u:'M-04',wa:1,amt:5000,s:'sent'},{n:'Lucy Wambui',u:'M-05',wa:0,amt:5000,s:'overdue'},{n:'Peter Kariuki',u:'M-06',wa:1,amt:5000,s:'awaiting'},{n:'Janet Nduta',u:'M-07',wa:1,amt:5000,s:'cleared'}]},
+  school:{title:'Fees · Term 2',payer:'Parent',payerword:'parent',h1:'Student',h2:'Class',cycle:'15 July',
+    rows:[{n:'Aisha Mwangi',u:'Grade 6',wa:1,amt:46000,s:'cleared'},{n:'Brian Otieno',u:'Grade 4',wa:1,amt:52000,s:'paid'},{n:'Cynthia Wairimu',u:'Grade 8',wa:1,amt:46000,s:'cleared'},{n:'Daniel Kiprono',u:'Grade 7',wa:0,amt:49000,s:'overdue'},{n:'Esther Njeri',u:'Grade 5',wa:1,amt:46000,s:'sent'},{n:'Felix Omondi',u:'Grade 3',wa:1,amt:44000,s:'awaiting'}]},
+  retail:{title:'Invoices · June 2026',payer:'Customer',payerword:'customer',h1:'Customer',h2:'Invoice',cycle:'on receipt',
+    rows:[{n:'Sunrise Cafe',u:'#1042',wa:1,amt:12000,s:'cleared'},{n:'Peter Otieno',u:'#1043',wa:1,amt:4500,s:'sent'},{n:'Acme Ltd',u:'#1040',wa:0,amt:28000,s:'overdue'},{n:'Grace Kamau',u:'#1041',wa:1,amt:3200,s:'awaiting'},{n:'James Mwangi',u:'#1039',wa:1,amt:1800,s:'cleared'},{n:'Mary Achieng',u:'#1044',wa:1,amt:9000,s:'paid'}]}
 };
-var _genre='landlord';
+var _genre='landlord', _rows=[];
+function money(n){return 'KES '+Number(n).toLocaleString('en-US');}
 function setGenre(g){
-  if(!GENRES[g])return; _genre=g; var d=GENRES[g], S=function(id){return document.getElementById(id);};
-  S('cl-title').textContent=d.title;S('cl-amount').textContent=d.amount;S('cl-sub').textContent=d.sub;
-  S('cl-btn').textContent=d.btn;S('cl-payerword').textContent=d.payerword;S('cl-h1').textContent=d.h1;S('cl-h2').textContent=d.h2;
-  S('cl-i1').textContent=d.i1;S('cl-i2').textContent=d.i2;
-  S('cl-rows').innerHTML=d.rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>KES '+r[2]+'</td><td><span class="pill '+r[3]+'">'+r[4]+'</span></td><td style="text-align:right"><span class="send" onclick="collectOne(\''+r[0].replace(/'/g,'')+'\')">Remind ›</span></td></tr>';}).join('');
+  if(!GENRES[g])return; _genre=g; var d=GENRES[g];
+  _rows=d.rows.map(function(r){return {n:r.n,u:r.u,wa:r.wa,amt:r.amt,s:r.s};});
+  document.getElementById('cl-title').textContent=d.title;
+  document.getElementById('cl-h1').textContent=d.h1;
+  document.getElementById('cl-h2').textContent=d.h2;
+  document.getElementById('cl-payernode').textContent=d.payer;
+  var all=document.getElementById('cl-all'); if(all) all.checked=false;
   document.querySelectorAll('.genre-tab').forEach(function(t){t.classList.toggle('on',t.getAttribute('data-g')===g);});
+  renderRent();
 }
-function collectAll(){toast('Requests sent '+(GENRES[_genre].sub)+' · via WhatsApp + app ✓');}
-function collectOne(name){toast('Reminder sent to '+name+' ✓');}
+function renderRent(){
+  var tb=document.getElementById('cl-rows'); if(!tb)return;
+  tb.innerHTML=_rows.map(function(r,i){
+    var st=STATUS[r.s];
+    var wa=r.wa?'<span class="wa">✓ WhatsApp</span>':'<span class="wa no" onclick="rentWa('+i+')">+ Link</span>';
+    var act;
+    if(r.s==='cleared') act='<span class="send" onclick="rentReceipt('+i+')">Receipt ›</span>';
+    else if(r.s==='paid') act='<span class="send dim">Clearing…</span>';
+    else if(r.s==='sent') act='<span class="send" onclick="rentRemind('+i+')">Remind ›</span>';
+    else act='<span class="send" onclick="rentLink('+i+')">Send link ›</span>';
+    return '<tr data-i="'+i+'"><td><input type="checkbox" class="rsel" onclick="rentSel()" aria-label="Select"></td><td>'+r.n+'</td><td>'+r.u+'</td><td>'+wa+'</td><td>'+money(r.amt)+'</td><td><span class="pill '+st[0]+'">'+st[1]+'</span></td><td style="text-align:right">'+act+'</td></tr>';
+  }).join('');
+  updatePipe(); rentSel();
+}
+function updatePipe(){
+  var c={awaiting:0,sent:0,paid:0,cleared:0,overdue:0},exp=0,coll=0;
+  _rows.forEach(function(r){c[r.s]++;exp+=r.amt;if(r.s==='paid'||r.s==='cleared')coll+=r.amt;});
+  var pipe=document.getElementById('cl-pipe');
+  if(pipe) pipe.innerHTML=[['awaiting','Awaiting',c.awaiting+c.overdue],['sent','Link sent',c.sent],['paid','Paid',c.paid],['cleared','Cleared',c.cleared]]
+    .map(function(s){return '<div class="pl-stage '+s[0]+'"><div class="n">'+s[2]+'</div><div class="l">'+s[1]+'</div></div>';}).join('');
+  var S=function(id){return document.getElementById(id);};
+  if(S('cl-collected')) S('cl-collected').textContent=money(coll);
+  if(S('cl-expected')) S('cl-expected').textContent=money(exp);
+  if(S('cl-progfill')) S('cl-progfill').style.width=(exp?Math.round(coll/exp*100):0)+'%';
+}
+function rentSel(){
+  var sel=document.querySelectorAll('#cl-rows .rsel:checked').length;
+  document.getElementById('cl-selcount').textContent=sel+' selected';
+  document.getElementById('cl-selbar').classList.toggle('on',sel>0);
+}
+function rentSelAll(cb){document.querySelectorAll('#cl-rows .rsel').forEach(function(x){x.checked=cb.checked;});rentSel();}
+function rentBulk(kind){
+  var sel=document.querySelectorAll('#cl-rows .rsel:checked').length||_rows.length, pw=GENRES[_genre].payerword;
+  if(kind==='statement')toast('Merged '+sel+' '+pw+'s into one statement · filed ✓');
+  else if(kind==='export')toast('Exported '+sel+' rows to CSV ✓');
+  else toast('Payment links sent to '+sel+' '+pw+'s on WhatsApp ✓');
+}
+function rentSendAll(){
+  var n=0;_rows.forEach(function(r){if(r.s==='awaiting'||r.s==='overdue'){r.s='sent';n++;}});
+  renderRent();
+  toast(n?('Payment links sent to '+n+' '+GENRES[_genre].payerword+'s on WhatsApp ✓'):'Everyone already has a live link ✓');
+}
+function rentWhen(){var v=document.getElementById('cl-when').value;document.getElementById('cl-when-note').textContent='Reminders go out '+v+(v==='on the day'?'':' before due date')+'.';toast('Auto-reminders set: '+v+' ✓');}
+function rentRemind(i){toast('Reminder sent to '+_rows[i].n+' on WhatsApp ✓');}
+function rentWa(i){_rows[i].wa=1;renderRent();toast(_rows[i].n+'’s WhatsApp linked ✓');}
+function rowEl(i){return document.querySelector('#cl-rows tr[data-i="'+i+'"]');}
+function rentLink(i){
+  var r=_rows[i],d=GENRES[_genre];
+  openAct(
+    '<div class="reg-step-no">Payment link · '+r.u+'</div>'+
+    '<h2>Send '+r.n+' their link</h2>'+
+    '<p class="sub">Exactly what lands on their WhatsApp — one tap to pay, straight into your operations.</p>'+
+    '<div class="linkmsg"><span class="b">Zenti · '+(d.payer)+' payment</span>Hi '+r.n+', your '+d.payerword+' payment for '+r.u+' ('+money(r.amt)+') is due '+d.cycle+'. Tap to pay securely:<br><span class="lk">zenti.me/pay/'+(r.u.replace(/[#\s]/g,'').toLowerCase())+'</span></div>'+
+    '<div class="tflow">'+
+      '<div class="tf on"><span class="tfi">1</span> '+r.n+' taps the link on WhatsApp</div>'+
+      '<div class="tf on"><span class="tfi">2</span> It opens in Zenti, amount pre-filled</div>'+
+      '<div class="tf on"><span class="tfi">3</span> They confirm and pick a card</div>'+
+      '<div class="tf on"><span class="tfi">✓</span> Paid straight to your operations · eTIMS receipt filed</div>'+
+    '</div>'+
+    '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Close</button><button class="btn magnetic" onclick="rentLinkSent('+i+')">Send on WhatsApp</button></div>');
+}
+function rentLinkSent(i){_rows[i].s='sent';renderRent();var el=rowEl(i);if(el)el.classList.add('flash');actDone('Link sent to '+_rows[i].n+' on WhatsApp ✓');}
+function rentReceipt(i){
+  var r=_rows[i],d=GENRES[_genre];
+  openAct(
+    '<div class="reg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>'+
+    '<h2>eTIMS receipt · '+r.u+'</h2><p class="sub">Generated automatically when the payment cleared.</p>'+
+    '<div class="linkmsg"><span class="b">'+r.n+' — '+money(r.amt)+'</span>'+d.payer+' payment · '+r.u+'<br>Cleared to operations · '+d.title+'<br><span class="lk">eTIMS · synced to KRA ✓</span></div>'+
+    '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Close</button><button class="btn magnetic" onclick="actDone(\'Receipt sent to '+r.n.replace(/'/g,'')+' on WhatsApp ✓\')">Send to '+d.payerword+'</button></div>');
+}
+function rentPlay(){
+  /* walk one payer through the whole lifecycle, live — the demo */
+  var i=-1;for(var k=0;k<_rows.length;k++){if(_rows[k].s==='awaiting'){i=k;break;}}
+  if(i<0){for(k=0;k<_rows.length;k++){if(_rows[k].s==='overdue'){i=k;break;}}}
+  if(i<0){toast('All '+GENRES[_genre].payerword+'s are already cleared ✓');return;}
+  var r=_rows[i],nm=r.n;
+  function flash(){var el=rowEl(i);if(el){el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');el.scrollIntoView({block:'center',behavior:'smooth'});}}
+  var seq=[
+    function(){r.s='sent';renderRent();flash();toast('Link sent to '+nm+' on WhatsApp');},
+    function(){flash();toast(nm+' opened the link in Zenti');},
+    function(){flash();toast(nm+' confirmed · paying by card');},
+    function(){r.s='paid';renderRent();flash();toast('Paid · '+money(r.amt)+' received');},
+    function(){r.s='cleared';renderRent();flash();toast('Cleared to your operations · eTIMS receipt filed ✓');}
+  ];
+  var t=0;seq.forEach(function(fn){t+=1200;setTimeout(fn,t);});
+}
 </script>
 <script>
 /* contact form + FAQ accordion */
