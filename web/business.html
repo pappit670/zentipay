@@ -621,6 +621,17 @@ tr:last-child td{border-bottom:none}
 .setup-bar{height:9px;background:var(--line);border-radius:100px;overflow:hidden;margin:12px 0 6px}
 .setup-bar i{display:block;height:100%;background:linear-gradient(90deg,#1fbf12,var(--green));transition:width .8s var(--ease)}
 @media(prefers-reduced-motion:reduce){.live-pill::before,.salerow.new{animation:none}}
+.doc-right{display:flex;align-items:center;gap:12px;flex:none}
+.kan{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.kan{grid-template-columns:1fr}}
+.kan-col{background:var(--bg-soft);border-radius:16px;padding:14px}
+.kan-col h4{font-size:12px;font-weight:700;color:var(--ink-2);display:flex;justify-content:space-between;align-items:center;text-transform:uppercase;letter-spacing:.05em;margin:0}
+.kan-col h4 span{background:#fff;border:1px solid var(--line);border-radius:100px;padding:1px 9px;font-size:12px;color:var(--ink-3)}
+.lead-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:10px;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.lead-card:hover{transform:translateY(-2px);box-shadow:0 10px 22px -14px rgba(10,10,10,.4)}
+.lead-card .ln{font-weight:600;font-size:14px}
+.lead-card .ls{font-size:12px;color:var(--ink-3);margin:3px 0 8px}
+.lead-card .lv{font-weight:800;font-size:14px;color:var(--green-ink)}
 </style>
 </head>
 <body>
@@ -1680,6 +1691,102 @@ tr:last-child td{border-bottom:none}
       <div class="danger"><b>Danger zone</b><p class="lead" style="font-size:14px;margin-top:6px">Deleting your account removes all records permanently.</p><a class="btn sm ghost" style="margin-top:12px;border-color:#e3431a40;color:var(--red)" onclick="toast('Account deletion — demo')">Delete account</a></div>
     </section>
 
+    <!-- FORECAST (under Money) -->
+    <section class="screen" data-name="forecast">
+      <div class="m-grid" data-dash style="grid-template-columns:repeat(4,1fr)">
+        <div class="metric"><div class="k">Cash on hand</div><div class="v" data-count="326840" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">today</div></div>
+        <div class="metric"><div class="k">Expected in · 14 days</div><div class="v" data-count="184000" data-prefix="KES ">KES 0</div><div class="d">collections + invoices</div></div>
+        <div class="metric"><div class="k">Due out · 14 days</div><div class="v" data-count="201400" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">rent, suppliers, payroll</div></div>
+        <div class="metric"><div class="k">Projected balance</div><div class="v" data-count="309440" data-prefix="KES ">KES 0</div><div class="d">▲ comfortable</div></div>
+      </div>
+      <div class="card prep-banner"><span class="pb-ic">✓</span><div class="pb-b"><div class="pb-t">You’re covered through July.</div><div class="pb-s">Lowest projected point is KES 41,000 on 5 July — right after rent and the supplier payment clear. No action needed.</div></div></div>
+      <div class="cols">
+        <div class="card">
+          <div class="section-title">Projected balance — next 6 weeks</div>
+          <div class="bars-lg" data-bars>
+            <div class="col"><div class="bar" data-h="84"></div><div class="lab">W1</div></div>
+            <div class="col"><div class="bar" data-h="62"></div><div class="lab">W2</div></div>
+            <div class="col"><div class="bar" data-h="40"></div><div class="lab">W3</div></div>
+            <div class="col"><div class="bar" data-h="58"></div><div class="lab">W4</div></div>
+            <div class="col"><div class="bar" data-h="78"></div><div class="lab">W5</div></div>
+            <div class="col"><div class="bar" data-h="100"></div><div class="lab">W6</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">What’s moving</div>
+          <div class="ailist">
+            <div class="aiitem"><span class="spark"></span><span>+ KES 184,000 expected — rent links &amp; invoices land by the 5th</span></div>
+            <div class="aiitem"><span class="spark"></span><span>− KES 87,500 rent · due 1 July</span></div>
+            <div class="aiitem"><span class="spark"></span><span>− KES 38,000 Mwangi Suppliers · due 30 June</span></div>
+            <div class="aiitem"><span class="spark"></span><span>− KES 49,900 payroll · runs 28 June</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="coll-intro" style="margin-top:12px">A straight projection of money already scheduled in and out — so a shortfall never sneaks up on you.</p>
+    </section>
+
+    <!-- DOCUMENTS (under Compliance & records) -->
+    <section class="screen" data-name="documents">
+      <div class="filterbar" style="margin-bottom:14px">
+        <span class="genre-tab on" onclick="docFilter(this)">All</span>
+        <span class="genre-tab" onclick="docFilter(this)">Leases</span>
+        <span class="genre-tab" onclick="docFilter(this)">Contracts</span>
+        <span class="genre-tab" onclick="docFilter(this)">Permits</span>
+        <span class="genre-tab" onclick="docFilter(this)">Tax</span>
+        <span style="margin-left:auto"></span>
+        <a class="btn sm magnetic" onclick="docUpload()">+ Upload document</a>
+      </div>
+      <div class="card">
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="rm-b"><div class="rm-t">County business permit</div><div class="rm-s">Permit · Nairobi County</div></div><div class="doc-right"><span class="pill green">Valid · Dec 2026</span><span class="send" onclick="toast('Opened — demo')">View ›</span></div></div>
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="rm-b"><div class="rm-t">KRA compliance certificate</div><div class="rm-s">Tax · iTax</div></div><div class="doc-right"><span class="pill green">Valid</span><span class="send" onclick="toast('Opened — demo')">View ›</span></div></div>
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="rm-b"><div class="rm-t">Tenancy agreement — Shop A-01</div><div class="rm-s">Lease · landlord copy</div></div><div class="doc-right"><span class="pill amber">Renews 31 Aug</span><span class="send" onclick="toast('Opened — demo')">View ›</span></div></div>
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="rm-b"><div class="rm-t">Supplier contract — Bidco</div><div class="rm-s">Contract · 12-month</div></div><div class="doc-right"><span class="pill green">Active</span><span class="send" onclick="toast('Opened — demo')">View ›</span></div></div>
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="rm-b"><div class="rm-t">Business insurance cover</div><div class="rm-s">Contract · annual</div></div><div class="doc-right"><span class="pill amber">Renew in 21 days</span><span class="send" onclick="toast('Opened — demo')">View ›</span></div></div>
+      </div>
+      <p class="coll-intro" style="margin-top:12px">Every record in one place — and Zenti reminds you on WhatsApp before anything expires.</p>
+    </section>
+
+    <!-- LEADS (under Sales) -->
+    <section class="screen" data-name="leads">
+      <div class="filterbar" style="margin-bottom:14px"><div class="section-title" style="margin:0">Sales pipeline</div><span style="margin-left:auto"></span><a class="btn sm magnetic" onclick="leadAdd()">+ Add lead</a></div>
+      <div class="kan">
+        <div class="kan-col"><h4>New <span>3</span></h4>
+          <div class="lead-card"><div class="ln">Mama Watoto Daycare</div><div class="ls">Referral · WhatsApp</div><div class="lv">KES 12,000 / mo</div></div>
+          <div class="lead-card"><div class="ln">Eastleigh Wholesalers</div><div class="ls">Walk-in</div><div class="lv">KES 40,000</div></div>
+          <div class="lead-card"><div class="ln">Brian’s Barbershop</div><div class="ls">QR scan</div><div class="lv">KES 6,500 / mo</div></div>
+        </div>
+        <div class="kan-col"><h4>Contacted <span>2</span></h4>
+          <div class="lead-card"><div class="ln">Greenview Apartments</div><div class="ls">Referral</div><div class="lv">KES 180,000 / mo</div></div>
+          <div class="lead-card"><div class="ln">Sunrise Cafe</div><div class="ls">WhatsApp</div><div class="lv">KES 22,000</div></div>
+        </div>
+        <div class="kan-col"><h4>Won <span>2</span></h4>
+          <div class="lead-card"><div class="ln">Acme Ltd</div><div class="ls">Converted today</div><div class="lv">KES 38,000</div></div>
+          <div class="lead-card"><div class="ln">Westlands Salon</div><div class="ls">Converted Jun 11</div><div class="lv">KES 16,000 / mo</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPAIGNS (under Sales) -->
+    <section class="screen" data-name="campaigns">
+      <div class="m-grid" data-dash style="grid-template-columns:repeat(3,1fr)">
+        <div class="metric"><div class="k">Sent · this month</div><div class="v" data-count="1240">0</div><div class="d">3 campaigns</div></div>
+        <div class="metric"><div class="k">Delivered</div><div class="v" data-count="98" data-suffix="%">0%</div><div class="d">on WhatsApp</div></div>
+        <div class="metric"><div class="k">Replies</div><div class="v" data-count="86">0</div><div class="d">▲ engagement</div></div>
+      </div>
+      <div class="filterbar" style="margin-bottom:14px"><div class="section-title" style="margin:0">WhatsApp campaigns</div><span style="margin-left:auto"></span><a class="btn sm magnetic" onclick="campNew()">+ New campaign</a></div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="renttable">
+          <thead><tr><th>Campaign</th><th>Audience</th><th>Sent</th><th>Status</th></tr></thead>
+          <tbody id="camp-list">
+            <tr><td>June 10% off</td><td>All customers · 248</td><td>248</td><td><span class="pill green">Sent</span></td></tr>
+            <tr><td>Loyalty thank-you</td><td>Repeat · 152</td><td>152</td><td><span class="pill green">Sent</span></td></tr>
+            <tr><td>Mid-month reminder</td><td>Owing · 12</td><td>—</td><td><span class="pill amber">Scheduled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="coll-intro" style="margin-top:12px">Reach your customers where they already are. You write the message; Zenti delivers and tracks it.</p>
+    </section>
+
   </main>
 </div>
 
@@ -1839,9 +1946,9 @@ function closeApp(){
 var GROUPS={
   overview:{label:'Overview',tabs:[['overview','Overview']]},
   collect:{label:'Collections',tabs:[['collect','Collections']]},
-  sales:{label:'Sales',tabs:[['sales','Sales'],['customers','Customers']]},
-  money:{label:'Money',tabs:[['transactions','Transactions'],['payroll','Payroll'],['suppliers','Suppliers'],['capital','Capital']]},
-  compliance:{label:'Compliance & records',tabs:[['compliance','Compliance'],['invoices','eTIMS invoices'],['reports','Reports']]},
+  sales:{label:'Sales',tabs:[['sales','Sales'],['customers','Customers'],['leads','Leads'],['campaigns','Campaigns']]},
+  money:{label:'Money',tabs:[['transactions','Transactions'],['payroll','Payroll'],['suppliers','Suppliers'],['capital','Capital'],['forecast','Forecast']]},
+  compliance:{label:'Compliance & records',tabs:[['compliance','Compliance'],['invoices','eTIMS invoices'],['reports','Reports'],['documents','Documents']]},
   settings:{label:'Settings',tabs:[['settings','Business'],['team','Team'],['qr','Payment QR']]}
 };
 function showScreen(name){
@@ -1979,6 +2086,18 @@ function connDo(btn,label,ph){_connBtn=btn;_connLabel=label;openAct(
   '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Cancel</button><button class="btn magnetic" onclick="connConfirm()">Connect</button></div>');}
 function connConfirm(){if(_connBtn){var s=document.createElement('span');s.className='pill green';s.textContent='Connected';_connBtn.replaceWith(s);}closeAct();toast(_connLabel+' connected ✓');updateSetup();}
 function updateSetup(){var list=document.getElementById('conn-list');if(!list)return;var rows=list.querySelectorAll('.rm-row').length;var on=list.querySelectorAll('.pill.green').length;var f=document.getElementById('setup-fill');if(f)f.style.width=Math.round(on/rows*100)+'%';var p=document.getElementById('setup-pct');if(p)p.textContent=on+' of '+rows;}
+/* ---------- documents / leads / campaigns ---------- */
+function docFilter(el){el.parentElement.querySelectorAll('.genre-tab').forEach(function(t){t.classList.remove('on');});el.classList.add('on');}
+function docUpload(){toast('Document uploaded · stored securely ✓');}
+function leadAdd(){toast('Lead added to the pipeline ✓');}
+function campNew(){openAct(
+  '<div class="reg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>'+
+  '<h2>New WhatsApp campaign</h2><p class="sub">Send to a group of customers. You write the message; Zenti delivers it.</p>'+
+  '<div class="field"><label>Campaign name</label><input id="camp-nm" placeholder="June offer"></div>'+
+  '<div class="field"><label>Audience</label><input placeholder="All customers · 248"></div>'+
+  '<div class="field"><label>Message</label><input placeholder="Hi! 10% off all services this week…"></div>'+
+  '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Cancel</button><button class="btn magnetic" onclick="campSend()">Schedule</button></div>');}
+function campSend(){var nm=((document.getElementById('camp-nm')||{}).value||'New campaign');var list=document.getElementById('camp-list');if(list){var r=document.createElement('tr');r.innerHTML='<td>'+nm+'</td><td>All customers · 248</td><td>—</td><td><span class="pill amber">Scheduled</span></td>';list.insertBefore(r,list.firstChild);}actDone('Campaign scheduled on WhatsApp ✓');}
 
 /* ---------- standardized collections workflow (adapts to any preset) ---------- */
 var STATUS={awaiting:['grey','Awaiting'],sent:['blue','Link sent'],paid:['amber','Paid · clearing'],cleared:['green','Cleared'],overdue:['red','Overdue']};
