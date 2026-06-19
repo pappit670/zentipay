@@ -540,6 +540,49 @@ tr:last-child td{border-bottom:none}
 .linkmsg{background:#e9f9e6;border-radius:14px;padding:14px 16px;font-size:13px;line-height:1.55;color:var(--ink-1)}
 .linkmsg .b{font-weight:700;display:block;margin-bottom:4px}
 .linkmsg .lk{font-weight:700;color:var(--green-ink)}
+
+/* ===== command center + growth + capital + reminders ===== */
+.attn-list{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.attn-row{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--ink-3);border-radius:13px;padding:13px 15px;cursor:pointer;font-family:var(--font);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.attn-row:hover{transform:translateY(-2px);box-shadow:0 12px 26px -16px rgba(10,10,10,.45)}
+.attn-row.red{border-left-color:#e3431a}.attn-row.amber{border-left-color:#e3a51a}.attn-row.blue{border-left-color:#274690}.attn-row.green{border-left-color:#1a8a2f}
+.attn-row .ai{width:30px;height:30px;border-radius:9px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-weight:800;flex:none}
+.attn-row .ac{flex:1}
+.attn-row .ac b{font-size:14px;display:block}
+.attn-row .ac span{font-size:12.5px;color:var(--ink-3)}
+.attn-row .go{color:var(--green-ink);font-weight:700;font-size:13px;flex:none}
+.ring{width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--green) calc(var(--p,80)*1%),var(--line) 0);display:grid;place-items:center;position:relative;flex:none}
+.ring::before{content:"";position:absolute;inset:8px;background:#fff;border-radius:50%}
+.ring span{position:relative;font-weight:900;font-size:24px;letter-spacing:-.02em}
+.health-row{display:flex;align-items:center;gap:22px;margin-top:8px;flex-wrap:wrap}
+.health-meta{display:grid;gap:9px}
+.hm{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600}
+.hm .d{width:9px;height:9px;border-radius:50%;flex:none}
+.hm .d.green{background:var(--green)}.hm .d.amber{background:#e3a51a}.hm .d.red{background:#e3431a}
+.capital-offer{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden}
+.capital-offer .section-title{color:rgba(255,255,255,.55)}
+.capital-offer .big{font-size:clamp(24px,3.6vw,38px);font-weight:900;letter-spacing:-.03em;margin:6px 0 8px}
+.capital-offer p{color:rgba(255,255,255,.7);font-size:14px;max-width:48ch;line-height:1.55}
+.capital-offer .glow{position:absolute;right:-40px;top:-50px;width:200px;height:200px;border-radius:50%;background:var(--green);filter:blur(80px);opacity:.4}
+.owe{display:flex;flex-direction:column;gap:11px;margin-top:8px}
+.owe-row{display:flex;align-items:center;gap:11px;font-size:13.5px}
+.owe-row .on{flex:1}.owe-row .od{color:var(--ink-3);font-size:12px;margin-top:1px}.owe-row .oa{font-weight:800}
+.switch{width:44px;height:26px;border-radius:100px;background:var(--line-strong);position:relative;cursor:pointer;flex:none;transition:background .3s var(--ease)}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .3s var(--ease);box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.switch.on{background:var(--green)}
+.switch.on::after{transform:translateX(18px)}
+.rm-row{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.rm-row:last-child{border-bottom:none}
+.rm-ic{width:38px;height:38px;border-radius:11px;background:var(--bg-soft);display:grid;place-items:center;flex:none}
+.rm-ic svg{width:19px;height:19px;stroke:var(--ink-1);fill:none;stroke-width:2}
+.rm-row .rm-b{flex:1}
+.rm-row .rm-t{font-weight:600;font-size:14.5px}
+.rm-row .rm-s{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.rm-row .rm-ch{font-size:11px;font-weight:700;color:#128a3e;background:#25d36622;padding:3px 8px;border-radius:100px;white-space:nowrap}
+.subtabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.subtab{font-size:14px;font-weight:600;padding:9px 18px;border-radius:100px;border:1px solid var(--line);background:#fff;cursor:pointer;font-family:var(--font);color:var(--ink-2);transition:background .2s,color .2s,border-color .2s}
+.subtab:hover{border-color:var(--line-strong)}
+.subtab.on{background:var(--bg-dark);color:#fff;border-color:var(--bg-dark)}
 </style>
 </head>
 <body>
@@ -1053,19 +1096,12 @@ tr:last-child td{border-bottom:none}
 <div class="app" id="app">
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#" onclick="closeApp();return false"><span class="z"></span>Zenti <small>Business</small></a>
-    <div class="navitem active" data-screen="overview" onclick="go(this)"><span class="ic"></span><span class="lbl">Overview</span></div>
-    <div class="navitem" data-screen="collect" onclick="go(this)"><span class="ic"></span><span class="lbl">Collections</span></div>
-    <div class="navitem" data-screen="sales" onclick="go(this)"><span class="ic"></span><span class="lbl">Sales</span></div>
-    <div class="navitem" data-screen="transactions" onclick="go(this)"><span class="ic"></span><span class="lbl">Transactions</span></div>
-    <div class="navitem" data-screen="customers" onclick="go(this)"><span class="ic"></span><span class="lbl">Customers</span></div>
-    <div class="navitem" data-screen="invoices" onclick="go(this)"><span class="ic"></span><span class="lbl">eTIMS Invoices</span></div>
-    <div class="navitem" data-screen="qr" onclick="go(this)"><span class="ic"></span><span class="lbl">QR Payments</span></div>
-    <div class="navitem" data-screen="compliance" onclick="go(this)"><span class="ic"></span><span class="lbl">Compliance</span></div>
-    <div class="navitem" data-screen="reports" onclick="go(this)"><span class="ic"></span><span class="lbl">Reports</span></div>
-    <div class="navitem" data-screen="payroll" onclick="go(this)"><span class="ic"></span><span class="lbl">Payroll</span></div>
-    <div class="navitem" data-screen="suppliers" onclick="go(this)"><span class="ic"></span><span class="lbl">Suppliers</span></div>
-    <div class="navitem" data-screen="team" onclick="go(this)"><span class="ic"></span><span class="lbl">Team</span></div>
-    <div class="navitem" data-screen="settings" onclick="go(this)"><span class="ic"></span><span class="lbl">Settings</span></div>
+    <div class="navitem active" data-group="overview" onclick="goGroup('overview')"><span class="ic"></span><span class="lbl">Overview</span></div>
+    <div class="navitem" data-group="collect" onclick="goGroup('collect')"><span class="ic"></span><span class="lbl">Collections</span></div>
+    <div class="navitem" data-group="sales" onclick="goGroup('sales')"><span class="ic"></span><span class="lbl">Sales</span></div>
+    <div class="navitem" data-group="money" onclick="goGroup('money')"><span class="ic"></span><span class="lbl">Money</span></div>
+    <div class="navitem" data-group="compliance" onclick="goGroup('compliance')"><span class="ic"></span><span class="lbl">Compliance &amp; records</span></div>
+    <div class="navitem" data-group="settings" onclick="goGroup('settings')"><span class="ic"></span><span class="lbl">Settings</span></div>
     <div class="spacer"></div>
     <div class="navitem" onclick="closeApp()"><span class="ic"></span>← Back to site</div>
   </aside>
@@ -1076,6 +1112,8 @@ tr:last-child td{border-bottom:none}
       <div class="right"><input class="searchbar" placeholder="Search…" /><a class="btn sm magnetic">+ New</a></div>
     </div>
 
+    <div class="subtabs" id="subtabs" style="display:none"></div>
+
     <!-- OVERVIEW -->
     <section class="screen on" data-name="overview">
       <div class="m-grid" data-dash>
@@ -1083,6 +1121,46 @@ tr:last-child td{border-bottom:none}
         <div class="metric"><span class="chip-ic dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></span><div class="k">Revenue This Month</div><div class="v" data-count="918300" data-prefix="KES ">KES 0</div><div class="d">▲ 8% vs last month</div></div>
         <div class="metric"><span class="chip-ic grey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><div class="k">Tax Reserve</div><div class="v" data-count="27500" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">Auto-calculated</div></div>
         <div class="metric"><span class="chip-ic amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="k">Unpaid Invoices</div><div class="v" data-count="6" data-suffix="">0</div><div class="d" style="color:var(--amber)">3 overdue</div></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="section-title">Needs your attention <span class="muted-pill">4</span></div>
+        <div class="attn-list">
+          <button class="attn-row red" onclick="goName('collect')"><span class="ai">!</span><div class="ac"><b>3 payments overdue</b><span>KES 47,000 sitting in collections</span></div><span class="go">Chase ›</span></button>
+          <button class="attn-row amber" onclick="goName('compliance')"><span class="ai">⏱</span><div class="ac"><b>VAT filing due in 6 days</b><span>Already prepared — just review &amp; file</span></div><span class="go">Review ›</span></button>
+          <button class="attn-row blue" onclick="goName('invoices')"><span class="ai">✎</span><div class="ac"><b>2 invoices ready to send</b><span>Draft eTIMS invoices waiting</span></div><span class="go">Send ›</span></button>
+          <button class="attn-row green" onclick="goName('capital')"><span class="ai">↑</span><div class="ac"><b>Pre-qualified for capital</b><span>Up to KES 250,000 from your cash flow</span></div><span class="go">View ›</span></button>
+        </div>
+      </div>
+      <div class="cols" style="margin-top:16px">
+        <div class="card">
+          <div class="section-title">Business health</div>
+          <div class="health-row">
+            <div class="ring" style="--p:86"><span>86</span></div>
+            <div class="health-meta">
+              <div class="hm"><span class="d green"></span>Cash flow · strong</div>
+              <div class="hm"><span class="d green"></span>Compliance · up to date</div>
+              <div class="hm"><span class="d amber"></span>Collections · 3 overdue</div>
+              <div class="hm"><span class="d green"></span>Records · complete</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Money in flight</div>
+          <div class="pipeline">
+            <div class="pl-stage awaiting"><div class="n">1</div><div class="l">Awaiting</div></div>
+            <div class="pl-stage sent"><div class="n">2</div><div class="l">Link sent</div></div>
+            <div class="pl-stage paid"><div class="n">1</div><div class="l">Paid</div></div>
+            <div class="pl-stage cleared"><div class="n">3</div><div class="l">Cleared</div></div>
+          </div>
+          <div style="font-size:13px;color:var(--ink-3);margin-top:8px">KES 64,000 clearing into your account</div>
+          <a class="btn ghost sm magnetic" style="margin-top:12px" onclick="goName('collect')">Open collections ›</a>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="section-title">Automations <span class="muted-pill">working for you</span></div>
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5-3 6-3 6h20s-3-1-3-6a7 7 0 0 0-7-7Z"/><path d="M9 18a3 3 0 0 0 6 0"/></svg></span><div class="rm-b"><div class="rm-t">Collection reminders</div><div class="rm-s">Payment links + follow-ups, 1 day before due</div></div><span class="rm-ch">WhatsApp</span><div class="switch on" onclick="rmToggle(this)"></div></div>
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></span><div class="rm-b"><div class="rm-t">Tax &amp; eTIMS alerts</div><div class="rm-s">Deadlines flagged early, returns prepared for you</div></div><span class="rm-ch">Auto</span><div class="switch on" onclick="rmToggle(this)"></div></div>
+        <div class="rm-row"><span class="rm-ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V9M18 17v-8"/></svg></span><div class="rm-b"><div class="rm-t">Weekly money summary</div><div class="rm-s">Every Monday — what came in, what’s due</div></div><span class="rm-ch">WhatsApp</span><div class="switch on" onclick="rmToggle(this)"></div></div>
       </div>
       <div class="cols">
         <div class="card">
@@ -1187,6 +1265,52 @@ tr:last-child td{border-bottom:none}
           <tbody id="cl-rows"></tbody>
         </table>
       </div>
+    </section>
+
+    <!-- CAPITAL (debts, loans, advances — under Money) -->
+    <section class="screen" data-name="capital">
+      <div class="card capital-offer">
+        <span class="glow"></span>
+        <div class="section-title">Zenti Capital</div>
+        <div class="big">Pre-qualified for up to KES 250,000</div>
+        <p>Based on the money already flowing through Zenti. Repaid automatically from a small share of your daily sales, so you barely feel it. No collateral, no forms to chase.</p>
+        <div class="btn-row" style="margin-top:14px">
+          <a class="btn green magnetic" onclick="actCapital()">Apply in minutes</a>
+          <a class="btn ghost magnetic" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)" onclick="toast('Repaid from ~10% of daily sales — demo')">How it works</a>
+        </div>
+      </div>
+      <div class="cols" style="margin-top:16px">
+        <div class="card">
+          <div class="section-title">Active advance</div>
+          <div class="spend-total">KES 120,000 <span class="muted" style="font-size:14px;color:var(--ink-3)">· KES 78,000 repaid</span></div>
+          <div class="prog"><i style="width:65%"></i></div>
+          <div class="ailist">
+            <div class="aiitem"><span class="spark"></span><span>Repaying 10% of daily sales — about KES 4,200 a day</span></div>
+            <div class="aiitem"><span class="spark"></span><span>On track to clear by 14 July. Nothing to remember.</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">What you owe</div>
+          <div class="owe">
+            <div class="owe-row"><div class="on">Zenti Capital advance<div class="od">Auto from daily sales</div></div><div class="oa">KES 42,000</div></div>
+            <div class="owe-row"><div class="on">Mwangi Suppliers<div class="od">Due 30 June</div></div><div class="oa">KES 38,000</div></div>
+            <div class="owe-row"><div class="on">Stima Sacco loan<div class="od">Due 5 July</div></div><div class="oa">KES 64,000</div></div>
+          </div>
+          <div style="font-size:13px;color:var(--ink-3);margin-top:12px">Total obligations <b style="color:var(--ink-1)">KES 144,000</b> — all tracked, none forgotten.</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="section-title">Repayment record</div>
+        <div class="health-row">
+          <div class="ring" style="--p:100"><span>A+</span></div>
+          <div class="health-meta">
+            <div class="hm"><span class="d green"></span>100% on-time repayments</div>
+            <div class="hm"><span class="d green"></span>Good standing — your limit grows as you repay</div>
+            <div class="hm" style="color:var(--ink-3);font-weight:500">Next limit review: 1 August</div>
+          </div>
+        </div>
+      </div>
+      <p class="coll-intro" style="margin-top:14px">Illustrative preview — Zenti Capital is in development and subject to eligibility.</p>
     </section>
 
     <!-- SALES -->
@@ -1531,7 +1655,7 @@ function setPlan(plan){
     n.classList.toggle('locked', PLAN_RANK[n.getAttribute('data-tier')]>PLAN_RANK[plan]);
   });
   var act=document.querySelector('.navitem.active');
-  if(act && act.classList.contains('locked')){ go(document.querySelector('.navitem[data-screen="overview"]')); }
+  if(act && act.classList.contains('locked')){ goGroup('overview'); }
 }
 function showUpsell(item){
   var tier=item.getAttribute('data-tier'), lbl=item.querySelector('.lbl');
@@ -1541,6 +1665,13 @@ function showUpsell(item){
   clearTimeout(window._upT); window._upT=setTimeout(hideUpsell,4000);
 }
 function hideUpsell(){ document.getElementById('upsell').classList.remove('show'); }
+function rmToggle(el){el.classList.toggle('on');var on=el.classList.contains('on');var t=el.closest('.rm-row').querySelector('.rm-t').textContent;toast(t+(on?' · on ✓':' · paused'));}
+function actCapital(){openAct(
+  '<div class="reg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg></div>'+
+  '<h2>Apply for capital</h2><p class="sub">Based on your cash flow. Repaid automatically from a small share of daily sales — no collateral.</p>'+
+  '<div class="field"><label>Amount (KES)</label><input type="number" inputmode="numeric" placeholder="up to 250,000"></div>'+
+  '<div class="field"><label>Repay from</label><input placeholder="10% of daily sales"></div>'+
+  '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Cancel</button><button class="btn magnetic" onclick="actDone(\'Application received · decision in minutes ✓\')">Apply</button></div>');}
 
 /* ---------- toast + make every dashboard control functional ---------- */
 var _toastT;
@@ -1596,15 +1727,39 @@ function closeApp(){
   document.getElementById('landing').style.display='';
   window.scrollTo(0,0);
 }
-function go(item){
-  if(item.classList.contains('locked')){ showUpsell(item); return; }
-  document.querySelectorAll('.navitem').forEach(function(n){n.classList.remove('active');});
-  item.classList.add('active');
-  var name=item.getAttribute('data-screen');
+/* ---------- consolidated navigation: 6 groups, sub-tabs inside ---------- */
+var GROUPS={
+  overview:{label:'Overview',tabs:[['overview','Overview']]},
+  collect:{label:'Collections',tabs:[['collect','Collections']]},
+  sales:{label:'Sales',tabs:[['sales','Sales'],['customers','Customers']]},
+  money:{label:'Money',tabs:[['transactions','Transactions'],['payroll','Payroll'],['suppliers','Suppliers'],['capital','Capital']]},
+  compliance:{label:'Compliance & records',tabs:[['compliance','Compliance'],['invoices','eTIMS invoices'],['reports','Reports']]},
+  settings:{label:'Settings',tabs:[['settings','Business'],['team','Team'],['qr','Payment QR']]}
+};
+function showScreen(name){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s.getAttribute('data-name')===name);});
-  var lbl=item.querySelector('.lbl');document.getElementById('screenName').textContent=(lbl?lbl.textContent:item.textContent).trim();
   reanimate(document.querySelector('.screen.on'));
 }
+function renderSubtabs(key){
+  var g=GROUPS[key],wrap=document.getElementById('subtabs'); if(!wrap)return;
+  if(!g||g.tabs.length<2){wrap.innerHTML='';wrap.style.display='none';return;}
+  wrap.style.display='';
+  wrap.innerHTML=g.tabs.map(function(t,i){return '<button class="subtab'+(i===0?' on':'')+'" data-tab="'+t[0]+'" onclick="showTab(\''+t[0]+'\')">'+t[1]+'</button>';}).join('');
+}
+function showTab(name){
+  document.querySelectorAll('#subtabs .subtab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-tab')===name);});
+  showScreen(name);
+}
+function goGroup(key){
+  var g=GROUPS[key]; if(!g)return;
+  document.querySelectorAll('.navitem').forEach(function(n){n.classList.toggle('active',n.getAttribute('data-group')===key);});
+  document.getElementById('screenName').textContent=g.label;
+  renderSubtabs(key);
+  showTab(g.tabs[0][0]);
+  var sb=document.getElementById('sidebar'); if(sb) sb.classList.remove('open');
+}
+function findGroup(name){for(var k in GROUPS){if(GROUPS[k].tabs.some(function(t){return t[0]===name;}))return k;}return 'overview';}
+function goName(name){ goGroup(findGroup(name)); showTab(name); }
 function reanimate(scr){
   if(!scr)return;
   scr.querySelectorAll('[data-dash]').forEach(function(el){el.querySelectorAll('[data-count]').forEach(countUp);});
