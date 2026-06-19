@@ -46,16 +46,20 @@ h3{font-size:clamp(26px,3vw,40px)}
 
 /* ============================== MOTION PRIMITIVES ============================== */
 [data-reveal]{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-/* intro preview screen */
-#preload{position:fixed;inset:0;z-index:1000;background:var(--bg-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .6s var(--ease),visibility .6s}
+/* intro preview screen — types a line, then morphs to the logo */
+#preload{position:fixed;inset:0;z-index:1000;background:var(--bg-dark);display:grid;place-items:center;transition:opacity .6s var(--ease),visibility .6s}
 #preload.done{opacity:0;visibility:hidden}
-#preload .pl-mark{width:88px;height:88px;background:#fff;-webkit-mask:url(assets/zenti-logo.png) center/contain no-repeat;mask:url(assets/zenti-logo.png) center/contain no-repeat;opacity:0;transform:scale(.82);animation:plMark 1s var(--ease) forwards}
-@keyframes plMark{to{opacity:1;transform:scale(1)}}
-#preload .pl-bar{width:128px;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
-#preload .pl-bar i{display:block;height:100%;width:0;background:var(--green);animation:plBar 1.25s var(--ease) .15s forwards}
-@keyframes plBar{to{width:100%}}
-#preload .pl-word{font-weight:800;letter-spacing:-.04em;font-size:15px;color:rgba(255,255,255,.6);opacity:0;animation:plMark .8s var(--ease) .25s forwards}
-@media(prefers-reduced-motion:reduce){#preload .pl-mark,#preload .pl-bar i,#preload .pl-word{animation:none;opacity:1;width:100%}}
+#preload .pl-stack{display:grid;place-items:center}
+#preload .pl-type,#preload .pl-logo{grid-area:1/1}
+#preload .pl-type{display:flex;align-items:center;gap:3px;font-style:italic;font-weight:500;font-size:clamp(24px,4.4vw,46px);letter-spacing:-.02em;color:#fff;transition:opacity .45s var(--ease),transform .55s var(--ease)}
+#preload .pl-caret{width:2px;height:1.05em;background:var(--green);display:inline-block;animation:plBlink 1s steps(1) infinite}
+@keyframes plBlink{50%{opacity:0}}
+#preload.reveal .pl-type{opacity:0;transform:translateY(-10px)}
+#preload .pl-logo{display:flex;flex-direction:column;align-items:center;gap:20px;opacity:0;transform:scale(.86);transition:opacity .6s var(--ease) .08s,transform .75s var(--ease-spring) .08s}
+#preload.reveal .pl-logo{opacity:1;transform:none}
+#preload .pl-mark{width:86px;height:86px;background:#fff;-webkit-mask:url(assets/zenti-logo.png) center/contain no-repeat;mask:url(assets/zenti-logo.png) center/contain no-repeat}
+#preload .pl-word{font-weight:800;letter-spacing:.36em;font-size:14px;color:rgba(255,255,255,.6);padding-left:.36em}
+@media(prefers-reduced-motion:reduce){#preload .pl-type{opacity:0}#preload .pl-logo{opacity:1;transform:none}}
 [data-reveal].in{opacity:1;transform:none}
 .mask-line{overflow:hidden;display:block}
 .mask-line > span{display:block;transform:translateY(110%);transition:transform .9s var(--ease)}
@@ -544,7 +548,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 </style>
 </head>
 <body>
-<div id="preload"><div class="pl-mark"></div><div class="pl-bar"><i></i></div><div class="pl-word">ZENTI</div></div>
+<div id="preload"><div class="pl-stack"><div class="pl-type"><span id="plText"></span><i class="pl-caret"></i></div><div class="pl-logo"><div class="pl-mark"></div><div class="pl-word">ZENTI</div></div></div></div>
 
 <!-- FLOATING NAV -->
 <header class="fnav" id="fnav">
@@ -554,12 +558,12 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
       <button class="fnav-link" aria-expanded="false" aria-haspopup="true">Product <i class="caret"></i></button>
       <div class="fnav-drop">
         <a href="features.html#pay"><b>Pay anyone</b><span>QR, link, or a phone tap</span></a>
+        <a href="features.html#tag"><b>The Zen Tag</b><span>Your handle — find anyone</span></a>
         <a href="features.html#links"><b>Money links</b><span>Get paid from a link</span></a>
+        <a href="features.html#split"><b>Split the bill</b><span>Share any amount, fairly</span></a>
         <a href="features.html#tap"><b>Tap to pay</b><span>Phone to phone, no till</span></a>
-        <a href="features.html#scan"><b>Scan &amp; go</b><span>Point, confirm, paid</span></a>
         <a href="features.html#savings"><b>Savings goals</b><span>Round-ups that grow</span></a>
-        <a href="features.html#pools"><b>Pools</b><span>Save together, clearly</span></a>
-        <a href="card.html"><b>Zenti Card</b><span>Spend with perks</span></a>
+        <a href="card.html"><b>Zen Card</b><span>Spend with perks</span></a>
       </div>
     </div>
     <a class="fnav-link" href="features.html">Features</a>
@@ -820,23 +824,15 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 <!-- CARD (DARK) -->
 <section id="card" class="card-sec">
   <div class="container">
-    <div class="label" data-reveal>The Zenti Card</div>
-    <h2 data-scramble data-final="Your card. Coming soon.">Your card. Coming soon.</h2>
-    <p class="lead" data-reveal>Four designs. One built for you. Be the first to carry it.</p>
+    <div class="label" data-reveal>The Zen Card</div>
+    <h2 data-reveal>One card.<br>Every way to pay.</h2>
+    <p class="lead" data-reveal>It lives in your wallet and on your phone. Spend with perks, then add transit, ID and tickets — all in one card.</p>
     <div class="card-deck">
       <div class="zcard midnight tilt"><div style="display:flex;justify-content:space-between"><span class="zl">Zenti</span><span class="chipic"></span></div><div><div class="num">•••• •••• •••• 4829</div><div class="nm" style="margin-top:8px">W. Kamau</div></div></div>
       <div class="zcard ocean tilt"><div style="display:flex;justify-content:space-between"><span class="zl">Zenti</span><span class="chipic"></span></div><div><div class="num">•••• •••• •••• 1190</div><div class="nm" style="margin-top:8px">W. Kamau</div></div></div>
       <div class="zcard forest tilt"><div style="display:flex;justify-content:space-between"><span class="zl">Zenti</span><span class="chipic"></span></div><div><div class="num">•••• •••• •••• 0077</div><div class="nm" style="margin-top:8px">W. Kamau</div></div></div>
-      <div class="zcard unrevealed tilt"><span class="q">Unrevealed</span></div>
     </div>
-    <div class="card-meta" data-reveal>
-      <div class="cm"><b>01 — Midnight</b>Built for the night economy. Inspired by the Nairobi skyline after dark.</div>
-      <div class="cm"><b>02 — Ocean</b>Calm. Precise. Deep. Inspired by Lake Victoria.</div>
-      <div class="cm"><b>03 — Forest</b>Growth. Always forward. Zenti green in its purest form.</div>
-      <div class="cm"><b>04 — Unknown</b>A fourth design is coming. Join the waitlist to find out first.</div>
-    </div>
-    <form class="waitlist" id="waitlist" data-reveal><input type="email" placeholder="Enter your email" required aria-label="Email" /><button class="btn invert magnetic" type="submit">Join waitlist</button></form>
-    <div class="waitlist-done" id="waitlistDone">✓ You’re on the list.</div>
+    <a class="btn magnetic" href="card.html" data-reveal style="margin-top:8px">Explore the Zen Card →</a>
   </div>
 </section>
 
@@ -912,39 +908,6 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
       <div class="moment-card">
         <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
         <div><span class="tag">Tap to pay</span><h3>Fare ready before the matatu moves.</h3></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT'S NEXT / ROADMAP (clearly marked coming) -->
-<section id="next" class="gstart">
-  <div class="container">
-    <div class="label" data-reveal>On the way</div>
-    <h2 data-reveal style="margin-top:14px">What’s next for Zenti.</h2>
-    <p class="lead" data-reveal style="margin:18px auto 0">A peek at what we’re building. Coming soon — not live yet.</p>
-    <div class="next-grid">
-      <div class="next-card" data-reveal>
-        <span class="coming">Coming soon</span>
-        <div class="next-vis">
-          <div class="transit-card">
-            <div class="tt"><span>SUPER METRO</span><span class="paid">PAID</span></div>
-            <div class="route">Rongai → CBD</div>
-            <div class="meta"><span class="dt">17 June · Seat 12</span><span class="fare">KES 150</span></div>
-          </div>
-        </div>
-        <h3>Transit cards, in your wallet.</h3>
-        <p>Book a matatu, pay once, and the ticket lives in Zenti. Swipe to it, show the conductor, board. No message-hunting, no screenshots.</p>
-      </div>
-      <div class="next-card" data-reveal style="transition-delay:.08s">
-        <span class="coming">Coming soon</span>
-        <div class="next-vis">
-          <span class="tap-ring"></span><span class="tap-ring"></span><span class="tap-ring"></span>
-          <div class="tap-phone"><span class="z"></span><span class="amt">KES 65</span></div>
-          <div class="tap-label">Tap. Done.</div>
-        </div>
-        <h3>Tap to pay. That’s it.</h3>
-        <p>Enter the amount, tap your phone, confirm. No camera, no till numbers — the fastest way to pay or get paid.</p>
       </div>
     </div>
   </div>
@@ -1228,14 +1191,22 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 })();
 </script>
 <script>
-/* intro preview screen */
+/* intro preview screen — type a line, morph to logo, then lift */
 (function(){
   var p=document.getElementById('preload'); if(!p) return;
   var html=document.documentElement; html.style.overflow='hidden';
+  var txt=document.getElementById('plText');
+  var phrase='Money, finally simple.';
   function done(){p.classList.add('done');html.style.overflow='';setTimeout(function(){if(p&&p.parentNode)p.parentNode.removeChild(p);},700);}
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){done();return;}
-  window.addEventListener('load',function(){setTimeout(done,1350);});
-  setTimeout(done,2800); // safety
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ if(txt)txt.textContent=phrase; p.classList.add('reveal'); setTimeout(done,650); return; }
+  var i=0;
+  (function type(){
+    if(i<=phrase.length){ if(txt) txt.textContent=phrase.slice(0,i++); setTimeout(type,46); }
+    else { setTimeout(function(){ p.classList.add('reveal'); }, 480); }
+  })();
+  var total = 46*phrase.length + 480 + 1150; // type + hold + logo reveal
+  setTimeout(done, total);
+  setTimeout(done, total + 1600); // safety
 })();
 </script>
 <script src="js/site.js"></script>
