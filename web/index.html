@@ -423,6 +423,20 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 /* ============================== EXPERIENCE (real-time payment demos) ============================== */
 .exp{background:var(--bg-dark);color:#fff;border-radius:40px;margin:28px 16px;overflow:hidden}
 .exp .lead{margin-bottom:8px}
+/* bold-statement feature blocks (statement → space → desc → video box → outcome) */
+.feat-stmt{border-radius:40px;margin:28px 16px;overflow:hidden;color:#fff}
+.feat-stmt.dark{background:var(--bg-dark)}
+.feat-stmt.green{background:#0c2a14}
+.fs-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.fs-grid.flip .fs-copy{order:2}.fs-grid.flip .fs-vid{order:1}
+.fs-et{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--green)}
+.fs-h{font-size:clamp(40px,6vw,82px);font-weight:500;font-style:italic;letter-spacing:-.03em;line-height:1.0;margin:16px 0 20px;color:#fff}
+.fs-desc{font-size:clamp(16px,1.9vw,21px);line-height:1.5;max-width:34ch;color:#9a9aa2}
+.fs-out{margin-top:26px;display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:#fff}
+.fs-out .tk{width:24px;height:24px;border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-size:13px;font-weight:800;flex:none}
+.fs-vid{position:relative;border-radius:24px;overflow:hidden;background:#0a0a0c;border:1px solid rgba(255,255,255,.08);min-height:440px;display:flex;align-items:center;justify-content:center}
+.fs-vid .vlabel{position:absolute;top:14px;left:16px;font-size:10px;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;z-index:6}
+@media(max-width:880px){.fs-grid{grid-template-columns:1fr;gap:36px}.fs-grid.flip .fs-copy{order:1}.fs-grid.flip .fs-vid{order:2}.fs-vid{min-height:360px}.fs-desc{margin:0 auto}.feat-stmt{text-align:center}.fs-out{justify-content:center}}
 /* green pop — luminous accents on deep dark */
 .exp .tk,.success .ck{box-shadow:0 0 26px rgba(52,255,24,.55)}
 .nfc-ok{box-shadow:0 0 24px rgba(52,255,24,.4)}
@@ -548,72 +562,88 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
   </div>
 </section>
 
-<!-- EXPERIENCE: real-time payments -->
-<section id="experience" class="exp">
+<!-- FEATURE STORIES — bold statement + space + description + video box + outcome -->
+<section id="experience" class="feat-stmt dark">
   <div class="container">
-    <div class="label" data-reveal>The feeling</div>
-    <h2 data-reveal>This is what paying<br>should feel like.</h2>
-    <p class="lead" data-reveal>Tap, scan, or send a link, then watch the money move. Fast, certain, and honestly a bit magic.</p>
-
-    <div class="exp-grid">
-      <!-- NFC tap (hero demo) -->
-      <div class="exp-card exp-tall" data-reveal>
-        <div class="exp-stage">
-          <div class="nfc-stage">
-            <div class="nfc-dev nfc-cd"><span class="zl">Zenti</span><span class="ch"></span></div>
-            <div class="nfc-dev nfc-ph"></div>
-            <span class="nfc-pulse"></span>
-            <div class="nfc-ok"><span class="tk">✓</span> Paid · KES 1,200</div>
-          </div>
-        </div>
-        <div class="ecap">
-          <div class="et">NFC tap</div>
-          <h3>Bring two together.</h3>
-          <p>Hold your phone to any Zenti reader, or another phone. They connect, it’s paid, and you both feel the tick. No app-switching, no typing.</p>
+    <div class="fs-grid">
+      <div class="fs-copy">
+        <div class="fs-et" data-reveal>Tap to pay</div>
+        <h2 class="fs-h" data-reveal>Tap.<br>And it’s paid.</h2>
+        <p class="fs-desc" data-reveal>Hold your phone to a Zenti tag, or another phone. They connect, the money moves, you both feel the tick. No camera, no till numbers.</p>
+        <div class="fs-out" data-reveal><span class="tk">✓</span> No wrong-recipient errors. Ever.</div>
+      </div>
+      <div class="fs-vid" data-reveal>
+        <span class="vlabel">Live demo</span>
+        <!-- swap for real footage: <video src="videos/tap-to-pay.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video> -->
+        <div class="nfc-stage">
+          <div class="nfc-dev nfc-cd"><span class="zl">Zenti</span><span class="ch"></span></div>
+          <div class="nfc-dev nfc-ph"></div>
+          <span class="nfc-pulse"></span>
+          <div class="nfc-ok"><span class="tk">✓</span> Paid · KES 1,200</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <!-- QR scan -->
-      <div class="exp-card" data-reveal style="transition-delay:.08s">
-        <div class="exp-stage">
-          <div class="qr-stage">
-            <svg viewBox="0 0 100 100" class="qrsvg" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100" height="100" rx="10" fill="#fff"/>
-              <g fill="#0a0a0a">
-                <rect x="8" y="8" width="22" height="22"/><rect x="13" y="13" width="12" height="12" fill="#fff"/><rect x="16" y="16" width="6" height="6"/>
-                <rect x="70" y="8" width="22" height="22"/><rect x="75" y="13" width="12" height="12" fill="#fff"/><rect x="78" y="16" width="6" height="6"/>
-                <rect x="8" y="70" width="22" height="22"/><rect x="13" y="75" width="12" height="12" fill="#fff"/><rect x="16" y="78" width="6" height="6"/>
-                <rect x="40" y="10" width="6" height="6"/><rect x="50" y="10" width="6" height="6"/><rect x="74" y="40" width="6" height="6"/>
-                <rect x="40" y="40" width="6" height="6"/><rect x="48" y="46" width="6" height="6"/><rect x="56" y="40" width="6" height="6"/>
-                <rect x="64" y="48" width="6" height="6"/><rect x="40" y="56" width="6" height="6"/><rect x="72" y="58" width="6" height="6"/>
-                <rect x="46" y="64" width="6" height="6"/><rect x="58" y="64" width="6" height="6"/><rect x="66" y="70" width="6" height="6"/>
-                <rect x="40" y="74" width="6" height="6"/><rect x="50" y="80" width="6" height="6"/>
-              </g>
-            </svg>
-            <span class="qr-scan"></span>
-            <span class="qr-br tl"></span><span class="qr-br tr"></span><span class="qr-br bl"></span><span class="qr-br br"></span>
-            <div class="qr-ok"><span class="tk">✓</span></div>
-          </div>
-        </div>
-        <div class="ecap"><div class="et">Scan &amp; go</div><h3>Point, confirm, paid.</h3><p>Scan any Zenti QR and confirm the amount. Done before the cashier looks up.</p></div>
+<section class="feat-stmt green">
+  <div class="container">
+    <div class="fs-grid flip">
+      <div class="fs-copy">
+        <div class="fs-et" data-reveal>Money links</div>
+        <h2 class="fs-h" data-reveal>Send a link.<br>Get paid.</h2>
+        <p class="fs-desc" data-reveal>Drop a Zenti link in WhatsApp. They tap, they pay, you’re notified. The “send me your number, screenshot it” dance is gone.</p>
+        <div class="fs-out" data-reveal><span class="tk">✓</span> Works even if they’ve never used Zenti.</div>
       </div>
-
-      <!-- Money link -->
-      <div class="exp-card" data-reveal style="transition-delay:.16s">
-        <div class="exp-stage">
-          <div class="link-stage">
-            <div class="link-chat"><div class="link-bub">Here you go<div class="lk">zenti.me/sarah</div></div></div>
-            <span class="link-tap"></span>
-            <div class="link-claim">
-              <div class="lc-av">SO</div>
-              <div class="lc-req">Sarah is requesting</div>
-              <div class="lc-amt">KES 850</div>
-              <div class="lc-btn">Pay with M-Pesa</div>
-            </div>
-            <div class="link-ok"><span class="tk">✓</span> Sent to Sarah</div>
+      <div class="fs-vid" data-reveal>
+        <span class="vlabel">Live demo</span>
+        <!-- swap for real footage: <video src="videos/money-link.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video> -->
+        <div class="link-stage">
+          <div class="link-chat"><div class="link-bub">Here you go<div class="lk">zenti.me/sarah</div></div></div>
+          <span class="link-tap"></span>
+          <div class="link-claim">
+            <div class="lc-av">SO</div>
+            <div class="lc-req">Sarah is requesting</div>
+            <div class="lc-amt">KES 850</div>
+            <div class="lc-btn">Pay with M-Pesa</div>
           </div>
+          <div class="link-ok"><span class="tk">✓</span> Sent to Sarah</div>
         </div>
-        <div class="ecap"><div class="et">Money links</div><h3>Send a link. Get paid.</h3><p>Drop a link in WhatsApp. They tap, pay with M-Pesa, and you’re notified, even if they’ve never used Zenti.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feat-stmt dark">
+  <div class="container">
+    <div class="fs-grid">
+      <div class="fs-copy">
+        <div class="fs-et" data-reveal>Scan &amp; go</div>
+        <h2 class="fs-h" data-reveal>Point,<br>confirm, paid.</h2>
+        <p class="fs-desc" data-reveal>Scan any Zenti QR, check the amount, done. Fast enough that the queue behind you never builds.</p>
+        <div class="fs-out" data-reveal><span class="tk">✓</span> Paid before the cashier looks up.</div>
+      </div>
+      <div class="fs-vid" data-reveal>
+        <span class="vlabel">Live demo</span>
+        <!-- swap for real footage: <video src="videos/scan-pay.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video> -->
+        <div class="qr-stage">
+          <svg viewBox="0 0 100 100" class="qrsvg" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="10" fill="#fff"/>
+            <g fill="#0a0a0a">
+              <rect x="8" y="8" width="22" height="22"/><rect x="13" y="13" width="12" height="12" fill="#fff"/><rect x="16" y="16" width="6" height="6"/>
+              <rect x="70" y="8" width="22" height="22"/><rect x="75" y="13" width="12" height="12" fill="#fff"/><rect x="78" y="16" width="6" height="6"/>
+              <rect x="8" y="70" width="22" height="22"/><rect x="13" y="75" width="12" height="12" fill="#fff"/><rect x="16" y="78" width="6" height="6"/>
+              <rect x="40" y="10" width="6" height="6"/><rect x="50" y="10" width="6" height="6"/><rect x="74" y="40" width="6" height="6"/>
+              <rect x="40" y="40" width="6" height="6"/><rect x="48" y="46" width="6" height="6"/><rect x="56" y="40" width="6" height="6"/>
+              <rect x="64" y="48" width="6" height="6"/><rect x="40" y="56" width="6" height="6"/><rect x="72" y="58" width="6" height="6"/>
+              <rect x="46" y="64" width="6" height="6"/><rect x="58" y="64" width="6" height="6"/><rect x="66" y="70" width="6" height="6"/>
+              <rect x="40" y="74" width="6" height="6"/><rect x="50" y="80" width="6" height="6"/>
+            </g>
+          </svg>
+          <span class="qr-scan"></span>
+          <span class="qr-br tl"></span><span class="qr-br tr"></span><span class="qr-br bl"></span><span class="qr-br br"></span>
+          <div class="qr-ok"><span class="tk">✓</span></div>
+        </div>
       </div>
     </div>
   </div>
