@@ -1,8 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <rect width="100" height="100" rx="24" fill="#0e0e11"/>
-  <g fill="#34ff18">
-    <path d="M50 16 L57 37 L57 63 L50 84 L43 63 L43 37 Z"/>
-    <path d="M50 16 L57 37 L57 63 L50 84 L43 63 L43 37 Z" transform="rotate(60 50 50)"/>
-    <path d="M50 16 L57 37 L57 63 L50 84 L43 63 L43 37 Z" transform="rotate(120 50 50)"/>
+  <rect width="100" height="100" rx="22" fill="#ffffff"/>
+  <g fill="#0e0e11" transform="translate(50 50) scale(0.74) translate(-50 -50)">
+    <path d="M45 50 L45 28 L37 27 L50 7 L63 27 L55 28 L55 50 Z"/>
+    <path d="M45 50 L45 28 L37 27 L50 7 L63 27 L55 28 L55 50 Z" transform="rotate(60 50 50)"/>
+    <path d="M45 50 L45 28 L37 27 L50 7 L63 27 L55 28 L55 50 Z" transform="rotate(120 50 50)"/>
+    <path d="M45 50 L45 28 L37 27 L50 7 L63 27 L55 28 L55 50 Z" transform="rotate(180 50 50)"/>
+    <path d="M45 50 L45 28 L37 27 L50 7 L63 27 L55 28 L55 50 Z" transform="rotate(240 50 50)"/>
+    <path d="M45 50 L45 28 L37 27 L50 7 L63 27 L55 28 L55 50 Z" transform="rotate(300 50 50)"/>
   </g>
 </svg>
