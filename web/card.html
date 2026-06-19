@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Zenti Card — coming soon</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <meta name="description" content="Four designs. One built for you. The Zenti Card — coming soon." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -32,7 +33,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2.5px solid var
 .nav.s{background:rgba(10,10,12,.6);backdrop-filter:saturate(160%) blur(18px);border-bottom-color:rgba(255,255,255,.06)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
 .brand{font-weight:800;font-style:normal;font-size:20px;letter-spacing:-.04em;display:flex;align-items:center;gap:9px}
-.brand .z{width:26px;height:26px;border-radius:8px;background:#fff;color:#0a0a0c;display:grid;place-items:center;font-weight:900;font-size:15px;font-style:normal}
+.brand .z{width:27px;height:27px;display:inline-flex;align-items:center;justify-content:center;color:var(--green)}.brand .z svg{width:100%;height:100%;display:block}
 .nav .right{display:flex;align-items:center;gap:18px}
 .nav .back{font-size:14px;color:var(--muted);font-weight:500;font-style:normal}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:46px;padding:0 22px;border-radius:100px;font-size:15px;font-weight:600;font-style:normal;cursor:pointer;border:none;background:var(--green);color:#06210a;font-family:var(--font);transition:transform .3s var(--ease),box-shadow .3s var(--ease);box-shadow:0 8px 30px -8px rgba(52,255,24,.6)}
@@ -140,7 +141,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2.5px solid var
 
 <nav class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="index.html"><span class="z">Z</span>Zenti</a>
+    <a class="brand" href="index.html"><span class="z"><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><path d="M50 6 L58 30 L58 70 L50 94 L42 70 L42 30 Z"/><path d="M50 6 L58 30 L58 70 L50 94 L42 70 L42 30 Z" transform="rotate(60 50 50)"/><path d="M50 6 L58 30 L58 70 L50 94 L42 70 L42 30 Z" transform="rotate(120 50 50)"/></svg></span>Zenti</a>
     <div class="right">
       <a class="back" href="index.html">← Home</a>
       <a class="btn sm" href="#waitlist">Join waitlist</a>
