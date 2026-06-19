@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Features — Zenti</title>
-<meta name="description" content="Every Zenti feature, in full: why it exists, how it works, and what it does for you. Pay anyone, send money links, tap to pay, scan & go, save with goals and pools, and the Zenti card.">
+<meta name="description" content="Every Zenti feature, in full: why it exists, how it works, and what it does for you. Pay anyone, the Zen Tag, quick pay, money links, split the bill, tap to pay, scan & go, savings, pools, and the Zen Card.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="Features — Zenti">
@@ -12,7 +12,6 @@
 <meta property="og:image" content="og.png">
 <link rel="stylesheet" href="css/site.css">
 <style>
-  /* page-local media visuals — premium placeholders awaiting real footage */
   .fpv{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
   .fpv .glow{position:absolute;width:62%;aspect-ratio:1;border-radius:50%;filter:blur(60px);opacity:.55}
   .fpv .play{position:relative;z-index:2;width:78px;height:78px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
@@ -21,6 +20,11 @@
   .f-media.light .fpv .cap{color:var(--ink-3)}
   .f-media.light .fpv .play{background:rgba(10,10,10,.06);box-shadow:inset 0 0 0 1px rgba(10,10,10,.12)}
   .f-media.light .fpv .play::after{border-left-color:var(--ink-1)}
+  /* zen tag handle chip inside its media box */
+  .tagcard{position:relative;z-index:2;text-align:center}
+  .tagcard .handle{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:clamp(26px,4vw,40px);color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:14px 26px;border-radius:100px;backdrop-filter:blur(6px)}
+  .tagcard .handle .zt{width:30px;height:30px;background:var(--green);-webkit-mask:url(assets/zenti-logo.png) center/contain no-repeat;mask:url(assets/zenti-logo.png) center/contain no-repeat;flex:none}
+  .tagcard .sub{margin-top:16px;color:rgba(255,255,255,.55);font-size:14px}
   .cta-band{background:var(--bg-dark);color:#fff;text-align:center;padding:110px 0;border-radius:40px;margin:40px 16px 0}
   .cta-band h2{font-size:clamp(34px,5vw,64px);font-weight:500;font-style:italic}
   .cta-band p{color:rgba(255,255,255,.6);margin:18px auto 30px;max-width:520px}
@@ -40,12 +44,12 @@
       <button class="fnav-link" aria-expanded="false" aria-haspopup="true">Product <i class="caret"></i></button>
       <div class="fnav-drop">
         <a href="features.html#pay"><b>Pay anyone</b><span>QR, link, or a phone tap</span></a>
+        <a href="features.html#tag"><b>The Zen Tag</b><span>Your handle — find anyone</span></a>
         <a href="features.html#links"><b>Money links</b><span>Get paid from a link</span></a>
+        <a href="features.html#split"><b>Split the bill</b><span>Share any amount, fairly</span></a>
         <a href="features.html#tap"><b>Tap to pay</b><span>Phone to phone, no till</span></a>
-        <a href="features.html#scan"><b>Scan &amp; go</b><span>Point, confirm, paid</span></a>
         <a href="features.html#savings"><b>Savings goals</b><span>Round-ups that grow</span></a>
-        <a href="features.html#pools"><b>Pools</b><span>Save together, clearly</span></a>
-        <a href="card.html"><b>Zenti Card</b><span>Spend with perks</span></a>
+        <a href="card.html"><b>Zen Card</b><span>Spend with perks</span></a>
       </div>
     </div>
     <a class="fnav-link" href="features.html">Features</a>
@@ -77,12 +81,15 @@
 <div class="container">
   <nav class="fp-toc" aria-label="Features">
     <a href="#pay">Pay anyone</a>
+    <a href="#tag">Zen Tag</a>
+    <a href="#quickpay">Quick pay</a>
     <a href="#links">Money links</a>
+    <a href="#split">Split the bill</a>
     <a href="#tap">Tap to pay</a>
     <a href="#scan">Scan &amp; go</a>
-    <a href="#savings">Savings goals</a>
+    <a href="#savings">Savings</a>
     <a href="#pools">Pools</a>
-    <a href="#card">Zenti Card</a>
+    <a href="#card">Zen Card</a>
   </nav>
 </div>
 
@@ -94,14 +101,8 @@
       <div class="f-copy">
         <div class="f-num" data-r><b>01 —</b> Pay anyone</div>
         <h2 data-r>Money should move<br>as fast as a word.</h2>
-        <div class="f-block" data-r>
-          <div class="lbl">Where it came from</div>
-          <p>Paying someone in Kenya means remembering till numbers, paybills, account numbers — then double-checking you typed them right. One wrong digit and the money’s gone to a stranger.</p>
-        </div>
-        <div class="f-block" data-r>
-          <div class="lbl">How it works</div>
-          <p>Type an amount, pick a person, swipe. Zenti routes it over M-Pesa, bank, or balance — whichever fits — and confirms it landed. No copying numbers between apps.</p>
-        </div>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>Paying someone in Kenya means remembering till numbers, paybills, account numbers — then double-checking you typed them right. One wrong digit and the money’s gone to a stranger.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Type an amount, pick a person, swipe. Zenti routes it over M-Pesa, bank, or balance — whichever fits — and confirms it landed. No copying numbers between apps.</p></div>
         <div class="f-out" data-r><span class="tk">✓</span> It clears in seconds, to the right person, every time.</div>
       </div>
       <div class="f-media" data-r>
@@ -112,20 +113,51 @@
     </div>
   </section>
 
+  <!-- ZEN TAG -->
+  <section class="feature flip" id="tag">
+    <div class="fwrap">
+      <div class="f-copy">
+        <div class="f-num" data-r><b>02 —</b> The Zen Tag</div>
+        <h2 data-r>Your tag is<br>the new number.</h2>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>A phone number is fragile. It’s tied to a SIM, it changes, it gets lost or swapped. And handing out digits to get paid has always felt clumsy. Your identity on Zenti shouldn’t depend on a line.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>You get a Zen Tag — a handle like <b style="color:var(--ink-1)">@wanjiku</b>. Share it instead of your number. Anyone can search a name or tag and find you, then pay or request in a tap. It’s also a real tappable tag for phone-to-phone pay, so the tag <i>is</i> how Zenti knows it’s you.</p></div>
+        <div class="f-block" data-r><div class="lbl">For creators &amp; groups</div><p>Turn your Zen Tag into a promo code. Partner with brands or your community, share your tag as the code, and earn from what it brings in — one handle for your audience, your payments, and your partnerships.</p></div>
+        <div class="f-out" data-r><span class="tk">✓</span> One handle. Findable, payable, yours — even if your line isn’t.</div>
+      </div>
+      <div class="f-media" data-r>
+        <span class="vlabel">Video demo</span>
+        <!-- swap for real footage: <video src="videos/zen-tag.mp4" poster="assets/tag-poster.jpg" autoplay muted loop playsinline></video> -->
+        <div class="fpv"><div class="glow" style="background:var(--green)"></div><div class="tagcard"><span class="handle"><span class="zt"></span>@wanjiku</span><div class="sub">search it · pay it · tap it</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK PAY -->
+  <section class="feature" id="quickpay">
+    <div class="fwrap">
+      <div class="f-copy">
+        <div class="f-num" data-r><b>03 —</b> Quick pay</div>
+        <h2 data-r>Paid in under<br>five seconds.</h2>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>At a till or a stall, the slow part isn’t the money — it’s the menus. Opening an app, finding the right screen, tapping through. Paying should be the quickest thing you do all day.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Quick Access drops you straight onto the Pay screen the moment you open Zenti. Type the amount, double-tap to confirm with Face ID, done. Open, amount, confirm — three taps, no hunting.</p></div>
+        <div class="f-out" data-r><span class="tk">✓</span> The fastest screen you’ll touch all day.</div>
+      </div>
+      <div class="f-media" data-r>
+        <span class="vlabel">Video demo</span>
+        <!-- swap for real footage: <video src="videos/quick-pay.mp4" poster="assets/quickpay-poster.jpg" autoplay muted loop playsinline></video> -->
+        <div class="fpv"><div class="glow" style="background:#ffb020"></div><div class="play"></div><div class="cap">Open · amount · double-tap</div></div>
+      </div>
+    </div>
+  </section>
+
   <!-- MONEY LINKS -->
   <section class="feature flip" id="links">
     <div class="fwrap">
       <div class="f-copy">
-        <div class="f-num" data-r><b>02 —</b> Money links</div>
+        <div class="f-num" data-r><b>04 —</b> Money links</div>
         <h2 data-r>Send a link.<br>Get paid back.</h2>
-        <div class="f-block" data-r>
-          <div class="lbl">Where it came from</div>
-          <p>“Send me your number, I’ll send it… did you get it? Screenshot?” The whole back-and-forth of getting paid by a friend is a small daily tax on everyone.</p>
-        </div>
-        <div class="f-block" data-r>
-          <div class="lbl">How it works</div>
-          <p>Create a link for any amount and drop it in WhatsApp or a message. They open it, pay with M-Pesa or their balance, and you’re notified the moment it lands — even if they’ve never used Zenti.</p>
-        </div>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>“Send me your number, I’ll send it… did you get it? Screenshot?” The whole back-and-forth of getting paid by a friend is a small daily tax on everyone.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Create a link for any amount and drop it in WhatsApp or a message. They open it, pay with M-Pesa or their balance, and you’re notified the moment it lands — even if they’ve never used Zenti.</p></div>
         <div class="f-out" data-r><span class="tk">✓</span> No numbers shared, no screenshots chased.</div>
       </div>
       <div class="f-media" data-r>
@@ -136,20 +168,32 @@
     </div>
   </section>
 
-  <!-- TAP -->
-  <section class="feature" id="tap">
+  <!-- SPLIT THE BILL -->
+  <section class="feature" id="split">
     <div class="fwrap">
       <div class="f-copy">
-        <div class="f-num" data-r><b>03 —</b> Tap to pay</div>
+        <div class="f-num" data-r><b>05 —</b> Split the bill</div>
+        <h2 data-r>Split it.<br>Skip the maths.</h2>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>One person pays for the table, the trip, the group gift — then spends a week doing mental arithmetic and nudging people for their share. Money between friends shouldn’t strain the friendship.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Split any amount across people in a tap — evenly or by custom shares. Everyone gets a request to their Zen Tag, pays their part, and you watch who’s settled in real time. No spreadsheet, no chasing.</p></div>
+        <div class="f-out" data-r><span class="tk">✓</span> Everyone pays their share, you keep the friendship.</div>
+      </div>
+      <div class="f-media" data-r>
+        <span class="vlabel">Video demo</span>
+        <!-- swap for real footage: <video src="videos/split-bill.mp4" poster="assets/split-poster.jpg" autoplay muted loop playsinline></video> -->
+        <div class="fpv"><div class="glow" style="background:#8a5cff"></div><div class="play"></div><div class="cap">Split · request · settled</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAP -->
+  <section class="feature flip" id="tap">
+    <div class="fwrap">
+      <div class="f-copy">
+        <div class="f-num" data-r><b>06 —</b> Tap to pay</div>
         <h2 data-r>Two phones touch.<br>It’s done.</h2>
-        <div class="f-block" data-r>
-          <div class="lbl">Where it came from</div>
-          <p>At a stall or between friends, the slowest part of paying is finding the right merchant or typing a till. The amount is known — only the “who” is fiddly.</p>
-        </div>
-        <div class="f-block" data-r>
-          <div class="lbl">How it works</div>
-          <p>Enter the amount and hold your phone to a Zenti tag or another phone. NFC identifies the recipient instantly, you confirm with Face ID or fingerprint, and it’s paid. Input. Tap. Pay.</p>
-        </div>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>At a stall or between friends, the slowest part of paying is finding the right merchant or typing a till. The amount is known — only the “who” is fiddly.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Enter the amount and hold your phone to a Zen Tag or another phone. NFC identifies the recipient instantly, you confirm with Face ID or fingerprint, and it’s paid. Input. Tap. Pay.</p></div>
         <div class="f-out" data-r><span class="tk">✓</span> No till entry. No wrong-recipient errors.</div>
       </div>
       <div class="f-media" data-r>
@@ -161,19 +205,13 @@
   </section>
 
   <!-- SCAN -->
-  <section class="feature flip" id="scan">
+  <section class="feature" id="scan">
     <div class="fwrap">
       <div class="f-copy">
-        <div class="f-num" data-r><b>04 —</b> Scan &amp; go</div>
+        <div class="f-num" data-r><b>07 —</b> Scan &amp; go</div>
         <h2 data-r>Point, confirm,<br>walk on.</h2>
-        <div class="f-block" data-r>
-          <div class="lbl">Where it came from</div>
-          <p>Queues build when paying takes too long. A scan should be the fastest thing you do all day, not a hunt through menus.</p>
-        </div>
-        <div class="f-block" data-r>
-          <div class="lbl">How it works</div>
-          <p>Open the camera, scan any Zenti QR, check the amount, confirm. The receipt shows on both screens at once. (A merchant QR costs a one-time KES 100 to set up — we’re upfront about that.)</p>
-        </div>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>Queues build when paying takes too long. A scan should be the fastest thing you do all day, not a hunt through menus.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Open the camera, scan any Zenti QR, check the amount, confirm. The receipt shows on both screens at once. (A merchant QR costs a one-time KES 100 to set up — we’re upfront about that.)</p></div>
         <div class="f-out" data-r><span class="tk">✓</span> Paid before the cashier looks up.</div>
       </div>
       <div class="f-media" data-r>
@@ -185,19 +223,13 @@
   </section>
 
   <!-- SAVINGS -->
-  <section class="feature" id="savings">
+  <section class="feature flip" id="savings">
     <div class="fwrap">
       <div class="f-copy">
-        <div class="f-num" data-r><b>05 —</b> Savings goals</div>
+        <div class="f-num" data-r><b>08 —</b> Savings goals</div>
         <h2 data-r>Saving, without<br>thinking about it.</h2>
-        <div class="f-block" data-r>
-          <div class="lbl">Where it came from</div>
-          <p>Most people want to save but the money slips through everyday spending. Willpower alone rarely fills a goal.</p>
-        </div>
-        <div class="f-block" data-r>
-          <div class="lbl">How it works</div>
-          <p>Set a target — a trip, a phone, an emergency cushion. Turn on round-ups and every payment quietly tops it up. Watch the ring fill, withdraw any time.</p>
-        </div>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>Most people want to save but the money slips through everyday spending. Willpower alone rarely fills a goal.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Set a target — a trip, a phone, an emergency cushion. Turn on round-ups and every payment quietly tops it up. Watch the ring fill, withdraw any time.</p></div>
         <div class="f-out" data-r><span class="tk">✓</span> Progress you can see, building on its own.</div>
       </div>
       <div class="f-media light" data-r>
@@ -209,19 +241,13 @@
   </section>
 
   <!-- POOLS -->
-  <section class="feature flip" id="pools">
+  <section class="feature" id="pools">
     <div class="fwrap">
       <div class="f-copy">
-        <div class="f-num" data-r><b>06 —</b> Pools</div>
+        <div class="f-num" data-r><b>09 —</b> Pools</div>
         <h2 data-r>Save together,<br>see everything.</h2>
-        <div class="f-block" data-r>
-          <div class="lbl">Where it came from</div>
-          <p>Chamas, group trips, shared rent — pooling money usually means one person holding cash, a notebook, and a lot of trust. Records go missing, and so does goodwill.</p>
-        </div>
-        <div class="f-block" data-r>
-          <div class="lbl">How it works</div>
-          <p>Create a pool, invite people, and everyone sees who paid, how much, and what’s left — live. Contributions, the running total, and withdrawals are all on the same screen.</p>
-        </div>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>Chamas, group trips, shared rent — pooling money usually means one person holding cash, a notebook, and a lot of trust. Records go missing, and so does goodwill.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Create a pool, invite people, and everyone sees who paid, how much, and what’s left — live. Contributions, the running total, and withdrawals are all on the same screen.</p></div>
         <div class="f-out" data-r><span class="tk">✓</span> Group money everyone can trust.</div>
       </div>
       <div class="f-media light" data-r>
@@ -233,20 +259,14 @@
   </section>
 
   <!-- CARD -->
-  <section class="feature" id="card">
+  <section class="feature flip" id="card">
     <div class="fwrap">
       <div class="f-copy">
-        <div class="f-num" data-r><b>07 —</b> Zenti Card</div>
+        <div class="f-num" data-r><b>10 —</b> Zen Card</div>
         <h2 data-r>A card that’s<br>actually yours.</h2>
-        <div class="f-block" data-r>
-          <div class="lbl">Where it came from</div>
-          <p>Cards usually feel like the bank’s, not yours — clumsy to control, with perks you never see. We wanted one that answers to you.</p>
-        </div>
-        <div class="f-block" data-r>
-          <div class="lbl">How it works</div>
-          <p>Freeze and unfreeze in a tap, watch your spending by category, and earn perks where you actually shop. Linked straight to your Zenti balance.</p>
-        </div>
-        <div class="f-out" data-r><span class="tk">✓</span> Full control, in your pocket. <a class="inline" href="card.html" style="color:#0a5c1a;text-decoration:underline">See the card →</a></div>
+        <div class="f-block" data-r><div class="lbl">Where it came from</div><p>Cards usually feel like the bank’s, not yours — clumsy to control, with perks you never see. We wanted one that answers to you.</p></div>
+        <div class="f-block" data-r><div class="lbl">How it works</div><p>Freeze and unfreeze in a tap, watch your spending by category, and earn perks where you actually shop. Add transit, ID and tickets to the same wallet. Linked straight to your Zenti balance.</p></div>
+        <div class="f-out" data-r><span class="tk">✓</span> Full control, in your pocket. <a class="inline" href="card.html" style="color:#0a5c1a;text-decoration:underline">See the Zen Card →</a></div>
       </div>
       <div class="f-media" data-r>
         <span class="vlabel">Video demo</span>
@@ -284,8 +304,8 @@
         </div>
         <div class="ss-step">
           <div class="ss-n">03</div>
-          <div class="ss-copy"><h3>Add your money</h3><p>Top up from M-Pesa or your bank. Your balance is ready straight away.</p></div>
-          <div class="ss-media"><div class="fpv" style="min-height:240px"><div class="play"></div><div class="cap" style="color:var(--ink-3)">Top up from M-Pesa</div></div></div>
+          <div class="ss-copy"><h3>Claim your Zen Tag</h3><p>Pick your handle, add your money from M-Pesa or your bank. Your balance is ready straight away.</p></div>
+          <div class="ss-media"><div class="fpv" style="min-height:240px"><div class="play"></div><div class="cap" style="color:var(--ink-3)">Pick @yourtag · top up</div></div></div>
         </div>
         <div class="ss-step">
           <div class="ss-n">04</div>
@@ -315,7 +335,7 @@
         <div class="tag">Money, finally simple.</div>
         <div class="store-badges"><span class="store-badge">App Store</span><span class="store-badge">Google Play</span></div>
       </div>
-      <div><h4>Product</h4><a href="features.html#pay">Pay</a><a href="features.html#savings">Savings</a><a href="features.html#pools">Pools</a><a href="card.html">Card</a><a href="business.html">Business</a></div>
+      <div><h4>Product</h4><a href="features.html#pay">Pay</a><a href="features.html#tag">Zen Tag</a><a href="features.html#savings">Savings</a><a href="card.html">Card</a><a href="business.html">Business</a></div>
       <div><h4>Company</h4><a href="about.html">About</a><a href="security.html">Security</a><a href="terms.html">Terms</a><a href="accounts.html">Accounts</a></div>
       <div><h4>Connect</h4><a href="#">Twitter / X</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="mailto:hello@zentipay.app">hello@zentipay.app</a></div>
     </div>
