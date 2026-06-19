@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accounts — Zenti</title>
+<meta name="description" content="The two kinds of Zenti accounts — Zenti Pay for people and Zenti Business for merchants — plus what you need to open one and how to manage it. Sign-in lives in the app.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Accounts — Zenti">
+<meta property="og:description" content="Two kinds of Zenti accounts, what you need to open one, and how to manage it. We're early and still in testing.">
+<meta property="og:image" content="og.png">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  /* page-local: two big account-type cards */
+  .acct-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:8px 0 16px}
+  .acct-card{background:var(--bg-soft);border-radius:22px;padding:32px;display:flex;flex-direction:column}
+  .acct-card .kicker{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .acct-card h3{font-size:24px;font-weight:600;margin:0 0 6px;font-style:normal}
+  .acct-card .sub{font-size:16px;color:var(--ink-2);line-height:1.6;margin:0 0 16px}
+  .acct-card ul{list-style:none;margin:0 0 22px;padding:0}
+  .acct-card li{font-size:15px;color:var(--ink-2);line-height:1.6;padding:6px 0 6px 24px;position:relative}
+  .acct-card li::before{content:"";position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:50%;background:var(--green)}
+  .acct-card .price{font-size:14px;color:var(--ink-3);margin:0 0 18px}
+  .acct-card .btn{margin-top:auto;align-self:flex-start}
+  .app-note{background:var(--bg-soft);border-radius:18px;padding:22px 26px;margin:30px auto 0;max-width:780px;border-left:3px solid var(--green)}
+  .app-note p{font-size:16px;color:var(--ink-1);line-height:1.65;margin:0}
+  @media(max-width:760px){.acct-cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- FLOATING NAV -->
+<header class="fnav" id="fnav">
+  <a class="fnav-brand brand" href="index.html"><span class="z"></span>Zenti</a>
+  <nav class="fnav-menu" id="fnavMenu">
+    <div class="fnav-item has-drop">
+      <button class="fnav-link" aria-expanded="false" aria-haspopup="true">Product <i class="caret"></i></button>
+      <div class="fnav-drop">
+        <a href="features.html#pay"><b>Pay anyone</b><span>QR, link, or a phone tap</span></a>
+        <a href="features.html#links"><b>Money links</b><span>Get paid from a link</span></a>
+        <a href="features.html#tap"><b>Tap to pay</b><span>Phone to phone, no till</span></a>
+        <a href="features.html#scan"><b>Scan &amp; go</b><span>Point, confirm, paid</span></a>
+        <a href="features.html#savings"><b>Savings goals</b><span>Round-ups that grow</span></a>
+        <a href="features.html#pools"><b>Pools</b><span>Save together, clearly</span></a>
+        <a href="card.html"><b>Zenti Card</b><span>Spend with perks</span></a>
+      </div>
+    </div>
+    <a class="fnav-link" href="features.html">Features</a>
+    <a class="fnav-link" href="business.html">Business</a>
+    <div class="fnav-item has-drop">
+      <button class="fnav-link" aria-expanded="false" aria-haspopup="true">Company <i class="caret"></i></button>
+      <div class="fnav-drop">
+        <a href="about.html"><b>About</b><span>Why we built Zenti</span></a>
+        <a href="security.html"><b>Security &amp; policies</b><span>How we protect you</span></a>
+        <a href="accounts.html"><b>Accounts</b><span>Open &amp; manage yours</span></a>
+        <a href="terms.html"><b>Terms &amp; conditions</b><span>The fine print, plainly</span></a>
+      </div>
+    </div>
+  </nav>
+  <a class="btn fnav-cta" href="index.html#download">Get the app</a>
+  <button class="fnav-burger" id="fnavBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow" data-r>Accounts</div>
+    <h1 data-r>One account.<br>Your whole money life.</h1>
+    <p class="lede" data-r>There are two kinds of Zenti account — one for people, one for businesses. This page explains what each one is for, what you need to open one, and how to look after it. We’re early and still in testing, so signing in happens inside the app, not on this site.</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="container">
+
+  <!-- ACCOUNT TYPES -->
+  <div class="doc">
+    <h2>Two kinds of account</h2>
+    <p>Pick the one that fits how you use money. You can always start with Zenti Pay and add a business later.</p>
+  </div>
+
+  <div class="acct-cards">
+    <div class="acct-card">
+      <div class="kicker">Zenti Pay</div>
+      <h3>Personal</h3>
+      <p class="sub">For everyday money — paying friends, shops and bills, and keeping a little aside.</p>
+      <ul>
+        <li>Pay anyone by QR, link or a phone tap</li>
+        <li>Save toward goals and round up your spare change</li>
+        <li>Save together with pools for chamas and trips</li>
+        <li>Spend with the Zenti Card</li>
+      </ul>
+      <p class="price">Free to open.</p>
+      <a class="btn" href="index.html#download">Get Zenti Pay</a>
+    </div>
+
+    <div class="acct-card">
+      <div class="kicker">Zenti Business</div>
+      <h3>For merchants</h3>
+      <p class="sub">For getting paid and keeping the books clean, whether you run a stall or a shop.</p>
+      <ul>
+        <li>Take collections without the screenshot dance</li>
+        <li>Send eTIMS invoices that match your sales</li>
+        <li>See reports that add up at the end of the day</li>
+        <li>Run payroll on one rail you can adapt as you grow</li>
+      </ul>
+      <p class="price">Tiered plans — pick what fits your size.</p>
+      <a class="btn ghost" href="business.html">Explore Zenti Business</a>
+    </div>
+  </div>
+
+  <!-- DOCS -->
+  <div class="doc">
+
+    <h2>What you need to open an account</h2>
+    <p>Opening a Zenti Pay account takes a few minutes in the app. You’ll need:</p>
+    <ul>
+      <li>A Kenyan phone number, so we can verify it’s really you</li>
+      <li>A valid ID for KYC — your Kenyan national ID or passport</li>
+      <li>A few minutes to confirm your details</li>
+    </ul>
+    <p>KYC is short for “know your customer”. It’s the basic identity check every regulated money service in Kenya has to do. It keeps your account yours and keeps everyone safer.</p>
+
+    <h2>Managing your account</h2>
+    <p>Once you’re in, everything lives in the app:</p>
+    <ul>
+      <li>Update your details when your phone number, name or email changes</li>
+      <li>Freeze your card straight away if you misplace it, then unfreeze when it turns up</li>
+      <li>See every transaction in one clear list, not scattered across messages</li>
+      <li>Get statements when you need a record for yourself or for KRA</li>
+    </ul>
+
+    <h2>Closing your account and your data</h2>
+    <p>It’s your account, so you can close it any time from the app. We’ll help you move out any remaining balance first. For how we store and protect your information — and your rights under Kenya’s Data Protection Act, 2019 — see our <a class="inline" href="security.html">security and policies</a> page.</p>
+
+    <h2>Need help?</h2>
+    <p>If something doesn’t look right, or you just have a question, write to us at <a class="inline" href="mailto:support@zentipay.app">support@zentipay.app</a> and a person will get back to you.</p>
+
+  </div>
+
+  <!-- APP SIGN-IN NOTE -->
+  <div class="app-note">
+    <p>Signing in to your account happens inside the Zenti app, not on this website. This site is here to explain how Zenti works. To open an account or sign in, <a class="inline" href="index.html#download">get the app</a>.</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="sfoot">
+  <div class="container">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="brand" href="index.html"><span class="z"></span>Zenti</a>
+        <div class="tag">Money, finally simple.</div>
+        <div class="store-badges"><span class="store-badge">App Store</span><span class="store-badge">Google Play</span></div>
+      </div>
+      <div><h4>Product</h4><a href="features.html#pay">Pay</a><a href="features.html#savings">Savings</a><a href="features.html#pools">Pools</a><a href="card.html">Card</a><a href="business.html">Business</a></div>
+      <div><h4>Company</h4><a href="about.html">About</a><a href="security.html">Security</a><a href="terms.html">Terms</a><a href="accounts.html">Accounts</a></div>
+      <div><h4>Connect</h4><a href="#">Twitter / X</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="mailto:hello@zentipay.app">hello@zentipay.app</a></div>
+    </div>
+    <div class="fbottom"><span>© 2026 Zenti. All rights reserved.</span><span>zentipay.app</span></div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>
