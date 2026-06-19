@@ -1200,6 +1200,9 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
   var txt=document.getElementById('plText');
   var phrase='Money, finally simple.';
   function done(){p.classList.add('done');html.style.overflow='';setTimeout(function(){if(p&&p.parentNode)p.parentNode.removeChild(p);},700);}
+  /* play the intro once per browser session — later navigations skip it */
+  var seen=false; try{ seen=sessionStorage.getItem('zenti_intro_home'); sessionStorage.setItem('zenti_intro_home','1'); }catch(e){}
+  if(seen){ done(); return; }
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ if(txt)txt.textContent=phrase; p.classList.add('reveal'); setTimeout(done,650); return; }
   var i=0;
   (function type(){

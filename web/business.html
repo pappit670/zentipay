@@ -11,6 +11,7 @@
 <meta property="og:image" content="og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="description" content="Every payment tracked automatically. Tax estimates ready. KRA compliance sorted. Built for Kenyan businesses of every size." />
+<link rel="stylesheet" href="css/site.css" />
 <style>
 @font-face{font-family:'General Sans';src:url('fonts/GeneralSans-Variable.woff2') format('woff2'),url('fonts/GeneralSans-Variable.woff') format('woff');font-weight:200 700;font-style:normal;font-display:swap}
 @font-face{font-family:'General Sans';src:url('fonts/GeneralSans-VariableItalic.woff2') format('woff2'),url('fonts/GeneralSans-VariableItalic.woff') format('woff');font-weight:200 700;font-style:italic;font-display:swap}
@@ -432,30 +433,103 @@ tr:last-child td{border-bottom:none}
 .ctrl-prog .fill.bad{background:var(--red)}.ctrl-prog .fill.mid{background:var(--amber)}
 .ctrl-prog .lab{font-size:11px;color:var(--ink-3);margin-top:5px;text-align:right}
 @media(max-width:760px){.ctrl-prog{width:84px}}
+/* ===== preloader (matches Zenti Pay) ===== */
+#preload{position:fixed;inset:0;z-index:1000;background:var(--bg-dark);display:grid;place-items:center;transition:opacity .6s var(--ease),visibility .6s;padding:24px}
+#preload.done{opacity:0;visibility:hidden}
+#preload .pl-stack{display:grid;place-items:center}
+#preload .pl-type,#preload .pl-logo{grid-area:1/1}
+#preload .pl-type{display:flex;align-items:center;gap:3px;font-style:italic;font-weight:500;font-size:clamp(22px,4vw,42px);letter-spacing:-.02em;color:#fff;text-align:center;transition:opacity .45s var(--ease),transform .55s var(--ease)}
+#preload .pl-caret{width:2px;height:1.05em;background:var(--green);display:inline-block;animation:plBlink 1s steps(1) infinite}
+@keyframes plBlink{50%{opacity:0}}
+#preload.reveal .pl-type{opacity:0;transform:translateY(-10px)}
+#preload .pl-logo{display:flex;flex-direction:column;align-items:center;gap:18px;opacity:0;transform:scale(.86);transition:opacity .6s var(--ease) .08s,transform .75s var(--ease-spring) .08s}
+#preload.reveal .pl-logo{opacity:1;transform:none}
+#preload .pl-mark{width:84px;height:84px;background:#fff;-webkit-mask:url(assets/zenti-logo.png) center/contain no-repeat;mask:url(assets/zenti-logo.png) center/contain no-repeat}
+#preload .pl-word{font-weight:800;letter-spacing:.3em;font-size:13px;color:rgba(255,255,255,.6);padding-left:.3em}
+@media(prefers-reduced-motion:reduce){#preload .pl-type{opacity:0}#preload .pl-logo{opacity:1;transform:none}}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1100;background:var(--black);color:#fff;padding:12px 18px;border-radius:0 0 12px 0;font-weight:600}
+.skip-link:focus{left:0}
+/* keep the floating CTA tidy inside the pill */
+.fnav .fnav-cta{height:44px;padding:0 18px;font-size:14px}
+.fnav-brand small{font-weight:700;font-size:12px;opacity:.5;font-style:normal;letter-spacing:-.01em}
+
+/* ===== problems -> solutions, live ===== */
+.bz-solve .bz-row{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;max-width:1080px;margin:0 auto;padding:46px 0}
+.bz-solve .bz-row.flip{direction:rtl}
+.bz-solve .bz-row.flip>*{direction:ltr}
+.bz-prob{display:inline-flex;align-items:flex-start;gap:8px;font-size:13px;font-weight:600;color:#c0563b;margin-bottom:14px}
+.bz-prob s{color:var(--ink-3);text-decoration-thickness:1px;opacity:.85}
+.bz-h{font-size:clamp(30px,4vw,52px);font-weight:500;font-style:italic;line-height:1.04}
+.bz-desc{color:var(--ink-2);font-size:17px;line-height:1.6;margin-top:16px;max-width:44ch}
+.bz-out{margin-top:22px;display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;background:rgba(52,255,24,.12);color:var(--green-ink);padding:11px 18px;border-radius:100px}
+.bz-out .tk{width:22px;height:22px;border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-size:13px;font-weight:800;flex:none}
+.bz-prev{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 30px 70px -36px rgba(10,10,10,.3);min-height:300px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.bz-prev .pv-h{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px}
+.bz-prev .pv-tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-ink);background:rgba(52,255,24,.12);padding:5px 10px;border-radius:100px}
+.statcard{background:var(--bg-soft);border-radius:18px;padding:18px 20px}
+.statcard .sc-k{font-size:13px;color:var(--ink-3);font-weight:600}
+.statcard .sc-v{font-size:36px;font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-top:4px;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px}
+.statcard .sc-t{font-size:13px;font-weight:700;color:var(--green-ink)}
+.statcard .sc-sub{font-size:13px;color:var(--ink-2);margin-top:8px}
+.bz-bars{display:flex;align-items:flex-end;gap:8px;height:118px;padding-top:8px}
+.bz-bars .b{flex:1;background:linear-gradient(180deg,var(--green),#1fbf12);border-radius:6px 6px 3px 3px;height:8%;transition:height 1.1s var(--ease)}
+.bz-prev.in .bz-bars .b{height:var(--h,40%)}
+.segwrap{display:flex;align-items:center;gap:16px}
+.segpill{background:var(--bg-soft);border-radius:14px;padding:12px 16px;flex:none;text-align:center}
+.segpill b{font-size:24px;font-weight:900;letter-spacing:-.02em}
+.segpill span{display:block;font-size:12px;color:var(--ink-2)}
+.segticks{display:flex;gap:3px;flex:1;align-items:flex-end;height:54px}
+.segticks i{flex:1;background:#e4e4e2;border-radius:2px;height:100%;transform:scaleY(.18);transform-origin:bottom;transition:transform .5s var(--ease)}
+.bz-prev.in .segticks i{transform:scaleY(1)}
+.segticks i.g{background:var(--green)}
+.segticks i.y{background:#f5c518}
+.segticks i.o{background:#e8833a}
+.feed{display:flex;flex-direction:column;gap:8px}
+.feedrow{display:flex;align-items:center;gap:11px;background:var(--bg-soft);border-radius:12px;padding:11px 13px;opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.bz-prev.in .feedrow{opacity:1;transform:none}
+.bz-prev.in .feedrow:nth-child(2){transition-delay:.12s}
+.bz-prev.in .feedrow:nth-child(3){transition-delay:.24s}
+.bz-prev.in .feedrow:nth-child(4){transition-delay:.36s}
+.feedrow .mtag{font-size:10px;font-weight:700;letter-spacing:.04em;padding:4px 8px;border-radius:100px;background:#e9f9e6;color:var(--green-ink)}
+.feedrow .mtag.bank{background:#e7eefc;color:#274690}
+.feedrow .mtag.cash{background:#f1eee7;color:#7a6a3a}
+.feedrow .fn{font-size:13px;font-weight:600;flex:1}
+.feedrow .fa{font-weight:800;font-size:14px}
+.invoice{background:var(--bg-soft);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+.invoice .ih{display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+.invoice .ir{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin-top:8px}
+.invoice .stamp{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#06210a;font-weight:800;font-size:12px;padding:7px 12px;border-radius:100px;opacity:0;transform:scale(.8) rotate(-6deg);transition:opacity .5s var(--ease) .6s,transform .6s var(--ease-spring) .6s}
+.bz-prev.in .invoice .stamp{opacity:1;transform:rotate(-6deg)}
+@media(max-width:880px){.bz-solve .bz-row{grid-template-columns:1fr;gap:30px}.bz-solve .bz-row.flip{direction:ltr}.bz-desc{max-width:none}}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
+<div id="preload"><div class="pl-stack"><div class="pl-type"><span id="plText"></span><i class="pl-caret"></i></div><div class="pl-logo"><div class="pl-mark"></div><div class="pl-word">ZENTI BUSINESS</div></div></div></div>
 
 <!-- ================= LANDING (default) ================= -->
 <div id="landing">
-  <nav class="nav" id="nav">
-    <div class="container">
-      <a class="brand" href="#"><span class="z"></span>Zenti <small>Business</small></a>
-      <div class="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#compliance">Compliance</a>
-        <a href="index.html">Zenti Pay</a>
+  <!-- FLOATING NAV -->
+  <header class="fnav" id="fnav">
+    <a class="fnav-brand brand" href="#top"><span class="z"></span>Zenti <small>Business</small></a>
+    <nav class="fnav-menu" id="fnavMenu">
+      <div class="fnav-item has-drop">
+        <button class="fnav-link" aria-expanded="false" aria-haspopup="true">Explore <i class="caret"></i></button>
+        <div class="fnav-drop">
+          <a href="#how"><b>How it works</b><span>Set up in two minutes</span></a>
+          <a href="#features"><b>Features</b><span>One adaptable rail</span></a>
+          <a href="#compliance"><b>eTIMS &amp; compliance</b><span>KRA-ready, automatically</span></a>
+          <a href="#" onclick="openApp();return false"><b>The dashboard</b><span>See a live demo</span></a>
+        </div>
       </div>
-      <div class="nav-right">
-        <a class="login" href="#" onclick="openApp();return false">Log in</a>
-        <a class="btn sm magnetic" href="#" onclick="openReg();return false">Get started free</a>
-      </div>
-    </div>
-  </nav>
+      <a class="fnav-link" href="#pricing">Pricing</a>
+      <a class="fnav-link" href="index.html">Zenti Pay</a>
+    </nav>
+    <a class="btn fnav-cta magnetic" href="#" onclick="openReg();return false">Get started free</a>
+    <button class="fnav-burger" id="fnavBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
 
-  <header class="lp-hero">
+  <header class="lp-hero" id="top">
     <div class="container grid">
       <div>
         <div class="label" data-reveal>Zenti Business</div>
@@ -498,6 +572,94 @@ tr:last-child td{border-bottom:none}
       <div class="ik" data-reveal>Sound familiar?</div>
       <h2 data-reveal>Is this you?</h2>
       <div class="resolve" data-reveal>If running the business means drowning in the busy work, Zenti was built for you. <b>You run the business. We handle the rest.</b></div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -> SOLUTIONS, IN REAL TIME -->
+  <section class="section bz-solve">
+    <div class="container">
+      <div class="center" style="max-width:740px;margin:0 auto 8px">
+        <div class="label" data-reveal>What we actually fix</div>
+        <h2 data-reveal style="margin-top:12px">The busy work, gone —<br>watch it happen.</h2>
+        <p class="lead" data-reveal style="margin:16px auto 0">The real problems Kenyan businesses carry every day, and the exact thing Zenti does about each one — shown live.</p>
+      </div>
+
+      <!-- 01 scattered payments -->
+      <div class="bz-row">
+        <div class="bz-copy">
+          <div class="bz-prob" data-reveal><span>✕</span><s>M-Pesa here, the till there, bank, cash — nothing adds up.</s></div>
+          <h3 class="bz-h" data-reveal>Every shilling,<br>in one feed.</h3>
+          <p class="bz-desc" data-reveal>Zenti pulls M-Pesa, card, bank and cash into a single live stream of money in. No more opening four apps to find one payment.</p>
+          <div class="bz-out" data-reveal><span class="tk">✓</span> One place to see everything that came in.</div>
+        </div>
+        <div class="bz-prev" data-reveal data-dash>
+          <div class="pv-h">Collections — today <span class="pv-tag">Live</span></div>
+          <div class="statcard"><div class="sc-k">Received today</div><div class="sc-v"><span data-count="84200" data-prefix="KES ">KES 0</span></div></div>
+          <div class="feed">
+            <div class="feedrow"><span class="mtag">M-Pesa</span><span class="fn">Wanjiku K.</span><span class="fa">+2,500</span></div>
+            <div class="feedrow"><span class="mtag bank">Bank</span><span class="fn">Acme Ltd</span><span class="fa">+38,000</span></div>
+            <div class="feedrow"><span class="mtag">M-Pesa</span><span class="fn">Otieno J.</span><span class="fa">+1,200</span></div>
+            <div class="feedrow"><span class="mtag cash">Cash</span><span class="fn">Counter sale</span><span class="fa">+650</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 revenue clarity -->
+      <div class="bz-row flip">
+        <div class="bz-copy">
+          <div class="bz-prob" data-reveal><span>✕</span><s>Profit is a guess at month-end — if you get to it at all.</s></div>
+          <h3 class="bz-h" data-reveal>Know what you<br>made, daily.</h3>
+          <p class="bz-desc" data-reveal>Revenue, expenses and profit update with every sale. You watch the trend form day by day, instead of a shock at the end of the month.</p>
+          <div class="bz-out" data-reveal><span class="tk">✓</span> Your numbers, always current.</div>
+        </div>
+        <div class="bz-prev" data-reveal data-dash>
+          <div class="pv-h">Revenue <span class="pv-tag">This month</span></div>
+          <div class="statcard"><div class="sc-k">Revenue this month</div><div class="sc-v"><span data-count="918300" data-prefix="KES ">KES 0</span><span class="sc-t">▲ 8%</span></div><div class="sc-sub">Profit KES 312,400 · up on last month</div></div>
+          <div class="bz-bars">
+            <span class="b" style="--h:42%"></span><span class="b" style="--h:60%"></span><span class="b" style="--h:48%"></span><span class="b" style="--h:78%"></span><span class="b" style="--h:64%"></span><span class="b" style="--h:92%"></span><span class="b" style="--h:74%"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 eTIMS compliance -->
+      <div class="bz-row">
+        <div class="bz-copy">
+          <div class="bz-prob" data-reveal><span>✕</span><s>KRA wants e-invoices you don’t have — and the penalty is real.</s></div>
+          <h3 class="bz-h" data-reveal>Compliant with<br>one tap.</h3>
+          <p class="bz-desc" data-reveal>Every sale becomes an eTIMS-ready invoice — generated, sent, and stored. Your compliance rate stays exactly where KRA expects it.</p>
+          <div class="bz-out" data-reveal><span class="tk">✓</span> KRA-ready, without the filing night.</div>
+        </div>
+        <div class="bz-prev" data-reveal data-dash>
+          <div class="pv-h">eTIMS compliance <span class="pv-tag">Auto</span></div>
+          <div class="statcard"><div class="sc-k">Compliance rate</div><div class="sc-v"><span data-count="98" data-suffix="%">0%</span><span class="sc-t">▲ on track</span></div><div class="sc-sub">Every sale invoiced and filed automatically</div></div>
+          <div class="invoice">
+            <div class="ih"><span>Invoice #INV-2048</span><span>KES 38,000</span></div>
+            <div class="ir"><span>Acme Ltd · VAT 16%</span><span>eTIMS</span></div>
+            <div class="ir"><span>12 Jun 2026</span><span>KRA PIN ✓</span></div>
+            <span class="stamp"><span>✓</span> Sent to KRA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 reconciliation -->
+      <div class="bz-row flip">
+        <div class="bz-copy">
+          <div class="bz-prob" data-reveal><span>✕</span><s>Hours every month matching payments to records by hand.</s></div>
+          <h3 class="bz-h" data-reveal>Reconciled<br>while you sleep.</h3>
+          <p class="bz-desc" data-reveal>Payments match themselves to invoices and customers as they arrive. You just glance at what’s left, instead of rebuilding the month from scratch.</p>
+          <div class="bz-out" data-reveal><span class="tk">✓</span> Month-end in minutes, not nights.</div>
+        </div>
+        <div class="bz-prev" data-reveal data-dash>
+          <div class="pv-h">Reconciliation <span class="pv-tag">Running</span></div>
+          <div class="segwrap">
+            <div class="segpill"><b><span data-count="92" data-suffix="%">0%</span></b><span>matched</span></div>
+            <div class="segticks"><i class="g"></i><i class="g"></i><i class="g"></i><i class="o"></i><i class="g"></i><i class="g"></i><i class="y"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="y"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="o"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="y"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="sc-sub" style="color:var(--ink-2);font-size:13px">612 of 664 payments auto-matched · 52 to review</div>
+        </div>
+      </div>
+
+      <div class="center" style="margin-top:34px"><a class="btn magnetic" href="#" onclick="openReg();return false">See it on your business — free</a></div>
     </div>
   </section>
 
@@ -1436,5 +1598,24 @@ function collectOne(name){toast('Reminder sent to '+name+' ✓');}
   });
 })();
 </script>
+<script>
+/* preloader — types the tagline, morphs to the logo (once per session) */
+(function(){
+  var p=document.getElementById('preload'); if(!p) return;
+  var html=document.documentElement; html.style.overflow='hidden';
+  var txt=document.getElementById('plText');
+  var phrase='Run your business. Not your paperwork.';
+  function done(){p.classList.add('done');html.style.overflow='';setTimeout(function(){if(p&&p.parentNode)p.parentNode.removeChild(p);},700);}
+  var seen=false; try{ seen=sessionStorage.getItem('zenti_intro_business'); sessionStorage.setItem('zenti_intro_business','1'); }catch(e){}
+  if(seen){ done(); return; }
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ if(txt)txt.textContent=phrase; p.classList.add('reveal'); setTimeout(done,650); return; }
+  var i=0;
+  (function type(){ if(i<=phrase.length){ if(txt) txt.textContent=phrase.slice(0,i++); setTimeout(type,32); } else { setTimeout(function(){ p.classList.add('reveal'); }, 460); } })();
+  var total=32*phrase.length + 460 + 1150;
+  setTimeout(done, total);
+  setTimeout(done, total+1600); // safety
+})();
+</script>
+<script src="js/site.js"></script>
 </body>
 </html>
