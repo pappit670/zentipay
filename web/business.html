@@ -583,6 +583,30 @@ tr:last-child td{border-bottom:none}
 .subtab{font-size:14px;font-weight:600;padding:9px 18px;border-radius:100px;border:1px solid var(--line);background:#fff;cursor:pointer;font-family:var(--font);color:var(--ink-2);transition:background .2s,color .2s,border-color .2s}
 .subtab:hover{border-color:var(--line-strong)}
 .subtab.on{background:var(--bg-dark);color:#fff;border-color:var(--bg-dark)}
+
+/* ===== compliance prepared banner · reports pack · customer profiles ===== */
+.prep-banner{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#eafae6,#fff);border:1px solid var(--line);border-left:3px solid var(--green);margin-bottom:16px}
+.prep-banner .pb-ic{width:40px;height:40px;border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-weight:900;font-size:18px;flex:none}
+.prep-banner .pb-b{flex:1}
+.prep-banner .pb-t{font-weight:700;font-size:16px}
+.prep-banner .pb-s{font-size:13px;color:var(--ink-2);margin-top:2px}
+.rep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:16px}
+.rep-card{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.rep-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(10,10,10,.4)}
+.rep-card .ic{width:40px;height:40px;border-radius:11px;background:var(--bg-soft);display:grid;place-items:center;margin-bottom:12px}
+.rep-card .ic svg{width:20px;height:20px;stroke:var(--ink-1);fill:none;stroke-width:2}
+.rep-card h4{font-size:15px;font-weight:600}
+.rep-card .meta{font-size:12px;color:var(--ink-3);margin:4px 0 12px}
+.rep-card .ra{display:flex;gap:14px}
+.rep-card .ra a{font-size:13px;font-weight:700;color:var(--green-ink);cursor:pointer}
+.cust-prof{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+.cust-prof .cav{width:54px;height:54px;border-radius:50%;background:var(--bg-dark);color:#fff;display:grid;place-items:center;font-weight:800;font-size:19px;flex:none}
+.cust-prof .ct{font-weight:700;font-size:18px}
+.cust-prof .cz{font-size:13px;color:var(--green-ink);font-weight:600}
+.cust-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.cust-stats div{background:var(--bg-soft);border-radius:12px;padding:12px;text-align:center}
+.cust-stats b{display:block;font-size:18px;font-weight:900;letter-spacing:-.02em}
+.cust-stats span{font-size:11px;color:var(--ink-3)}
 </style>
 </head>
 <body>
@@ -1375,19 +1399,23 @@ tr:last-child td{border-bottom:none}
 
     <!-- CUSTOMERS -->
     <section class="screen" data-name="customers">
-      <input class="searchbar" placeholder="Search customers…" style="margin-bottom:16px;width:320px" />
+      <div class="m-grid" data-dash style="grid-template-columns:repeat(3,1fr)">
+        <div class="metric"><div class="k">Customers</div><div class="v" data-count="248">0</div><div class="d">▲ 14% this month</div></div>
+        <div class="metric"><div class="k">Repeat rate</div><div class="v" data-count="61" data-suffix="%">0%</div><div class="d">▲ 3%</div></div>
+        <div class="metric"><div class="k">Outstanding owed</div><div class="v" data-count="6300" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">2 customers</div></div>
+      </div>
+      <div class="filterbar" style="margin-bottom:14px">
+        <input class="searchbar" placeholder="Search name or @ztag…" style="height:38px;width:260px" />
+        <span style="margin-left:auto"></span>
+        <a class="btn sm magnetic" onclick="custBroadcast()">Message all · WhatsApp</a>
+      </div>
       <div class="card" style="padding:0;overflow:hidden">
-        <table>
-          <thead><tr><th>Customer</th><th>Last purchase</th><th>Total spend</th><th>Visits</th></tr></thead>
-          <tbody>
-            <tr><td>Peter Otieno</td><td>Today</td><td>KES 24,500</td><td>18</td></tr>
-            <tr><td>Grace Kamau</td><td>Today</td><td>KES 18,200</td><td>22</td></tr>
-            <tr><td>James Mwangi</td><td>Yesterday</td><td>KES 12,900</td><td>9</td></tr>
-            <tr><td>Aisha Wambui</td><td>2 days ago</td><td>KES 7,400</td><td>6</td></tr>
-            <tr><td>David Njoroge</td><td>1 week ago</td><td>KES 3,100</td><td>3</td></tr>
-          </tbody>
+        <table class="renttable">
+          <thead><tr><th>Customer</th><th>WhatsApp</th><th>Last purchase</th><th>Total spend</th><th>Owed</th><th></th></tr></thead>
+          <tbody id="cust-rows"></tbody>
         </table>
       </div>
+      <p class="coll-intro" style="margin-top:12px">Tap any customer for their full profile, history and one-tap WhatsApp.</p>
     </section>
 
     <!-- INVOICES -->
@@ -1435,6 +1463,11 @@ tr:last-child td{border-bottom:none}
 
     <!-- COMPLIANCE (deep) -->
     <section class="screen" data-name="compliance">
+      <div class="card prep-banner">
+        <span class="pb-ic">✓</span>
+        <div class="pb-b"><div class="pb-t">Your VAT return for May is prepared.</div><div class="pb-s">Zenti pulled every sale and expense, applied the rules, and filled the return. Review and file in one tap — nothing to compile.</div></div>
+        <a class="btn magnetic" onclick="actFile()">Review &amp; file</a>
+      </div>
       <div class="card">
         <div class="comp-head">
           <div class="comp-stat"><div class="comp-ring" data-ring style="--p:78"><b>78%</b></div><div><div class="k">Passing controls</div><div class="v">18 / 23</div></div></div>
@@ -1475,21 +1508,47 @@ tr:last-child td{border-bottom:none}
 
     <!-- REPORTS -->
     <section class="screen" data-name="reports">
-      <div class="filterbar">
-        <span class="chip on">Revenue</span><span class="chip">Expenses</span><span class="chip">Profit estimate</span><span class="chip">Transaction volume</span><span class="chip">Customer growth</span><span class="chip">Monthly summary</span>
+      <div class="card prep-banner">
+        <span class="pb-ic">✓</span>
+        <div class="pb-b"><div class="pb-t">Your June month-end pack is ready.</div><div class="pb-s">Profit &amp; loss, revenue, expenses and a tax summary — built automatically from your records. No spreadsheets.</div></div>
+        <a class="btn magnetic" onclick="reportGen('June month-end pack')">Download pack</a>
       </div>
-      <div class="card" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-        <div class="toggle"><span class="on">This month</span><span>Last 3 months</span><span>This year</span></div>
-        <div style="display:flex;gap:10px"><a class="btn sm ghost">Export PDF</a><a class="btn sm ghost">Export Excel</a></div>
+      <div class="m-grid" data-dash>
+        <div class="metric"><div class="k">Revenue (June)</div><div class="v" data-count="918300" data-prefix="KES ">KES 0</div><div class="d">▲ 8%</div></div>
+        <div class="metric"><div class="k">Expenses</div><div class="v" data-count="312400" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">tracked</div></div>
+        <div class="metric"><div class="k">Profit estimate</div><div class="v" data-count="605900" data-prefix="KES ">KES 0</div><div class="d">▲ 11%</div></div>
+        <div class="metric"><div class="k">Set aside for tax</div><div class="v" data-count="96944" data-prefix="KES ">KES 0</div><div class="d" style="color:var(--ink-3)">auto</div></div>
       </div>
-      <div class="card">
-        <div class="section-title">Revenue report — preview</div>
-        <div class="bars-lg" data-bars>
-          <div class="col"><div class="bar" data-h="60"></div><div class="lab">W1</div></div>
-          <div class="col"><div class="bar" data-h="78"></div><div class="lab">W2</div></div>
-          <div class="col"><div class="bar" data-h="66"></div><div class="lab">W3</div></div>
-          <div class="col"><div class="bar" data-h="100"></div><div class="lab">W4</div></div>
+      <div class="cols">
+        <div class="card">
+          <div class="section-title">Revenue — this month</div>
+          <div class="bars-lg" data-bars>
+            <div class="col"><div class="bar" data-h="60"></div><div class="lab">W1</div></div>
+            <div class="col"><div class="bar" data-h="78"></div><div class="lab">W2</div></div>
+            <div class="col"><div class="bar" data-h="66"></div><div class="lab">W3</div></div>
+            <div class="col"><div class="bar" data-h="100"></div><div class="lab">W4</div></div>
+          </div>
         </div>
+        <div class="card">
+          <div class="section-title spend-head">Where it went <span class="muted-pill">This month</span></div>
+          <div class="spend-total">KES 312,400 <span>spent</span></div>
+          <div class="seg-bar"><span style="width:46%;background:#34ff18"></span><span style="width:28%;background:#28282b"></span><span style="width:16%;background:#8a8a90"></span><span style="width:10%;background:#d8d8da"></span></div>
+          <div class="seg-legend">
+            <div><span class="dot" style="background:#34ff18"></span>Stock &amp; supplies <b>KES 143,700</b></div>
+            <div><span class="dot" style="background:#28282b"></span>Rent &amp; space <b>KES 87,500</b></div>
+            <div><span class="dot" style="background:#8a8a90"></span>Payroll <b>KES 49,900</b></div>
+            <div><span class="dot" style="background:#d8d8da"></span>Other <b>KES 31,300</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="section-title" style="margin-top:20px">Report library</div>
+      <div class="rep-grid">
+        <div class="rep-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V9M18 17v-8"/></svg></div><h4>Profit &amp; loss</h4><div class="meta">Generated · 30 Jun</div><div class="ra"><a onclick="reportGen('Profit &amp; loss')">Download</a><a onclick="toast('P&amp;L preview — demo')">View</a></div></div>
+        <div class="rep-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></div><h4>Revenue report</h4><div class="meta">Generated · 30 Jun</div><div class="ra"><a onclick="reportGen('Revenue report')">Download</a><a onclick="toast('Revenue preview — demo')">View</a></div></div>
+        <div class="rep-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h4>Expense breakdown</h4><div class="meta">Generated · 30 Jun</div><div class="ra"><a onclick="reportGen('Expense breakdown')">Download</a><a onclick="toast('Expenses preview — demo')">View</a></div></div>
+        <div class="rep-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></div><h4>Tax summary</h4><div class="meta">Generated · 30 Jun · KRA-ready</div><div class="ra"><a onclick="reportGen('Tax summary')">Download</a><a onclick="toast('Tax summary — demo')">View</a></div></div>
+        <div class="rep-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div><h4>Customer growth</h4><div class="meta">Generated · 30 Jun</div><div class="ra"><a onclick="reportGen('Customer growth')">Download</a><a onclick="toast('Growth preview — demo')">View</a></div></div>
+        <div class="rep-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></div><h4>Monthly summary</h4><div class="meta">Generated · 30 Jun</div><div class="ra"><a onclick="reportGen('Monthly summary')">Download</a><a onclick="toast('Summary preview — demo')">View</a></div></div>
       </div>
     </section>
 
@@ -1766,7 +1825,41 @@ function reanimate(scr){
   scr.querySelectorAll('[data-bars]').forEach(function(el){ el.querySelectorAll('.bar').forEach(function(b){b.style.height='0';}); setTimeout(function(){growBars(el);},60); });
   scr.querySelectorAll('[data-ctrls]').forEach(function(el){ var fs=el.querySelectorAll('.fill'); fs.forEach(function(f){f.style.width='0';}); setTimeout(function(){ fs.forEach(function(f){f.style.width=f.getAttribute('data-w')+'%';}); },80); });
   if(scr.getAttribute('data-name')==='collect') setGenre(_genre);
+  if(scr.getAttribute('data-name')==='customers') renderCustomers();
 }
+/* ---------- customers (WhatsApp / Zen Tag profiles) ---------- */
+var CUSTOMERS=[
+  {n:'Peter Otieno',tag:'@potieno',wa:1,last:'Today',spend:24500,visits:18,owed:4500},
+  {n:'Grace Kamau',tag:'@gracek',wa:1,last:'Today',spend:18200,visits:22,owed:0},
+  {n:'James Mwangi',tag:'@jmwangi',wa:1,last:'Yesterday',spend:12900,visits:9,owed:0},
+  {n:'Aisha Wambui',tag:'@aisha',wa:0,last:'2 days ago',spend:7400,visits:6,owed:1800},
+  {n:'David Njoroge',tag:'@dnjoroge',wa:1,last:'1 week ago',spend:3100,visits:3,owed:0}
+];
+function initials(nm){return nm.split(' ').map(function(x){return x[0];}).join('').slice(0,2);}
+function renderCustomers(){
+  var tb=document.getElementById('cust-rows'); if(!tb)return;
+  tb.innerHTML=CUSTOMERS.map(function(c,i){
+    var wa=c.wa?'<span class="wa">✓ WhatsApp</span>':'<span class="wa no">— not linked</span>';
+    var owed=c.owed?'<span class="pill amber">'+money(c.owed)+'</span>':'<span class="pill green">Clear</span>';
+    return '<tr style="cursor:pointer" onclick="custProfile('+i+')"><td>'+c.n+'<div style="font-size:12px;color:var(--green-ink)">'+c.tag+'</div></td><td>'+wa+'</td><td>'+c.last+'</td><td>'+money(c.spend)+'</td><td>'+owed+'</td><td style="text-align:right"><span class="send" onclick="event.stopPropagation();custMsg('+i+')">Message ›</span></td></tr>';
+  }).join('');
+}
+function custMsg(i){toast('Opened WhatsApp chat with '+CUSTOMERS[i].n+' ✓');}
+function custBroadcast(){toast('Broadcast ready for '+CUSTOMERS.length+' customers on WhatsApp ✓');}
+function custProfile(i){
+  var c=CUSTOMERS[i];
+  openAct(
+    '<div class="cust-prof"><span class="cav">'+initials(c.n)+'</span><div><div class="ct">'+c.n+'</div><div class="cz">'+c.tag+(c.wa?' · WhatsApp linked':'')+'</div></div></div>'+
+    '<div class="cust-stats"><div><b>'+money(c.spend)+'</b><span>Total spend</span></div><div><b>'+c.visits+'</b><span>Visits</span></div><div><b>'+(c.owed?money(c.owed):'Clear')+'</b><span>Owed</span></div></div>'+
+    '<div class="linkmsg"><span class="b">Recent activity</span>'+c.last+' · paid · about '+money(Math.round(c.spend/c.visits))+'<br>'+(c.owed?'Outstanding balance '+money(c.owed)+' — send a reminder':'No outstanding balance — all clear')+'</div>'+
+    '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Close</button>'+(c.owed?'<button class="btn ghost" onclick="actDone(\'Reminder sent to '+c.n.replace(/'/g,'')+' ✓\')">Send reminder</button>':'')+'<button class="btn magnetic" onclick="actDone(\'Message sent to '+c.n.replace(/'/g,'')+' on WhatsApp ✓\')">Message on WhatsApp</button></div>');
+}
+function actFile(){openAct(
+  '<div class="reg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>'+
+  '<h2>VAT return · May 2026</h2><p class="sub">Prepared by Zenti from your sales and expenses. Review, then file with KRA.</p>'+
+  '<div class="linkmsg"><span class="b">Summary</span>Output VAT (sales): KES 146,928<br>Input VAT (expenses): KES 49,984<br><b>VAT payable: KES 96,944</b></div>'+
+  '<div class="reg-actions"><button class="btn ghost" onclick="closeAct()">Not yet</button><button class="btn magnetic" onclick="actDone(\'VAT return filed with KRA ✓\')">File with KRA</button></div>');}
+function reportGen(name){toast(name+' generated · downloaded ✓');}
 
 /* ---------- standardized collections workflow (adapts to any preset) ---------- */
 var STATUS={awaiting:['grey','Awaiting'],sent:['blue','Link sent'],paid:['amber','Paid · clearing'],cleared:['green','Cleared'],overdue:['red','Overdue']};
