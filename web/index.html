@@ -45,6 +45,16 @@ h3{font-size:clamp(26px,3vw,40px)}
 
 /* ============================== MOTION PRIMITIVES ============================== */
 [data-reveal]{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+/* intro preview screen */
+#preload{position:fixed;inset:0;z-index:1000;background:var(--bg-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .6s var(--ease),visibility .6s}
+#preload.done{opacity:0;visibility:hidden}
+#preload .pl-mark{width:88px;height:88px;background:#fff;-webkit-mask:url(assets/zenti-logo.png) center/contain no-repeat;mask:url(assets/zenti-logo.png) center/contain no-repeat;opacity:0;transform:scale(.82);animation:plMark 1s var(--ease) forwards}
+@keyframes plMark{to{opacity:1;transform:scale(1)}}
+#preload .pl-bar{width:128px;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+#preload .pl-bar i{display:block;height:100%;width:0;background:var(--green);animation:plBar 1.25s var(--ease) .15s forwards}
+@keyframes plBar{to{width:100%}}
+#preload .pl-word{font-weight:800;letter-spacing:-.04em;font-size:15px;color:rgba(255,255,255,.6);opacity:0;animation:plMark .8s var(--ease) .25s forwards}
+@media(prefers-reduced-motion:reduce){#preload .pl-mark,#preload .pl-bar i,#preload .pl-word{animation:none;opacity:1;width:100%}}
 [data-reveal].in{opacity:1;transform:none}
 .mask-line{overflow:hidden;display:block}
 .mask-line > span{display:block;transform:translateY(110%);transition:transform .9s var(--ease)}
@@ -174,6 +184,8 @@ h3{font-size:clamp(26px,3vw,40px)}
 .tour-cap{padding:14px 0 14px 24px;border-left:2px solid var(--line);opacity:.28;transition:opacity .45s var(--ease),border-color .45s var(--ease)}
 .tour-cap.on{opacity:1;border-color:var(--black)}
 .tour-cap h3{font-size:clamp(24px,2.6vw,34px)}
+.tour-cap .prob{font-size:13px;font-weight:600;color:#c0563b;letter-spacing:.01em;margin-bottom:8px}
+.tour-cap .prob s{color:var(--ink-3);text-decoration-thickness:1px;opacity:.8}
 .tour-cap p{color:var(--ink-2);font-size:16px;margin-top:6px;max-width:30ch}
 .tour-phone{display:flex;justify-content:center}
 .tour-progress{position:absolute;left:0;top:0;width:3px;background:var(--green);border-radius:2px;transition:height .2s linear}
@@ -483,6 +495,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
 </style>
 </head>
 <body>
+<div id="preload"><div class="pl-mark"></div><div class="pl-bar"><i></i></div><div class="pl-word">ZENTI</div></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
@@ -524,11 +537,11 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
       <div class="tour-caps">
         <div class="label">A guided tour</div>
         <div class="tour-progress" id="tourProgress"></div>
-        <div class="tour-cap" data-cap="0"><h3>Everything in one place.</h3><p>Balance, activity, and one tap to anything. Your money, at a glance.</p></div>
-        <div class="tour-cap" data-cap="1"><h3>Pay anyone, instantly.</h3><p>Type an amount, swipe to send. QR, link, or NFC tap — done in seconds.</p></div>
-        <div class="tour-cap" data-cap="2"><h3>Confirmed in real time.</h3><p>Instant confirmation, right on your lock screen. No waiting, no guessing.</p></div>
-        <div class="tour-cap" data-cap="3"><h3>Goals that grow.</h3><p>Set a target, automate round-ups, and watch it fill — saving made effortless.</p></div>
-        <div class="tour-cap" data-cap="4"><h3>A card that's yours.</h3><p>Freeze, manage, and spend with perks built in. Coming soon.</p></div>
+        <div class="tour-cap" data-cap="0"><div class="prob"><s>Money scattered across apps and SMS.</s></div><h3>Everything in one place.</h3><p>Balance, activity, and one tap to anything — no more digging through M-Pesa messages to find what you spent.</p></div>
+        <div class="tour-cap" data-cap="1"><div class="prob"><s>“Money sent… but did it land?”</s></div><h3>Pay anyone, instantly.</h3><p>Type an amount, swipe to send. QR, link, or a phone tap — it clears in seconds, every time.</p></div>
+        <div class="tour-cap" data-cap="2"><div class="prob"><s>Chasing screenshots to prove you paid.</s></div><h3>Confirmed in real time.</h3><p>A clear receipt on your screen the moment it’s done — for you and for them. No guessing.</p></div>
+        <div class="tour-cap" data-cap="3"><div class="prob"><s>Saving never quite sticks.</s></div><h3>Goals that grow.</h3><p>Set a target, let round-ups top it up automatically, and watch it fill — saving without thinking about it.</p></div>
+        <div class="tour-cap" data-cap="4"><div class="prob"><s>A card that’s an afterthought.</s></div><h3>A card that’s yours.</h3><p>Freeze it, manage it, and spend with perks built in. Coming soon.</p></div>
       </div>
       <div class="tour-phone"><div class="phone"><div class="screen" id="tourPhone"></div></div></div>
     </div>
@@ -1073,6 +1086,17 @@ footer{border-top:1px solid var(--line);padding:80px 0 40px}
     document.getElementById('costUsBar').style.width='2%';
   }
   s.addEventListener('input',up); up();
+})();
+</script>
+<script>
+/* intro preview screen */
+(function(){
+  var p=document.getElementById('preload'); if(!p) return;
+  var html=document.documentElement; html.style.overflow='hidden';
+  function done(){p.classList.add('done');html.style.overflow='';setTimeout(function(){if(p&&p.parentNode)p.parentNode.removeChild(p);},700);}
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){done();return;}
+  window.addEventListener('load',function(){setTimeout(done,1350);});
+  setTimeout(done,2800); // safety
 })();
 </script>
 </body>
