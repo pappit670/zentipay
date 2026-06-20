@@ -214,6 +214,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .skip-link{position:absolute;left:-9999px;top:0;z-index:300;background:var(--ink-1);color:#fff;padding:12px 18px;border-radius:0 0 12px 0;font-weight:600}
 .skip-link:focus{left:0}
 
+/* ============================== MARKET FACTS BAND ============================== */
+.factband{padding:96px 0;text-align:center}
+.factband.dark{background:var(--bg-dark);color:#fff;border-radius:40px;margin:28px 16px}
+.factband .eyebrow{margin-bottom:14px}
+.factband h2{font-size:clamp(30px,4.4vw,52px);font-weight:500;font-style:italic;max-width:760px;margin:0 auto;line-height:1.04}
+.factband .fb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:920px;margin:50px auto 0}
+.factband .fb .n{font-size:clamp(40px,6vw,68px);font-weight:600;letter-spacing:-.03em;line-height:1}
+.factband.dark .fb .n{color:var(--green)}
+.factband:not(.dark) .fb .n{color:var(--ink-1)}
+.factband .fb .l{font-size:15px;color:var(--ink-2);margin-top:12px;line-height:1.45;max-width:24ch;margin-inline:auto}
+.factband.dark .fb .l{color:rgba(255,255,255,.66)}
+.factband .src{margin-top:40px;font-size:12px;letter-spacing:.02em;color:var(--ink-3)}
+.factband.dark .src{color:rgba(255,255,255,.4)}
+@media(max-width:760px){.factband .fb-grid{grid-template-columns:1fr;gap:28px}}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   [data-r]{opacity:1;transform:none}
