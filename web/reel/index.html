@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zenti — brand reel</title>
+<link rel="icon" href="../favicon.png" type="image/png" />
+<style>
+@font-face{font-family:'General Sans';src:url('../fonts/GeneralSans-Variable.woff2') format('woff2');font-weight:200 700;font-style:normal;font-display:swap}
+@font-face{font-family:'General Sans';src:url('../fonts/GeneralSans-VariableItalic.woff2') format('woff2');font-weight:200 700;font-style:italic;font-display:swap}
+:root{--green:#34ff18;--dark:#0e0e11;--ease:cubic-bezier(.32,.72,0,1);--spring:cubic-bezier(.34,1.56,.64,1);--font:'General Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#000;font-family:var(--font);overflow:hidden}
+.wrap{position:fixed;inset:0;display:grid;place-items:center}
+/* 9:16 cinematic stage */
+#stage{position:relative;width:min(100vw,56.25vh);aspect-ratio:9/16;background:#0e0e11;overflow:hidden;border-radius:14px;box-shadow:0 40px 120px -30px rgba(0,0,0,.8)}
+.scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .7s var(--ease);text-align:center}
+.scene.on{opacity:1}
+.scene .inner{transform:scale(.96);opacity:0;transition:transform 1s var(--ease),opacity .8s var(--ease)}
+.scene.on .inner{transform:none;opacity:1}
+.light{background:radial-gradient(120% 90% at 50% 10%,#ffffff,#ececea)}
+.soft{background:radial-gradient(120% 90% at 50% 0%,#16161a,#0a0a0c)}
+.dark{background:#0b0b0d}
+.green{background:radial-gradient(130% 90% at 50% 20%,#0c2a14,#04120a)}
+.concrete{background:linear-gradient(160deg,#cfcfca,#b9b9b3)}
+
+/* the mark (monochrome, recolorable) */
+.mark{display:block;background:currentColor;-webkit-mask:url(../assets/zenti-logo.png) center/contain no-repeat;mask:url(../assets/zenti-logo.png) center/contain no-repeat}
+
+/* ---------- INTRO / OUTRO ---------- */
+.brandlock{color:#fff;display:flex;flex-direction:column;align-items:center;gap:22px}
+.brandlock .mark{width:120px;height:120px}
+.brandlock .wm{font-weight:800;letter-spacing:.4em;font-size:16px;color:rgba(255,255,255,.65);padding-left:.4em}
+.tagline{font-style:italic;font-weight:500;font-size:30px;color:#fff;line-height:1.1}
+.scene.on .underline{transform:scaleX(1)}
+.underline{width:120px;height:4px;background:var(--green);border-radius:3px;transform:scaleX(0);transform-origin:center;transition:transform .8s var(--ease) .4s}
+
+/* ---------- CARD ---------- */
+.card{width:74%;aspect-ratio:1.586;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;
+  background:linear-gradient(150deg,#ffffff,#e9e9e7);color:#141414;position:relative;overflow:hidden;
+  box-shadow:0 40px 70px -30px rgba(10,10,10,.5),inset 0 0 0 1px rgba(10,10,10,.06);transform:rotate(-7deg)}
+.scene.on .card{animation:floaty 5s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:rotate(-7deg) translateY(0)}50%{transform:rotate(-7deg) translateY(-12px)}}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.6) 50%,transparent 62%);transform:translateX(-60%);animation:sheen 4.5s var(--ease) infinite}
+@keyframes sheen{0%,100%{transform:translateX(-80%)}50%{transform:translateX(80%)}}
+.card .mark{width:34px;height:34px}
+.card .nm{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.card .chip{position:absolute;right:24px;top:50%;transform:translateY(-50%);width:34px;height:26px;border-radius:6px;background:linear-gradient(135deg,rgba(120,120,120,.5),rgba(160,160,160,.25))}
+.card .net{font-weight:800;font-size:14px;opacity:.5}
+
+/* ---------- WATCH ---------- */
+.watch{position:relative;display:grid;place-items:center}
+.watch .band{position:absolute;width:90px;height:330px;background:linear-gradient(90deg,#2a2a2e,#1a1a1d);border-radius:40px;z-index:0}
+.watch .body{position:relative;z-index:1;width:158px;height:188px;border-radius:42px;background:#050506;box-shadow:0 24px 50px -16px rgba(0,0,0,.7),inset 0 0 0 3px #232327;display:grid;place-items:center}
+.watch .face{width:128px;height:158px;border-radius:34px;background:radial-gradient(120% 100% at 50% 0%,#1a1a1f,#0a0a0c);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff}
+.watch .face .mark{width:46px;height:46px;color:var(--green)}
+.watch .face .t{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.02em}
+.scene.on .watch .body{animation:pop .8s var(--spring)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+
+/* ---------- NFC TAG ---------- */
+.tag{position:relative;display:grid;place-items:center}
+.tag .disc{width:150px;height:150px;border-radius:50%;background:radial-gradient(120% 120% at 30% 25%,#fff,#dfded9);box-shadow:0 26px 50px -18px rgba(0,0,0,.5),inset 0 0 0 1px rgba(10,10,10,.08);display:grid;place-items:center;z-index:2}
+.tag .disc .mark{width:62px;height:62px;color:#141414}
+.tag .ring{position:absolute;width:150px;height:150px;border:2px solid var(--green);border-radius:50%;opacity:0}
+.scene.on .tag .ring{animation:ripple 2.4s ease-out infinite}
+.scene.on .tag .ring:nth-child(2){animation-delay:.8s}
+.scene.on .tag .ring:nth-child(3){animation-delay:1.6s}
+@keyframes ripple{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.4);opacity:0}}
+.cap{margin-top:26px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+
+/* ---------- PHONE ---------- */
+.phone{width:188px;height:386px;border-radius:42px;background:#050506;padding:9px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),inset 0 0 0 2px #1c1c1e}
+.phone .scr{width:100%;height:100%;border-radius:34px;background:radial-gradient(120% 80% at 80% 0%,rgba(52,255,24,.14),transparent 55%),#0a0a0c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#fff}
+.appicon{width:84px;height:84px;border-radius:22px;background:linear-gradient(160deg,#1c1c20,#0d0d0f);display:grid;place-items:center;box-shadow:0 16px 30px -12px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.06)}
+.appicon .mark{width:46px;height:46px;color:var(--green)}
+.phone .lbl{font-weight:700;letter-spacing:.06em;font-size:15px}
+.scene.on .appicon{animation:pop .8s var(--spring)}
+
+/* ---------- TOTE / MERCH ---------- */
+.tote{position:relative;width:200px;height:210px;background:linear-gradient(160deg,#efe9da,#e2dccb);border-radius:8px 8px 14px 14px;display:grid;place-items:center;box-shadow:0 30px 60px -24px rgba(0,0,0,.5)}
+.tote::before,.tote::after{content:"";position:absolute;top:-58px;width:54px;height:96px;border:9px solid #d8d2c0;border-bottom:none;border-radius:40px 40px 0 0}
+.tote::before{left:34px}.tote::after{right:34px}
+.tote .mark{width:78px;height:78px;color:#1a1a1a}
+
+/* ---------- BILLBOARD (Nairobi night) ---------- */
+.city{position:absolute;bottom:0;left:0;right:0;height:120px;display:flex;align-items:flex-end;gap:6px;padding:0 14px;opacity:.85}
+.city i{flex:1;background:#15151a;border-radius:3px 3px 0 0}
+.board{position:relative;width:74%;aspect-ratio:16/9;border-radius:12px;background:linear-gradient(160deg,#101014,#070709);box-shadow:0 0 70px -10px rgba(52,255,24,.4),inset 0 0 0 1px rgba(255,255,255,.06);display:grid;place-items:center;margin-bottom:60px}
+.board .mark{width:64px;height:64px;color:#fff}
+.board .glow{position:absolute;width:60%;height:60%;border-radius:50%;background:var(--green);filter:blur(60px);opacity:.3}
+
+/* ---------- CONCRETE EMBOSS ---------- */
+.emboss{width:150px;height:150px;color:#c4c4bf;filter:drop-shadow(2px 2px 0 rgba(255,255,255,.7)) drop-shadow(-2px -2px 2px rgba(0,0,0,.28))}
+
+/* progress + grain */
+.prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--green);z-index:20}
+.vig{position:absolute;inset:0;pointer-events:none;z-index:15;box-shadow:inset 0 0 120px rgba(0,0,0,.45)}
+.hint{position:fixed;bottom:14px;left:0;right:0;text-align:center;color:#555;font-size:12px;letter-spacing:.04em;z-index:30}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="stage">
+
+    <!-- 1 INTRO -->
+    <div class="scene soft on"><div class="inner"><div class="brandlock"><span class="mark"></span><span class="wm">ZENTI</span></div></div></div>
+
+    <!-- 2 CARD -->
+    <div class="scene light"><div class="inner card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start"><span class="mark"></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end"><span class="nm">W. Kamau</span><span class="net">zen</span></div>
+      <span class="chip"></span>
+    </div></div>
+
+    <!-- 3 WATCH -->
+    <div class="scene soft"><div class="inner"><div class="watch"><span class="band"></span><div class="body"><div class="face"><span class="mark"></span><span class="t">Tap to pay</span></div></div></div></div></div>
+
+    <!-- 4 NFC TAG -->
+    <div class="scene green"><div class="inner"><div class="tag"><span class="ring"></span><span class="ring"></span><span class="ring"></span><div class="disc"><span class="mark"></span></div></div><div class="cap">The Zen Tag</div></div></div>
+
+    <!-- 5 PHONE -->
+    <div class="scene soft"><div class="inner"><div class="phone"><div class="scr"><div class="appicon"><span class="mark"></span></div><span class="lbl">Zenti</span></div></div></div></div>
+
+    <!-- 6 TOTE / MERCH -->
+    <div class="scene light"><div class="inner"><div class="tote"><span class="mark"></span></div></div></div>
+
+    <!-- 7 BILLBOARD -->
+    <div class="scene dark"><div class="inner" style="width:100%"><div class="board" style="margin-inline:auto"><span class="glow"></span><span class="mark"></span></div></div>
+      <div class="city"><i style="height:50%"></i><i style="height:80%"></i><i style="height:35%"></i><i style="height:95%"></i><i style="height:60%"></i><i style="height:78%"></i><i style="height:42%"></i><i style="height:88%"></i><i style="height:55%"></i><i style="height:70%"></i></div>
+    </div>
+
+    <!-- 8 CONCRETE EMBOSS -->
+    <div class="scene concrete"><div class="inner"><span class="mark emboss"></span></div></div>
+
+    <!-- 9 OUTRO -->
+    <div class="scene soft"><div class="inner"><div class="brandlock"><span class="mark"></span><div class="tagline">Money,<br>finally simple.</div><div class="underline"></div></div></div></div>
+
+    <div class="vig"></div>
+    <i class="prog" id="prog"></i>
+  </div>
+</div>
+<div class="hint">Brand reel · loops automatically — fullscreen &amp; screen-record, or render to MP4</div>
+
+<script>
+(function(){
+  var scenes=[].slice.call(document.querySelectorAll('.scene'));
+  var dur=[2400,2800,2600,2800,2600,2400,2800,2600,3400];
+  var prog=document.getElementById('prog');
+  var i=0, reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n){ scenes.forEach(function(s,k){ s.classList.toggle('on',k===n); }); }
+  function loop(){
+    show(i);
+    var d=dur[i];
+    if(prog){ prog.style.transition='none'; prog.style.width='0'; requestAnimationFrame(function(){ prog.style.transition='width '+d+'ms linear'; prog.style.width='100%'; }); }
+    setTimeout(function(){ i=(i+1)%scenes.length; loop(); }, d);
+  }
+  loop();
+}());
+</script>
+</body>
+</html>
