@@ -171,7 +171,7 @@
 <header class="card-hero">
   <div class="cwrap">
     <h1 class="cardword" data-r><span class="mk"></span>Card</h1>
-    <p class="sub" data-r>One card for everything you carry. Spend with perks, then add transit, ID and tickets to the same wallet.</p>
+    <p class="sub" data-r>One card for how Kenya actually pays. Tap anywhere — the supermarket, your landlord, even mama mboga — then keep transit, ID and tickets in the same wallet.</p>
     <div class="cta" data-r>
       <a class="btn" href="#get">Get the Zen Card</a>
       <a class="btn ghost" href="#film">Watch the film</a>
@@ -205,13 +205,46 @@
   </div>
 </section>
 
-<!-- INTERACTIVE SHOWCASE: see it on your phone (Wallet / Card / Pay) -->
+<!-- THE CARD (what it is — familiar) -->
+<section class="csec" id="thecard">
+  <div class="cwrap">
+    <div class="show-grid">
+      <div class="show-phone" data-r style="flex-direction:column;gap:24px">
+        <div class="hero-card" style="margin:0;width:min(380px,82vw)"><div class="cardface">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start"><span class="mk"></span></div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end"><span class="nm">W. Kamau</span><span class="net">zen</span></div>
+          <span class="chip"></span>
+        </div></div>
+        <div style="text-align:center">
+          <div class="swatches" id="swatches" style="justify-content:center">
+            <span class="sw cloud on" data-theme="cloud" data-name="Cloud" data-desc="Clean, light, and quiet — the everyday one. Your name, your mark, nothing shouting." role="button" tabindex="0" aria-label="Cloud"></span>
+            <span class="sw midnight" data-theme="midnight" data-name="Midnight" data-desc="Deep and unmistakable. Nairobi after dark." role="button" tabindex="0" aria-label="Midnight"></span>
+            <span class="sw forest" data-theme="forest" data-name="Forest" data-desc="Zenti green in its purest form. For the builders." role="button" tabindex="0" aria-label="Forest"></span>
+            <span class="sw ocean" data-theme="ocean" data-name="Ocean" data-desc="Calm, precise, deep. Still water at dawn." role="button" tabindex="0" aria-label="Ocean"></span>
+          </div>
+          <div id="cTitle" style="font-style:italic;font-weight:600;font-size:20px;margin-top:16px">Cloud</div>
+          <p id="cDesc" style="color:var(--ink-2);font-size:14px;max-width:34ch;margin:6px auto 0">Clean, light, and quiet — the everyday one. Your name, your mark, nothing shouting.</p>
+        </div>
+      </div>
+      <div class="show-info" data-r>
+        <div class="eyebrow">The card</div>
+        <h2 style="font-size:clamp(30px,4vw,50px);font-weight:500;font-style:italic;margin:12px 0 16px">A card that finally fits<br>how Kenya pays.</h2>
+        <p style="color:var(--ink-2);font-size:17px;line-height:1.65">We wanted a card you’d actually reach for — not one that sits in a drawer because half the shops “hawakubali card.” So we built one that works everywhere Zenti does.</p>
+        <p style="color:var(--ink-2);font-size:17px;line-height:1.65;margin-top:14px">No more squinting at a till sticker. No “weka kwa till namba 832…”, no wrong paybill, no wondering if it went through. The Zen Card lives in your phone — you tap, it’s paid, you both feel the tick.</p>
+        <p style="color:var(--ink-2);font-size:17px;line-height:1.65;margin-top:14px">Pay the supermarket. Pay your landlord. Pay mama mboga at the stall. Same card, same tap. Truth is, kwa ground ni cash na M-Pesa — cards never really caught on here. We’re changing that, because the Zen Card meets both.</p>
+        <div class="f-out" style="margin-top:24px"><span class="tk">✓</span> One card. Everywhere you already pay.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE WALLET (what actually happens in there) -->
 <section class="csec tight" id="see">
   <div class="cwrap">
     <div class="chead">
-      <div class="eyebrow" data-r>See the feel</div>
-      <h2 data-r>On your phone,<br>your way.</h2>
-      <p data-r>Switch between your Wallet, the card itself, and paying with it. Pick a finish and watch it change everywhere.</p>
+      <div class="eyebrow" data-r>The wallet</div>
+      <h2 data-r>Your wallet,<br>explained simply.</h2>
+      <p data-r>The card is one thing. The wallet is where it all lives — and where you actually move.</p>
     </div>
     <div class="show-grid">
       <div class="show-phone" data-r>
@@ -254,20 +287,15 @@
         </div>
       </div>
       <div class="show-info" data-r>
-        <div class="idx" id="cIdx">Wallet view</div>
-        <h2 id="cTitle">Cloud</h2>
-        <p id="cDesc">Clean, light, and quiet — the everyday finish. Your logo, your name, nothing shouting.</p>
-        <div class="seg" id="viewSeg">
+        <p style="color:var(--ink-2);font-size:17px;line-height:1.65"><b style="color:var(--ink-1)">Adding a card is chap chap.</b> Scan it with your camera or type it in. Your Zen Card, your bank cards, your transit pass, even your ID — all in one place.</p>
+        <p style="color:var(--ink-2);font-size:17px;line-height:1.65;margin-top:14px"><b style="color:var(--ink-1)">From here, you pay your way.</b> Tap, scan a QR, or send a money link — wherever you are, whenever. Pick the card you want, confirm, bas. Hela inatoka pale wewe unataka.</p>
+        <p style="color:var(--ink-2);font-size:17px;line-height:1.65;margin-top:14px"><b style="color:var(--ink-1)">And everything leaves a clean record.</b> So you’re never guessing where your money went.</p>
+        <div class="seg" id="viewSeg" style="margin-top:6px">
           <button class="on" data-view="wallet">Wallet</button>
           <button data-view="card">Card</button>
           <button data-view="pay">Pay</button>
         </div>
-        <div class="swatches" id="swatches">
-          <span class="sw cloud on" data-theme="cloud" data-name="Cloud" data-desc="Clean, light, and quiet — the everyday finish. Your logo, your name, nothing shouting." role="button" tabindex="0" aria-label="Cloud"></span>
-          <span class="sw midnight" data-theme="midnight" data-name="Midnight" data-desc="Deep and unmistakable. Inspired by the Nairobi skyline after dark." role="button" tabindex="0" aria-label="Midnight"></span>
-          <span class="sw forest" data-theme="forest" data-name="Forest" data-desc="Zenti green in its purest form. For builders and savers." role="button" tabindex="0" aria-label="Forest"></span>
-          <span class="sw ocean" data-theme="ocean" data-name="Ocean" data-desc="Calm, precise, deep. The colour of still water at dawn." role="button" tabindex="0" aria-label="Ocean"></span>
-        </div>
+        <div class="idx" id="cIdx" style="margin-top:12px;font-size:13px;color:var(--ink-3)">Tap a tab to see each screen</div>
       </div>
     </div>
   </div>
@@ -318,12 +346,12 @@
     <div class="chead">
       <div class="eyebrow" data-r>The perks</div>
       <h2 data-r>Every purchase<br>feels different.</h2>
-      <p data-r>Not just a way to pay — a card that gives a little back and keeps you in control.</p>
+      <p data-r>We didn’t want a card you just pay with. We wanted one that quietly works for you — gives a little back, keeps you in control, and never leaves you guessing.</p>
     </div>
     <div class="perks">
       <div class="perk" data-r>
         <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg></div>
-        <h3>Cash back, daily</h3><p>Earn a little back on everyday spend at the places you already shop, credited every day — not once a year.</p>
+        <h3>Cash back, daily</h3><p>Every time you spend where you already love to, a little comes back — credited the same day, not someday. Ndogo ndogo, but it adds up.</p>
       </div>
       <div class="perk" data-r>
         <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
@@ -331,7 +359,7 @@
       </div>
       <div class="perk" data-r>
         <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V9M18 17v-8"/></svg></div>
-        <h3>See every shilling</h3><p>Spending sorted automatically by category, so you always know where your money actually went.</p>
+        <h3>See every shilling</h3><p>Every spend sorts itself by category, so you actually know where it went — hakuna “pesa imeenda wapi?” at month-end.</p>
       </div>
       <div class="perk" data-r>
         <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></div>
@@ -339,11 +367,11 @@
       </div>
       <div class="perk" data-r>
         <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/><circle cx="12" cy="12" r="10"/></svg></div>
-        <h3>One balance</h3><p>Linked straight to your Zenti balance. Top up from M-Pesa or your bank, spend from one place.</p>
+        <h3>One balance</h3><p>It’s tied straight to your Zenti balance. Top up from M-Pesa or your bank, spend from one place. Hela moja, sehemu moja.</p>
       </div>
       <div class="perk" data-r>
         <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
-        <h3>Tap to pay, built in</h3><p>Your card knows your Zen Tag, so paying by phone-to-phone tap is the same card, the same control.</p>
+        <h3>Tap to pay, built in</h3><p>Your card knows your Zen Tag, so a phone-to-phone tap is the same card and the same control. Tap, done, bas.</p>
       </div>
     </div>
   </div>
@@ -391,6 +419,19 @@
       <div class="cbtns" data-r style="margin-top:8px">
         <a class="btn ghost" href="features.html#tap" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)">How tap to pay works</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILY CROSS-LINKS -->
+<section class="fam">
+  <div class="container">
+    <div class="sec-head"><div class="eyebrow" data-r>The Zenti family</div><h2 data-r>The card is one part.<br>Here’s the rest.</h2></div>
+    <div class="famgrid">
+      <a class="famcard on" href="card.html"><b>Zen Card</b><span>One card, every way to pay</span></a>
+      <a class="famcard" href="wallet.html"><b>Wallet</b><span>Everything you carry</span></a>
+      <a class="famcard" href="zen-pay.html"><b>Zen Pay</b><span>Pay anyone, any way</span></a>
+      <a class="famcard" href="zen-cash.html"><b>Zen Cash</b><span>Hold, move &amp; grow your money</span></a>
     </div>
   </div>
 </section>
