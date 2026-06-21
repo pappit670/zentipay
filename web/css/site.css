@@ -250,6 +250,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .famcard.on{background:var(--ink-1);color:#fff}
 .famcard.on span{color:rgba(255,255,255,.65)}
 @media(max-width:760px){.famgrid{grid-template-columns:1fr 1fr}}
+/* passes (transit / ID / tickets) — used on the wallet page */
+.passgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pass{border-radius:22px;padding:26px;color:#fff;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.pass.transit{background:linear-gradient(155deg,#13361f,#06210f)}
+.pass.id{background:linear-gradient(155deg,#1a2740,#0a1322)}
+.pass.ticket{background:linear-gradient(155deg,#3a2150,#1a0f29)}
+.pass .pk{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.pass h3{font-size:22px;font-weight:600;font-style:italic}
+.pass p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.5;margin-top:6px}
+@media(max-width:820px){.passgrid{grid-template-columns:1fr}}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
