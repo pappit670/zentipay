@@ -7,10 +7,10 @@
 <link rel="icon" href="favicon.png" type="image/png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta property="og:title" content="Zen Card — one card for everything you carry." />
-<meta property="og:description" content="Spend with perks, then add transit, ID and tickets to the same wallet. See it on your phone, add it by scanning or by hand." />
+<meta property="og:description" content="A card that fits how Kenya pays. Tap anywhere — supermarket, landlord, even mama mboga — with perks built in." />
 <meta property="og:image" content="og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="description" content="The Zen Card: spend with perks, freeze in a tap, see every shilling, and keep transit, ID and tickets in one wallet. Add by scanning or manual entry." />
+<meta name="description" content="The Zen Card: tap to pay anywhere in Kenya, switch cards on the pay screen, freeze in a tap, cash back daily, and see every shilling. No till numbers." />
 <link rel="stylesheet" href="css/site.css" />
 <style>
   /* ---- card page is light, Apple-style ---- */
@@ -142,13 +142,10 @@
     <div class="fnav-item has-drop">
       <button class="fnav-link" aria-expanded="false" aria-haspopup="true">Product <i class="caret"></i></button>
       <div class="fnav-drop">
-        <a href="features.html#pay"><b>Pay anyone</b><span>QR, link, or a phone tap</span></a>
-        <a href="features.html#tag"><b>The Zen Tag</b><span>Your handle — find anyone</span></a>
-        <a href="features.html#links"><b>Money links</b><span>Get paid from a link</span></a>
-        <a href="features.html#split"><b>Split the bill</b><span>Share any amount, fairly</span></a>
-        <a href="features.html#tap"><b>Tap to pay</b><span>Phone to phone, no till</span></a>
-        <a href="features.html#savings"><b>Savings goals</b><span>Round-ups that grow</span></a>
-        <a href="card.html"><b>Zen Card</b><span>Spend with perks</span></a>
+        <a href="zen-pay.html"><b>Zen Pay</b><span>Pay anyone, any way</span></a>
+        <a href="zen-cash.html"><b>Zen Cash</b><span>Send, request &amp; transfer</span></a>
+        <a href="wallet.html"><b>Wallet</b><span>Everything you carry</span></a>
+        <a href="card.html"><b>Zen Card</b><span>One card, every way to pay</span></a>
       </div>
     </div>
     <a class="fnav-link" href="features.html">Features</a>
@@ -238,76 +235,13 @@
   </div>
 </section>
 
-<!-- THE WALLET (what actually happens in there) -->
-<section class="csec tight" id="see">
-  <div class="cwrap">
-    <div class="chead">
-      <div class="eyebrow" data-r>The wallet</div>
-      <h2 data-r>Your wallet,<br>explained simply.</h2>
-      <p data-r>The card is one thing. The wallet is where it all lives — and where you actually move.</p>
-    </div>
-    <div class="show-grid">
-      <div class="show-phone" data-r>
-        <div class="cphone">
-          <div class="cscreen">
-            <!-- WALLET VIEW (home) -->
-            <div class="pscreen on" data-view="wallet">
-              <div class="ps-h">Wallet</div>
-              <div class="ps-sub">Everything you carry</div>
-              <div class="mini-card cardface">
-                <div style="display:flex;justify-content:space-between"><span class="mk"></span></div>
-                <div style="display:flex;justify-content:space-between;align-items:flex-end"><span class="nm">W. Kamau</span><span class="net">zen</span></div>
-                <span class="chip"></span>
-              </div>
-              <div class="w-pass"><span class="pi"><svg viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M14 9h4l4 4v4a1 1 0 0 1-1 1h-1"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg></span><div>Transit pass<small>Super Metro · active</small></div></div>
-              <div class="w-pass"><span class="pi"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M14 10h4M14 14h3"/></svg></span><div>National ID<small>Verified</small></div></div>
-              <div class="w-pass"><span class="pi"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z"/></svg></span><div>Event ticket<small>Sat · 8:00 PM</small></div></div>
-            </div>
-            <!-- CARD VIEW (individual) -->
-            <div class="pscreen" data-view="card">
-              <div class="ps-h">Zen Card</div>
-              <div class="ps-sub">•••• 4829</div>
-              <div class="cv-card cardface">
-                <div style="display:flex;justify-content:space-between"><span class="mk"></span></div>
-                <div style="display:flex;justify-content:space-between;align-items:flex-end"><span class="nm">W. Kamau</span><span class="net">zen</span></div>
-                <span class="chip"></span>
-              </div>
-              <div class="cv-ctrl"><span>Freeze</span><span>Perks</span><span>Spending</span></div>
-              <div class="cv-tx"><span>Naivas, Westlands</span><span>− 2,150</span></div>
-              <div class="cv-tx"><span>Daily Cash back</span><b>+ 43</b></div>
-            </div>
-            <!-- PAY VIEW -->
-            <div class="pscreen pay-v" data-view="pay">
-              <div class="ps-h">Pay with Zen Card</div>
-              <div class="pay-amt">KES 1,200</div>
-              <div class="pay-card-pill"><span class="dot"></span> Zen Card · •••• 4829</div>
-              <div class="pay-confirm">Double-tap to confirm</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="show-info" data-r>
-        <p style="color:var(--ink-2);font-size:17px;line-height:1.65"><b style="color:var(--ink-1)">Adding a card is chap chap.</b> Scan it with your camera or type it in. Your Zen Card, your bank cards, your transit pass, even your ID — all in one place.</p>
-        <p style="color:var(--ink-2);font-size:17px;line-height:1.65;margin-top:14px"><b style="color:var(--ink-1)">From here, you pay your way.</b> Tap, scan a QR, or send a money link — wherever you are, whenever. Pick the card you want, confirm, bas. Hela inatoka pale wewe unataka.</p>
-        <p style="color:var(--ink-2);font-size:17px;line-height:1.65;margin-top:14px"><b style="color:var(--ink-1)">And everything leaves a clean record.</b> So you’re never guessing where your money went.</p>
-        <div class="seg" id="viewSeg" style="margin-top:6px">
-          <button class="on" data-view="wallet">Wallet</button>
-          <button data-view="card">Card</button>
-          <button data-view="pay">Pay</button>
-        </div>
-        <div class="idx" id="cIdx" style="margin-top:12px;font-size:13px;color:var(--ink-3)">Tap a tab to see each screen</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- HOW TO ADD A CARD — spinning logo scroll -->
 <section class="csec tight" id="add">
   <div class="cwrap">
     <div class="chead">
-      <div class="eyebrow" data-r>Adding a card</div>
-      <h2 data-r>Into your wallet<br>in seconds.</h2>
-      <p data-r>Scan it, type it, or add a pass. Scroll through it.</p>
+      <div class="eyebrow" data-r>Getting set up</div>
+      <h2 data-r>Your card, ready<br>in minutes.</h2>
+      <p data-r>Add it by scanning or by hand, then tap to pay. Scroll through it.</p>
     </div>
   </div>
   <div class="spinsteps">
@@ -317,8 +251,8 @@
       <div class="ss-track">
         <div class="ss-step">
           <div class="ss-n">01</div>
-          <div class="ss-copy"><h3>Open your Wallet</h3><p>Tap Wallet in Zenti and choose Add. Your Zen Card, plus any pass, lives here.</p></div>
-          <div class="ss-media"><div style="display:grid;place-items:center;width:100%;color:var(--ink-3);font-weight:600">Wallet → Add</div></div>
+          <div class="ss-copy"><h3>Add your Zen Card</h3><p>In Zenti, choose Add card. A few taps — no forms, no branch visit.</p></div>
+          <div class="ss-media"><div style="display:grid;place-items:center;width:100%;color:var(--ink-3);font-weight:600">Add card</div></div>
         </div>
         <div class="ss-step">
           <div class="ss-n">02</div>
@@ -332,8 +266,8 @@
         </div>
         <div class="ss-step">
           <div class="ss-n">04</div>
-          <div class="ss-copy"><h3>Add other passes</h3><p>Transit cards for the matatu, your ID, event tickets — add them the same way and keep everything in one wallet.</p></div>
-          <div class="ss-media"><div style="display:grid;place-items:center;width:100%;color:var(--ink-3);font-weight:600">Transit · ID · tickets</div></div>
+          <div class="ss-copy"><h3>Tap to pay</h3><p>Hold your phone to pay, or pick the card on the pay screen. Bas — you’re carrying the Zen Card.</p></div>
+          <div class="ss-media"><div style="display:grid;place-items:center;width:100%;color:var(--ink-3);font-weight:600">Tap · paid</div></div>
         </div>
       </div>
     </div>
@@ -377,32 +311,6 @@
   </div>
 </section>
 
-<!-- ONE WALLET FOR EVERYTHING (transit / ID / tickets) -->
-<section class="csec tight" id="passes">
-  <div class="cwrap">
-    <div class="chead">
-      <div class="eyebrow" data-r>More than money</div>
-      <h2 data-r>One wallet for<br>everything you carry.</h2>
-      <p data-r>The Zen Card is the start. Add the things you’d otherwise keep loose in your pocket.</p>
-    </div>
-    <div class="passgrid">
-      <div class="pass transit" data-r>
-        <span class="pk">Transit</span>
-        <div><h3>Matatu &amp; bus, sorted.</h3><p>Book a seat, pay once, and the ticket lives in your wallet. Swipe to it, show the conductor, board.</p></div>
-      </div>
-      <div class="pass id" data-r>
-        <span class="pk">Identity</span>
-        <div><h3>Your ID, on hand.</h3><p>A verified digital ID for the moments you need to prove it’s you — without carrying the card around.</p></div>
-      </div>
-      <div class="pass ticket" data-r>
-        <span class="pk">Tickets</span>
-        <div><h3>Events &amp; passes.</h3><p>Concerts, matches, entry passes — added the same way, ready at the gate. No screenshots to dig for.</p></div>
-      </div>
-    </div>
-    <p class="note" data-r>Transit, ID and tickets are part of where the Zen Card is headed. We’ll show real flows here as each one goes live.</p>
-  </div>
-</section>
-
 <!-- GET / FINALE -->
 <section class="csec" id="get">
   <div class="finale-card">
@@ -431,7 +339,7 @@
       <a class="famcard on" href="card.html"><b>Zen Card</b><span>One card, every way to pay</span></a>
       <a class="famcard" href="wallet.html"><b>Wallet</b><span>Everything you carry</span></a>
       <a class="famcard" href="zen-pay.html"><b>Zen Pay</b><span>Pay anyone, any way</span></a>
-      <a class="famcard" href="zen-cash.html"><b>Zen Cash</b><span>Hold, move &amp; grow your money</span></a>
+      <a class="famcard" href="zen-cash.html"><b>Zen Cash</b><span>Send, request &amp; transfer</span></a>
     </div>
   </div>
 </section>
