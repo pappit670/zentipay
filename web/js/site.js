@@ -6,6 +6,16 @@
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- dark / light theme ---------- */
+  var root = document.documentElement;
+  function setTheme(t){
+    if(t==='dark') root.setAttribute('data-theme','dark'); else root.removeAttribute('data-theme');
+    try{ localStorage.setItem('zenti-theme', t); }catch(e){}
+  }
+  document.querySelectorAll('[data-theme-toggle]').forEach(function(b){
+    b.addEventListener('click', function(){ setTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark'); });
+  });
+
   /* ---------- floating nav: retract on scroll-down, reveal on scroll-up ---------- */
   var nav = document.getElementById('fnav');
   if(nav){
