@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{var t=localStorage.getItem("zenti-theme");if(t==="dark"||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Zenti Business — Your business finances, finally organised.</title>
@@ -689,7 +690,8 @@ tr:last-child td{border-bottom:none}
       <a class="fnav-link" href="#pricing">Pricing</a>
       <a class="fnav-link" href="index.html">Zenti Pay</a>
     </nav>
-    <a class="btn fnav-cta magnetic" href="#" onclick="openReg();return false">Get started free</a>
+    <button class="fnav-theme" data-theme-toggle aria-label="Toggle dark mode"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  <a class="btn fnav-cta magnetic" href="#" onclick="openReg();return false">Get started free</a>
     <button class="fnav-burger" id="fnavBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   </header>
 
@@ -1214,7 +1216,7 @@ tr:last-child td{border-bottom:none}
         <button class="side-toggle" id="sideToggle" onclick="toggleSide()" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
         <div class="hi" id="greet">Good morning, Wanjiku<small id="screenName">Overview</small></div>
       </div>
-      <div class="right"><input class="searchbar" placeholder="Search…" /><a class="btn sm magnetic">+ New</a></div>
+      <div class="right"><button class="side-toggle always" data-theme-toggle aria-label="Toggle dark mode"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button><input class="searchbar" placeholder="Search…" /><a class="btn sm magnetic">+ New</a></div>
     </div>
 
     <div class="subtabs" id="subtabs" style="display:none"></div>
