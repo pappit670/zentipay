@@ -117,6 +117,25 @@
     });
   });
 
+  /* ---------- flip cards (Apple-style feature cards) ---------- */
+  document.querySelectorAll('.flip').forEach(function(card){
+    card.setAttribute('tabindex','0');
+    card.setAttribute('role','button');
+    card.setAttribute('aria-expanded','false');
+    function toggle(){
+      var on = card.classList.toggle('flipped');
+      card.setAttribute('aria-expanded', String(on));
+    }
+    card.addEventListener('click', function(e){
+      if(e.target.closest('a')) return; /* let links on the back work */
+      toggle();
+    });
+    card.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }
+      if(e.key==='Escape' && card.classList.contains('flipped')) toggle();
+    });
+  });
+
   /* ---------- scroll-step spinning logo ---------- */
   var spin = document.querySelector('.spinsteps');
   if(spin && !reduce){

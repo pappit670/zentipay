@@ -344,3 +344,55 @@ html[data-theme="dark"]{
 [data-theme="dark"] .fnav-theme .sun,[data-theme="dark"] .side-toggle .sun{display:block}
 [data-theme="dark"] .fnav-theme .moon,[data-theme="dark"] .side-toggle .moon{display:none}
 .side-toggle.always{display:inline-flex}
+
+/* ============================== FLIP CARDS (Apple-style feature cards) ============================== */
+.flipgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.flip{position:relative;min-height:340px;perspective:1300px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.flip-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .75s var(--ease)}
+.flip.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:26px;padding:28px;display:flex;flex-direction:column;overflow:hidden}
+.flip-front{background:var(--fc-bg,#f2f2ef);color:var(--fc-ink,var(--ink-1))}
+.flip-back{background:var(--fc-back,var(--bg-dark));color:var(--fc-backink,#fff);transform:rotateY(180deg)}
+.flip .fc-et{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.flip .fc-h{font-size:clamp(24px,2.6vw,32px);font-weight:500;font-style:italic;line-height:1.05;letter-spacing:-.02em;margin-top:10px}
+.flip .fc-s{font-size:15px;line-height:1.5;opacity:.75;margin-top:12px;max-width:30ch}
+.flip .fc-ic{width:46px;height:46px;border-radius:14px;background:rgba(0,0,0,.08);display:grid;place-items:center;margin-bottom:auto;flex:none}
+.flip .fc-ic svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:2}
+.flip-front .fc-body{margin-top:auto}
+.flip-back .fc-p{font-size:15px;line-height:1.6;opacity:.92;margin-top:12px}
+.flip-back .fc-out{margin-top:auto;display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14px;padding-top:16px}
+.flip-back .fc-out .tk{width:20px;height:20px;border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-size:12px;font-weight:800;flex:none}
+.flip-btn{position:absolute;right:20px;bottom:20px;width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;font-size:22px;font-weight:400;line-height:1;background:rgba(0,0,0,.1);color:inherit;transition:transform .45s var(--ease),background .25s;z-index:2;font-family:var(--font)}
+.flip-back .flip-btn{background:rgba(255,255,255,.16)}
+.flip.flipped .flip-front .flip-btn{opacity:0}
+.flip.flipped .flip-back .flip-btn{transform:rotate(45deg)}
+.flip:hover .flip-btn{background:rgba(0,0,0,.16)}
+.flip-back:hover .flip-btn{background:rgba(255,255,255,.24)}
+.flip:focus-visible{outline:2.5px solid var(--green-ink);outline-offset:3px;border-radius:26px}
+/* tints — front pastel matches back deep shade (palette follows the content) */
+.flip.t-green{--fc-bg:#e6f8e0;--fc-ink:#0a3a14;--fc-back:#0c2a14;--fc-backink:#e9fbe2}
+.flip.t-blue{--fc-bg:#e6eefb;--fc-ink:#12294f;--fc-back:#101f3c;--fc-backink:#e7eefb}
+.flip.t-purple{--fc-bg:#efe7fb;--fc-ink:#2f1a55;--fc-back:#241443;--fc-backink:#efe8fb}
+.flip.t-amber{--fc-bg:#fbf0dc;--fc-ink:#4d3406;--fc-back:#3a2a08;--fc-backink:#fbf0dc}
+.flip.t-ink{--fc-bg:#ececea;--fc-ink:#141416;--fc-back:#141419;--fc-backink:#f0f0ee}
+.flip.t-mint{--fc-bg:#e2f6f0;--fc-ink:#0b3a2e;--fc-back:#0b2b23;--fc-backink:#e2f6f0}
+/* dark mode: fronts go deep-tinted, backs slightly lifted */
+html[data-theme="dark"] .flip.t-green{--fc-bg:#122a17;--fc-ink:#dff5d8;--fc-back:#1a3d20;--fc-backink:#eafbe4}
+html[data-theme="dark"] .flip.t-blue{--fc-bg:#131f38;--fc-ink:#dbe6fa;--fc-back:#1b2c4f;--fc-backink:#e7eefb}
+html[data-theme="dark"] .flip.t-purple{--fc-bg:#1f1438;--fc-ink:#e9defb;--fc-back:#2d1e50;--fc-backink:#efe8fb}
+html[data-theme="dark"] .flip.t-amber{--fc-bg:#2e2408;--fc-ink:#f6e8c8;--fc-back:#413310;--fc-backink:#fbf0dc}
+html[data-theme="dark"] .flip.t-ink{--fc-bg:#191920;--fc-ink:#eeeeec;--fc-back:#23232c;--fc-backink:#f0f0ee}
+html[data-theme="dark"] .flip.t-mint{--fc-bg:#0e2921;--fc-ink:#d8f2ea;--fc-back:#164033;--fc-backink:#e2f6f0}
+html[data-theme="dark"] .flip .fc-ic{background:rgba(255,255,255,.1)}
+html[data-theme="dark"] .flip-btn{background:rgba(255,255,255,.12)}
+/* responsiveness */
+@media(max-width:980px){.flipgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.flipgrid{grid-template-columns:1fr;gap:14px}.flip{min-height:300px}.flip-face{padding:24px}}
+/* reduced motion: crossfade instead of 3D flip */
+@media(prefers-reduced-motion:reduce){
+  .flip-inner{transition:none;transform:none!important}
+  .flip-face{transition:opacity .3s;transform:none}
+  .flip-back{opacity:0;pointer-events:none}
+  .flip.flipped .flip-back{opacity:1;pointer-events:auto}
+  .flip.flipped .flip-front{opacity:0}
+}
