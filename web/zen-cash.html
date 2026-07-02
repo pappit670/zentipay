@@ -4,17 +4,17 @@
 <script>(function(){try{var t=localStorage.getItem("zenti-theme");if(t==="dark"||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zen Cash — Zenti</title>
-<meta name="description" content="Zen Cash is your money in Zenti — held in one balance, topped up from M-Pesa or bank, saved with goals and pools, with no send fees and not tied to your SIM." />
+<title>Zen Cash — Move money the Z way</title>
+<meta name="description" content="Zen Cash: send, request, split and shift money between bank, M-Pesa, wallet and card — every move confirmed by your face or finger. Move money the Z way." />
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-<meta property="og:title" content="Zen Cash — Zenti" />
-<meta property="og:description" content="Your money: held, moved and grown. No hidden fees. Not tied to your SIM." />
+<meta property="og:title" content="Zen Cash — Move money the Z way." />
+<meta property="og:description" content="Send it. Request it. Shift it. Locked behind your face, transparent to the shilling." />
 <meta property="og:image" content="og.png" />
 <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
-<a class="skip-link" href="#top">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- FLOATING NAV -->
 <header class="fnav" id="fnav">
@@ -46,97 +46,176 @@
   <button class="fnav-burger" id="fnavBurger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
-<section class="page-hero" id="top">
-  <div class="container">
-    <div class="eyebrow" data-r>Zen Cash</div>
-    <h1 data-r>Move money,<br>like a text.</h1>
-    <p class="lede" data-r>The everyday stuff — sending, requesting, splitting, and shifting cash between your bank, M-Pesa, the wallet and your Zen Card, both ways. Fast and easy, but locked down: every move is confirmed by your face or finger, and you see exactly what happened.</p>
+<!-- HERO — the page IS the send screen -->
+<section class="zhero dark">
+  <div class="zh-tag" data-r><span class="z"></span>Zen Cash</div>
+  <h1 data-r>Move money<br>the Z way.</h1>
+  <p class="zh-sub" data-r>Send it. Request it. Split it. Shift it between bank, M-Pesa, wallet and card — locked behind your face, transparent to the shilling.</p>
+  <div class="zh-cta" data-r>
+    <a class="btn green" href="index.html#download">Get the app</a>
+    <a class="btn ghost" href="security.html" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)">How it’s protected</a>
+  </div>
+  <div class="halfphone" data-r>
+    <div class="scr">
+      <span class="notch"></span>
+      <div class="s-t">Send to Sarah <small>@sarah</small></div>
+      <div class="s-amt"><small>KES</small>850</div>
+      <div class="s-row"><span class="s-av">SO</span><span>Sarah Ochieng</span><b>@sarah</b></div>
+      <div class="s-ok">Confirm with Face ID</div>
+    </div>
   </div>
 </section>
 
-<main class="container">
+<main class="container" id="main">
 
-  <section class="feature">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Send &amp; request</div>
-        <h2 data-r>Send a link,<br>or just ask.</h2>
-        <div class="f-block" data-r><div class="lbl">In real life</div><p>Split a meal? Owed by a friend? Send money as a link, or send a request — they tap, they pay, you’re notified. Works even if they’re not on Zenti yet. No “send me your number” back-and-forth.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> Paid back without the chasing.</div>
-      </div>
-      <div class="f-media" data-r><span class="vlabel">Scenario</span>
-        <!-- swap for footage: <video src="videos/zencash-link.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:#3a86ff"></div><div class="play"></div><div class="cap">Link or request · they tap · paid</div></div>
+  <!-- 01 send & request -->
+  <div class="duo">
+    <div class="flip t-blue" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Send &amp; request</div><div class="fc-h">Send a link,<br>or just ask.</div><div class="fc-s">They tap, they pay, you’re notified.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Send &amp; request</div>
+          <p class="fc-p">Split a meal? Owed by a friend? Send money as a link or a request on WhatsApp — it works even if they’re not on Zenti yet. Paid back without the chasing.</p>
+          <div class="fc-out"><span class="tk">✓</span> No chasing, ever. <a href="features.html#links" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Requests <small>2 open</small></div>
+        <div class="s-row"><span class="s-av">SO</span><span>Sarah · lunch</span><b class="in">+ 850</b></div>
+        <div class="s-row"><span class="s-av">DK</span><span>David · fare</span><b class="in">+ 300</b></div>
+        <div class="s-tick">✓</div>
+        <div class="s-note">Sarah paid · just now</div>
+      </div></div>
+    </div>
+  </div>
 
-  <section class="feature flip">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Tap to connect</div>
-        <h2 data-r>Tap phones.<br>You’re connected.</h2>
-        <div class="f-block" data-r><div class="lbl">How it works</div><p>Standing next to someone? Bring the two phones together and you’re linked through your Zen Tags — send, request, or split on the spot. No typing numbers, no searching for a name.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> The simplest way to pay a friend.</div>
-      </div>
-      <div class="f-media light" data-r><span class="vlabel">Scenario</span>
-        <!-- swap for footage: <video src="videos/zencash-tap-connect.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:var(--green)"></div><div class="play"></div><div class="cap">Tap · connect · send</div></div>
+  <!-- 02 tap to connect -->
+  <div class="duo rev">
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Tap to connect <small>NFC</small></div>
+        <div class="s-row"><span class="s-av">WK</span><span>@wanjiku</span><b>you</b></div>
+        <div class="s-note" style="margin:2px 0">⇅ phones touched</div>
+        <div class="s-row"><span class="s-av">BO</span><span>@brian</span><b>linked</b></div>
+        <div class="s-ok">Send · Request · Split</div>
+      </div></div>
+    </div>
+    <div class="flip t-green" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Tap to connect</div><div class="fc-h">Tap phones.<br>You’re linked.</div><div class="fc-s">Standing next to someone? Touch phones.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Tap to connect</div>
+          <p class="fc-p">Bring two phones together and you’re connected through your Zen Tags — send, request or split on the spot. No typing numbers, no searching names.</p>
+          <div class="fc-out"><span class="tk">✓</span> The simplest way to pay a friend. <a href="features.html#tag" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="feature">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Fast transfers</div>
-        <h2 data-r>Bank, M-Pesa, card —<br>both ways.</h2>
-        <div class="f-block" data-r><div class="lbl">How it works</div><p>Move money between your bank, M-Pesa, the wallet and your Zen Card in seconds — whichever direction you need. Top up from M-Pesa, push to the bank, load the card. Chap chap, no waiting.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> Your money flows where you need it.</div>
-      </div>
-      <div class="f-media" data-r><span class="vlabel">Scenario</span>
-        <!-- swap for footage: <video src="videos/zencash-transfer.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:#8a5cff"></div><div class="play"></div><div class="cap">M-Pesa ⇄ wallet ⇄ bank ⇄ card</div></div>
+  <!-- 03 transfers -->
+  <div class="duo">
+    <div class="flip t-purple" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Fast transfers</div><div class="fc-h">Bank, M-Pesa,<br>card — both ways.</div><div class="fc-s">Your money flows where you need it, chap chap.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Fast transfers</div>
+          <p class="fc-p">Top up from M-Pesa, push to the bank, load the Zen Card — whichever direction, in seconds. One balance behind it all, so nothing gets stranded in the wrong app.</p>
+          <div class="fc-out"><span class="tk">✓</span> No waiting, no stranded cash. <a href="wallet.html" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Move money <small>today</small></div>
+        <div class="s-row"><span>M-Pesa → Wallet</span><b class="in">+ 5,000</b></div>
+        <div class="s-row"><span>Wallet → Bank</span><b>− 20,000</b></div>
+        <div class="s-row"><span>Wallet → Zen Card</span><b>− 3,000</b></div>
+        <div class="s-note" style="margin-top:auto">All cleared · in seconds</div>
+      </div></div>
+    </div>
+  </div>
 
-  <section class="feature flip">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Verified by you</div>
-        <h2 data-r>Confirmed by your<br>face or finger.</h2>
-        <div class="f-block" data-r><div class="lbl">Why it matters</div><p>Every single transfer is confirmed with Face ID or your fingerprint. Nothing leaves your account unless it’s really you — even if someone gets hold of your phone. And because your account lives behind your identity, not your SIM, a lost or swapped line never means lost money.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> Fast for you. Locked for everyone else.</div>
-      </div>
-      <div class="f-media light" data-r><span class="vlabel">Scenario</span>
-        <!-- swap for footage: <video src="videos/zencash-faceid.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:var(--green)"></div><div class="play"></div><div class="cap">Face ID · fingerprint · confirmed</div></div>
+  <!-- 04 verified -->
+  <div class="duo rev">
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Confirm transfer</div>
+        <div class="s-amt"><small>KES</small>20,000</div>
+        <div class="s-face">☺</div>
+        <div class="s-note">Face ID · it’s really you</div>
+        <div class="s-ok">Confirmed ✓</div>
+      </div></div>
+    </div>
+    <div class="flip t-ink" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Verified by you</div><div class="fc-h">Your face is<br>the key.</div><div class="fc-s">Every move confirmed by Face ID or fingerprint.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Verified by you</div>
+          <p class="fc-p">Nothing leaves your account unless it’s really you — even if someone has your phone. And your money lives behind your identity, not your SIM, so a lost line never means lost cash.</p>
+          <div class="fc-out"><span class="tk">✓</span> Fast for you. Locked for everyone else. <a href="security.html" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="feature">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Transparent</div>
-        <h2 data-r>See exactly<br>what happened.</h2>
-        <div class="f-block" data-r><div class="lbl">The outcome</div><p>A clear receipt lands on both screens the moment a transfer clears, and every move is recorded and searchable. No hidden fees, no mystery deductions — hakuna pesa inapotea bila maelezo.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> Nothing hidden, ever. <a class="inline" href="security.html" style="color:#0a5c1a;text-decoration:underline;text-underline-offset:3px">How we keep it safe →</a></div>
-      </div>
-      <div class="f-media light" data-r><span class="vlabel">Scenario</span>
-        <!-- swap for footage: <video src="videos/zencash-receipt.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:#3a86ff"></div><div class="play"></div><div class="cap">Clear receipt · both screens</div></div>
+  <!-- 05 transparent -->
+  <div class="duo">
+    <div class="flip t-mint" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Transparent</div><div class="fc-h">See exactly<br>what happened.</div><div class="fc-s">A clear receipt, on both screens, instantly.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Transparent</div>
+          <p class="fc-p">Every move is recorded and searchable, going back years. No hidden fees, no mystery deductions — hakuna pesa inapotea bila maelezo.</p>
+          <div class="fc-out"><span class="tk">✓</span> Nothing hidden, ever. <a href="features.html#pay" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Receipt <small>#Z-20481</small></div>
+        <div class="s-tick">✓</div>
+        <div class="s-row"><span>Sent to Sarah</span><b>KES 850</b></div>
+        <div class="s-row"><span>Fee</span><b>KES 0</b></div>
+        <div class="s-note" style="margin-top:auto">On both screens · saved forever</div>
+      </div></div>
+    </div>
+  </div>
+
+  <p style="text-align:center;color:var(--ink-3);font-size:13px;margin:6px 0 40px" data-r>Tap a card to flip it · Learn more opens the full story.</p>
 
 </main>
 
 <!-- FAMILY CROSS-LINKS -->
 <section class="fam">
   <div class="container">
-    <div class="sec-head"><div class="eyebrow" data-r>The Zenti family</div><h2 data-r>Four parts. One Zenti.</h2></div>
+    <div class="sec-head" style="text-align:center;max-width:680px;margin:0 auto 34px"><div class="eyebrow" data-r>The Zenti family</div><h2 data-r style="font-size:clamp(28px,4vw,48px);font-weight:500;font-style:italic">Four parts. One Zenti.</h2></div>
     <div class="famgrid">
       <a class="famcard" href="card.html"><b>Zen Card</b><span>One card, every way to pay</span></a>
       <a class="famcard" href="wallet.html"><b>Wallet</b><span>Everything you carry</span></a>
