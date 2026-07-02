@@ -11,6 +11,7 @@
   function setTheme(t){
     if(t==='dark') root.setAttribute('data-theme','dark'); else root.removeAttribute('data-theme');
     try{ localStorage.setItem('zenti-theme', t); }catch(e){}
+    if(window.__updBg) window.__updBg();
   }
   document.querySelectorAll('[data-theme-toggle]').forEach(function(b){
     b.addEventListener('click', function(){ setTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark'); });
@@ -116,6 +117,41 @@
       }
     });
   });
+
+  /* ---------- immersive scroll backgrounds ----------
+     Sections tagged data-bg="green|blue|purple|amber|mint|pink" flood the
+     page background with their colour as they cross the viewport centre. */
+  var BGP = {
+    green:  ['#b3f89b', '#123c1d'],
+    blue:   ['#9fc7ff', '#142c58'],
+    purple: ['#dcbcff', '#301c58'],
+    amber:  ['#ffd76e', '#453510'],
+    mint:   ['#93f2d2', '#104033'],
+    pink:   ['#ffb7d8', '#44142e']
+  };
+  var bgEls = [].slice.call(document.querySelectorAll('[data-bg]'));
+  function updBg(){
+    var mid = window.innerHeight * 0.5, cur = null;
+    for(var i=0;i<bgEls.length;i++){
+      var r = bgEls[i].getBoundingClientRect();
+      if(r.top <= mid && r.bottom >= mid){ cur = bgEls[i]; break; }
+    }
+    var dark = root.getAttribute('data-theme')==='dark';
+    if(cur){
+      var p = BGP[cur.getAttribute('data-bg')];
+      if(p) document.body.style.backgroundColor = p[dark?1:0];
+    } else {
+      document.body.style.backgroundColor = '';
+    }
+  }
+  if(bgEls.length){
+    document.body.style.transition = 'background-color .9s cubic-bezier(.32,.72,0,1)';
+    var bgTick = false;
+    window.addEventListener('scroll', function(){ if(!bgTick){ requestAnimationFrame(function(){ updBg(); bgTick=false; }); bgTick=true; } }, {passive:true});
+    window.addEventListener('resize', updBg);
+    updBg();
+  }
+  window.__updBg = updBg;
 
   /* ---------- flip cards (Apple-style feature cards) ---------- */
   document.querySelectorAll('.flip').forEach(function(card){
