@@ -4,17 +4,17 @@
 <script>(function(){try{var t=localStorage.getItem("zenti-theme");if(t==="dark"||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zen Pay — Zenti</title>
-<meta name="description" content="Zen Pay is the paying side of Zenti — tap, scan a QR, or send a money link. Pay anyone, any way, in seconds. No till numbers, no wrong paybills." />
+<title>Zen Pay — Pay the Z way</title>
+<meta name="description" content="Zen Pay: your cards in action from the pay screen. Double-tap to pay, swipe up to switch cards, partner discounts off automatically at checkout. Pay the Z way." />
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-<meta property="og:title" content="Zen Pay — Zenti" />
-<meta property="og:description" content="Pay anyone, any way, in seconds. Tap, scan, or send a link." />
+<meta property="og:title" content="Zen Pay — Pay the Z way." />
+<meta property="og:description" content="Open. Double-tap. Paid. Your cards in action, everywhere Kenya pays." />
 <meta property="og:image" content="og.png" />
 <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
-<a class="skip-link" href="#top">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- FLOATING NAV -->
 <header class="fnav" id="fnav">
@@ -46,84 +46,149 @@
   <button class="fnav-burger" id="fnavBurger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
-<section class="page-hero" id="top">
-  <div class="container">
-    <div class="eyebrow" data-r>Zen Pay</div>
-    <h1 data-r>Your cards,<br>at the speed of a tap.</h1>
-    <p class="lede" data-r>This is your cards in action — right from the pay screen. Open the app and you’re already there. Double-tap to pay, swipe up to switch cards, and you’re done before the queue even moves. Watch how it plays out in real life below.</p>
+<!-- HERO — the page IS the pay screen -->
+<section class="zhero green">
+  <div class="zh-tag" data-r><span class="z"></span>Zen Pay</div>
+  <h1 data-r>Pay the Z way.</h1>
+  <p class="zh-sub" data-r>Open the app and you’re already on the pay screen. Double-tap, and it’s done — at the supermarket, the stall, anywhere Kenya pays.</p>
+  <div class="zh-cta" data-r>
+    <a class="btn green" href="index.html#download">Get the app</a>
+    <a class="btn ghost" href="features.html" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)">All features</a>
+  </div>
+  <div class="halfphone" data-r>
+    <div class="scr">
+      <span class="notch"></span>
+      <div class="s-t">Zen Pay <small>Quick access</small></div>
+      <div class="s-amt"><small>KES</small>1,200</div>
+      <div class="s-pill"><span class="dot"></span> Zen Card · •••• 4829</div>
+      <div class="s-card green" style="margin-top:6px"><span class="s-mk"></span><span>W. KAMAU</span><span>zen</span></div>
+      <div class="s-ok">Double-tap to pay</div>
+    </div>
   </div>
 </section>
 
-<main class="container">
+<main class="container" id="main">
 
-  <section class="feature">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> The pay screen</div>
-        <h2 data-r>Open. Pay.<br>Done.</h2>
-        <div class="f-block" data-r><div class="lbl">How it works</div><p>Open Zenti and you land straight on the pay screen — no menus to dig through. Type the amount, double-tap to confirm with Face ID, and it’s paid. Under five seconds, start to finish.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> The fastest screen you’ll touch all day.</div>
-      </div>
-      <div class="f-media" data-r><span class="vlabel">Scenario</span>
-        <!-- swap for footage: <video src="videos/zenpay-payscreen.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:var(--green)"></div><div class="play"></div><div class="cap">Open · amount · double-tap</div></div>
+  <!-- 01 pay screen -->
+  <div class="duo">
+    <div class="flip t-green" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">The pay screen</div><div class="fc-h">Open. Pay.<br>Done.</div><div class="fc-s">You land straight on the pay screen — no menus.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">The pay screen</div>
+          <p class="fc-p">Type the amount, double-tap to confirm with Face ID, paid — under five seconds start to finish. The fastest screen you’ll touch all day.</p>
+          <div class="fc-out"><span class="tk">✓</span> Under 5 seconds. <a href="features.html#quickpay" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Zen Pay <small>9:41</small></div>
+        <div class="s-amt"><small>KES</small>450</div>
+        <div class="s-pill"><span class="dot"></span> Zen Card</div>
+        <div class="s-ok">Double-tap to pay</div>
+      </div></div>
+    </div>
+  </div>
 
-  <section class="feature flip">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Switch cards</div>
-        <h2 data-r>Swipe up,<br>pick a card.</h2>
-        <div class="f-block" data-r><div class="lbl">How it works</div><p>Right there on the pay screen, swipe up to choose which card pays — your Zen Card, a bank card, or your balance. Different card for different things, no settings, no fuss.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> Your money, your choice, every time.</div>
-      </div>
-      <div class="f-media light" data-r><span class="vlabel">Scenario</span>
-        <!-- swap for footage: <video src="videos/zenpay-switch-card.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:#3a86ff"></div><div class="play"></div><div class="cap">Swipe up · choose · pay</div></div>
+  <!-- 02 switch cards -->
+  <div class="duo rev">
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Choose card <small>swipe up</small></div>
+        <div class="s-card green"><span class="s-mk"></span><span>Zen Card</span><span>••4829</span></div>
+        <div class="s-card blue"><span>Bank card</span><span>••1190</span></div>
+        <div class="s-card lite"><span>Zenti balance</span><b>KES 48,250</b></div>
+        <div class="s-note" style="margin-top:auto">Different card, same tap.</div>
+      </div></div>
+    </div>
+    <div class="flip t-blue" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Switch cards</div><div class="fc-h">Swipe up,<br>pick a card.</div><div class="fc-s">Zen Card, bank card, or balance — right there.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Switch cards</div>
+          <p class="fc-p">On the pay screen, swipe up and choose which card pays. Different card for different things — no settings, no fuss. Your money, your choice, every time.</p>
+          <div class="fc-out"><span class="tk">✓</span> Your call, every tap. <a href="wallet.html" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="feature">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Scenario · at Naivas</div>
-        <h2 data-r>At the till,<br>before they bag it.</h2>
-        <div class="f-block" data-r><div class="lbl">In real life</div><p>You’re at the Naivas counter. Open Zenti, swipe up to your bank card, double-tap — paid, before the cashier finishes bagging your shopping. No card machine drama, no “the system is down.”</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> Out the door before the queue moves.</div>
-      </div>
-      <div class="f-media" data-r><span class="vlabel">Scenario · video</span>
-        <!-- swap for footage: <video src="videos/zenpay-naivas.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:var(--green)"></div><div class="play"></div><div class="cap">Naivas · swipe → double-tap → paid</div></div>
+  <!-- 03 rewards at checkout -->
+  <div class="duo">
+    <div class="flip t-amber" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Rewards</div><div class="fc-h">Discounts,<br>off automatically.</div><div class="fc-s">Partner-shop deals apply themselves at checkout.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Rewards</div>
+          <p class="fc-p">When you pay at a partner shop, the discount comes off the bill right there at checkout — no codes, no clipping, no asking. You see exactly what you saved on the receipt. (Rolling out with launch partners.)</p>
+          <div class="fc-out"><span class="tk">✓</span> Savings that find you. <a href="card.html#perks" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Checkout <small>Naivas</small></div>
+        <div class="s-row"><span>Basket</span><b>KES 2,350</b></div>
+        <div class="s-row" style="color:#0a7a2c"><span>Partner discount</span><b class="in">− 200</b></div>
+        <div class="s-row"><span>You pay</span><b>KES 2,150</b></div>
+        <div class="s-tick">✓</div>
+        <div class="s-note">Discount applied automatically</div>
+      </div></div>
+    </div>
+  </div>
 
-  <section class="feature flip">
-    <div class="fwrap">
-      <div class="f-copy">
-        <div class="f-num" data-r><b>—</b> Scenario · on the move</div>
-        <h2 data-r>The stall, the fuel<br>stop, the kibanda.</h2>
-        <div class="f-block" data-r><div class="lbl">In real life</div><p>Mama mboga, the petrol station, the duka round the corner — tap your phone or scan their QR and it’s done. No till numbers to squint at, no stickers, si lazima ujue paybill.</p></div>
-        <div class="f-out" data-r><span class="tk">✓</span> Pay anywhere, even where cards never reached.</div>
-      </div>
-      <div class="f-media light" data-r><span class="vlabel">Scenario · video</span>
-        <!-- swap for footage: <video src="videos/zenpay-stall.mp4" autoplay muted loop playsinline></video> -->
-        <div class="media-ph"><div class="glow" style="background:#ffb020"></div><div class="play"></div><div class="cap">Tap or scan · paid</div></div>
+  <!-- 04 anywhere -->
+  <div class="duo rev">
+    <div class="mockwrap" data-r>
+      <div class="zmock"><div class="scr">
+        <span class="notch"></span>
+        <div class="s-t">Tap to pay <small>NFC</small></div>
+        <div class="s-amt"><small>KES</small>150</div>
+        <div class="s-row"><span class="s-av">MM</span><span>Mama Mboga</span><b>@mboga</b></div>
+        <div class="s-tick">✓</div>
+        <div class="s-note">Paid · both phones feel the tick</div>
+      </div></div>
+    </div>
+    <div class="flip t-ink" data-r>
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="fc-body"><div class="fc-et">Anywhere</div><div class="fc-h">The till, the stall,<br>the kibanda.</div><div class="fc-s">Tap or scan — even where cards never reached.</div></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="fc-et">Anywhere</div>
+          <p class="fc-p">Mama mboga, the fuel stop, the duka round the corner — tap your phone or scan their QR and it’s done. No till numbers to squint at, si lazima ujue paybill.</p>
+          <div class="fc-out"><span class="tk">✓</span> Everywhere Kenya pays. <a href="features.html#tap" style="text-decoration:underline;text-underline-offset:3px;margin-left:6px">Learn more →</a></div>
+          <button class="flip-btn" aria-hidden="true">+</button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <p style="text-align:center;color:var(--ink-2);font-size:16px;margin:8px 0 0"><a class="inline" href="features.html" style="color:#0a5c1a;text-decoration:underline;text-underline-offset:3px">See every paying feature in full →</a></p>
+  <p style="text-align:center;color:var(--ink-3);font-size:13px;margin:6px 0 40px" data-r>Tap a card to flip it · Learn more opens the full story.</p>
 
 </main>
 
 <!-- FAMILY CROSS-LINKS -->
 <section class="fam">
   <div class="container">
-    <div class="sec-head"><div class="eyebrow" data-r>The Zenti family</div><h2 data-r>Four parts. One Zenti.</h2></div>
+    <div class="sec-head" style="text-align:center;max-width:680px;margin:0 auto 34px"><div class="eyebrow" data-r>The Zenti family</div><h2 data-r style="font-size:clamp(28px,4vw,48px);font-weight:500;font-style:italic">Four parts. One Zenti.</h2></div>
     <div class="famgrid">
       <a class="famcard" href="card.html"><b>Zen Card</b><span>One card, every way to pay</span></a>
       <a class="famcard" href="wallet.html"><b>Wallet</b><span>Everything you carry</span></a>
