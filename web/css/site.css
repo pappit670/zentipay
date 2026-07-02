@@ -509,3 +509,20 @@ html[data-theme="dark"] .mf.white{background:#16161c;border-color:var(--line)}
 .dmock .dside .it.on{background:#fff;color:#101014}
 .dmock .dbody{padding:13px;display:flex;flex-direction:column;gap:8px;color:#141416;text-align:left}
 @media(max-width:560px){.dmock .dwin{grid-template-columns:78px 1fr}}
+
+/* ============================== TABBED FEATURES ============================== */
+.fp-toc[data-tabs]{position:sticky;top:92px;z-index:20;padding:10px;margin:6px auto 8px;width:fit-content;max-width:100%;
+  background:rgba(255,255,255,.65);backdrop-filter:saturate(160%) blur(16px);-webkit-backdrop-filter:saturate(160%) blur(16px);
+  border-radius:100px;box-shadow:0 12px 34px rgba(10,10,10,.12),inset 0 0 0 1px rgba(10,10,10,.06)}
+.fp-toc[data-tabs] a{background:transparent}
+.fp-toc[data-tabs] a:hover{background:rgba(10,10,10,.07);color:var(--ink-1)}
+.fp-toc[data-tabs] a.on{background:var(--ink-1);color:#fff}
+html[data-theme="dark"] .fp-toc[data-tabs]{background:rgba(22,22,28,.7);box-shadow:0 12px 34px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.08)}
+html[data-theme="dark"] .fp-toc[data-tabs] a:hover{background:rgba(255,255,255,.09)}
+html[data-theme="dark"] .fp-toc[data-tabs] a.on{background:#f4f4f2;color:#0a0a0c}
+.tabpane{animation:paneIn .5s var(--ease)}
+@keyframes paneIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.feature.tabpane{padding:64px 0 90px;border-top:none}
+.duo.tabpane{padding:56px 0 84px;border-top:none}
+@media(prefers-reduced-motion:reduce){.tabpane{animation:none}}
+@media(max-width:640px){.fp-toc[data-tabs]{border-radius:22px;top:86px}}
