@@ -449,3 +449,45 @@ html[data-theme="dark"] .flip-btn{background:rgba(255,255,255,.12)}
   .zhero{padding-top:130px}
 }
 html[data-theme="dark"] .halfphone .scr,html[data-theme="dark"] .zmock .scr{background:#f4f4f2;color:#141416}
+
+/* ============================== MORE FOR YOUR MONEY (Apple trio-style product cards) ============================== */
+.morefam{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mf{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;border-radius:28px;padding:32px 24px 0;min-height:330px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.mf:hover{transform:translateY(-5px);box-shadow:0 24px 50px -24px rgba(10,10,10,.35)}
+.mf.lite{background:var(--bg-soft)}
+.mf.white{background:#fff;border:1px solid var(--line)}
+.mf.dark{background:var(--bg-dark);color:#fff}
+.mf.deep{background:#0c2a14;color:#fff}
+.mf .n{font-size:13px;font-weight:700;letter-spacing:.02em;opacity:.65}
+.mf .s{font-size:clamp(19px,1.8vw,23px);font-weight:600;letter-spacing:-.02em;line-height:1.18;margin-top:8px;font-style:italic}
+.mf .lm{margin-top:10px;font-size:14px;font-weight:600;color:var(--green-ink)}
+.mf.dark .lm,.mf.deep .lm{color:var(--green)}
+.mf .vis{margin-top:auto;width:100%;display:flex;justify-content:center;align-items:flex-end;padding-top:24px;min-height:120px}
+/* visuals */
+.mf .vcard{width:150px;aspect-ratio:1.586;border-radius:12px 12px 0 0;background:linear-gradient(160deg,#0e2c16,#04130a);color:#fff;padding:12px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 -8px 30px -12px rgba(0,0,0,.4)}
+.mf .vcard .mkk{width:20px;height:20px;background:currentColor;-webkit-mask:url(../assets/zenti-logo.png) center/contain no-repeat;mask:url(../assets/zenti-logo.png) center/contain no-repeat}
+.mf .vcard small{font-size:9px;letter-spacing:.06em;text-align:left;opacity:.8}
+.mf .vstack{position:relative;width:160px;height:110px}
+.mf .vstack i{position:absolute;left:50%;transform:translateX(-50%);width:150px;height:88px;border-radius:12px}
+.mf .vstack i:nth-child(1){bottom:-26px;background:linear-gradient(160deg,#2b2b2f,#0e0e10)}
+.mf .vstack i:nth-child(2){bottom:-8px;background:linear-gradient(160deg,#16305c,#0a1730)}
+.mf .vstack i:nth-child(3){bottom:10px;background:linear-gradient(160deg,#0e2c16,#04130a);display:grid;place-items:center}
+.mf .vstack i:nth-child(3)::after{content:"";width:22px;height:22px;background:#fff;-webkit-mask:url(../assets/zenti-logo.png) center/contain no-repeat;mask:url(../assets/zenti-logo.png) center/contain no-repeat}
+.mf .vtick{width:64px;height:64px;border-radius:50%;background:var(--green);color:#06210a;display:grid;place-items:center;font-size:28px;font-weight:800;margin-bottom:26px;box-shadow:0 14px 34px -10px rgba(52,255,24,.55)}
+.mf .vcash{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:24px}
+.mf .vcash .amt{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:100px;padding:9px 16px;font-size:14px;font-weight:700}
+.mf .vcash .amt i{width:16px;height:16px;background:var(--green);-webkit-mask:url(../assets/zenti-logo.png) center/contain no-repeat;mask:url(../assets/zenti-logo.png) center/contain no-repeat}
+.mf .vcash .arc{width:120px;height:34px;background:radial-gradient(circle 3px at 10% 80%,var(--green) 95%,transparent),radial-gradient(circle 3px at 25% 45%,var(--green) 95%,transparent),radial-gradient(circle 3px at 40% 22%,var(--green) 95%,transparent),radial-gradient(circle 3px at 55% 12%,#5cf04a 95%,transparent),radial-gradient(circle 3px at 70% 22%,#5cf04a 95%,transparent),radial-gradient(circle 3px at 85% 45%,#8df07a 95%,transparent),radial-gradient(circle 3px at 98% 80%,#8df07a 95%,transparent);opacity:.9}
+@media(max-width:980px){.morefam{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.morefam{grid-template-columns:1fr}.mf{min-height:290px}}
+html[data-theme="dark"] .mf.white{background:#16161c;border-color:var(--line)}
+
+/* ============================== SETUP BLOCK (phone + conversational paragraph) ============================== */
+.setup{padding:90px 0}
+.setup .su-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;max-width:1000px;margin:0 auto}
+.setup .su-copy h2{font-size:clamp(26px,3.2vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.setup .su-copy p{color:var(--ink-2);font-size:17px;line-height:1.7;margin-top:16px}
+.setup .su-copy .su-link{display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-weight:600;color:var(--green-ink);font-size:16px}
+.setup .su-link .pl{width:26px;height:26px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;flex:none}
+.setup .su-link .pl::after{content:"";margin-left:2px;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+@media(max-width:820px){.setup .su-grid{grid-template-columns:1fr;gap:36px;text-align:center}.setup .su-copy .su-link{justify-content:center}}
