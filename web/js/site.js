@@ -118,18 +118,19 @@
     });
   });
 
-  /* ---------- immersive scroll backgrounds ----------
-     Sections tagged data-bg="green|blue|purple|amber|mint|pink" flood the
-     page background with their colour as they cross the viewport centre. */
+  /* ---------- band blend ----------
+     As a [data-band] section crosses the viewport centre, the page
+     background softly tints toward that band's colour — the slab stays
+     vivid, the page blends behind it. */
   var BGP = {
-    green:  ['#b3f89b', '#123c1d'],
-    blue:   ['#9fc7ff', '#142c58'],
-    purple: ['#dcbcff', '#301c58'],
-    amber:  ['#ffd76e', '#453510'],
-    mint:   ['#93f2d2', '#104033'],
-    pink:   ['#ffb7d8', '#44142e']
+    green:  ['#e6fbdb', '#0f2114'],
+    blue:   ['#e3edff', '#0e1730'],
+    purple: ['#f2e9ff', '#1b1030'],
+    amber:  ['#fff2d1', '#241d0a'],
+    mint:   ['#e0faf0', '#0c211b'],
+    pink:   ['#ffe6f1', '#250d1a']
   };
-  var bgEls = [].slice.call(document.querySelectorAll('[data-bg]'));
+  var bgEls = [].slice.call(document.querySelectorAll('[data-band]'));
   function updBg(){
     var mid = window.innerHeight * 0.5, cur = null;
     for(var i=0;i<bgEls.length;i++){
@@ -138,7 +139,7 @@
     }
     var dark = root.getAttribute('data-theme')==='dark';
     if(cur){
-      var p = BGP[cur.getAttribute('data-bg')];
+      var p = BGP[cur.getAttribute('data-band')];
       if(p) document.body.style.backgroundColor = p[dark?1:0];
     } else {
       document.body.style.backgroundColor = '';
