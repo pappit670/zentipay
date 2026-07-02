@@ -153,6 +153,40 @@
   }
   window.__updBg = updBg;
 
+  /* ---------- tabbed features ----------
+     A .fp-toc[data-tabs] nav turns its #anchor targets into tab panels:
+     one visible at a time, pill highlighted, hash + deep links kept. */
+  var toc = document.querySelector('.fp-toc[data-tabs]');
+  if(toc){
+    var tabLinks = [].slice.call(toc.querySelectorAll('a[href^="#"]'));
+    var panels = tabLinks.map(function(l){ return document.getElementById(l.getAttribute('href').slice(1)); }).filter(Boolean);
+    function activateTab(id, focus){
+      tabLinks.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href')==='#'+id); });
+      panels.forEach(function(p){
+        var on = p.id===id;
+        p.style.display = on ? '' : 'none';
+        p.classList.toggle('tabpane', on);
+        if(on){ p.querySelectorAll('[data-r]').forEach(function(el){ el.classList.add('in'); }); }
+      });
+      if(window.__updBg) window.__updBg();
+    }
+    tabLinks.forEach(function(l){
+      l.addEventListener('click', function(e){
+        e.preventDefault();
+        var id = l.getAttribute('href').slice(1);
+        activateTab(id);
+        try{ history.replaceState(null,'','#'+id); }catch(err){}
+      });
+    });
+    window.addEventListener('hashchange', function(){
+      var id = location.hash.slice(1);
+      if(panels.some(function(p){ return p.id===id; })) activateTab(id);
+    });
+    var initId = location.hash.slice(1);
+    if(!panels.some(function(p){ return p.id===initId; })) initId = panels.length ? panels[0].id : null;
+    if(initId) activateTab(initId);
+  }
+
   /* ---------- flip cards (Apple-style feature cards) ---------- */
   document.querySelectorAll('.flip').forEach(function(card){
     card.setAttribute('tabindex','0');
