@@ -115,7 +115,7 @@ h1,h2,h3,h4{letter-spacing:-.03em;line-height:1.04;font-weight:500}
 .fp-toc a{font-size:14px;font-weight:550;color:var(--ink-2);padding:8px 16px;border-radius:100px;background:var(--bg-soft);transition:background .25s,color .25s}
 .fp-toc a:hover{background:var(--black);color:#fff}
 
-.feature{padding:90px 0;border-top:1px solid var(--line)}
+.feature{padding:120px 0;border-top:none}
 .feature:first-of-type{border-top:none}
 .feature .fwrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .feature.flip .fwrap{direction:rtl}
@@ -369,20 +369,24 @@ html[data-theme="dark"]{
 .flip:hover .flip-btn{background:rgba(0,0,0,.16)}
 .flip-back:hover .flip-btn{background:rgba(255,255,255,.24)}
 .flip:focus-visible{outline:2.5px solid var(--green-ink);outline-offset:3px;border-radius:26px}
-/* tints — front pastel matches back deep shade (palette follows the content) */
-.flip.t-green{--fc-bg:#e6f8e0;--fc-ink:#0a3a14;--fc-back:#0c2a14;--fc-backink:#e9fbe2}
-.flip.t-blue{--fc-bg:#e6eefb;--fc-ink:#12294f;--fc-back:#101f3c;--fc-backink:#e7eefb}
-.flip.t-purple{--fc-bg:#efe7fb;--fc-ink:#2f1a55;--fc-back:#241443;--fc-backink:#efe8fb}
-.flip.t-amber{--fc-bg:#fbf0dc;--fc-ink:#4d3406;--fc-back:#3a2a08;--fc-backink:#fbf0dc}
+/* tints — front carries the immersive background colour; back is its deep twin */
+.flip.t-green{--fc-bg:#b3f89b;--fc-ink:#0b3a14;--fc-back:#123c1d;--fc-backink:#dffbd4}
+.flip.t-blue{--fc-bg:#9fc7ff;--fc-ink:#102448;--fc-back:#142c58;--fc-backink:#dcE9ff}
+.flip.t-purple{--fc-bg:#dcbcff;--fc-ink:#2c1650;--fc-back:#301c58;--fc-backink:#eee0ff}
+.flip.t-amber{--fc-bg:#ffd76e;--fc-ink:#42310a;--fc-back:#453510;--fc-backink:#ffe9b3}
 .flip.t-ink{--fc-bg:#ececea;--fc-ink:#141416;--fc-back:#141419;--fc-backink:#f0f0ee}
-.flip.t-mint{--fc-bg:#e2f6f0;--fc-ink:#0b3a2e;--fc-back:#0b2b23;--fc-backink:#e2f6f0}
+.flip.t-mint{--fc-bg:#93f2d2;--fc-ink:#0b3a2c;--fc-back:#104033;--fc-backink:#d2f9ec}
+.flip.t-pink{--fc-bg:#ffb7d8;--fc-ink:#47102e;--fc-back:#44142e;--fc-backink:#ffdcec}
+.flip-face{box-shadow:0 22px 48px -26px rgba(10,10,10,.38),inset 0 0 0 1px rgba(255,255,255,.35)}
+.flip-back{box-shadow:0 22px 48px -26px rgba(0,0,0,.5)}
 /* dark mode: fronts go deep-tinted, backs slightly lifted */
-html[data-theme="dark"] .flip.t-green{--fc-bg:#122a17;--fc-ink:#dff5d8;--fc-back:#1a3d20;--fc-backink:#eafbe4}
-html[data-theme="dark"] .flip.t-blue{--fc-bg:#131f38;--fc-ink:#dbe6fa;--fc-back:#1b2c4f;--fc-backink:#e7eefb}
-html[data-theme="dark"] .flip.t-purple{--fc-bg:#1f1438;--fc-ink:#e9defb;--fc-back:#2d1e50;--fc-backink:#efe8fb}
-html[data-theme="dark"] .flip.t-amber{--fc-bg:#2e2408;--fc-ink:#f6e8c8;--fc-back:#413310;--fc-backink:#fbf0dc}
+html[data-theme="dark"] .flip.t-green{--fc-bg:#1b5227;--fc-ink:#d9fbca;--fc-back:#123c1d;--fc-backink:#eafbe4}
+html[data-theme="dark"] .flip.t-blue{--fc-bg:#1d3c76;--fc-ink:#dbe8ff;--fc-back:#142c58;--fc-backink:#e7eefb}
+html[data-theme="dark"] .flip.t-purple{--fc-bg:#402670;--fc-ink:#ecdfff;--fc-back:#301c58;--fc-backink:#f1e7ff}
+html[data-theme="dark"] .flip.t-amber{--fc-bg:#5c4715;--fc-ink:#ffe9b3;--fc-back:#453510;--fc-backink:#ffefc4}
 html[data-theme="dark"] .flip.t-ink{--fc-bg:#191920;--fc-ink:#eeeeec;--fc-back:#23232c;--fc-backink:#f0f0ee}
-html[data-theme="dark"] .flip.t-mint{--fc-bg:#0e2921;--fc-ink:#d8f2ea;--fc-back:#164033;--fc-backink:#e2f6f0}
+html[data-theme="dark"] .flip.t-mint{--fc-bg:#155444;--fc-ink:#d2f9ec;--fc-back:#104033;--fc-backink:#dffaf0}
+html[data-theme="dark"] .flip.t-pink{--fc-bg:#5c1e40;--fc-ink:#ffdcec;--fc-back:#44142e;--fc-backink:#ffe6f1}
 html[data-theme="dark"] .flip .fc-ic{background:rgba(255,255,255,.1)}
 html[data-theme="dark"] .flip-btn{background:rgba(255,255,255,.12)}
 /* responsiveness */
@@ -436,13 +440,13 @@ html[data-theme="dark"] .flip-btn{background:rgba(255,255,255,.12)}
 .scr .s-note{font-size:11px;color:#8a8a90;text-align:center}
 .scr .s-face{width:56px;height:56px;border-radius:18px;border:2.5px solid #141416;margin:12px auto 2px;display:grid;place-items:center;font-size:24px}
 /* duo rows: flip card stationed beside the phone mockup */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch;padding:64px 0;border-top:1px solid var(--line)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch;padding:110px 0;border-top:none}
 .duo:first-of-type{border-top:none}
 .duo .flip{min-height:380px;height:100%}
 .duo .mockwrap{display:flex;align-items:center;justify-content:center}
 .duo.rev .mockwrap{order:-1}
 @media(max-width:820px){
-  .duo{grid-template-columns:1fr;gap:30px;padding:44px 0}
+  .duo{grid-template-columns:1fr;gap:30px;padding:64px 0}
   .duo .flip{min-height:320px}
   .duo.rev .mockwrap{order:0}
   .halfphone{width:min(320px,90vw)}
@@ -491,3 +495,17 @@ html[data-theme="dark"] .mf.white{background:#16161c;border-color:var(--line)}
 .setup .su-link .pl{width:26px;height:26px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;flex:none}
 .setup .su-link .pl::after{content:"";margin-left:2px;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
 @media(max-width:820px){.setup .su-grid{grid-template-columns:1fr;gap:36px;text-align:center}.setup .su-copy .su-link{justify-content:center}}
+
+
+/* ============================== DASHBOARD MOCKUP (business visuals) ============================== */
+.dmock{width:min(480px,100%);background:#0b0b0e;border-radius:18px;padding:8px;box-shadow:0 44px 90px -40px rgba(0,0,0,.55),inset 0 0 0 2px #1c1c1e;flex:none;margin:0 auto}
+.dmock .dbar{display:flex;gap:5px;padding:4px 6px 9px}
+.dmock .dbar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
+.dmock .dwin{display:grid;grid-template-columns:96px 1fr;border-radius:12px;overflow:hidden;background:#f4f4f2;min-height:280px}
+.dmock .dside{background:#101014;color:#fff;padding:12px 9px;display:flex;flex-direction:column;gap:5px}
+.dmock .dside .lg{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:800;letter-spacing:-.02em;margin:0 4px 8px}
+.dmock .dside .lg::before{content:"";width:13px;height:13px;background:#fff;-webkit-mask:url(../assets/zenti-logo.png) center/contain no-repeat;mask:url(../assets/zenti-logo.png) center/contain no-repeat;flex:none}
+.dmock .dside .it{font-size:9.5px;font-weight:600;color:#b5b5ba;padding:5px 8px;border-radius:7px;white-space:nowrap}
+.dmock .dside .it.on{background:#fff;color:#101014}
+.dmock .dbody{padding:13px;display:flex;flex-direction:column;gap:8px;color:#141416;text-align:left}
+@media(max-width:560px){.dmock .dwin{grid-template-columns:78px 1fr}}
