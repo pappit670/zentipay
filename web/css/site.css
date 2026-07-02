@@ -526,3 +526,9 @@ html[data-theme="dark"] .fp-toc[data-tabs] a.on{background:#f4f4f2;color:#0a0a0c
 .duo.tabpane{padding:56px 0 84px;border-top:none}
 @media(prefers-reduced-motion:reduce){.tabpane{animation:none}}
 @media(max-width:640px){.fp-toc[data-tabs]{border-radius:22px;top:86px}}
+
+/* light (white) Z-way hero — device does the talking */
+.zhero.light{background:var(--bg);color:var(--ink-1)}
+.zhero.light .zh-sub{color:var(--ink-2)}
+.zhero.light h1{color:var(--ink-1)}
+.zhero.light .zh-tag{color:var(--ink-1)}
