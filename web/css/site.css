@@ -558,3 +558,21 @@ html[data-theme="dark"] [data-band="pink"]{background:#44142e}
   .duo[data-band]{padding:46px 20px}
   .feature[data-band]{padding:52px 20px}
 }
+
+/* ============================== DING-DONE HERO (rings hugging the phone) ============================== */
+.ding{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(16px,4vw,54px);margin-top:110px}
+.ding .dw{font-size:clamp(38px,7.5vw,104px);font-weight:600;font-style:italic;letter-spacing:-.03em;line-height:1;padding-bottom:clamp(60px,12vw,150px)}
+.dingphone{position:relative;display:inline-block}
+.dingphone .halfphone{margin:0}
+.ding .ring{position:absolute;border-bottom:none;pointer-events:none;z-index:0}
+.ding .r1{inset:-32px -32px 0;border:15px solid var(--green);border-bottom:none;border-radius:74px 74px 0 0}
+.ding .r2{inset:-64px -64px 0;border:15px solid #35d7c3;border-bottom:none;border-radius:92px 92px 0 0}
+.ding .r3{inset:-96px -96px 0;border:15px solid #3a86ff;border-bottom:none;border-radius:110px 110px 0 0}
+.dingphone .halfphone{position:relative;z-index:1}
+@media(max-width:700px){
+  .ding{margin-top:70px;gap:10px}
+  .ding .r1{inset:-18px -18px 0;border-width:9px;border-radius:58px 58px 0 0}
+  .ding .r2{inset:-36px -36px 0;border-width:9px;border-radius:70px 70px 0 0}
+  .ding .r3{inset:-54px -54px 0;border-width:9px;border-radius:82px 82px 0 0}
+  .dingphone .halfphone{width:min(250px,62vw)}
+}
