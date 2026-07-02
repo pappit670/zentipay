@@ -532,3 +532,29 @@ html[data-theme="dark"] .fp-toc[data-tabs] a.on{background:#f4f4f2;color:#0a0a0c
 .zhero.light .zh-sub{color:var(--ink-2)}
 .zhero.light h1{color:var(--ink-1)}
 .zhero.light .zh-tag{color:var(--ink-1)}
+
+/* ============================== COLOUR BAND SECTIONS (products & features) ==============================
+   The colour lives on each section — rounded painted slabs flowing downwards. */
+[data-band]{border-radius:40px;margin:30px 0}
+.duo[data-band]{padding:70px clamp(22px,4.5vw,70px)}
+.feature[data-band]{padding:80px clamp(22px,4.5vw,70px)}
+.csec[data-band],.setup[data-band]{margin:30px 16px}
+[data-band="green"]{background:#b3f89b}
+[data-band="blue"]{background:#9fc7ff}
+[data-band="purple"]{background:#dcbcff}
+[data-band="amber"]{background:#ffd76e}
+[data-band="mint"]{background:#93f2d2}
+[data-band="pink"]{background:#ffb7d8}
+html[data-theme="dark"] [data-band="green"]{background:#123c1d}
+html[data-theme="dark"] [data-band="blue"]{background:#142c58}
+html[data-theme="dark"] [data-band="purple"]{background:#301c58}
+html[data-theme="dark"] [data-band="amber"]{background:#453510}
+html[data-theme="dark"] [data-band="mint"]{background:#104033}
+html[data-theme="dark"] [data-band="pink"]{background:#44142e}
+/* readable ink on light bands regardless of theme vars */
+[data-band] .f-block p,[data-band] .fc-s{opacity:.85}
+@media(max-width:820px){
+  [data-band]{border-radius:28px}
+  .duo[data-band]{padding:46px 20px}
+  .feature[data-band]{padding:52px 20px}
+}
